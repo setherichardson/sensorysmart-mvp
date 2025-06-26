@@ -58,8 +58,11 @@ export default function OnboardingPage() {
     setError('')
 
     try {
+      console.log('Creating profile for user:', user.id)
+      console.log('Profile data:', { parentName, childName, childAge, email: user.email })
+
       // Create profile in Supabase
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('profiles')
         .insert({
           id: user.id,
@@ -68,16 +71,21 @@ export default function OnboardingPage() {
           child_name: childName,
           child_age: childAge,
         })
+        .select()
 
       if (error) {
-        setError('Failed to create profile. Please try again.')
+        console.error('Supabase error:', error)
+        setError(`Failed to create profile: ${error.message}`)
         return
       }
 
+      console.log('Profile created successfully:', data)
+      
       // Success! Redirect to assessment
       router.push('/onboarding/assessment')
     } catch (err) {
-      setError('An unexpected error occurred. Please try again.')
+      console.error('Unexpected error:', err)
+      setError(`An unexpected error occurred: ${err instanceof Error ? err.message : 'Unknown error'}`)
     } finally {
       setSubmitting(false)
     }
@@ -134,7 +142,7 @@ export default function OnboardingPage() {
                 id="parentName"
                 value={parentName}
                 onChange={(e) => setParentName(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 bg-white"
                 placeholder="Enter your name"
                 required
                 disabled={submitting}
@@ -150,7 +158,7 @@ export default function OnboardingPage() {
                 id="childName"
                 value={childName}
                 onChange={(e) => setChildName(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 bg-white"
                 placeholder="Enter your child's name"
                 required
                 disabled={submitting}
@@ -165,7 +173,7 @@ export default function OnboardingPage() {
                 id="childAge"
                 value={childAge}
                 onChange={(e) => setChildAge(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 bg-white"
                 required
                 disabled={submitting}
               >
