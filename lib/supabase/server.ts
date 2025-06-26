@@ -51,7 +51,7 @@ export function createAdminClient() {
 export const profileService = {
   // Create profile after authentication signup
   async createProfile(userId: string, data: Omit<Database['public']['Tables']['profiles']['Insert'], 'id'>) {
-    const supabase = createAdminClient()
+    const supabase = await createClient()
     
     const { data: profile, error } = await supabase
       .from('profiles')
@@ -65,7 +65,7 @@ export const profileService = {
 
   // Get profile by user ID
   async getProfile(userId: string) {
-    const supabase = createAdminClient()
+    const supabase = await createClient()
     
     const { data: profile, error } = await supabase
       .from('profiles')
@@ -79,7 +79,7 @@ export const profileService = {
 
   // Update profile
   async updateProfile(userId: string, updates: Database['public']['Tables']['profiles']['Update']) {
-    const supabase = createAdminClient()
+    const supabase = await createClient()
     
     const { data: profile, error } = await supabase
       .from('profiles')
@@ -96,7 +96,7 @@ export const profileService = {
 export const assessmentService = {
   // Save assessment results
   async saveAssessment(data: Database['public']['Tables']['assessments']['Insert']) {
-    const supabase = createAdminClient()
+    const supabase = await createClient()
     
     const { data: assessment, error } = await supabase
       .from('assessments')
@@ -110,7 +110,7 @@ export const assessmentService = {
 
   // Get latest assessment for user
   async getLatestAssessment(userId: string) {
-    const supabase = createAdminClient()
+    const supabase = await createClient()
     
     const { data: assessment, error } = await supabase
       .from('assessments')

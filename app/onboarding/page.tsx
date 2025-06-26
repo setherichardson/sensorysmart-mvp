@@ -61,25 +61,29 @@ export default function OnboardingPage() {
       console.log('Creating profile for user:', user.id)
       console.log('Profile data:', { parentName, childName, childAge, email: user.email })
 
-      // Create profile in Supabase
-      const { data, error } = await supabase
-        .from('profiles')
-        .insert({
-          id: user.id,
-          parent_name: parentName,
+      // Create profile via API route
+      const response = await fetch('/api/profiles', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          parentName: parentName,
           email: user.email || '',
-          child_name: childName,
-          child_age: childAge,
+          childName: childName,
+          childAge: childAge,
         })
-        .select()
+      })
 
-      if (error) {
-        console.error('Supabase error:', error)
-        setError(`Failed to create profile: ${error.message}`)
+      const result = await response.json()
+
+      if (!response.ok || !result.success) {
+        console.error('API error:', result)
+        setError(`Failed to create profile: ${result.error || 'Unknown error'}`)
         return
       }
 
-      console.log('Profile created successfully:', data)
+      console.log('Profile created successfully:', result.profile)
       
       // Success! Redirect to assessment
       router.push('/onboarding/assessment')
