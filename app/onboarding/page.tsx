@@ -69,7 +69,6 @@ export default function OnboardingPage() {
         },
         body: JSON.stringify({
           parentName: parentName,
-          email: user.email || '',
           childName: childName,
           childAge: childAge,
         })

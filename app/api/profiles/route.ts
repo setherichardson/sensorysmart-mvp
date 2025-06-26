@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     
     const profileData = {
       parent_name: body.parentName,
-      email: body.email,
+      email: user.email || '',
       child_name: body.childName,
       child_age: body.childAge,
     }
