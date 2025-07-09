@@ -258,29 +258,19 @@ export default function Results() {
             </div>
           </div>
 
-          {/* Continue Button */}
-          <button
-            onClick={handleContinue}
-            disabled={isRedirecting}
-            className={`w-full py-4 px-6 rounded-2xl font-medium text-base transition-all duration-200 ${
-              isRedirecting
-                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                : 'bg-black text-white hover:bg-gray-800'
-            }`}
-          >
-            {isRedirecting ? (
-              <span className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-300 mr-2"></div>
-                Starting your activities...
-              </span>
-            ) : (
-              'Start Activities Now'
-            )}
-          </button>
-
-          <p className="text-xs text-gray-500 text-center mt-4">
-            Your profile has been saved and personalized activities are ready
-          </p>
+          {/* Action Button */}
+          <div className="space-y-4">
+            <button
+              onClick={() => router.push('/onboarding/payment')}
+              className="w-full py-4 px-6 rounded-2xl font-medium text-base bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 shadow-lg"
+            >
+              Get Access for $9.99/mo
+            </button>
+            
+            <p className="text-xs text-gray-500 text-center">
+              Trusted by occupational therapists and sensory parents worldwide
+            </p>
+          </div>
         </div>
       </div>
     </div>

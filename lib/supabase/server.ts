@@ -15,13 +15,14 @@ export async function createClient() {
         },
         setAll(cookiesToSet) {
           try {
-            cookiesToSet.forEach(({ name, value, options }) =>
+            cookiesToSet.forEach(({ name, value, options }) => {
               cookieStore.set(name, value, options)
-            )
-          } catch {
+            })
+          } catch (error) {
             // The `setAll` method was called from a Server Component.
             // This can be ignored if you have middleware refreshing
             // user sessions.
+            console.warn('Could not set cookies in server component:', error)
           }
         },
       },
@@ -51,7 +52,8 @@ export function createAdminClient() {
 export const profileService = {
   // Create profile after authentication signup
   async createProfile(userId: string, data: Omit<Database['public']['Tables']['profiles']['Insert'], 'id'>) {
-    const supabase = await createClient()
+    // Use admin client for profile creation to bypass RLS
+    const supabase = createAdminClient()
     
     const { data: profile, error } = await supabase
       .from('profiles')
