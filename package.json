@@ -3,15 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/check-env.js && next dev",
+    "dev:unsafe": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check-env": "node scripts/check-env.js",
+    "test-db": "node scripts/test-db.js",
+    "check-users": "node scripts/check-users.js",
+    "test-signup": "node scripts/test-signup.js",
+    "check-auth": "node scripts/check-auth-settings.js",
+    "debug-profile": "node scripts/debug-profile-creation.js"
   },
   "dependencies": {
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.50.2",
     "next": "15.3.4",
+    "openai": "^5.8.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -20,6 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.0.1",
     "sharp": "^0.34.2",
     "tailwindcss": "^4",
     "typescript": "^5"

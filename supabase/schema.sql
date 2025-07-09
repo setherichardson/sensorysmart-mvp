@@ -30,15 +30,14 @@ CREATE TABLE IF NOT EXISTS assessments (
 
 -- Create activity_completions table
 CREATE TABLE IF NOT EXISTS activity_completions (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
-    activity_name VARCHAR(255) NOT NULL,
-    activity_type VARCHAR(50) NOT NULL CHECK (activity_type IN ('proprioceptive', 'vestibular', 'tactile', 'heavy-work', 'calming')),
-    rating VARCHAR(20) NOT NULL CHECK (rating IN ('worked', 'didnt_work', 'neutral')),
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
+    activity_name TEXT NOT NULL,
+    activity_type TEXT CHECK (activity_type IN ('proprioceptive', 'vestibular', 'tactile', 'heavy-work', 'calming', 'auditory', 'visual')) NOT NULL,
+    rating TEXT CHECK (rating IN ('regulated', 'calmer', 'neutral', 'distracted', 'dysregulated', 'worked_well', 'didnt_work', 'okay')) NULL,
     duration_minutes INTEGER,
     notes TEXT,
-    completed_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    completed_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
 );
 
 -- Create chat_messages table

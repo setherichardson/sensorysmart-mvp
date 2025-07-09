@@ -94,10 +94,10 @@ export type Database = {
           id: string
           user_id: string
           activity_name: string
-          activity_type: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming'
-          rating: 'worked' | 'didnt_work' | 'neutral'
-          duration_minutes: number | null
-          notes: string | null
+          activity_type: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming' | 'auditory' | 'visual'
+          rating: 'regulated' | 'calmer' | 'neutral' | 'distracted' | 'dysregulated' | 'worked_well' | 'didnt_work' | 'okay' | null
+          duration_minutes?: number
+          notes?: string
           completed_at: string
           created_at: string
         }
@@ -105,10 +105,10 @@ export type Database = {
           id?: string
           user_id: string
           activity_name: string
-          activity_type: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming'
-          rating: 'worked' | 'didnt_work' | 'neutral'
-          duration_minutes?: number | null
-          notes?: string | null
+          activity_type: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming' | 'auditory' | 'visual'
+          rating: 'regulated' | 'calmer' | 'neutral' | 'distracted' | 'dysregulated' | 'worked_well' | 'didnt_work' | 'okay' | null
+          duration_minutes?: number
+          notes?: string
           completed_at?: string
           created_at?: string
         }
@@ -116,10 +116,10 @@ export type Database = {
           id?: string
           user_id?: string
           activity_name?: string
-          activity_type?: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming'
-          rating?: 'worked' | 'didnt_work' | 'neutral'
-          duration_minutes?: number | null
-          notes?: string | null
+          activity_type?: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming' | 'auditory' | 'visual'
+          rating?: 'regulated' | 'calmer' | 'neutral' | 'distracted' | 'dysregulated' | 'worked_well' | 'didnt_work' | 'okay' | null
+          duration_minutes?: number
+          notes?: string
           completed_at?: string
           created_at?: string
         }

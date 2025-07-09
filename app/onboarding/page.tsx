@@ -71,6 +71,8 @@ export default function OnboardingPage() {
           parentName: parentName,
           childName: childName,
           childAge: childAge,
+          userId: user.id,
+          email: user.email,
         })
       })
 

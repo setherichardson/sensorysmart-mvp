@@ -13,6 +13,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Add Mona Sans font
+const monaSans = {
+  variable: "--font-mona-sans",
+  style: "normal",
+  weight: "400",
+  src: "url('https://fonts.cdnfonts.com/css/mona-sans')",
+};
+
 export const metadata: Metadata = {
   title: "SensorySmart - Sensory Support for Children",
   description: "Discover your child's unique sensory needs and get personalized activities to help them thrive. Science-based assessments and expert guidance.",
@@ -94,6 +102,7 @@ export default function RootLayout({
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/mona-sans" />
         <meta name="theme-color" content="#2563eb" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -104,9 +113,10 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{ fontFamily: "'Mona Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}
       >
         {children}
-        <PWAServiceWorker />
+        {/* <PWAServiceWorker /> */}
       </body>
     </html>
   );

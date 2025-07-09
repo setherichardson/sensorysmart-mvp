@@ -25,23 +25,50 @@ export default function Assessment() {
   useEffect(() => {
     const loadUserData = async () => {
       try {
+        console.log('🎯 Assessment: Loading user data...')
+        
         // Get current user
         const { data: { user } } = await supabase.auth.getUser()
         
         if (!user) {
+          console.log('❌ Assessment: No user found, redirecting to login')
           router.push('/login')
           return
         }
 
-        // Get user profile
-        const { data: profileData, error: profileError } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', user.id)
-          .single()
+        console.log('✅ Assessment: User found:', user.email)
+
+        // Get user profile with retry logic for timing issues
+        let retries = 3
+        let profileData = null
+        let profileError = null
+
+        while (retries > 0 && !profileData) {
+          console.log(`🔄 Assessment: Fetching profile (${4 - retries}/3)...`)
+          
+          const result = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', user.id)
+            .single()
+
+          profileData = result.data
+          profileError = result.error
+
+          if (profileError || !profileData) {
+            console.log('⚠️ Assessment: Profile not found, retrying in 1s...', profileError?.message)
+            retries--
+            if (retries > 0) {
+              await new Promise(resolve => setTimeout(resolve, 1000))
+            }
+          } else {
+            console.log('✅ Assessment: Profile loaded:', profileData.child_name)
+            break
+          }
+        }
 
         if (profileError || !profileData) {
-          // No profile found, redirect to onboarding
+          console.log('❌ Assessment: No profile found after retries, redirecting to onboarding')
           router.push('/onboarding')
           return
         }
@@ -49,7 +76,7 @@ export default function Assessment() {
         setUser(user)
         setProfile(profileData)
       } catch (err) {
-        console.error('Error loading user data:', err)
+        console.error('❌ Assessment: Error loading user data:', err)
         router.push('/login')
       } finally {
         setLoading(false)
@@ -292,45 +319,52 @@ export default function Assessment() {
   const handleAnswer = (score: number) => {
     setAnswers({ ...answers, [currentQ]: score })
     setError('') // Clear any previous errors
+    
+    // Auto-advance to next question after a short delay
+    setTimeout(() => {
+      if (currentQ < 15) {
+        setCurrentQ(currentQ + 1)
+      } else {
+        // Submit assessment on last question
+        handleSubmitAssessment()
+      }
+    }, 300)
   }
 
-  const handleNext = async () => {
-    if (currentQ < 15) {
-      setCurrentQ(currentQ + 1)
-    } else {
-      // Submit assessment
-      setSubmitting(true)
-      setError('')
+  const handleSubmitAssessment = async () => {
+    setSubmitting(true)
+    setError('')
 
-      try {
-        if (!user) throw new Error('User not authenticated')
+    try {
+      if (!user) throw new Error('User not authenticated')
 
-        const sensoryProfile = calculateSensoryProfile()
-        
-        // Save assessment to Supabase
-        const { error: assessmentError } = await supabase
-          .from('assessments')
-          .insert({
-            user_id: user.id,
-            responses: answers,
-            results: sensoryProfile,
-            completed_at: new Date().toISOString()
-          })
+      const sensoryProfile = calculateSensoryProfile()
+      
+      // Save assessment to Supabase
+      const { error: assessmentError } = await supabase
+        .from('assessments')
+        .insert({
+          user_id: user.id,
+          responses: answers,
+          results: sensoryProfile,
+          completed_at: new Date().toISOString()
+        })
 
-        if (assessmentError) {
-          throw assessmentError
-        }
-
-        // Success! Redirect to results
-        router.push('/onboarding/results')
-      } catch (err) {
-        console.error('Error saving assessment:', err)
-        setError('Failed to save assessment. Please try again.')
-      } finally {
-        setSubmitting(false)
+      if (assessmentError) {
+        throw assessmentError
       }
+
+      // Success! Redirect to results and payment
+      router.push('/onboarding/results-payment')
+    } catch (err) {
+      console.error('Error saving assessment:', err)
+      setError('Failed to save assessment. Please try again.')
+    } finally {
+      setSubmitting(false)
     }
   }
+
+
 
   const handleBack = () => {
     if (currentQ > 1) {
@@ -381,14 +415,9 @@ export default function Assessment() {
 
         <div className="px-6 py-6">
           {/* Progress Section */}
-          <div className="mb-8">
-            <div className="flex justify-between items-center mb-3">
-              <span className="text-gray-600 text-base font-medium">Step 2 of 3</span>
-              <span className="text-gray-600 text-base font-medium">{overallProgress}% complete</span>
-            </div>
+          <div className="mb-6">
             <div className="flex justify-between items-center mb-3">
               <span className="text-gray-600 text-sm">Question {currentQ} of 15</span>
-              <span className="text-gray-600 text-sm">Assessment {progress}% complete</span>
             </div>
             {/* Progress Bar */}
             <div className="bg-gray-200 h-2 rounded-full overflow-hidden">
@@ -412,11 +441,11 @@ export default function Assessment() {
           </h2>
 
           {/* Options */}
-          <div className="space-y-4 mb-12">
+          <div className="space-y-2 mb-10">
             {currentQuestion.options.map((option) => (
               <button
                 key={option.score}
-                className={`w-full p-5 text-left rounded-2xl border transition-all duration-200 text-base ${
+                className={`w-full p-3 text-left rounded-2xl border transition-all duration-200 text-sm ${
                   answers[currentQ] === option.score
                     ? 'border-black bg-gray-50 text-black font-medium' 
                     : 'border-gray-200 hover:border-gray-300 text-gray-700'
@@ -429,25 +458,15 @@ export default function Assessment() {
             ))}
           </div>
 
-          {/* Next Button */}
-          <button
-            onClick={handleNext}
-            disabled={!hasAnswer || submitting}
-            className={`w-full py-4 px-6 rounded-2xl font-medium text-base transition-all duration-200 ${
-              hasAnswer && !submitting
-                ? 'bg-black text-white'
-                : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-            }`}
-          >
-            {submitting ? (
+          {/* Progress Indicator */}
+          {submitting && (
+            <div className="text-center py-4">
               <div className="flex items-center justify-center">
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-300 mr-2"></div>
                 Saving Assessment...
               </div>
-            ) : (
-              currentQ === 15 ? 'View Results' : 'Next question'
-            )}
-          </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
