@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, Suspense } from 'react'
+import { useState, Suspense, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
@@ -10,9 +10,18 @@ function LoginForm() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const router = useRouter()
   const searchParams = useSearchParams()
   const redirectTo = searchParams.get('redirectTo') || '/dashboard/today'
+  const message = searchParams.get('message')
+
+  // Check for success message on component mount
+  useEffect(() => {
+    if (message === 'password-reset-success') {
+      setSuccessMessage('Password reset successfully! You can now sign in with your new password.')
+    }
+  }, [message])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -80,6 +89,12 @@ function LoginForm() {
               </div>
             )}
 
+            {successMessage && (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <p className="text-green-600 text-sm">{successMessage}</p>
+              </div>
+            )}
+
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email Address
@@ -130,15 +145,12 @@ function LoginForm() {
 
           {/* Forgot Password */}
           <div className="text-center mt-4">
-            <button
-              onClick={() => {
-                // TODO: Implement forgot password
-                setError('Forgot password feature coming soon!')
-              }}
+            <Link
+              href="/forgot-password"
               className="text-blue-600 hover:text-blue-700 text-sm"
             >
               Forgot your password?
-            </button>
+            </Link>
           </div>
         </div>
 

@@ -1,0 +1,3184 @@
+[
+  {
+    "id": "activity-001",
+    "name": "Texture Exploration ",
+    "description": "Explore different textures with hands",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Various textured objects"
+    ],
+    "ageRange": "10-12 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Gather textures",
+        "description": "Collect different textured objects",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Explore",
+        "description": "Feel each texture with hands",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Describe",
+        "description": "Describe how each feels",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-002",
+    "name": "Texture Exploration (Variation 2)",
+    "description": "Explore different textures with hands - Variation 2",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 14,
+    "materials": [
+      "Various textured objects"
+    ],
+    "ageRange": "2-3 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Gather textures",
+        "description": "Collect different textured objects",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Explore",
+        "description": "Feel each texture with hands",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Describe",
+        "description": "Describe how each feels",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-003",
+    "name": "Texture Exploration (Variation 3)",
+    "description": "Explore different textures with hands - Variation 3",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 17,
+    "materials": [
+      "Various textured objects"
+    ],
+    "ageRange": "4-5 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Gather textures",
+        "description": "Collect different textured objects",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Explore",
+        "description": "Feel each texture with hands",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Describe",
+        "description": "Describe how each feels",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-004",
+    "name": "Texture Exploration (Variation 4)",
+    "description": "Explore different textures with hands - Variation 4",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 20,
+    "materials": [
+      "Various textured objects"
+    ],
+    "ageRange": "7-8 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Gather textures",
+        "description": "Collect different textured objects",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Explore",
+        "description": "Feel each texture with hands",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Describe",
+        "description": "Describe how each feels",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-005",
+    "name": "Finger Painting ",
+    "description": "Create art using fingers and paint",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 15,
+    "materials": [
+      "Washable paint",
+      "Paper",
+      "Plastic tablecloth"
+    ],
+    "ageRange": "7-8 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare space",
+        "description": "Cover table with plastic",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Set out paint",
+        "description": "Pour paint onto paper",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Paint",
+        "description": "Use fingers to create art",
+        "duration_seconds": 810
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-006",
+    "name": "Finger Painting (Variation 2)",
+    "description": "Create art using fingers and paint - Variation 2",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 19,
+    "materials": [
+      "Washable paint",
+      "Paper",
+      "Plastic tablecloth"
+    ],
+    "ageRange": "4-5 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare space",
+        "description": "Cover table with plastic",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Set out paint",
+        "description": "Pour paint onto paper",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Paint",
+        "description": "Use fingers to create art",
+        "duration_seconds": 810
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-007",
+    "name": "Finger Painting (Variation 3)",
+    "description": "Create art using fingers and paint - Variation 3",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 22,
+    "materials": [
+      "Washable paint",
+      "Paper",
+      "Plastic tablecloth"
+    ],
+    "ageRange": "8-10 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare space",
+        "description": "Cover table with plastic",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Set out paint",
+        "description": "Pour paint onto paper",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Paint",
+        "description": "Use fingers to create art",
+        "duration_seconds": 810
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-008",
+    "name": "Finger Painting (Variation 4)",
+    "description": "Create art using fingers and paint - Variation 4",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 25,
+    "materials": [
+      "Washable paint",
+      "Paper",
+      "Plastic tablecloth"
+    ],
+    "ageRange": "5-6 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare space",
+        "description": "Cover table with plastic",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Set out paint",
+        "description": "Pour paint onto paper",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Paint",
+        "description": "Use fingers to create art",
+        "duration_seconds": 810
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-009",
+    "name": "Play Dough Creation ",
+    "description": "Mold and shape play dough",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 12,
+    "materials": [
+      "Play dough",
+      "Rolling pin",
+      "Cookie cutters"
+    ],
+    "ageRange": "7-8 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Warm up",
+        "description": "Knead the play dough",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Roll",
+        "description": "Roll into different shapes",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Cut shapes",
+        "description": "Use cookie cutters",
+        "duration_seconds": 420
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-010",
+    "name": "Play Dough Creation (Variation 2)",
+    "description": "Mold and shape play dough - Variation 2",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 16,
+    "materials": [
+      "Play dough",
+      "Rolling pin",
+      "Cookie cutters"
+    ],
+    "ageRange": "10-12 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Warm up",
+        "description": "Knead the play dough",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Roll",
+        "description": "Roll into different shapes",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Cut shapes",
+        "description": "Use cookie cutters",
+        "duration_seconds": 420
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-011",
+    "name": "Play Dough Creation (Variation 3)",
+    "description": "Mold and shape play dough - Variation 3",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 19,
+    "materials": [
+      "Play dough",
+      "Rolling pin",
+      "Cookie cutters"
+    ],
+    "ageRange": "5-6 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Warm up",
+        "description": "Knead the play dough",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Roll",
+        "description": "Roll into different shapes",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Cut shapes",
+        "description": "Use cookie cutters",
+        "duration_seconds": 420
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-012",
+    "name": "Play Dough Creation (Variation 4)",
+    "description": "Mold and shape play dough - Variation 4",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 22,
+    "materials": [
+      "Play dough",
+      "Rolling pin",
+      "Cookie cutters"
+    ],
+    "ageRange": "10-12 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Warm up",
+        "description": "Knead the play dough",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Roll",
+        "description": "Roll into different shapes",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Cut shapes",
+        "description": "Use cookie cutters",
+        "duration_seconds": 420
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-013",
+    "name": "Wall Push-ups ",
+    "description": "Push against a wall to provide deep pressure",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 3,
+    "materials": [
+      "Wall"
+    ],
+    "ageRange": "4-5 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand facing wall",
+        "description": "Stand 2 feet from wall",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Place hands",
+        "description": "Place hands on wall at shoulder height",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Push",
+        "description": "Push against wall for 10 seconds",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Rest",
+        "description": "Rest for 5 seconds",
+        "duration_seconds": 5
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Repeat 5-10 times",
+        "duration_seconds": 145
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-014",
+    "name": "Wall Push-ups (Variation 2)",
+    "description": "Push against a wall to provide deep pressure - Variation 2",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 7,
+    "materials": [
+      "Wall"
+    ],
+    "ageRange": "10-12 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand facing wall",
+        "description": "Stand 2 feet from wall",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Place hands",
+        "description": "Place hands on wall at shoulder height",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Push",
+        "description": "Push against wall for 10 seconds",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Rest",
+        "description": "Rest for 5 seconds",
+        "duration_seconds": 5
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Repeat 5-10 times",
+        "duration_seconds": 145
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-015",
+    "name": "Wall Push-ups (Variation 3)",
+    "description": "Push against a wall to provide deep pressure - Variation 3",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Wall"
+    ],
+    "ageRange": "4-5 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand facing wall",
+        "description": "Stand 2 feet from wall",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Place hands",
+        "description": "Place hands on wall at shoulder height",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Push",
+        "description": "Push against wall for 10 seconds",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Rest",
+        "description": "Rest for 5 seconds",
+        "duration_seconds": 5
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Repeat 5-10 times",
+        "duration_seconds": 145
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-016",
+    "name": "Wall Push-ups (Variation 4)",
+    "description": "Push against a wall to provide deep pressure - Variation 4",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 13,
+    "materials": [
+      "Wall"
+    ],
+    "ageRange": "10-12 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand facing wall",
+        "description": "Stand 2 feet from wall",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Place hands",
+        "description": "Place hands on wall at shoulder height",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Push",
+        "description": "Push against wall for 10 seconds",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Rest",
+        "description": "Rest for 5 seconds",
+        "duration_seconds": 5
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Repeat 5-10 times",
+        "duration_seconds": 145
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-017",
+    "name": "Heavy Work Carrying ",
+    "description": "Carry heavy objects to provide proprioceptive input",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 8,
+    "materials": [
+      "Books",
+      "Laundry basket",
+      "Groceries"
+    ],
+    "ageRange": "5-6 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose object",
+        "description": "Select heavy but safe object",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Lift properly",
+        "description": "Bend knees and lift",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Carry",
+        "description": "Walk with object to destination",
+        "duration_seconds": 420
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-018",
+    "name": "Heavy Work Carrying (Variation 2)",
+    "description": "Carry heavy objects to provide proprioceptive input - Variation 2",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 12,
+    "materials": [
+      "Books",
+      "Laundry basket",
+      "Groceries"
+    ],
+    "ageRange": "7-8 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose object",
+        "description": "Select heavy but safe object",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Lift properly",
+        "description": "Bend knees and lift",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Carry",
+        "description": "Walk with object to destination",
+        "duration_seconds": 420
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-019",
+    "name": "Heavy Work Carrying (Variation 3)",
+    "description": "Carry heavy objects to provide proprioceptive input - Variation 3",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 15,
+    "materials": [
+      "Books",
+      "Laundry basket",
+      "Groceries"
+    ],
+    "ageRange": "7-8 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose object",
+        "description": "Select heavy but safe object",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Lift properly",
+        "description": "Bend knees and lift",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Carry",
+        "description": "Walk with object to destination",
+        "duration_seconds": 420
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-020",
+    "name": "Heavy Work Carrying (Variation 4)",
+    "description": "Carry heavy objects to provide proprioceptive input - Variation 4",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 18,
+    "materials": [
+      "Books",
+      "Laundry basket",
+      "Groceries"
+    ],
+    "ageRange": "3-4 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose object",
+        "description": "Select heavy but safe object",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Lift properly",
+        "description": "Bend knees and lift",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Carry",
+        "description": "Walk with object to destination",
+        "duration_seconds": 420
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-021",
+    "name": "Jumping Jacks ",
+    "description": "Classic jumping exercise",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 5,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "8-10 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand ready",
+        "description": "Stand with feet together, arms down",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Jump and spread",
+        "description": "Jump, spread legs, raise arms",
+        "duration_seconds": 2
+      },
+      {
+        "step_number": 3,
+        "title": "Jump back",
+        "description": "Jump back to starting position",
+        "duration_seconds": 2
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Continue for 5 minutes",
+        "duration_seconds": 286
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-022",
+    "name": "Jumping Jacks (Variation 2)",
+    "description": "Classic jumping exercise - Variation 2",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 9,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "6-7 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand ready",
+        "description": "Stand with feet together, arms down",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Jump and spread",
+        "description": "Jump, spread legs, raise arms",
+        "duration_seconds": 2
+      },
+      {
+        "step_number": 3,
+        "title": "Jump back",
+        "description": "Jump back to starting position",
+        "duration_seconds": 2
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Continue for 5 minutes",
+        "duration_seconds": 286
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-023",
+    "name": "Jumping Jacks (Variation 3)",
+    "description": "Classic jumping exercise - Variation 3",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 12,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "3-4 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand ready",
+        "description": "Stand with feet together, arms down",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Jump and spread",
+        "description": "Jump, spread legs, raise arms",
+        "duration_seconds": 2
+      },
+      {
+        "step_number": 3,
+        "title": "Jump back",
+        "description": "Jump back to starting position",
+        "duration_seconds": 2
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Continue for 5 minutes",
+        "duration_seconds": 286
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-024",
+    "name": "Jumping Jacks (Variation 4)",
+    "description": "Classic jumping exercise - Variation 4",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 15,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "7-8 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand ready",
+        "description": "Stand with feet together, arms down",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Jump and spread",
+        "description": "Jump, spread legs, raise arms",
+        "duration_seconds": 2
+      },
+      {
+        "step_number": 3,
+        "title": "Jump back",
+        "description": "Jump back to starting position",
+        "duration_seconds": 2
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Continue for 5 minutes",
+        "duration_seconds": 286
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-025",
+    "name": "Swinging ",
+    "description": "Swing on a playground swing",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Swing"
+    ],
+    "ageRange": "3-4 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit on swing",
+        "description": "Sit safely on swing",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start swinging",
+        "description": "Begin gentle swinging",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Continue",
+        "description": "Swing for 10 minutes",
+        "duration_seconds": 540
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-026",
+    "name": "Swinging (Variation 2)",
+    "description": "Swing on a playground swing - Variation 2",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 14,
+    "materials": [
+      "Swing"
+    ],
+    "ageRange": "6-7 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit on swing",
+        "description": "Sit safely on swing",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start swinging",
+        "description": "Begin gentle swinging",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Continue",
+        "description": "Swing for 10 minutes",
+        "duration_seconds": 540
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-027",
+    "name": "Swinging (Variation 3)",
+    "description": "Swing on a playground swing - Variation 3",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 17,
+    "materials": [
+      "Swing"
+    ],
+    "ageRange": "5-6 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit on swing",
+        "description": "Sit safely on swing",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start swinging",
+        "description": "Begin gentle swinging",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Continue",
+        "description": "Swing for 10 minutes",
+        "duration_seconds": 540
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-028",
+    "name": "Swinging (Variation 4)",
+    "description": "Swing on a playground swing - Variation 4",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 20,
+    "materials": [
+      "Swing"
+    ],
+    "ageRange": "8-10 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit on swing",
+        "description": "Sit safely on swing",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start swinging",
+        "description": "Begin gentle swinging",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Continue",
+        "description": "Swing for 10 minutes",
+        "duration_seconds": 540
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-029",
+    "name": "Spinning ",
+    "description": "Spin in place for vestibular input",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 3,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "8-10 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand in place",
+        "description": "Stand with arms out",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Start spinning",
+        "description": "Spin slowly in place",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Stop and balance",
+        "description": "Stop and maintain balance",
+        "duration_seconds": 20
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Repeat 3-5 times",
+        "duration_seconds": 120
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-030",
+    "name": "Spinning (Variation 2)",
+    "description": "Spin in place for vestibular input - Variation 2",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 7,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "6-7 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand in place",
+        "description": "Stand with arms out",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Start spinning",
+        "description": "Spin slowly in place",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Stop and balance",
+        "description": "Stop and maintain balance",
+        "duration_seconds": 20
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Repeat 3-5 times",
+        "duration_seconds": 120
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-031",
+    "name": "Spinning (Variation 3)",
+    "description": "Spin in place for vestibular input - Variation 3",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "2-3 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand in place",
+        "description": "Stand with arms out",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Start spinning",
+        "description": "Spin slowly in place",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Stop and balance",
+        "description": "Stop and maintain balance",
+        "duration_seconds": 20
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Repeat 3-5 times",
+        "duration_seconds": 120
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-032",
+    "name": "Spinning (Variation 4)",
+    "description": "Spin in place for vestibular input - Variation 4",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 13,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "6-7 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand in place",
+        "description": "Stand with arms out",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Start spinning",
+        "description": "Spin slowly in place",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Stop and balance",
+        "description": "Stop and maintain balance",
+        "duration_seconds": 20
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Repeat 3-5 times",
+        "duration_seconds": 120
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-033",
+    "name": "Balance Beam ",
+    "description": "Walk on a balance beam",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 8,
+    "materials": [
+      "Balance beam",
+      "Soft surface"
+    ],
+    "ageRange": "10-12 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up beam",
+        "description": "Place beam on soft surface",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Start walking",
+        "description": "Walk slowly on beam",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Add challenges",
+        "description": "Walk backwards or sideways",
+        "duration_seconds": 300
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-034",
+    "name": "Balance Beam (Variation 2)",
+    "description": "Walk on a balance beam - Variation 2",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 12,
+    "materials": [
+      "Balance beam",
+      "Soft surface"
+    ],
+    "ageRange": "2-3 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up beam",
+        "description": "Place beam on soft surface",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Start walking",
+        "description": "Walk slowly on beam",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Add challenges",
+        "description": "Walk backwards or sideways",
+        "duration_seconds": 300
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-035",
+    "name": "Balance Beam (Variation 3)",
+    "description": "Walk on a balance beam - Variation 3",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 15,
+    "materials": [
+      "Balance beam",
+      "Soft surface"
+    ],
+    "ageRange": "5-6 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up beam",
+        "description": "Place beam on soft surface",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Start walking",
+        "description": "Walk slowly on beam",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Add challenges",
+        "description": "Walk backwards or sideways",
+        "duration_seconds": 300
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-036",
+    "name": "Balance Beam (Variation 4)",
+    "description": "Walk on a balance beam - Variation 4",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 18,
+    "materials": [
+      "Balance beam",
+      "Soft surface"
+    ],
+    "ageRange": "4-5 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up beam",
+        "description": "Place beam on soft surface",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Start walking",
+        "description": "Walk slowly on beam",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Add challenges",
+        "description": "Walk backwards or sideways",
+        "duration_seconds": 300
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-037",
+    "name": "Calming Music ",
+    "description": "Listen to calming instrumental music",
+    "sensorySystems": [
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Music player",
+      "Calming music"
+    ],
+    "ageRange": "4-5 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Find quiet space",
+        "description": "Go to quiet room",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start music",
+        "description": "Play calming instrumental music",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Listen",
+        "description": "Sit quietly and listen",
+        "duration_seconds": 540
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-038",
+    "name": "Calming Music (Variation 2)",
+    "description": "Listen to calming instrumental music - Variation 2",
+    "sensorySystems": [
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 14,
+    "materials": [
+      "Music player",
+      "Calming music"
+    ],
+    "ageRange": "8-10 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Find quiet space",
+        "description": "Go to quiet room",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start music",
+        "description": "Play calming instrumental music",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Listen",
+        "description": "Sit quietly and listen",
+        "duration_seconds": 540
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-039",
+    "name": "Calming Music (Variation 3)",
+    "description": "Listen to calming instrumental music - Variation 3",
+    "sensorySystems": [
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 17,
+    "materials": [
+      "Music player",
+      "Calming music"
+    ],
+    "ageRange": "3-4 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Find quiet space",
+        "description": "Go to quiet room",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start music",
+        "description": "Play calming instrumental music",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Listen",
+        "description": "Sit quietly and listen",
+        "duration_seconds": 540
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-040",
+    "name": "Calming Music (Variation 4)",
+    "description": "Listen to calming instrumental music - Variation 4",
+    "sensorySystems": [
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 20,
+    "materials": [
+      "Music player",
+      "Calming music"
+    ],
+    "ageRange": "7-8 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Find quiet space",
+        "description": "Go to quiet room",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start music",
+        "description": "Play calming instrumental music",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Listen",
+        "description": "Sit quietly and listen",
+        "duration_seconds": 540
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-041",
+    "name": "Sound Scavenger Hunt ",
+    "description": "Listen for different sounds in environment",
+    "sensorySystems": [
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 8,
+    "materials": [
+      "Quiet environment"
+    ],
+    "ageRange": "2-3 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Close eyes",
+        "description": "Sit quietly with eyes closed",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Listen",
+        "description": "Listen for different sounds",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Identify",
+        "description": "Name the sounds you hear",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Repeat for 8 minutes",
+        "duration_seconds": 390
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-042",
+    "name": "Sound Scavenger Hunt (Variation 2)",
+    "description": "Listen for different sounds in environment - Variation 2",
+    "sensorySystems": [
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 12,
+    "materials": [
+      "Quiet environment"
+    ],
+    "ageRange": "5-6 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Close eyes",
+        "description": "Sit quietly with eyes closed",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Listen",
+        "description": "Listen for different sounds",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Identify",
+        "description": "Name the sounds you hear",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Repeat for 8 minutes",
+        "duration_seconds": 390
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-043",
+    "name": "Sound Scavenger Hunt (Variation 3)",
+    "description": "Listen for different sounds in environment - Variation 3",
+    "sensorySystems": [
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 15,
+    "materials": [
+      "Quiet environment"
+    ],
+    "ageRange": "8-10 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Close eyes",
+        "description": "Sit quietly with eyes closed",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Listen",
+        "description": "Listen for different sounds",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Identify",
+        "description": "Name the sounds you hear",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Repeat for 8 minutes",
+        "duration_seconds": 390
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-044",
+    "name": "Sound Scavenger Hunt (Variation 4)",
+    "description": "Listen for different sounds in environment - Variation 4",
+    "sensorySystems": [
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 18,
+    "materials": [
+      "Quiet environment"
+    ],
+    "ageRange": "2-3 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Close eyes",
+        "description": "Sit quietly with eyes closed",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Listen",
+        "description": "Listen for different sounds",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Identify",
+        "description": "Name the sounds you hear",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Repeat for 8 minutes",
+        "duration_seconds": 390
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-045",
+    "name": "Visual Tracking ",
+    "description": "Follow moving objects with eyes",
+    "sensorySystems": [
+      "visual"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 5,
+    "materials": [
+      "Moving object",
+      "Finger"
+    ],
+    "ageRange": "10-12 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Hold object",
+        "description": "Hold small object in hand",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Move slowly",
+        "description": "Move object slowly in different directions",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Follow with eyes",
+        "description": "Follow object with eyes only",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-046",
+    "name": "Visual Tracking (Variation 2)",
+    "description": "Follow moving objects with eyes - Variation 2",
+    "sensorySystems": [
+      "visual"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 9,
+    "materials": [
+      "Moving object",
+      "Finger"
+    ],
+    "ageRange": "8-10 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Hold object",
+        "description": "Hold small object in hand",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Move slowly",
+        "description": "Move object slowly in different directions",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Follow with eyes",
+        "description": "Follow object with eyes only",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-047",
+    "name": "Visual Tracking (Variation 3)",
+    "description": "Follow moving objects with eyes - Variation 3",
+    "sensorySystems": [
+      "visual"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 12,
+    "materials": [
+      "Moving object",
+      "Finger"
+    ],
+    "ageRange": "3-4 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Hold object",
+        "description": "Hold small object in hand",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Move slowly",
+        "description": "Move object slowly in different directions",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Follow with eyes",
+        "description": "Follow object with eyes only",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-048",
+    "name": "Visual Tracking (Variation 4)",
+    "description": "Follow moving objects with eyes - Variation 4",
+    "sensorySystems": [
+      "visual"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 15,
+    "materials": [
+      "Moving object",
+      "Finger"
+    ],
+    "ageRange": "10-12 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Hold object",
+        "description": "Hold small object in hand",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Move slowly",
+        "description": "Move object slowly in different directions",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Follow with eyes",
+        "description": "Follow object with eyes only",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-049",
+    "name": "I Spy ",
+    "description": "Find objects based on visual clues",
+    "sensorySystems": [
+      "visual"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 8,
+    "materials": [
+      "Environment with objects"
+    ],
+    "ageRange": "5-6 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose object",
+        "description": "Pick an object in the room",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Give clue",
+        "description": "Say 'I spy something red'",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Let child guess",
+        "description": "Child looks for object",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Take turns for 8 minutes",
+        "duration_seconds": 390
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-050",
+    "name": "I Spy (Variation 2)",
+    "description": "Find objects based on visual clues - Variation 2",
+    "sensorySystems": [
+      "visual"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 12,
+    "materials": [
+      "Environment with objects"
+    ],
+    "ageRange": "3-4 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose object",
+        "description": "Pick an object in the room",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Give clue",
+        "description": "Say 'I spy something red'",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Let child guess",
+        "description": "Child looks for object",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Take turns for 8 minutes",
+        "duration_seconds": 390
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-051",
+    "name": "I Spy (Variation 3)",
+    "description": "Find objects based on visual clues - Variation 3",
+    "sensorySystems": [
+      "visual"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 15,
+    "materials": [
+      "Environment with objects"
+    ],
+    "ageRange": "5-6 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose object",
+        "description": "Pick an object in the room",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Give clue",
+        "description": "Say 'I spy something red'",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Let child guess",
+        "description": "Child looks for object",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Take turns for 8 minutes",
+        "duration_seconds": 390
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-052",
+    "name": "I Spy (Variation 4)",
+    "description": "Find objects based on visual clues - Variation 4",
+    "sensorySystems": [
+      "visual"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 18,
+    "materials": [
+      "Environment with objects"
+    ],
+    "ageRange": "4-5 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose object",
+        "description": "Pick an object in the room",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Give clue",
+        "description": "Say 'I spy something red'",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Let child guess",
+        "description": "Child looks for object",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Take turns for 8 minutes",
+        "duration_seconds": 390
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-053",
+    "name": "Scent Exploration ",
+    "description": "Explore different smells safely",
+    "sensorySystems": [
+      "olfactory"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 6,
+    "materials": [
+      "Safe scents",
+      "Cotton balls"
+    ],
+    "ageRange": "2-3 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare scents",
+        "description": "Put drops of scent on cotton balls",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Smell one",
+        "description": "Smell one scent at a time",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Describe",
+        "description": "Describe what you smell",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Try different scents",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-054",
+    "name": "Scent Exploration (Variation 2)",
+    "description": "Explore different smells safely - Variation 2",
+    "sensorySystems": [
+      "olfactory"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Safe scents",
+      "Cotton balls"
+    ],
+    "ageRange": "7-8 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare scents",
+        "description": "Put drops of scent on cotton balls",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Smell one",
+        "description": "Smell one scent at a time",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Describe",
+        "description": "Describe what you smell",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Try different scents",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-055",
+    "name": "Scent Exploration (Variation 3)",
+    "description": "Explore different smells safely - Variation 3",
+    "sensorySystems": [
+      "olfactory"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 13,
+    "materials": [
+      "Safe scents",
+      "Cotton balls"
+    ],
+    "ageRange": "4-5 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare scents",
+        "description": "Put drops of scent on cotton balls",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Smell one",
+        "description": "Smell one scent at a time",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Describe",
+        "description": "Describe what you smell",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Try different scents",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-056",
+    "name": "Scent Exploration (Variation 4)",
+    "description": "Explore different smells safely - Variation 4",
+    "sensorySystems": [
+      "olfactory"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 16,
+    "materials": [
+      "Safe scents",
+      "Cotton balls"
+    ],
+    "ageRange": "3-4 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare scents",
+        "description": "Put drops of scent on cotton balls",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Smell one",
+        "description": "Smell one scent at a time",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Describe",
+        "description": "Describe what you smell",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Try different scents",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-057",
+    "name": "Body Scan ",
+    "description": "Notice how different parts of body feel",
+    "sensorySystems": [
+      "interoception"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 5,
+    "materials": [
+      "Quiet space"
+    ],
+    "ageRange": "8-10 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Lie down",
+        "description": "Lie comfortably on back",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Focus on feet",
+        "description": "Notice how feet feel",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Move up body",
+        "description": "Focus on each body part",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-058",
+    "name": "Body Scan (Variation 2)",
+    "description": "Notice how different parts of body feel - Variation 2",
+    "sensorySystems": [
+      "interoception"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 9,
+    "materials": [
+      "Quiet space"
+    ],
+    "ageRange": "8-10 years",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Lie down",
+        "description": "Lie comfortably on back",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Focus on feet",
+        "description": "Notice how feet feel",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Move up body",
+        "description": "Focus on each body part",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-059",
+    "name": "Body Scan (Variation 3)",
+    "description": "Notice how different parts of body feel - Variation 3",
+    "sensorySystems": [
+      "interoception"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 12,
+    "materials": [
+      "Quiet space"
+    ],
+    "ageRange": "2-3 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Lie down",
+        "description": "Lie comfortably on back",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Focus on feet",
+        "description": "Notice how feet feel",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Move up body",
+        "description": "Focus on each body part",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-060",
+    "name": "Body Scan (Variation 4)",
+    "description": "Notice how different parts of body feel - Variation 4",
+    "sensorySystems": [
+      "interoception"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 15,
+    "materials": [
+      "Quiet space"
+    ],
+    "ageRange": "7-8 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Lie down",
+        "description": "Lie comfortably on back",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Focus on feet",
+        "description": "Notice how feet feel",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Move up body",
+        "description": "Focus on each body part",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-061",
+    "name": "Deep Breathing ",
+    "description": "Practice deep breathing for calming",
+    "sensorySystems": [
+      "interoception"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 3,
+    "materials": [
+      "Quiet space"
+    ],
+    "ageRange": "8-10 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit comfortably",
+        "description": "Sit with back straight",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Breathe in",
+        "description": "Take slow deep breath",
+        "duration_seconds": 4
+      },
+      {
+        "step_number": 3,
+        "title": "Hold",
+        "description": "Hold breath for 4 seconds",
+        "duration_seconds": 4
+      },
+      {
+        "step_number": 4,
+        "title": "Breathe out",
+        "description": "Slowly breathe out",
+        "duration_seconds": 6
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Continue for 3 minutes",
+        "duration_seconds": 156
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-062",
+    "name": "Deep Breathing (Variation 2)",
+    "description": "Practice deep breathing for calming - Variation 2",
+    "sensorySystems": [
+      "interoception"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 7,
+    "materials": [
+      "Quiet space"
+    ],
+    "ageRange": "3-4 years",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit comfortably",
+        "description": "Sit with back straight",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Breathe in",
+        "description": "Take slow deep breath",
+        "duration_seconds": 4
+      },
+      {
+        "step_number": 3,
+        "title": "Hold",
+        "description": "Hold breath for 4 seconds",
+        "duration_seconds": 4
+      },
+      {
+        "step_number": 4,
+        "title": "Breathe out",
+        "description": "Slowly breathe out",
+        "duration_seconds": 6
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Continue for 3 minutes",
+        "duration_seconds": 156
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-063",
+    "name": "Deep Breathing (Variation 3)",
+    "description": "Practice deep breathing for calming - Variation 3",
+    "sensorySystems": [
+      "interoception"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Quiet space"
+    ],
+    "ageRange": "7-8 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit comfortably",
+        "description": "Sit with back straight",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Breathe in",
+        "description": "Take slow deep breath",
+        "duration_seconds": 4
+      },
+      {
+        "step_number": 3,
+        "title": "Hold",
+        "description": "Hold breath for 4 seconds",
+        "duration_seconds": 4
+      },
+      {
+        "step_number": 4,
+        "title": "Breathe out",
+        "description": "Slowly breathe out",
+        "duration_seconds": 6
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Continue for 3 minutes",
+        "duration_seconds": 156
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-064",
+    "name": "Deep Breathing (Variation 4)",
+    "description": "Practice deep breathing for calming - Variation 4",
+    "sensorySystems": [
+      "interoception"
+    ],
+    "behaviorTypes": [
+      "sensitive"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 13,
+    "materials": [
+      "Quiet space"
+    ],
+    "ageRange": "2-3 years",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit comfortably",
+        "description": "Sit with back straight",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Breathe in",
+        "description": "Take slow deep breath",
+        "duration_seconds": 4
+      },
+      {
+        "step_number": 3,
+        "title": "Hold",
+        "description": "Hold breath for 4 seconds",
+        "duration_seconds": 4
+      },
+      {
+        "step_number": 4,
+        "title": "Breathe out",
+        "description": "Slowly breathe out",
+        "duration_seconds": 6
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Continue for 3 minutes",
+        "duration_seconds": 156
+      }
+    ],
+    "benefits": [
+      "Sensory processing",
+      "Motor development",
+      "Focus improvement"
+    ],
+    "whenToUse": "When child needs sensory input"
+  },
+  {
+    "id": "activity-065",
+    "name": "Sensory Bin with Multiple Elements",
+    "description": "Explore bin with tactile, visual, and auditory elements",
+    "sensorySystems": [
+      "tactile",
+      "visual",
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 15,
+    "materials": [
+      "Large bin",
+      "Rice",
+      "Small toys",
+      "Bells"
+    ],
+    "ageRange": "3-8",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Fill bin",
+        "description": "Fill bin with rice and toys",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Add bells",
+        "description": "Add small bells for sound",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Explore",
+        "description": "Explore all elements",
+        "duration_seconds": 720
+      }
+    ],
+    "benefits": [
+      "Multi-sensory integration",
+      "Exploration",
+      "Calming"
+    ],
+    "whenToUse": "When child seeks multiple sensory inputs"
+  },
+  {
+    "id": "activity-066",
+    "name": "Nature Walk with Sensory Elements",
+    "description": "Walk in nature noticing all sensory elements",
+    "sensorySystems": [
+      "proprioceptive",
+      "visual",
+      "auditory",
+      "olfactory",
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 20,
+    "materials": [
+      "Outdoor space",
+      "Nature elements"
+    ],
+    "ageRange": "4-10",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Start walking",
+        "description": "Begin slow walk in nature",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Notice sights",
+        "description": "Point out visual elements",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Listen to sounds",
+        "description": "Identify natural sounds",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 4,
+        "title": "Feel textures",
+        "description": "Touch safe natural elements",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 5,
+        "title": "Smell scents",
+        "description": "Notice natural smells",
+        "duration_seconds": 240
+      }
+    ],
+    "benefits": [
+      "Multi-sensory integration",
+      "Nature connection",
+      "Calming"
+    ],
+    "whenToUse": "When child needs comprehensive sensory input"
+  }
+]

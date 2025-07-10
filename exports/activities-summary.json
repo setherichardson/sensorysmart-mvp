@@ -1,0 +1,35 @@
+{
+  "totalActivities": 23,
+  "bySensorySystem": {
+    "tactile": 6,
+    "visual": 3,
+    "proprioceptive": 10,
+    "vestibular": 7,
+    "auditory": 2,
+    "olfactory": 1,
+    "interoception": 2
+  },
+  "byBehaviorType": {
+    "seeking": 18,
+    "avoiding": 4,
+    "low-registration": 1
+  },
+  "byDifficulty": {
+    "beginner": 19,
+    "intermediate": 4
+  },
+  "byAgeRange": {
+    "3-8": 7,
+    "3-6": 1,
+    "3-10": 2,
+    "3-12": 4,
+    "4-12": 4,
+    "5-12": 2,
+    "4-10": 3
+  },
+  "byEnvironment": {
+    "indoor": 10,
+    "outdoor": 3,
+    "both": 10
+  }
+}

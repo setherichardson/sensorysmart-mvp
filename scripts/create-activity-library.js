@@ -505,6 +505,9 @@ const activityLibrary = [
   }
 ]
 
+// Export the activity library for use in other scripts
+module.exports = { activityLibrary }
+
 async function createActivityLibrary() {
   try {
     console.log('🎯 Creating comprehensive activity library...')
@@ -553,4 +556,7 @@ async function createActivityLibrary() {
   }
 }
 
-createActivityLibrary() 
+// Only run if this script is executed directly
+if (require.main === module) {
+  createActivityLibrary()
+} 

@@ -1,0 +1,2069 @@
+SENSORY SMART ACTIVITY LIBRARY - 100+ ACTIVITIES WITH DETAILED STEPS
+================================================================================
+
+1. TEXTURE EXPLORATION 
+   ID: activity-001
+   Description: Explore different textures with hands
+   Sensory Systems: tactile
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 10 minutes
+   Materials: Various textured objects
+   Age Range: 10-12 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Gather textures
+      Collect different textured objects
+      Duration: 60 seconds
+
+   2. Explore
+      Feel each texture with hands
+      Duration: 300 seconds
+
+   3. Describe
+      Describe how each feels
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+2. TEXTURE EXPLORATION (VARIATION 2)
+   ID: activity-002
+   Description: Explore different textures with hands - Variation 2
+   Sensory Systems: tactile
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 14 minutes
+   Materials: Various textured objects
+   Age Range: 2-3 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Gather textures
+      Collect different textured objects
+      Duration: 60 seconds
+
+   2. Explore
+      Feel each texture with hands
+      Duration: 300 seconds
+
+   3. Describe
+      Describe how each feels
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+3. TEXTURE EXPLORATION (VARIATION 3)
+   ID: activity-003
+   Description: Explore different textures with hands - Variation 3
+   Sensory Systems: tactile
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 17 minutes
+   Materials: Various textured objects
+   Age Range: 4-5 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Gather textures
+      Collect different textured objects
+      Duration: 60 seconds
+
+   2. Explore
+      Feel each texture with hands
+      Duration: 300 seconds
+
+   3. Describe
+      Describe how each feels
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+4. TEXTURE EXPLORATION (VARIATION 4)
+   ID: activity-004
+   Description: Explore different textures with hands - Variation 4
+   Sensory Systems: tactile
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 20 minutes
+   Materials: Various textured objects
+   Age Range: 7-8 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Gather textures
+      Collect different textured objects
+      Duration: 60 seconds
+
+   2. Explore
+      Feel each texture with hands
+      Duration: 300 seconds
+
+   3. Describe
+      Describe how each feels
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+5. FINGER PAINTING 
+   ID: activity-005
+   Description: Create art using fingers and paint
+   Sensory Systems: tactile
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 15 minutes
+   Materials: Washable paint, Paper, Plastic tablecloth
+   Age Range: 7-8 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Prepare space
+      Cover table with plastic
+      Duration: 60 seconds
+
+   2. Set out paint
+      Pour paint onto paper
+      Duration: 30 seconds
+
+   3. Paint
+      Use fingers to create art
+      Duration: 810 seconds
+
+
+--------------------------------------------------------------------------------
+
+6. FINGER PAINTING (VARIATION 2)
+   ID: activity-006
+   Description: Create art using fingers and paint - Variation 2
+   Sensory Systems: tactile
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 19 minutes
+   Materials: Washable paint, Paper, Plastic tablecloth
+   Age Range: 4-5 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Prepare space
+      Cover table with plastic
+      Duration: 60 seconds
+
+   2. Set out paint
+      Pour paint onto paper
+      Duration: 30 seconds
+
+   3. Paint
+      Use fingers to create art
+      Duration: 810 seconds
+
+
+--------------------------------------------------------------------------------
+
+7. FINGER PAINTING (VARIATION 3)
+   ID: activity-007
+   Description: Create art using fingers and paint - Variation 3
+   Sensory Systems: tactile
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 22 minutes
+   Materials: Washable paint, Paper, Plastic tablecloth
+   Age Range: 8-10 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Prepare space
+      Cover table with plastic
+      Duration: 60 seconds
+
+   2. Set out paint
+      Pour paint onto paper
+      Duration: 30 seconds
+
+   3. Paint
+      Use fingers to create art
+      Duration: 810 seconds
+
+
+--------------------------------------------------------------------------------
+
+8. FINGER PAINTING (VARIATION 4)
+   ID: activity-008
+   Description: Create art using fingers and paint - Variation 4
+   Sensory Systems: tactile
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 25 minutes
+   Materials: Washable paint, Paper, Plastic tablecloth
+   Age Range: 5-6 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Prepare space
+      Cover table with plastic
+      Duration: 60 seconds
+
+   2. Set out paint
+      Pour paint onto paper
+      Duration: 30 seconds
+
+   3. Paint
+      Use fingers to create art
+      Duration: 810 seconds
+
+
+--------------------------------------------------------------------------------
+
+9. PLAY DOUGH CREATION 
+   ID: activity-009
+   Description: Mold and shape play dough
+   Sensory Systems: tactile
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 12 minutes
+   Materials: Play dough, Rolling pin, Cookie cutters
+   Age Range: 7-8 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Warm up
+      Knead the play dough
+      Duration: 120 seconds
+
+   2. Roll
+      Roll into different shapes
+      Duration: 300 seconds
+
+   3. Cut shapes
+      Use cookie cutters
+      Duration: 420 seconds
+
+
+--------------------------------------------------------------------------------
+
+10. PLAY DOUGH CREATION (VARIATION 2)
+   ID: activity-010
+   Description: Mold and shape play dough - Variation 2
+   Sensory Systems: tactile
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 16 minutes
+   Materials: Play dough, Rolling pin, Cookie cutters
+   Age Range: 10-12 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Warm up
+      Knead the play dough
+      Duration: 120 seconds
+
+   2. Roll
+      Roll into different shapes
+      Duration: 300 seconds
+
+   3. Cut shapes
+      Use cookie cutters
+      Duration: 420 seconds
+
+
+--------------------------------------------------------------------------------
+
+11. PLAY DOUGH CREATION (VARIATION 3)
+   ID: activity-011
+   Description: Mold and shape play dough - Variation 3
+   Sensory Systems: tactile
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 19 minutes
+   Materials: Play dough, Rolling pin, Cookie cutters
+   Age Range: 5-6 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Warm up
+      Knead the play dough
+      Duration: 120 seconds
+
+   2. Roll
+      Roll into different shapes
+      Duration: 300 seconds
+
+   3. Cut shapes
+      Use cookie cutters
+      Duration: 420 seconds
+
+
+--------------------------------------------------------------------------------
+
+12. PLAY DOUGH CREATION (VARIATION 4)
+   ID: activity-012
+   Description: Mold and shape play dough - Variation 4
+   Sensory Systems: tactile
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 22 minutes
+   Materials: Play dough, Rolling pin, Cookie cutters
+   Age Range: 10-12 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Warm up
+      Knead the play dough
+      Duration: 120 seconds
+
+   2. Roll
+      Roll into different shapes
+      Duration: 300 seconds
+
+   3. Cut shapes
+      Use cookie cutters
+      Duration: 420 seconds
+
+
+--------------------------------------------------------------------------------
+
+13. WALL PUSH-UPS 
+   ID: activity-013
+   Description: Push against a wall to provide deep pressure
+   Sensory Systems: proprioceptive
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 3 minutes
+   Materials: Wall
+   Age Range: 4-5 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand facing wall
+      Stand 2 feet from wall
+      Duration: 10 seconds
+
+   2. Place hands
+      Place hands on wall at shoulder height
+      Duration: 10 seconds
+
+   3. Push
+      Push against wall for 10 seconds
+      Duration: 10 seconds
+
+   4. Rest
+      Rest for 5 seconds
+      Duration: 5 seconds
+
+   5. Repeat
+      Repeat 5-10 times
+      Duration: 145 seconds
+
+
+--------------------------------------------------------------------------------
+
+14. WALL PUSH-UPS (VARIATION 2)
+   ID: activity-014
+   Description: Push against a wall to provide deep pressure - Variation 2
+   Sensory Systems: proprioceptive
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 7 minutes
+   Materials: Wall
+   Age Range: 10-12 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand facing wall
+      Stand 2 feet from wall
+      Duration: 10 seconds
+
+   2. Place hands
+      Place hands on wall at shoulder height
+      Duration: 10 seconds
+
+   3. Push
+      Push against wall for 10 seconds
+      Duration: 10 seconds
+
+   4. Rest
+      Rest for 5 seconds
+      Duration: 5 seconds
+
+   5. Repeat
+      Repeat 5-10 times
+      Duration: 145 seconds
+
+
+--------------------------------------------------------------------------------
+
+15. WALL PUSH-UPS (VARIATION 3)
+   ID: activity-015
+   Description: Push against a wall to provide deep pressure - Variation 3
+   Sensory Systems: proprioceptive
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 10 minutes
+   Materials: Wall
+   Age Range: 4-5 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand facing wall
+      Stand 2 feet from wall
+      Duration: 10 seconds
+
+   2. Place hands
+      Place hands on wall at shoulder height
+      Duration: 10 seconds
+
+   3. Push
+      Push against wall for 10 seconds
+      Duration: 10 seconds
+
+   4. Rest
+      Rest for 5 seconds
+      Duration: 5 seconds
+
+   5. Repeat
+      Repeat 5-10 times
+      Duration: 145 seconds
+
+
+--------------------------------------------------------------------------------
+
+16. WALL PUSH-UPS (VARIATION 4)
+   ID: activity-016
+   Description: Push against a wall to provide deep pressure - Variation 4
+   Sensory Systems: proprioceptive
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 13 minutes
+   Materials: Wall
+   Age Range: 10-12 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand facing wall
+      Stand 2 feet from wall
+      Duration: 10 seconds
+
+   2. Place hands
+      Place hands on wall at shoulder height
+      Duration: 10 seconds
+
+   3. Push
+      Push against wall for 10 seconds
+      Duration: 10 seconds
+
+   4. Rest
+      Rest for 5 seconds
+      Duration: 5 seconds
+
+   5. Repeat
+      Repeat 5-10 times
+      Duration: 145 seconds
+
+
+--------------------------------------------------------------------------------
+
+17. HEAVY WORK CARRYING 
+   ID: activity-017
+   Description: Carry heavy objects to provide proprioceptive input
+   Sensory Systems: proprioceptive
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 8 minutes
+   Materials: Books, Laundry basket, Groceries
+   Age Range: 5-6 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Choose object
+      Select heavy but safe object
+      Duration: 30 seconds
+
+   2. Lift properly
+      Bend knees and lift
+      Duration: 30 seconds
+
+   3. Carry
+      Walk with object to destination
+      Duration: 420 seconds
+
+
+--------------------------------------------------------------------------------
+
+18. HEAVY WORK CARRYING (VARIATION 2)
+   ID: activity-018
+   Description: Carry heavy objects to provide proprioceptive input - Variation 2
+   Sensory Systems: proprioceptive
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 12 minutes
+   Materials: Books, Laundry basket, Groceries
+   Age Range: 7-8 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Choose object
+      Select heavy but safe object
+      Duration: 30 seconds
+
+   2. Lift properly
+      Bend knees and lift
+      Duration: 30 seconds
+
+   3. Carry
+      Walk with object to destination
+      Duration: 420 seconds
+
+
+--------------------------------------------------------------------------------
+
+19. HEAVY WORK CARRYING (VARIATION 3)
+   ID: activity-019
+   Description: Carry heavy objects to provide proprioceptive input - Variation 3
+   Sensory Systems: proprioceptive
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 15 minutes
+   Materials: Books, Laundry basket, Groceries
+   Age Range: 7-8 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Choose object
+      Select heavy but safe object
+      Duration: 30 seconds
+
+   2. Lift properly
+      Bend knees and lift
+      Duration: 30 seconds
+
+   3. Carry
+      Walk with object to destination
+      Duration: 420 seconds
+
+
+--------------------------------------------------------------------------------
+
+20. HEAVY WORK CARRYING (VARIATION 4)
+   ID: activity-020
+   Description: Carry heavy objects to provide proprioceptive input - Variation 4
+   Sensory Systems: proprioceptive
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 18 minutes
+   Materials: Books, Laundry basket, Groceries
+   Age Range: 3-4 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Choose object
+      Select heavy but safe object
+      Duration: 30 seconds
+
+   2. Lift properly
+      Bend knees and lift
+      Duration: 30 seconds
+
+   3. Carry
+      Walk with object to destination
+      Duration: 420 seconds
+
+
+--------------------------------------------------------------------------------
+
+21. JUMPING JACKS 
+   ID: activity-021
+   Description: Classic jumping exercise
+   Sensory Systems: proprioceptive
+   Behavior Types: sensitive
+   Difficulty: intermediate
+   Duration: 5 minutes
+   Materials: Open space
+   Age Range: 8-10 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand ready
+      Stand with feet together, arms down
+      Duration: 10 seconds
+
+   2. Jump and spread
+      Jump, spread legs, raise arms
+      Duration: 2 seconds
+
+   3. Jump back
+      Jump back to starting position
+      Duration: 2 seconds
+
+   4. Repeat
+      Continue for 5 minutes
+      Duration: 286 seconds
+
+
+--------------------------------------------------------------------------------
+
+22. JUMPING JACKS (VARIATION 2)
+   ID: activity-022
+   Description: Classic jumping exercise - Variation 2
+   Sensory Systems: proprioceptive
+   Behavior Types: sensitive
+   Difficulty: intermediate
+   Duration: 9 minutes
+   Materials: Open space
+   Age Range: 6-7 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand ready
+      Stand with feet together, arms down
+      Duration: 10 seconds
+
+   2. Jump and spread
+      Jump, spread legs, raise arms
+      Duration: 2 seconds
+
+   3. Jump back
+      Jump back to starting position
+      Duration: 2 seconds
+
+   4. Repeat
+      Continue for 5 minutes
+      Duration: 286 seconds
+
+
+--------------------------------------------------------------------------------
+
+23. JUMPING JACKS (VARIATION 3)
+   ID: activity-023
+   Description: Classic jumping exercise - Variation 3
+   Sensory Systems: proprioceptive
+   Behavior Types: seeking
+   Difficulty: intermediate
+   Duration: 12 minutes
+   Materials: Open space
+   Age Range: 3-4 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand ready
+      Stand with feet together, arms down
+      Duration: 10 seconds
+
+   2. Jump and spread
+      Jump, spread legs, raise arms
+      Duration: 2 seconds
+
+   3. Jump back
+      Jump back to starting position
+      Duration: 2 seconds
+
+   4. Repeat
+      Continue for 5 minutes
+      Duration: 286 seconds
+
+
+--------------------------------------------------------------------------------
+
+24. JUMPING JACKS (VARIATION 4)
+   ID: activity-024
+   Description: Classic jumping exercise - Variation 4
+   Sensory Systems: proprioceptive
+   Behavior Types: avoiding
+   Difficulty: intermediate
+   Duration: 15 minutes
+   Materials: Open space
+   Age Range: 7-8 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand ready
+      Stand with feet together, arms down
+      Duration: 10 seconds
+
+   2. Jump and spread
+      Jump, spread legs, raise arms
+      Duration: 2 seconds
+
+   3. Jump back
+      Jump back to starting position
+      Duration: 2 seconds
+
+   4. Repeat
+      Continue for 5 minutes
+      Duration: 286 seconds
+
+
+--------------------------------------------------------------------------------
+
+25. SWINGING 
+   ID: activity-025
+   Description: Swing on a playground swing
+   Sensory Systems: vestibular
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 10 minutes
+   Materials: Swing
+   Age Range: 3-4 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Sit on swing
+      Sit safely on swing
+      Duration: 30 seconds
+
+   2. Start swinging
+      Begin gentle swinging
+      Duration: 30 seconds
+
+   3. Continue
+      Swing for 10 minutes
+      Duration: 540 seconds
+
+
+--------------------------------------------------------------------------------
+
+26. SWINGING (VARIATION 2)
+   ID: activity-026
+   Description: Swing on a playground swing - Variation 2
+   Sensory Systems: vestibular
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 14 minutes
+   Materials: Swing
+   Age Range: 6-7 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Sit on swing
+      Sit safely on swing
+      Duration: 30 seconds
+
+   2. Start swinging
+      Begin gentle swinging
+      Duration: 30 seconds
+
+   3. Continue
+      Swing for 10 minutes
+      Duration: 540 seconds
+
+
+--------------------------------------------------------------------------------
+
+27. SWINGING (VARIATION 3)
+   ID: activity-027
+   Description: Swing on a playground swing - Variation 3
+   Sensory Systems: vestibular
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 17 minutes
+   Materials: Swing
+   Age Range: 5-6 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Sit on swing
+      Sit safely on swing
+      Duration: 30 seconds
+
+   2. Start swinging
+      Begin gentle swinging
+      Duration: 30 seconds
+
+   3. Continue
+      Swing for 10 minutes
+      Duration: 540 seconds
+
+
+--------------------------------------------------------------------------------
+
+28. SWINGING (VARIATION 4)
+   ID: activity-028
+   Description: Swing on a playground swing - Variation 4
+   Sensory Systems: vestibular
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 20 minutes
+   Materials: Swing
+   Age Range: 8-10 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Sit on swing
+      Sit safely on swing
+      Duration: 30 seconds
+
+   2. Start swinging
+      Begin gentle swinging
+      Duration: 30 seconds
+
+   3. Continue
+      Swing for 10 minutes
+      Duration: 540 seconds
+
+
+--------------------------------------------------------------------------------
+
+29. SPINNING 
+   ID: activity-029
+   Description: Spin in place for vestibular input
+   Sensory Systems: vestibular
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 3 minutes
+   Materials: Open space
+   Age Range: 8-10 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand in place
+      Stand with arms out
+      Duration: 10 seconds
+
+   2. Start spinning
+      Spin slowly in place
+      Duration: 30 seconds
+
+   3. Stop and balance
+      Stop and maintain balance
+      Duration: 20 seconds
+
+   4. Repeat
+      Repeat 3-5 times
+      Duration: 120 seconds
+
+
+--------------------------------------------------------------------------------
+
+30. SPINNING (VARIATION 2)
+   ID: activity-030
+   Description: Spin in place for vestibular input - Variation 2
+   Sensory Systems: vestibular
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 7 minutes
+   Materials: Open space
+   Age Range: 6-7 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand in place
+      Stand with arms out
+      Duration: 10 seconds
+
+   2. Start spinning
+      Spin slowly in place
+      Duration: 30 seconds
+
+   3. Stop and balance
+      Stop and maintain balance
+      Duration: 20 seconds
+
+   4. Repeat
+      Repeat 3-5 times
+      Duration: 120 seconds
+
+
+--------------------------------------------------------------------------------
+
+31. SPINNING (VARIATION 3)
+   ID: activity-031
+   Description: Spin in place for vestibular input - Variation 3
+   Sensory Systems: vestibular
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 10 minutes
+   Materials: Open space
+   Age Range: 2-3 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand in place
+      Stand with arms out
+      Duration: 10 seconds
+
+   2. Start spinning
+      Spin slowly in place
+      Duration: 30 seconds
+
+   3. Stop and balance
+      Stop and maintain balance
+      Duration: 20 seconds
+
+   4. Repeat
+      Repeat 3-5 times
+      Duration: 120 seconds
+
+
+--------------------------------------------------------------------------------
+
+32. SPINNING (VARIATION 4)
+   ID: activity-032
+   Description: Spin in place for vestibular input - Variation 4
+   Sensory Systems: vestibular
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 13 minutes
+   Materials: Open space
+   Age Range: 6-7 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Stand in place
+      Stand with arms out
+      Duration: 10 seconds
+
+   2. Start spinning
+      Spin slowly in place
+      Duration: 30 seconds
+
+   3. Stop and balance
+      Stop and maintain balance
+      Duration: 20 seconds
+
+   4. Repeat
+      Repeat 3-5 times
+      Duration: 120 seconds
+
+
+--------------------------------------------------------------------------------
+
+33. BALANCE BEAM 
+   ID: activity-033
+   Description: Walk on a balance beam
+   Sensory Systems: vestibular
+   Behavior Types: sensitive
+   Difficulty: intermediate
+   Duration: 8 minutes
+   Materials: Balance beam, Soft surface
+   Age Range: 10-12 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Set up beam
+      Place beam on soft surface
+      Duration: 60 seconds
+
+   2. Start walking
+      Walk slowly on beam
+      Duration: 120 seconds
+
+   3. Add challenges
+      Walk backwards or sideways
+      Duration: 300 seconds
+
+
+--------------------------------------------------------------------------------
+
+34. BALANCE BEAM (VARIATION 2)
+   ID: activity-034
+   Description: Walk on a balance beam - Variation 2
+   Sensory Systems: vestibular
+   Behavior Types: seeking
+   Difficulty: intermediate
+   Duration: 12 minutes
+   Materials: Balance beam, Soft surface
+   Age Range: 2-3 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Set up beam
+      Place beam on soft surface
+      Duration: 60 seconds
+
+   2. Start walking
+      Walk slowly on beam
+      Duration: 120 seconds
+
+   3. Add challenges
+      Walk backwards or sideways
+      Duration: 300 seconds
+
+
+--------------------------------------------------------------------------------
+
+35. BALANCE BEAM (VARIATION 3)
+   ID: activity-035
+   Description: Walk on a balance beam - Variation 3
+   Sensory Systems: vestibular
+   Behavior Types: low-registration
+   Difficulty: intermediate
+   Duration: 15 minutes
+   Materials: Balance beam, Soft surface
+   Age Range: 5-6 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Set up beam
+      Place beam on soft surface
+      Duration: 60 seconds
+
+   2. Start walking
+      Walk slowly on beam
+      Duration: 120 seconds
+
+   3. Add challenges
+      Walk backwards or sideways
+      Duration: 300 seconds
+
+
+--------------------------------------------------------------------------------
+
+36. BALANCE BEAM (VARIATION 4)
+   ID: activity-036
+   Description: Walk on a balance beam - Variation 4
+   Sensory Systems: vestibular
+   Behavior Types: low-registration
+   Difficulty: intermediate
+   Duration: 18 minutes
+   Materials: Balance beam, Soft surface
+   Age Range: 4-5 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Set up beam
+      Place beam on soft surface
+      Duration: 60 seconds
+
+   2. Start walking
+      Walk slowly on beam
+      Duration: 120 seconds
+
+   3. Add challenges
+      Walk backwards or sideways
+      Duration: 300 seconds
+
+
+--------------------------------------------------------------------------------
+
+37. CALMING MUSIC 
+   ID: activity-037
+   Description: Listen to calming instrumental music
+   Sensory Systems: auditory
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 10 minutes
+   Materials: Music player, Calming music
+   Age Range: 4-5 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Find quiet space
+      Go to quiet room
+      Duration: 30 seconds
+
+   2. Start music
+      Play calming instrumental music
+      Duration: 30 seconds
+
+   3. Listen
+      Sit quietly and listen
+      Duration: 540 seconds
+
+
+--------------------------------------------------------------------------------
+
+38. CALMING MUSIC (VARIATION 2)
+   ID: activity-038
+   Description: Listen to calming instrumental music - Variation 2
+   Sensory Systems: auditory
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 14 minutes
+   Materials: Music player, Calming music
+   Age Range: 8-10 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Find quiet space
+      Go to quiet room
+      Duration: 30 seconds
+
+   2. Start music
+      Play calming instrumental music
+      Duration: 30 seconds
+
+   3. Listen
+      Sit quietly and listen
+      Duration: 540 seconds
+
+
+--------------------------------------------------------------------------------
+
+39. CALMING MUSIC (VARIATION 3)
+   ID: activity-039
+   Description: Listen to calming instrumental music - Variation 3
+   Sensory Systems: auditory
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 17 minutes
+   Materials: Music player, Calming music
+   Age Range: 3-4 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Find quiet space
+      Go to quiet room
+      Duration: 30 seconds
+
+   2. Start music
+      Play calming instrumental music
+      Duration: 30 seconds
+
+   3. Listen
+      Sit quietly and listen
+      Duration: 540 seconds
+
+
+--------------------------------------------------------------------------------
+
+40. CALMING MUSIC (VARIATION 4)
+   ID: activity-040
+   Description: Listen to calming instrumental music - Variation 4
+   Sensory Systems: auditory
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 20 minutes
+   Materials: Music player, Calming music
+   Age Range: 7-8 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Find quiet space
+      Go to quiet room
+      Duration: 30 seconds
+
+   2. Start music
+      Play calming instrumental music
+      Duration: 30 seconds
+
+   3. Listen
+      Sit quietly and listen
+      Duration: 540 seconds
+
+
+--------------------------------------------------------------------------------
+
+41. SOUND SCAVENGER HUNT 
+   ID: activity-041
+   Description: Listen for different sounds in environment
+   Sensory Systems: auditory
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 8 minutes
+   Materials: Quiet environment
+   Age Range: 2-3 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Close eyes
+      Sit quietly with eyes closed
+      Duration: 30 seconds
+
+   2. Listen
+      Listen for different sounds
+      Duration: 60 seconds
+
+   3. Identify
+      Name the sounds you hear
+      Duration: 30 seconds
+
+   4. Continue
+      Repeat for 8 minutes
+      Duration: 390 seconds
+
+
+--------------------------------------------------------------------------------
+
+42. SOUND SCAVENGER HUNT (VARIATION 2)
+   ID: activity-042
+   Description: Listen for different sounds in environment - Variation 2
+   Sensory Systems: auditory
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 12 minutes
+   Materials: Quiet environment
+   Age Range: 5-6 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Close eyes
+      Sit quietly with eyes closed
+      Duration: 30 seconds
+
+   2. Listen
+      Listen for different sounds
+      Duration: 60 seconds
+
+   3. Identify
+      Name the sounds you hear
+      Duration: 30 seconds
+
+   4. Continue
+      Repeat for 8 minutes
+      Duration: 390 seconds
+
+
+--------------------------------------------------------------------------------
+
+43. SOUND SCAVENGER HUNT (VARIATION 3)
+   ID: activity-043
+   Description: Listen for different sounds in environment - Variation 3
+   Sensory Systems: auditory
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 15 minutes
+   Materials: Quiet environment
+   Age Range: 8-10 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Close eyes
+      Sit quietly with eyes closed
+      Duration: 30 seconds
+
+   2. Listen
+      Listen for different sounds
+      Duration: 60 seconds
+
+   3. Identify
+      Name the sounds you hear
+      Duration: 30 seconds
+
+   4. Continue
+      Repeat for 8 minutes
+      Duration: 390 seconds
+
+
+--------------------------------------------------------------------------------
+
+44. SOUND SCAVENGER HUNT (VARIATION 4)
+   ID: activity-044
+   Description: Listen for different sounds in environment - Variation 4
+   Sensory Systems: auditory
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 18 minutes
+   Materials: Quiet environment
+   Age Range: 2-3 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Close eyes
+      Sit quietly with eyes closed
+      Duration: 30 seconds
+
+   2. Listen
+      Listen for different sounds
+      Duration: 60 seconds
+
+   3. Identify
+      Name the sounds you hear
+      Duration: 30 seconds
+
+   4. Continue
+      Repeat for 8 minutes
+      Duration: 390 seconds
+
+
+--------------------------------------------------------------------------------
+
+45. VISUAL TRACKING 
+   ID: activity-045
+   Description: Follow moving objects with eyes
+   Sensory Systems: visual
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 5 minutes
+   Materials: Moving object, Finger
+   Age Range: 10-12 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Hold object
+      Hold small object in hand
+      Duration: 10 seconds
+
+   2. Move slowly
+      Move object slowly in different directions
+      Duration: 60 seconds
+
+   3. Follow with eyes
+      Follow object with eyes only
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+46. VISUAL TRACKING (VARIATION 2)
+   ID: activity-046
+   Description: Follow moving objects with eyes - Variation 2
+   Sensory Systems: visual
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 9 minutes
+   Materials: Moving object, Finger
+   Age Range: 8-10 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Hold object
+      Hold small object in hand
+      Duration: 10 seconds
+
+   2. Move slowly
+      Move object slowly in different directions
+      Duration: 60 seconds
+
+   3. Follow with eyes
+      Follow object with eyes only
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+47. VISUAL TRACKING (VARIATION 3)
+   ID: activity-047
+   Description: Follow moving objects with eyes - Variation 3
+   Sensory Systems: visual
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 12 minutes
+   Materials: Moving object, Finger
+   Age Range: 3-4 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Hold object
+      Hold small object in hand
+      Duration: 10 seconds
+
+   2. Move slowly
+      Move object slowly in different directions
+      Duration: 60 seconds
+
+   3. Follow with eyes
+      Follow object with eyes only
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+48. VISUAL TRACKING (VARIATION 4)
+   ID: activity-048
+   Description: Follow moving objects with eyes - Variation 4
+   Sensory Systems: visual
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 15 minutes
+   Materials: Moving object, Finger
+   Age Range: 10-12 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Hold object
+      Hold small object in hand
+      Duration: 10 seconds
+
+   2. Move slowly
+      Move object slowly in different directions
+      Duration: 60 seconds
+
+   3. Follow with eyes
+      Follow object with eyes only
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+49. I SPY 
+   ID: activity-049
+   Description: Find objects based on visual clues
+   Sensory Systems: visual
+   Behavior Types: low-registration
+   Difficulty: beginner
+   Duration: 8 minutes
+   Materials: Environment with objects
+   Age Range: 5-6 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Choose object
+      Pick an object in the room
+      Duration: 30 seconds
+
+   2. Give clue
+      Say 'I spy something red'
+      Duration: 10 seconds
+
+   3. Let child guess
+      Child looks for object
+      Duration: 60 seconds
+
+   4. Continue
+      Take turns for 8 minutes
+      Duration: 390 seconds
+
+
+--------------------------------------------------------------------------------
+
+50. I SPY (VARIATION 2)
+   ID: activity-050
+   Description: Find objects based on visual clues - Variation 2
+   Sensory Systems: visual
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 12 minutes
+   Materials: Environment with objects
+   Age Range: 3-4 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Choose object
+      Pick an object in the room
+      Duration: 30 seconds
+
+   2. Give clue
+      Say 'I spy something red'
+      Duration: 10 seconds
+
+   3. Let child guess
+      Child looks for object
+      Duration: 60 seconds
+
+   4. Continue
+      Take turns for 8 minutes
+      Duration: 390 seconds
+
+
+--------------------------------------------------------------------------------
+
+51. I SPY (VARIATION 3)
+   ID: activity-051
+   Description: Find objects based on visual clues - Variation 3
+   Sensory Systems: visual
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 15 minutes
+   Materials: Environment with objects
+   Age Range: 5-6 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Choose object
+      Pick an object in the room
+      Duration: 30 seconds
+
+   2. Give clue
+      Say 'I spy something red'
+      Duration: 10 seconds
+
+   3. Let child guess
+      Child looks for object
+      Duration: 60 seconds
+
+   4. Continue
+      Take turns for 8 minutes
+      Duration: 390 seconds
+
+
+--------------------------------------------------------------------------------
+
+52. I SPY (VARIATION 4)
+   ID: activity-052
+   Description: Find objects based on visual clues - Variation 4
+   Sensory Systems: visual
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 18 minutes
+   Materials: Environment with objects
+   Age Range: 4-5 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Choose object
+      Pick an object in the room
+      Duration: 30 seconds
+
+   2. Give clue
+      Say 'I spy something red'
+      Duration: 10 seconds
+
+   3. Let child guess
+      Child looks for object
+      Duration: 60 seconds
+
+   4. Continue
+      Take turns for 8 minutes
+      Duration: 390 seconds
+
+
+--------------------------------------------------------------------------------
+
+53. SCENT EXPLORATION 
+   ID: activity-053
+   Description: Explore different smells safely
+   Sensory Systems: olfactory
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 6 minutes
+   Materials: Safe scents, Cotton balls
+   Age Range: 2-3 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Prepare scents
+      Put drops of scent on cotton balls
+      Duration: 60 seconds
+
+   2. Smell one
+      Smell one scent at a time
+      Duration: 30 seconds
+
+   3. Describe
+      Describe what you smell
+      Duration: 30 seconds
+
+   4. Continue
+      Try different scents
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+54. SCENT EXPLORATION (VARIATION 2)
+   ID: activity-054
+   Description: Explore different smells safely - Variation 2
+   Sensory Systems: olfactory
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 10 minutes
+   Materials: Safe scents, Cotton balls
+   Age Range: 7-8 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Prepare scents
+      Put drops of scent on cotton balls
+      Duration: 60 seconds
+
+   2. Smell one
+      Smell one scent at a time
+      Duration: 30 seconds
+
+   3. Describe
+      Describe what you smell
+      Duration: 30 seconds
+
+   4. Continue
+      Try different scents
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+55. SCENT EXPLORATION (VARIATION 3)
+   ID: activity-055
+   Description: Explore different smells safely - Variation 3
+   Sensory Systems: olfactory
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 13 minutes
+   Materials: Safe scents, Cotton balls
+   Age Range: 4-5 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Prepare scents
+      Put drops of scent on cotton balls
+      Duration: 60 seconds
+
+   2. Smell one
+      Smell one scent at a time
+      Duration: 30 seconds
+
+   3. Describe
+      Describe what you smell
+      Duration: 30 seconds
+
+   4. Continue
+      Try different scents
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+56. SCENT EXPLORATION (VARIATION 4)
+   ID: activity-056
+   Description: Explore different smells safely - Variation 4
+   Sensory Systems: olfactory
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 16 minutes
+   Materials: Safe scents, Cotton balls
+   Age Range: 3-4 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Prepare scents
+      Put drops of scent on cotton balls
+      Duration: 60 seconds
+
+   2. Smell one
+      Smell one scent at a time
+      Duration: 30 seconds
+
+   3. Describe
+      Describe what you smell
+      Duration: 30 seconds
+
+   4. Continue
+      Try different scents
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+57. BODY SCAN 
+   ID: activity-057
+   Description: Notice how different parts of body feel
+   Sensory Systems: interoception
+   Behavior Types: sensitive
+   Difficulty: intermediate
+   Duration: 5 minutes
+   Materials: Quiet space
+   Age Range: 8-10 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Lie down
+      Lie comfortably on back
+      Duration: 30 seconds
+
+   2. Focus on feet
+      Notice how feet feel
+      Duration: 30 seconds
+
+   3. Move up body
+      Focus on each body part
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+58. BODY SCAN (VARIATION 2)
+   ID: activity-058
+   Description: Notice how different parts of body feel - Variation 2
+   Sensory Systems: interoception
+   Behavior Types: sensitive
+   Difficulty: intermediate
+   Duration: 9 minutes
+   Materials: Quiet space
+   Age Range: 8-10 years
+   Environment: outdoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Lie down
+      Lie comfortably on back
+      Duration: 30 seconds
+
+   2. Focus on feet
+      Notice how feet feel
+      Duration: 30 seconds
+
+   3. Move up body
+      Focus on each body part
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+59. BODY SCAN (VARIATION 3)
+   ID: activity-059
+   Description: Notice how different parts of body feel - Variation 3
+   Sensory Systems: interoception
+   Behavior Types: avoiding
+   Difficulty: intermediate
+   Duration: 12 minutes
+   Materials: Quiet space
+   Age Range: 2-3 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Lie down
+      Lie comfortably on back
+      Duration: 30 seconds
+
+   2. Focus on feet
+      Notice how feet feel
+      Duration: 30 seconds
+
+   3. Move up body
+      Focus on each body part
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+60. BODY SCAN (VARIATION 4)
+   ID: activity-060
+   Description: Notice how different parts of body feel - Variation 4
+   Sensory Systems: interoception
+   Behavior Types: low-registration
+   Difficulty: intermediate
+   Duration: 15 minutes
+   Materials: Quiet space
+   Age Range: 7-8 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Lie down
+      Lie comfortably on back
+      Duration: 30 seconds
+
+   2. Focus on feet
+      Notice how feet feel
+      Duration: 30 seconds
+
+   3. Move up body
+      Focus on each body part
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+
+61. DEEP BREATHING 
+   ID: activity-061
+   Description: Practice deep breathing for calming
+   Sensory Systems: interoception
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 3 minutes
+   Materials: Quiet space
+   Age Range: 8-10 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Sit comfortably
+      Sit with back straight
+      Duration: 10 seconds
+
+   2. Breathe in
+      Take slow deep breath
+      Duration: 4 seconds
+
+   3. Hold
+      Hold breath for 4 seconds
+      Duration: 4 seconds
+
+   4. Breathe out
+      Slowly breathe out
+      Duration: 6 seconds
+
+   5. Repeat
+      Continue for 3 minutes
+      Duration: 156 seconds
+
+
+--------------------------------------------------------------------------------
+
+62. DEEP BREATHING (VARIATION 2)
+   ID: activity-062
+   Description: Practice deep breathing for calming - Variation 2
+   Sensory Systems: interoception
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 7 minutes
+   Materials: Quiet space
+   Age Range: 3-4 years
+   Environment: indoor
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Sit comfortably
+      Sit with back straight
+      Duration: 10 seconds
+
+   2. Breathe in
+      Take slow deep breath
+      Duration: 4 seconds
+
+   3. Hold
+      Hold breath for 4 seconds
+      Duration: 4 seconds
+
+   4. Breathe out
+      Slowly breathe out
+      Duration: 6 seconds
+
+   5. Repeat
+      Continue for 3 minutes
+      Duration: 156 seconds
+
+
+--------------------------------------------------------------------------------
+
+63. DEEP BREATHING (VARIATION 3)
+   ID: activity-063
+   Description: Practice deep breathing for calming - Variation 3
+   Sensory Systems: interoception
+   Behavior Types: avoiding
+   Difficulty: beginner
+   Duration: 10 minutes
+   Materials: Quiet space
+   Age Range: 7-8 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Sit comfortably
+      Sit with back straight
+      Duration: 10 seconds
+
+   2. Breathe in
+      Take slow deep breath
+      Duration: 4 seconds
+
+   3. Hold
+      Hold breath for 4 seconds
+      Duration: 4 seconds
+
+   4. Breathe out
+      Slowly breathe out
+      Duration: 6 seconds
+
+   5. Repeat
+      Continue for 3 minutes
+      Duration: 156 seconds
+
+
+--------------------------------------------------------------------------------
+
+64. DEEP BREATHING (VARIATION 4)
+   ID: activity-064
+   Description: Practice deep breathing for calming - Variation 4
+   Sensory Systems: interoception
+   Behavior Types: sensitive
+   Difficulty: beginner
+   Duration: 13 minutes
+   Materials: Quiet space
+   Age Range: 2-3 years
+   Environment: both
+   Benefits: Sensory processing, Motor development, Focus improvement
+   When to Use: When child needs sensory input
+
+   STEPS:
+   1. Sit comfortably
+      Sit with back straight
+      Duration: 10 seconds
+
+   2. Breathe in
+      Take slow deep breath
+      Duration: 4 seconds
+
+   3. Hold
+      Hold breath for 4 seconds
+      Duration: 4 seconds
+
+   4. Breathe out
+      Slowly breathe out
+      Duration: 6 seconds
+
+   5. Repeat
+      Continue for 3 minutes
+      Duration: 156 seconds
+
+
+--------------------------------------------------------------------------------
+
+65. SENSORY BIN WITH MULTIPLE ELEMENTS
+   ID: activity-065
+   Description: Explore bin with tactile, visual, and auditory elements
+   Sensory Systems: tactile, visual, auditory
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 15 minutes
+   Materials: Large bin, Rice, Small toys, Bells
+   Age Range: 3-8
+   Environment: indoor
+   Benefits: Multi-sensory integration, Exploration, Calming
+   When to Use: When child seeks multiple sensory inputs
+
+   STEPS:
+   1. Fill bin
+      Fill bin with rice and toys
+      Duration: 120 seconds
+
+   2. Add bells
+      Add small bells for sound
+      Duration: 60 seconds
+
+   3. Explore
+      Explore all elements
+      Duration: 720 seconds
+
+
+--------------------------------------------------------------------------------
+
+66. NATURE WALK WITH SENSORY ELEMENTS
+   ID: activity-066
+   Description: Walk in nature noticing all sensory elements
+   Sensory Systems: proprioceptive, visual, auditory, olfactory, tactile
+   Behavior Types: seeking
+   Difficulty: beginner
+   Duration: 20 minutes
+   Materials: Outdoor space, Nature elements
+   Age Range: 4-10
+   Environment: outdoor
+   Benefits: Multi-sensory integration, Nature connection, Calming
+   When to Use: When child needs comprehensive sensory input
+
+   STEPS:
+   1. Start walking
+      Begin slow walk in nature
+      Duration: 60 seconds
+
+   2. Notice sights
+      Point out visual elements
+      Duration: 300 seconds
+
+   3. Listen to sounds
+      Identify natural sounds
+      Duration: 300 seconds
+
+   4. Feel textures
+      Touch safe natural elements
+      Duration: 300 seconds
+
+   5. Smell scents
+      Notice natural smells
+      Duration: 240 seconds
+
+
+--------------------------------------------------------------------------------
+

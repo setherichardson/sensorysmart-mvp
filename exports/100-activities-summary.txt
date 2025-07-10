@@ -1,0 +1,30 @@
+SENSORY SMART ACTIVITY LIBRARY - SUMMARY
+==================================================
+
+Total Activities: 66
+
+Activities by Sensory System:
+  tactile: 14 activities
+  proprioceptive: 13 activities
+  vestibular: 12 activities
+  auditory: 10 activities
+  visual: 10 activities
+  interoception: 8 activities
+  olfactory: 5 activities
+
+Activities by Behavior Type:
+  sensitive: 23 activities
+  avoiding: 16 activities
+  low-registration: 14 activities
+  seeking: 13 activities
+
+Activities by Difficulty:
+  beginner: 54 activities
+  intermediate: 12 activities
+
+Activities by Environment:
+  both: 25 activities
+  indoor: 21 activities
+  outdoor: 20 activities
+
+Total Steps Across All Activities: 236

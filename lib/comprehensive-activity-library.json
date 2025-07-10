@@ -1,0 +1,946 @@
+[
+  {
+    "title": "Sensory Bin Exploration",
+    "description": "Explore different textures in a contained bin",
+    "context": "Quiet time, sensory break",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Improves tactile processing",
+      "Calming effect",
+      "Fine motor development"
+    ],
+    "when_to_use": "When child needs calming input or is seeking tactile stimulation",
+    "materials_needed": [
+      "Plastic bin",
+      "Rice/beans/sand",
+      "Small toys",
+      "Measuring cups"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up bin",
+        "description": "Fill a plastic bin with rice, beans, or sand",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Add toys",
+        "description": "Hide small toys in the material",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Explore",
+        "description": "Let child dig, pour, and explore",
+        "duration_seconds": 840
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Finger Painting",
+    "description": "Create art using fingers and paint",
+    "context": "Creative time, sensory play",
+    "duration_minutes": 20,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile exploration",
+      "Creative expression",
+      "Hand-eye coordination"
+    ],
+    "when_to_use": "When child enjoys messy play and tactile input",
+    "materials_needed": [
+      "Washable paint",
+      "Paper",
+      "Plastic tablecloth"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare space",
+        "description": "Cover table with plastic",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Set out paint",
+        "description": "Pour paint onto paper",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Paint",
+        "description": "Use fingers to create art",
+        "duration_seconds": 1110
+      }
+    ],
+    "age_range": "3-6",
+    "environment": "indoor"
+  },
+  {
+    "title": "Play Dough Creation",
+    "description": "Mold and shape play dough",
+    "context": "Fine motor time, creative play",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "proprioceptive"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Hand strength",
+      "Tactile processing",
+      "Creativity"
+    ],
+    "when_to_use": "When child needs calming tactile input",
+    "materials_needed": [
+      "Play dough",
+      "Rolling pin",
+      "Cookie cutters"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Warm up",
+        "description": "Knead the play dough",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Roll",
+        "description": "Roll into different shapes",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Cut shapes",
+        "description": "Use cookie cutters",
+        "duration_seconds": 480
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Texture Walk",
+    "description": "Walk barefoot on different textures",
+    "context": "Outdoor time, sensory exploration",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "proprioceptive"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Foot tactile awareness",
+      "Balance",
+      "Sensory integration"
+    ],
+    "when_to_use": "When child seeks tactile input through feet",
+    "materials_needed": [
+      "Grass",
+      "Sand",
+      "Smooth stones",
+      "Carpet"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Remove shoes",
+        "description": "Take off shoes and socks",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Walk on grass",
+        "description": "Step on grass first",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Explore textures",
+        "description": "Walk on different surfaces",
+        "duration_seconds": 450
+      }
+    ],
+    "age_range": "3-10",
+    "environment": "outdoor"
+  },
+  {
+    "title": "Massage Time",
+    "description": "Gentle massage with lotion",
+    "context": "Calming time, before bed",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Calming",
+      "Body awareness",
+      "Bonding"
+    ],
+    "when_to_use": "When child is overstimulated or avoiding touch",
+    "materials_needed": [
+      "Lotion",
+      "Quiet space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare",
+        "description": "Warm lotion in hands",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start with hands",
+        "description": "Gentle hand massage",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Continue to arms",
+        "description": "Gentle arm massage",
+        "duration_seconds": 150
+      }
+    ],
+    "age_range": "3-12",
+    "environment": "indoor"
+  },
+  {
+    "title": "Shaving Cream Art",
+    "description": "Create art with shaving cream",
+    "context": "Creative time, sensory play",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile exploration",
+      "Creative expression",
+      "Sensory integration"
+    ],
+    "when_to_use": "When child seeks tactile input",
+    "materials_needed": [
+      "Shaving cream",
+      "Table",
+      "Food coloring"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare surface",
+        "description": "Cover table with plastic",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Add cream",
+        "description": "Squirt shaving cream on table",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Create art",
+        "description": "Draw and play in cream",
+        "duration_seconds": 810
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Water Bead Play",
+    "description": "Explore water beads for tactile input",
+    "context": "Sensory play, calming time",
+    "duration_minutes": 20,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile processing",
+      "Calming",
+      "Fine motor skills"
+    ],
+    "when_to_use": "When child needs calming tactile input",
+    "materials_needed": [
+      "Water beads",
+      "Large container",
+      "Measuring cups"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare beads",
+        "description": "Soak water beads overnight",
+        "duration_seconds": 0
+      },
+      {
+        "step_number": 2,
+        "title": "Set up container",
+        "description": "Pour beads into large container",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Explore",
+        "description": "Let child play with beads",
+        "duration_seconds": 1140
+      }
+    ],
+    "age_range": "3-10",
+    "environment": "indoor"
+  },
+  {
+    "title": "Sand Play",
+    "description": "Play with kinetic sand or regular sand",
+    "context": "Sensory play, creative time",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "proprioceptive"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile processing",
+      "Fine motor skills",
+      "Creativity"
+    ],
+    "when_to_use": "When child seeks tactile input",
+    "materials_needed": [
+      "Kinetic sand",
+      "Sandbox",
+      "Molds and tools"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up sand",
+        "description": "Pour sand into container",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Add tools",
+        "description": "Provide molds and tools",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Play",
+        "description": "Let child mold and shape sand",
+        "duration_seconds": 810
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "both"
+  },
+  {
+    "title": "Fabric Exploration",
+    "description": "Explore different fabric textures",
+    "context": "Sensory exploration, calming",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile discrimination",
+      "Calming",
+      "Sensory awareness"
+    ],
+    "when_to_use": "When child seeks tactile input",
+    "materials_needed": [
+      "Various fabric scraps",
+      "Blindfold"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare fabrics",
+        "description": "Gather different fabric types",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Blindfold",
+        "description": "Cover child's eyes",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Explore",
+        "description": "Feel and identify fabrics",
+        "duration_seconds": 510
+      }
+    ],
+    "age_range": "4-10",
+    "environment": "indoor"
+  },
+  {
+    "title": "Bubble Wrap Popping",
+    "description": "Pop bubble wrap for tactile and auditory input",
+    "context": "Sensory play, stress relief",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "auditory"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile input",
+      "Stress relief",
+      "Fine motor skills"
+    ],
+    "when_to_use": "When child needs tactile input or stress relief",
+    "materials_needed": [
+      "Bubble wrap",
+      "Safe space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare space",
+        "description": "Clear area for bubble wrap",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start popping",
+        "description": "Pop bubbles with fingers",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Continue",
+        "description": "Pop bubbles for 6 minutes",
+        "duration_seconds": 390
+      }
+    ],
+    "age_range": "3-12",
+    "environment": "indoor"
+  },
+  {
+    "title": "Rice Bin Play",
+    "description": "Play with colored rice in a bin",
+    "context": "Sensory play, fine motor development",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile processing",
+      "Fine motor skills",
+      "Calming"
+    ],
+    "when_to_use": "When child needs calming tactile input",
+    "materials_needed": [
+      "Colored rice",
+      "Large bin",
+      "Small toys"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare rice",
+        "description": "Color rice with food coloring",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 2,
+        "title": "Fill bin",
+        "description": "Pour rice into large bin",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Play",
+        "description": "Let child explore rice",
+        "duration_seconds": 540
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Slime Making",
+    "description": "Create and play with homemade slime",
+    "context": "Creative time, sensory play",
+    "duration_minutes": 25,
+    "difficulty": "intermediate",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile processing",
+      "Creativity",
+      "Science learning"
+    ],
+    "when_to_use": "When child seeks tactile input",
+    "materials_needed": [
+      "Glue",
+      "Borax",
+      "Food coloring",
+      "Water"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Mix ingredients",
+        "description": "Combine glue and water",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Add color",
+        "description": "Mix in food coloring",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Add borax",
+        "description": "Slowly add borax solution",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 4,
+        "title": "Knead",
+        "description": "Knead until smooth",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 5,
+        "title": "Play",
+        "description": "Play with slime",
+        "duration_seconds": 900
+      }
+    ],
+    "age_range": "5-12",
+    "environment": "indoor"
+  },
+  {
+    "title": "Finger Painting with Food",
+    "description": "Paint with pudding or yogurt",
+    "context": "Creative time, sensory play",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual",
+      "gustatory"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile exploration",
+      "Safe for mouthing",
+      "Creative expression"
+    ],
+    "when_to_use": "When child mouths objects or seeks tactile input",
+    "materials_needed": [
+      "Pudding/yogurt",
+      "Paper",
+      "Food coloring"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare food",
+        "description": "Mix pudding with food coloring",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Set up paper",
+        "description": "Place paper on table",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Paint",
+        "description": "Use fingers to paint",
+        "duration_seconds": 750
+      }
+    ],
+    "age_range": "2-6",
+    "environment": "indoor"
+  },
+  {
+    "title": "Texture Book",
+    "description": "Create a book with different textures",
+    "context": "Learning time, sensory exploration",
+    "duration_minutes": 20,
+    "difficulty": "intermediate",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile discrimination",
+      "Language development",
+      "Creativity"
+    ],
+    "when_to_use": "When child seeks tactile input",
+    "materials_needed": [
+      "Cardboard",
+      "Various fabrics",
+      "Glue",
+      "Scissors"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cut pages",
+        "description": "Cut cardboard into pages",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 2,
+        "title": "Add textures",
+        "description": "Glue different fabrics to pages",
+        "duration_seconds": 600
+      },
+      {
+        "step_number": 3,
+        "title": "Bind book",
+        "description": "Bind pages together",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 4,
+        "title": "Explore",
+        "description": "Feel different textures",
+        "duration_seconds": 300
+      }
+    ],
+    "age_range": "4-10",
+    "environment": "indoor"
+  },
+  {
+    "title": "Ice Cube Painting",
+    "description": "Paint with colored ice cubes",
+    "context": "Creative time, sensory play",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual",
+      "thermal"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile processing",
+      "Temperature awareness",
+      "Creative expression"
+    ],
+    "when_to_use": "When child seeks tactile input",
+    "materials_needed": [
+      "Ice cube tray",
+      "Food coloring",
+      "Paper",
+      "Water"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Make ice",
+        "description": "Freeze colored water in ice tray",
+        "duration_seconds": 0
+      },
+      {
+        "step_number": 2,
+        "title": "Set up paper",
+        "description": "Place paper on table",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Paint",
+        "description": "Use ice cubes to paint",
+        "duration_seconds": 870
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Play Dough Stamping",
+    "description": "Use stamps in play dough",
+    "context": "Fine motor time, creative play",
+    "duration_minutes": 12,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "proprioceptive"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Fine motor skills",
+      "Tactile processing",
+      "Creativity"
+    ],
+    "when_to_use": "When child needs tactile input",
+    "materials_needed": [
+      "Play dough",
+      "Stamps",
+      "Rolling pin"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Roll dough",
+        "description": "Roll play dough flat",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Stamp",
+        "description": "Press stamps into dough",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Explore",
+        "description": "Create different patterns",
+        "duration_seconds": 420
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Sensory Bottles",
+    "description": "Create bottles with different textures",
+    "context": "Sensory exploration, calming",
+    "duration_minutes": 18,
+    "difficulty": "intermediate",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual",
+      "auditory"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Sensory integration",
+      "Calming",
+      "Creativity"
+    ],
+    "when_to_use": "When child needs calming sensory input",
+    "materials_needed": [
+      "Clear bottles",
+      "Various materials",
+      "Water",
+      "Glue"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose materials",
+        "description": "Select materials for bottles",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Fill bottles",
+        "description": "Add materials to bottles",
+        "duration_seconds": 600
+      },
+      {
+        "step_number": 3,
+        "title": "Seal bottles",
+        "description": "Glue caps securely",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 4,
+        "title": "Explore",
+        "description": "Shake and explore bottles",
+        "duration_seconds": 300
+      }
+    ],
+    "age_range": "3-10",
+    "environment": "indoor"
+  },
+  {
+    "title": "Finger Knitting",
+    "description": "Learn basic finger knitting",
+    "context": "Fine motor time, calming",
+    "duration_minutes": 15,
+    "difficulty": "intermediate",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "proprioceptive"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Fine motor skills",
+      "Tactile processing",
+      "Calming"
+    ],
+    "when_to_use": "When child needs calming tactile input",
+    "materials_needed": [
+      "Yarn",
+      "Scissors"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Start loop",
+        "description": "Create first loop on fingers",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 2,
+        "title": "Knit",
+        "description": "Continue knitting pattern",
+        "duration_seconds": 600
+      },
+      {
+        "step_number": 3,
+        "title": "Finish",
+        "description": "Tie off and cut yarn",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "6-12",
+    "environment": "indoor"
+  },
+  {
+    "title": "Texture Matching",
+    "description": "Match objects by texture",
+    "context": "Learning time, sensory discrimination",
+    "duration_minutes": 10,
+    "difficulty": "intermediate",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile discrimination",
+      "Memory",
+      "Language"
+    ],
+    "when_to_use": "When child seeks tactile input",
+    "materials_needed": [
+      "Various textured objects",
+      "Blindfold"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare objects",
+        "description": "Gather textured objects",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Blindfold",
+        "description": "Cover child's eyes",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Match",
+        "description": "Find matching textures",
+        "duration_seconds": 450
+      }
+    ],
+    "age_range": "4-10",
+    "environment": "indoor"
+  },
+  {
+    "title": "Sandpaper Art",
+    "description": "Create art on sandpaper",
+    "context": "Creative time, sensory exploration",
+    "duration_minutes": 12,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Tactile processing",
+      "Creative expression",
+      "Fine motor skills"
+    ],
+    "when_to_use": "When child seeks tactile input",
+    "materials_needed": [
+      "Sandpaper",
+      "Crayons",
+      "Paper"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare sandpaper",
+        "description": "Cut sandpaper to size",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Create art",
+        "description": "Draw on sandpaper",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Transfer",
+        "description": "Transfer design to paper",
+        "duration_seconds": 360
+      }
+    ],
+    "age_range": "4-10",
+    "environment": "indoor"
+  }
+]

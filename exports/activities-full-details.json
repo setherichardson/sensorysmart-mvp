@@ -1,0 +1,981 @@
+[
+  {
+    "id": "activity-1",
+    "name": "Sensory Bin Exploration",
+    "description": "Explore different textures in a contained bin",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 15,
+    "materials": [
+      "Plastic bin",
+      "Rice/beans/sand",
+      "Small toys",
+      "Measuring cups"
+    ],
+    "ageRange": "3-8",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up bin",
+        "description": "Fill a plastic bin with rice, beans, or sand",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Add toys",
+        "description": "Hide small toys in the material",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Explore",
+        "description": "Let child dig, pour, and explore",
+        "duration_seconds": 840
+      }
+    ]
+  },
+  {
+    "id": "activity-2",
+    "name": "Finger Painting",
+    "description": "Create art using fingers and paint",
+    "sensorySystems": [
+      "tactile",
+      "visual"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 20,
+    "materials": [
+      "Washable paint",
+      "Paper",
+      "Plastic tablecloth"
+    ],
+    "ageRange": "3-6",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare space",
+        "description": "Cover table with plastic",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Set out paint",
+        "description": "Pour paint onto paper",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Paint",
+        "description": "Use fingers to create art",
+        "duration_seconds": 1110
+      }
+    ]
+  },
+  {
+    "id": "activity-3",
+    "name": "Play Dough Creation",
+    "description": "Mold and shape play dough",
+    "sensorySystems": [
+      "tactile",
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 15,
+    "materials": [
+      "Play dough",
+      "Rolling pin",
+      "Cookie cutters"
+    ],
+    "ageRange": "3-8",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Warm up",
+        "description": "Knead the play dough",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Roll",
+        "description": "Roll into different shapes",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Cut shapes",
+        "description": "Use cookie cutters",
+        "duration_seconds": 480
+      }
+    ]
+  },
+  {
+    "id": "activity-4",
+    "name": "Texture Walk",
+    "description": "Walk barefoot on different textures",
+    "sensorySystems": [
+      "tactile",
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Grass",
+      "Sand",
+      "Smooth stones",
+      "Carpet"
+    ],
+    "ageRange": "3-10",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Remove shoes",
+        "description": "Take off shoes and socks",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Walk on grass",
+        "description": "Step on grass first",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Explore textures",
+        "description": "Walk on different surfaces",
+        "duration_seconds": 450
+      }
+    ]
+  },
+  {
+    "id": "activity-5",
+    "name": "Massage Time",
+    "description": "Gentle massage with lotion",
+    "sensorySystems": [
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 5,
+    "materials": [
+      "Lotion",
+      "Quiet space"
+    ],
+    "ageRange": "3-12",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare",
+        "description": "Warm lotion in hands",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start with hands",
+        "description": "Gentle hand massage",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Continue to arms",
+        "description": "Gentle arm massage",
+        "duration_seconds": 150
+      }
+    ]
+  },
+  {
+    "id": "activity-6",
+    "name": "Wall Push-ups",
+    "description": "Push against a wall to provide deep pressure",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 3,
+    "materials": [
+      "Wall"
+    ],
+    "ageRange": "4-12",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand facing wall",
+        "description": "Stand 2 feet from wall",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Place hands",
+        "description": "Place hands on wall at shoulder height",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Push",
+        "description": "Push against wall for 10 seconds",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Rest",
+        "description": "Rest for 5 seconds",
+        "duration_seconds": 5
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Repeat 5-10 times",
+        "duration_seconds": 145
+      }
+    ]
+  },
+  {
+    "id": "activity-7",
+    "name": "Heavy Work Carrying",
+    "description": "Carry heavy objects to provide proprioceptive input",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Books",
+      "Laundry basket",
+      "Groceries"
+    ],
+    "ageRange": "4-12",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose object",
+        "description": "Select heavy but safe object",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Lift properly",
+        "description": "Bend knees and lift",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Carry",
+        "description": "Walk with object to destination",
+        "duration_seconds": 540
+      }
+    ]
+  },
+  {
+    "id": "activity-8",
+    "name": "Jumping Jacks",
+    "description": "Classic jumping exercise",
+    "sensorySystems": [
+      "proprioceptive",
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 5,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "5-12",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand ready",
+        "description": "Stand with feet together, arms down",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Jump and spread",
+        "description": "Jump, spread legs, raise arms",
+        "duration_seconds": 2
+      },
+      {
+        "step_number": 3,
+        "title": "Jump back",
+        "description": "Jump back to starting position",
+        "duration_seconds": 2
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Continue for 5 minutes",
+        "duration_seconds": 286
+      }
+    ]
+  },
+  {
+    "id": "activity-9",
+    "name": "Animal Walks",
+    "description": "Walk like different animals",
+    "sensorySystems": [
+      "proprioceptive",
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 8,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "3-8",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Bear walk",
+        "description": "Walk on hands and feet",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Crab walk",
+        "description": "Walk on hands and feet, belly up",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Frog jump",
+        "description": "Squat and jump",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 4,
+        "title": "Snake slither",
+        "description": "Lie on belly and wiggle",
+        "duration_seconds": 120
+      }
+    ]
+  },
+  {
+    "id": "activity-10",
+    "name": "Deep Pressure Hug",
+    "description": "Firm hug to provide deep pressure",
+    "sensorySystems": [
+      "proprioceptive",
+      "tactile"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 2,
+    "materials": [
+      "None"
+    ],
+    "ageRange": "3-12",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Approach gently",
+        "description": "Ask if child wants a hug",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Wrap arms",
+        "description": "Wrap arms around child",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Apply pressure",
+        "description": "Apply firm but gentle pressure",
+        "duration_seconds": 100
+      }
+    ]
+  },
+  {
+    "id": "activity-11",
+    "name": "Swinging",
+    "description": "Swing on playground or indoor swing",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Swing"
+    ],
+    "ageRange": "3-12",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit on swing",
+        "description": "Sit safely on swing",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start swinging",
+        "description": "Begin gentle swinging",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Continue",
+        "description": "Swing for 10 minutes",
+        "duration_seconds": 540
+      }
+    ]
+  },
+  {
+    "id": "activity-12",
+    "name": "Spinning",
+    "description": "Controlled spinning in place",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 3,
+    "materials": [
+      "Open space"
+    ],
+    "ageRange": "4-10",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stand in place",
+        "description": "Stand with arms out",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Start spinning",
+        "description": "Spin slowly in place",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Stop and balance",
+        "description": "Stop and maintain balance",
+        "duration_seconds": 20
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Repeat 3-5 times",
+        "duration_seconds": 120
+      }
+    ]
+  },
+  {
+    "id": "activity-13",
+    "name": "Balance Beam",
+    "description": "Walk on a balance beam",
+    "sensorySystems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 8,
+    "materials": [
+      "Balance beam",
+      "Cushions"
+    ],
+    "ageRange": "4-10",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up beam",
+        "description": "Place beam on soft surface",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Start walking",
+        "description": "Walk slowly on beam",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Add challenges",
+        "description": "Walk backwards or sideways",
+        "duration_seconds": 300
+      }
+    ]
+  },
+  {
+    "id": "activity-14",
+    "name": "Rolling",
+    "description": "Roll down a hill or on mat",
+    "sensorySystems": [
+      "vestibular"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 5,
+    "materials": [
+      "Grass hill",
+      "Mat"
+    ],
+    "ageRange": "3-8",
+    "environment": "outdoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Find safe hill",
+        "description": "Find gentle grassy hill",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Lie down",
+        "description": "Lie on back at top",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Roll down",
+        "description": "Roll down hill safely",
+        "duration_seconds": 20
+      },
+      {
+        "step_number": 4,
+        "title": "Repeat",
+        "description": "Repeat 5-10 times",
+        "duration_seconds": 240
+      }
+    ]
+  },
+  {
+    "id": "activity-15",
+    "name": "Bouncing",
+    "description": "Bounce on trampoline or bed",
+    "sensorySystems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 6,
+    "materials": [
+      "Trampoline",
+      "Bed"
+    ],
+    "ageRange": "3-10",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Get on surface",
+        "description": "Stand on trampoline or bed",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Start bouncing",
+        "description": "Begin gentle bouncing",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Continue",
+        "description": "Bounce for 5 minutes",
+        "duration_seconds": 300
+      }
+    ]
+  },
+  {
+    "id": "activity-16",
+    "name": "Calming Music",
+    "description": "Listen to calming instrumental music",
+    "sensorySystems": [
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 10,
+    "materials": [
+      "Music player",
+      "Calming music"
+    ],
+    "ageRange": "3-12",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Find quiet space",
+        "description": "Go to quiet room",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Start music",
+        "description": "Play calming instrumental music",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Listen",
+        "description": "Sit quietly and listen",
+        "duration_seconds": 540
+      }
+    ]
+  },
+  {
+    "id": "activity-17",
+    "name": "Sound Scavenger Hunt",
+    "description": "Find and identify different sounds",
+    "sensorySystems": [
+      "auditory"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 12,
+    "materials": [
+      "Quiet environment"
+    ],
+    "ageRange": "4-10",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Close eyes",
+        "description": "Sit quietly with eyes closed",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Listen",
+        "description": "Listen for different sounds",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Identify",
+        "description": "Name the sounds you hear",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Repeat for 10 minutes",
+        "duration_seconds": 540
+      }
+    ]
+  },
+  {
+    "id": "activity-18",
+    "name": "Visual Tracking",
+    "description": "Follow moving objects with eyes",
+    "sensorySystems": [
+      "visual"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 5,
+    "materials": [
+      "Moving object",
+      "Finger"
+    ],
+    "ageRange": "3-8",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Hold object",
+        "description": "Hold small object in hand",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Move slowly",
+        "description": "Move object slowly in different directions",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Follow with eyes",
+        "description": "Follow object with eyes only",
+        "duration_seconds": 240
+      }
+    ]
+  },
+  {
+    "id": "activity-19",
+    "name": "I Spy",
+    "description": "Find objects based on visual clues",
+    "sensorySystems": [
+      "visual"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 8,
+    "materials": [
+      "Environment with objects"
+    ],
+    "ageRange": "3-8",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose object",
+        "description": "Pick an object in the room",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Give clue",
+        "description": "Say 'I spy something red'",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Let child guess",
+        "description": "Child looks for object",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Take turns for 8 minutes",
+        "duration_seconds": 390
+      }
+    ]
+  },
+  {
+    "id": "activity-20",
+    "name": "Scent Exploration",
+    "description": "Explore different smells safely",
+    "sensorySystems": [
+      "olfactory"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 6,
+    "materials": [
+      "Safe scents",
+      "Cotton balls"
+    ],
+    "ageRange": "3-8",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare scents",
+        "description": "Put drops of scent on cotton balls",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Smell one",
+        "description": "Smell one scent at a time",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Describe",
+        "description": "Describe what you smell",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Continue",
+        "description": "Try different scents",
+        "duration_seconds": 240
+      }
+    ]
+  },
+  {
+    "id": "activity-21",
+    "name": "Body Scan",
+    "description": "Notice how different parts of body feel",
+    "sensorySystems": [
+      "interoception"
+    ],
+    "behaviorTypes": [
+      "low-registration"
+    ],
+    "difficultyLevel": "intermediate",
+    "durationMinutes": 5,
+    "materials": [
+      "Quiet space"
+    ],
+    "ageRange": "5-12",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Lie down",
+        "description": "Lie comfortably on back",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Focus on feet",
+        "description": "Notice how feet feel",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Move up body",
+        "description": "Focus on each body part",
+        "duration_seconds": 240
+      }
+    ]
+  },
+  {
+    "id": "activity-22",
+    "name": "Chair Push-ups",
+    "description": "Push up from chair to provide heavy work",
+    "sensorySystems": [
+      "proprioceptive"
+    ],
+    "behaviorTypes": [
+      "seeking"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 2,
+    "materials": [
+      "Chair"
+    ],
+    "ageRange": "4-12",
+    "environment": "indoor",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit in chair",
+        "description": "Sit with hands on armrests",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Push up",
+        "description": "Push up from chair",
+        "duration_seconds": 5
+      },
+      {
+        "step_number": 3,
+        "title": "Hold",
+        "description": "Hold position for 5 seconds",
+        "duration_seconds": 5
+      },
+      {
+        "step_number": 4,
+        "title": "Lower",
+        "description": "Lower back down",
+        "duration_seconds": 5
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Repeat 10 times",
+        "duration_seconds": 135
+      }
+    ]
+  },
+  {
+    "id": "activity-23",
+    "name": "Deep Breathing",
+    "description": "Practice deep breathing for calming",
+    "sensorySystems": [
+      "interoception"
+    ],
+    "behaviorTypes": [
+      "avoiding"
+    ],
+    "difficultyLevel": "beginner",
+    "durationMinutes": 3,
+    "materials": [
+      "Quiet space"
+    ],
+    "ageRange": "4-12",
+    "environment": "both",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sit comfortably",
+        "description": "Sit with back straight",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Breathe in",
+        "description": "Take slow deep breath",
+        "duration_seconds": 4
+      },
+      {
+        "step_number": 3,
+        "title": "Hold",
+        "description": "Hold breath for 4 seconds",
+        "duration_seconds": 4
+      },
+      {
+        "step_number": 4,
+        "title": "Breathe out",
+        "description": "Slowly breathe out",
+        "duration_seconds": 6
+      },
+      {
+        "step_number": 5,
+        "title": "Repeat",
+        "description": "Continue for 3 minutes",
+        "duration_seconds": 156
+      }
+    ]
+  }
+]
