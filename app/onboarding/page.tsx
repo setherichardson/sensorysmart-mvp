@@ -76,7 +76,13 @@ export default function OnboardingPage() {
         })
       })
 
+      console.log('🔍 Frontend: Response status:', response.status)
+      console.log('🔍 Frontend: Response ok:', response.ok)
+      
       const result = await response.json()
+      console.log('🔍 Frontend: Response result:', result)
+      console.log('🔍 Frontend: Result success:', result.success)
+      console.log('🔍 Frontend: Result error:', result.error)
 
       if (!response.ok || !result.success) {
         console.error('API error:', result)
