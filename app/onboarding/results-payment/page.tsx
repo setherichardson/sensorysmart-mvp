@@ -115,6 +115,30 @@ export default function ResultsPayment() {
             'Offer noise-canceling headphones in loud environments'
           ]
         }
+      case 'Sensory Sensitive':
+        return {
+          title: 'Sensory Sensitive',
+          description: `${childName} is highly sensitive to sensory input and may overreact to stimuli.`,
+          color: 'bg-orange-100 text-orange-800',
+          recommendations: [
+            'Create predictable, low-stimulation environments',
+            'Use gentle, gradual sensory experiences',
+            'Provide advance warning for changes',
+            'Offer calming activities and deep breathing'
+          ]
+        }
+      case 'Low Registration':
+        return {
+          title: 'Low Registration',
+          description: `${childName} may not notice sensory input and may need more intense stimuli to respond.`,
+          color: 'bg-purple-100 text-purple-800',
+          recommendations: [
+            'Use bright, engaging activities',
+            'Provide strong, clear sensory input',
+            'Use movement and vibration',
+            'Create highly stimulating environments'
+          ]
+        }
       case 'Mixed Profile':
         return {
           title: 'Mixed Profile',
@@ -145,18 +169,21 @@ export default function ResultsPayment() {
   const getSystemLabel = (system: string) => {
     switch (system) {
       case 'tactile': return 'Touch'
-      case 'auditory': return 'Hearing'
       case 'visual': return 'Sight'
-      case 'vestibular': return 'Movement'
+      case 'auditory': return 'Hearing'
+      case 'olfactory': return 'Smell'
       case 'proprioceptive': return 'Body Awareness'
+      case 'vestibular': return 'Movement'
+      case 'interoception': return 'Internal Awareness'
+      case 'social-emotional': return 'Social-Emotional'
       default: return system
     }
   }
 
   const getScoreInterpretation = (score: number) => {
-    if (score <= 6) return { label: 'Avoiding', color: 'bg-red-100 text-red-700' }
-    if (score <= 9) return { label: 'Sensitive', color: 'bg-orange-100 text-orange-700' }
-    if (score <= 12) return { label: 'Typical', color: 'bg-gray-100 text-gray-700' }
+    if (score <= 8) return { label: 'Avoiding', color: 'bg-red-100 text-red-700' }
+    if (score <= 12) return { label: 'Sensitive', color: 'bg-orange-100 text-orange-700' }
+    if (score <= 16) return { label: 'Typical', color: 'bg-gray-100 text-gray-700' }
     return { label: 'Seeking', color: 'bg-green-100 text-green-700' }
   }
 
@@ -250,13 +277,14 @@ export default function ResultsPayment() {
           <div className="space-y-4 mb-6">
             <h3 className="font-semibold text-gray-900">Sensory System Breakdown</h3>
             {Object.entries(assessment.results).map(([system, score]) => {
-              if (system === 'total' || system === 'profile') return null
-              const interpretation = getScoreInterpretation(score as number)
+              if (system === 'total' || system === 'profile' || system === 'behaviorScores') return null
+              if (typeof score !== 'number') return null
+              const interpretation = getScoreInterpretation(score)
               return (
                 <div key={system} className="flex items-center justify-between">
                   <span className="text-gray-700">{getSystemLabel(system)}</span>
                   <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-500">{score}/15</span>
+                    <span className="text-sm text-gray-500">{score}/25</span>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${interpretation.color}`}>
                       {interpretation.label}
                     </span>

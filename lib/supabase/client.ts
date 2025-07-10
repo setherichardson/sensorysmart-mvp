@@ -46,12 +46,21 @@ export type Database = {
           responses: Record<number, number> // Question ID -> Score
           results: {
             tactile: number
-            auditory: number
             visual: number
-            vestibular: number
+            auditory: number
+            olfactory: number
             proprioceptive: number
+            vestibular: number
+            interoception: number
+            'social-emotional': number
             total: number
             profile: string
+            behaviorScores: {
+              avoiding: number
+              seeking: number
+              sensitive: number
+              'low-registration': number
+            }
           }
           completed_at: string
           created_at: string
@@ -62,12 +71,21 @@ export type Database = {
           responses: Record<number, number>
           results: {
             tactile: number
-            auditory: number
             visual: number
-            vestibular: number
+            auditory: number
+            olfactory: number
             proprioceptive: number
+            vestibular: number
+            interoception: number
+            'social-emotional': number
             total: number
             profile: string
+            behaviorScores: {
+              avoiding: number
+              seeking: number
+              sensitive: number
+              'low-registration': number
+            }
           }
           completed_at?: string
           created_at?: string
@@ -78,12 +96,21 @@ export type Database = {
           responses?: Record<number, number>
           results?: {
             tactile: number
-            auditory: number
             visual: number
-            vestibular: number
+            auditory: number
+            olfactory: number
             proprioceptive: number
+            vestibular: number
+            interoception: number
+            'social-emotional': number
             total: number
             profile: string
+            behaviorScores: {
+              avoiding: number
+              seeking: number
+              sensitive: number
+              'low-registration': number
+            }
           }
           completed_at?: string
           created_at?: string
@@ -159,12 +186,21 @@ export type ChatMessage = Database['public']['Tables']['chat_messages']['Row']
 
 export type SensoryProfile = {
   tactile: number
-  auditory: number
   visual: number
-  vestibular: number
+  auditory: number
+  olfactory: number
   proprioceptive: number
+  vestibular: number
+  interoception: number
+  'social-emotional': number
   total: number
   profile: string
+  behaviorScores: {
+    avoiding: number
+    seeking: number
+    sensitive: number
+    'low-registration': number
+  }
 }
 
 export type OnboardingData = {

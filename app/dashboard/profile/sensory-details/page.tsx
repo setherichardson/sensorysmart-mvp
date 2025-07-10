@@ -70,11 +70,11 @@ export default function SensoryDetailsPage() {
     const results = assessment.results as any
     
     return {
-      overallProfile: results.sensory_profile || 'Mixed Profile',
+      overallProfile: results.profile || 'Mixed Profile',
       categories: [
         {
           name: 'Tactile (Touch)',
-          score: results.tactile_score || 0,
+          score: results.tactile || 0,
           description: 'How your child processes touch and texture sensations',
           recommendations: [
             'Use textured materials during play',
@@ -83,18 +83,8 @@ export default function SensoryDetailsPage() {
           ]
         },
         {
-          name: 'Auditory (Sound)',
-          score: results.auditory_score || 0,
-          description: 'How your child processes sounds and noise',
-          recommendations: [
-            'Use noise-canceling headphones when needed',
-            'Create quiet spaces for regulation',
-            'Gradually introduce new sounds'
-          ]
-        },
-        {
           name: 'Visual (Sight)',
-          score: results.visual_score || 0,
+          score: results.visual || 0,
           description: 'How your child processes visual information',
           recommendations: [
             'Reduce visual clutter in learning spaces',
@@ -103,8 +93,38 @@ export default function SensoryDetailsPage() {
           ]
         },
         {
+          name: 'Auditory (Sound)',
+          score: results.auditory || 0,
+          description: 'How your child processes sounds and noise',
+          recommendations: [
+            'Use noise-canceling headphones when needed',
+            'Create quiet spaces for regulation',
+            'Gradually introduce new sounds'
+          ]
+        },
+        {
+          name: 'Olfactory (Smell)',
+          score: results.olfactory || 0,
+          description: 'How your child processes smells and odors',
+          recommendations: [
+            'Avoid strong scents if sensitive',
+            'Introduce new smells gradually',
+            'Use preferred scents for comfort'
+          ]
+        },
+        {
+          name: 'Proprioceptive (Body Awareness)',
+          score: results.proprioceptive || 0,
+          description: 'How your child understands where their body is in space',
+          recommendations: [
+            'Include heavy work activities',
+            'Try joint compression exercises',
+            'Use weighted items for regulation'
+          ]
+        },
+        {
           name: 'Vestibular (Movement)',
-          score: results.vestibular_score || 0,
+          score: results.vestibular || 0,
           description: 'How your child processes balance and movement',
           recommendations: [
             'Include movement breaks throughout the day',
@@ -113,13 +133,23 @@ export default function SensoryDetailsPage() {
           ]
         },
         {
-          name: 'Proprioceptive (Body Awareness)',
-          score: results.proprioceptive_score || 0,
-          description: 'How your child understands where their body is in space',
+          name: 'Interoception (Internal Awareness)',
+          score: results.interoception || 0,
+          description: 'How your child perceives internal body signals (hunger, thirst, bathroom)',
           recommendations: [
-            'Include heavy work activities',
-            'Try joint compression exercises',
-            'Use weighted items for regulation'
+            'Encourage regular check-ins for hunger/thirst',
+            'Use reminders for bathroom breaks',
+            'Discuss body signals and feelings'
+          ]
+        },
+        {
+          name: 'Social-Emotional Regulation',
+          score: results['social-emotional'] || 0,
+          description: 'How your child manages emotions and social situations',
+          recommendations: [
+            'Practice emotional labeling and coping skills',
+            'Use social stories for group situations',
+            'Encourage positive social interactions'
           ]
         }
       ]

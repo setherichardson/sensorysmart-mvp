@@ -1,5 +1,6 @@
 'use client'
-import { useState, useEffect } from 'react'
+
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
@@ -13,7 +14,13 @@ interface Activity {
   title: string
   context: string
   duration: string
-  type: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming'
+  type: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming' | 'auditory' | 'visual' | 'olfactory' | 'interoception'
+  difficulty: 'beginner' | 'intermediate' | 'advanced'
+  sensorySystems: string[] // Which sensory systems this activity targets
+  behaviorFit: 'seeking' | 'avoiding' | 'sensitive' | 'low-registration' | 'mixed'
+  description: string
+  benefits: string[]
+  whenToUse: string
 }
 
 interface ActivityStep {
@@ -33,30 +40,301 @@ export default function TodayDashboard() {
   const [currentActivity, setCurrentActivity] = useState<Activity | null>(null)
   const [behaviorHelpOpen, setBehaviorHelpOpen] = useState(false)
 
-  // Sample activities matching the wireframe
-  const todaysActivities: Activity[] = [
+  // Comprehensive Activity Library
+  const activityLibrary: Activity[] = [
+    // Proprioceptive Activities
     {
       id: 'wall-pushups',
-      title: 'Wall push-ups',
+      title: 'Wall Push-ups',
       context: 'Great for morning regulation',
-      duration: '2 minutes',
-      type: 'proprioceptive'
+      duration: '2-3 minutes',
+      type: 'proprioceptive',
+      difficulty: 'beginner',
+      sensorySystems: ['proprioceptive'],
+      behaviorFit: 'seeking',
+      description: 'Deep pressure input through pushing against a wall',
+      benefits: ['Provides deep pressure input', 'Helps with regulation', 'Easy to do anywhere'],
+      whenToUse: 'When seeking proprioceptive input or needing to calm down'
     },
     {
-      id: 'resistance-band',
-      title: 'Resistance band pull',
+      id: 'resistance-band-pull',
+      title: 'Resistance Band Pull',
       context: 'Perfect before lunch to help focus',
       duration: '3-5 minutes',
-      type: 'heavy-work'
+      type: 'heavy-work',
+      difficulty: 'beginner',
+      sensorySystems: ['proprioceptive'],
+      behaviorFit: 'seeking',
+      description: 'Pulling resistance band for muscle input',
+      benefits: ['Provides heavy work', 'Improves focus', 'Strengthens muscles'],
+      whenToUse: 'Before tasks requiring concentration'
     },
     {
       id: 'weighted-lap-pad',
-      title: 'Weighted lap pad activity',
+      title: 'Weighted Lap Pad',
       context: 'Ideal for afternoon energy',
       duration: '10-15 minutes',
-      type: 'calming'
+      type: 'calming',
+      difficulty: 'beginner',
+      sensorySystems: ['proprioceptive', 'tactile'],
+      behaviorFit: 'avoiding',
+      description: 'Gentle pressure from weighted pad on lap',
+      benefits: ['Provides gentle pressure', 'Calming effect', 'Non-intrusive'],
+      whenToUse: 'When feeling overwhelmed or needing gentle input'
+    },
+    {
+      id: 'bear-hugs',
+      title: 'Bear Hugs',
+      context: 'Great for transitions',
+      duration: '1-2 minutes',
+      type: 'proprioceptive',
+      difficulty: 'beginner',
+      sensorySystems: ['proprioceptive', 'tactile'],
+      behaviorFit: 'seeking',
+      description: 'Firm, deep pressure hugs',
+      benefits: ['Provides deep pressure', 'Emotional connection', 'Calming'],
+      whenToUse: 'During transitions or when seeking comfort'
+    },
+    {
+      id: 'chair-pushups',
+      title: 'Chair Push-ups',
+      context: 'Good for focus during seated work',
+      duration: '1-2 minutes',
+      type: 'proprioceptive',
+      difficulty: 'beginner',
+      sensorySystems: ['proprioceptive'],
+      behaviorFit: 'seeking',
+      description: 'Lifting body from chair using arm strength',
+      benefits: ['Provides proprioceptive input', 'Improves focus', 'Strengthens arms'],
+      whenToUse: 'During seated activities when needing input'
+    },
+    // Vestibular Activities
+    {
+      id: 'slow-spinning',
+      title: 'Slow Spinning',
+      context: 'Good for vestibular seeking',
+      duration: '2-3 minutes',
+      type: 'vestibular',
+      difficulty: 'beginner',
+      sensorySystems: ['vestibular'],
+      behaviorFit: 'seeking',
+      description: 'Gentle spinning in a chair or standing',
+      benefits: ['Provides vestibular input', 'Can be calming', 'Improves balance'],
+      whenToUse: 'When seeking movement input'
+    },
+    {
+      id: 'rocking-chair',
+      title: 'Rocking Chair',
+      context: 'Calming vestibular input',
+      duration: '5-10 minutes',
+      type: 'calming',
+      difficulty: 'beginner',
+      sensorySystems: ['vestibular'],
+      behaviorFit: 'avoiding',
+      description: 'Gentle rocking motion',
+      benefits: ['Calming effect', 'Gentle vestibular input', 'Relaxing'],
+      whenToUse: 'When feeling overwhelmed or needing to calm down'
+    },
+    // Tactile Activities
+    {
+      id: 'texture-exploration',
+      title: 'Texture Exploration',
+      context: 'Good for tactile integration',
+      duration: '5-10 minutes',
+      type: 'tactile',
+      difficulty: 'beginner',
+      sensorySystems: ['tactile'],
+      behaviorFit: 'avoiding',
+      description: 'Exploring different textures with hands',
+      benefits: ['Desensitizes tactile sensitivity', 'Improves tolerance', 'Educational'],
+      whenToUse: 'When working on tactile tolerance'
+    },
+    {
+      id: 'finger-painting',
+      title: 'Finger Painting',
+      context: 'Messy play for tactile seekers',
+      duration: '10-15 minutes',
+      type: 'tactile',
+      difficulty: 'intermediate',
+      sensorySystems: ['tactile'],
+      behaviorFit: 'seeking',
+      description: 'Painting with fingers for tactile input',
+      benefits: ['Provides tactile input', 'Creative expression', 'Sensory exploration'],
+      whenToUse: 'When seeking tactile input or creative activities'
+    },
+    // Auditory Activities
+    {
+      id: 'quiet-time',
+      title: 'Quiet Time',
+      context: 'For auditory sensitivity',
+      duration: '5-10 minutes',
+      type: 'calming',
+      difficulty: 'beginner',
+      sensorySystems: ['auditory'],
+      behaviorFit: 'avoiding',
+      description: 'Time in a quiet space with noise reduction',
+      benefits: ['Reduces auditory input', 'Calming effect', 'Regulation'],
+      whenToUse: 'When feeling overwhelmed by noise'
+    },
+    {
+      id: 'rhythm-clapping',
+      title: 'Rhythm Clapping',
+      context: 'Good for auditory seekers',
+      duration: '3-5 minutes',
+      type: 'auditory',
+      difficulty: 'beginner',
+      sensorySystems: ['auditory', 'proprioceptive'],
+      behaviorFit: 'seeking',
+      description: 'Clapping to rhythms and patterns',
+      benefits: ['Provides auditory input', 'Improves rhythm', 'Fun activity'],
+      whenToUse: 'When seeking auditory input or needing energy'
+    },
+    // Visual Activities
+    {
+      id: 'visual-tracking',
+      title: 'Visual Tracking',
+      context: 'For visual processing',
+      duration: '3-5 minutes',
+      type: 'visual',
+      difficulty: 'beginner',
+      sensorySystems: ['visual'],
+      behaviorFit: 'mixed',
+      description: 'Following objects with eyes',
+      benefits: ['Improves visual tracking', 'Focus development', 'Eye coordination'],
+      whenToUse: 'When working on visual skills'
+    },
+    {
+      id: 'dim-lighting',
+      title: 'Dim Lighting Time',
+      context: 'For visual sensitivity',
+      duration: '5-10 minutes',
+      type: 'calming',
+      difficulty: 'beginner',
+      sensorySystems: ['visual'],
+      behaviorFit: 'avoiding',
+      description: 'Time in reduced lighting',
+      benefits: ['Reduces visual input', 'Calming effect', 'Regulation'],
+      whenToUse: 'When feeling overwhelmed by bright lights'
+    },
+    // Interoception Activities
+    {
+      id: 'body-scan',
+      title: 'Body Scan',
+      context: 'For interoception awareness',
+      duration: '3-5 minutes',
+      type: 'interoception',
+      difficulty: 'beginner',
+      sensorySystems: ['interoception'],
+      behaviorFit: 'low-registration',
+      description: 'Mindful awareness of body sensations',
+      benefits: ['Improves body awareness', 'Self-regulation', 'Mindfulness'],
+      whenToUse: 'When working on body awareness'
+    },
+    {
+      id: 'hunger-thirst-check',
+      title: 'Hunger & Thirst Check',
+      context: 'For interoception development',
+      duration: '1-2 minutes',
+      type: 'interoception',
+      difficulty: 'beginner',
+      sensorySystems: ['interoception'],
+      behaviorFit: 'low-registration',
+      description: 'Regular check-ins for hunger and thirst',
+      benefits: ['Improves body awareness', 'Self-care skills', 'Regulation'],
+      whenToUse: 'Throughout the day for body awareness'
     }
   ]
+
+  // Personalization Logic
+  const getPersonalizedActivities = (): Activity[] => {
+    if (!assessment || !assessment.results) {
+      // Return general activities if no assessment
+      return activityLibrary.slice(0, 3)
+    }
+
+    const results = assessment.results as any
+    const behaviorScores = results.behaviorScores || {}
+    const systemScores = {
+      tactile: results.tactile || 0,
+      visual: results.visual || 0,
+      auditory: results.auditory || 0,
+      olfactory: results.olfactory || 0,
+      proprioceptive: results.proprioceptive || 0,
+      vestibular: results.vestibular || 0,
+      interoception: results.interoception || 0,
+      'social-emotional': results['social-emotional'] || 0
+    }
+
+    // Determine primary behavior pattern
+    const maxBehavior = Math.max(
+      behaviorScores.seeking || 0,
+      behaviorScores.avoiding || 0,
+      behaviorScores.sensitive || 0,
+      behaviorScores['low-registration'] || 0
+    )
+
+    let primaryBehavior: string = 'mixed'
+    if (maxBehavior >= 15) { // Threshold for significant behavior
+      if (behaviorScores.seeking === maxBehavior) primaryBehavior = 'seeking'
+      else if (behaviorScores.avoiding === maxBehavior) primaryBehavior = 'avoiding'
+      else if (behaviorScores.sensitive === maxBehavior) primaryBehavior = 'sensitive'
+      else if (behaviorScores['low-registration'] === maxBehavior) primaryBehavior = 'low-registration'
+    }
+
+    // Find areas needing support (high scores = more challenging)
+    const challengingSystems = Object.entries(systemScores)
+      .filter(([_, score]) => score > 15) // High score indicates challenges
+      .map(([system, _]) => system)
+
+    // Select activities based on profile
+    let selectedActivities: Activity[] = []
+
+    // Add activities for challenging systems
+    challengingSystems.forEach(system => {
+      const systemActivities = activityLibrary.filter(activity => 
+        activity.sensorySystems.includes(system) &&
+        activity.behaviorFit === primaryBehavior
+      )
+      selectedActivities.push(...systemActivities.slice(0, 1))
+    })
+
+    // Add general behavior-fit activities
+    const behaviorActivities = activityLibrary.filter(activity => 
+      activity.behaviorFit === primaryBehavior &&
+      !selectedActivities.includes(activity)
+    )
+    selectedActivities.push(...behaviorActivities.slice(0, 2))
+
+    // Add calming activities for avoiding/sensitive profiles
+    if (primaryBehavior === 'avoiding' || primaryBehavior === 'sensitive') {
+      const calmingActivities = activityLibrary.filter(activity => 
+        activity.type === 'calming' &&
+        !selectedActivities.includes(activity)
+      )
+      selectedActivities.push(...calmingActivities.slice(0, 1))
+    }
+
+    // Add seeking activities for low registration
+    if (primaryBehavior === 'low-registration') {
+      const seekingActivities = activityLibrary.filter(activity => 
+        activity.behaviorFit === 'seeking' &&
+        !selectedActivities.includes(activity)
+      )
+      selectedActivities.push(...seekingActivities.slice(0, 1))
+    }
+
+    // Ensure we have 3-4 activities
+    if (selectedActivities.length < 3) {
+      const remainingActivities = activityLibrary.filter(activity => 
+        !selectedActivities.includes(activity)
+      )
+      selectedActivities.push(...remainingActivities.slice(0, 3 - selectedActivities.length))
+    }
+
+    return selectedActivities.slice(0, 4)
+  }
+
+  const todaysActivities = getPersonalizedActivities()
 
   // Activity instructions for all activities
   const getActivitySteps = (activityId: string): ActivityStep[] => {
@@ -70,7 +348,7 @@ export default function TodayDashboard() {
           { id: 5, instruction: 'Push back to the starting position' },
           { id: 6, instruction: 'Repeat 5 times' }
         ]
-      case 'resistance-band':
+      case 'resistance-band-pull':
         return [
           { id: 1, instruction: 'Sit in a comfortable chair' },
           { id: 2, instruction: 'Hold the resistance band with both hands' },
@@ -87,6 +365,114 @@ export default function TodayDashboard() {
           { id: 4, instruction: 'Close your eyes and feel the weight' },
           { id: 5, instruction: 'Stay still and relaxed for 5 minutes' },
           { id: 6, instruction: 'Slowly remove the pad when finished' }
+        ]
+      case 'bear-hugs':
+        return [
+          { id: 1, instruction: 'Stand or sit comfortably' },
+          { id: 2, instruction: 'Wrap arms around yourself' },
+          { id: 3, instruction: 'Apply firm, even pressure' },
+          { id: 4, instruction: 'Hold for 10 seconds' },
+          { id: 5, instruction: 'Release slowly' },
+          { id: 6, instruction: 'Repeat 3 times' }
+        ]
+      case 'chair-pushups':
+        return [
+          { id: 1, instruction: 'Sit in a chair with armrests' },
+          { id: 2, instruction: 'Place hands on armrests' },
+          { id: 3, instruction: 'Lift your body slightly off the chair' },
+          { id: 4, instruction: 'Hold for 3 seconds' },
+          { id: 5, instruction: 'Lower back down slowly' },
+          { id: 6, instruction: 'Repeat 5 times' }
+        ]
+      case 'slow-spinning':
+        return [
+          { id: 1, instruction: 'Stand in an open space' },
+          { id: 2, instruction: 'Extend arms out to sides' },
+          { id: 3, instruction: 'Turn slowly in one direction' },
+          { id: 4, instruction: 'Complete 3 full rotations' },
+          { id: 5, instruction: 'Stop and wait 10 seconds' },
+          { id: 6, instruction: 'Repeat in opposite direction' }
+        ]
+      case 'rocking-chair':
+        return [
+          { id: 1, instruction: 'Sit in a rocking chair' },
+          { id: 2, instruction: 'Place feet flat on the ground' },
+          { id: 3, instruction: 'Begin gentle rocking motion' },
+          { id: 4, instruction: 'Focus on the rhythm' },
+          { id: 5, instruction: 'Rock for 5-10 minutes' },
+          { id: 6, instruction: 'Slowly stop when finished' }
+        ]
+      case 'texture-exploration':
+        return [
+          { id: 1, instruction: 'Gather different textured items' },
+          { id: 2, instruction: 'Start with familiar textures' },
+          { id: 3, instruction: 'Touch each texture gently' },
+          { id: 4, instruction: 'Describe how each feels' },
+          { id: 5, instruction: 'Try new textures gradually' },
+          { id: 6, instruction: 'Take breaks if needed' }
+        ]
+      case 'finger-painting':
+        return [
+          { id: 1, instruction: 'Set up painting area with paper' },
+          { id: 2, instruction: 'Pour paint onto paper' },
+          { id: 3, instruction: 'Start with one finger' },
+          { id: 4, instruction: 'Make different patterns' },
+          { id: 5, instruction: 'Try different colors' },
+          { id: 6, instruction: 'Clean up when finished' }
+        ]
+      case 'quiet-time':
+        return [
+          { id: 1, instruction: 'Find a quiet space' },
+          { id: 2, instruction: 'Turn off electronics' },
+          { id: 3, instruction: 'Sit or lie comfortably' },
+          { id: 4, instruction: 'Close your eyes' },
+          { id: 5, instruction: 'Focus on breathing' },
+          { id: 6, instruction: 'Stay for 5-10 minutes' }
+        ]
+      case 'rhythm-clapping':
+        return [
+          { id: 1, instruction: 'Sit or stand comfortably' },
+          { id: 2, instruction: 'Start with simple rhythm' },
+          { id: 3, instruction: 'Clap hands together' },
+          { id: 4, instruction: 'Try different patterns' },
+          { id: 5, instruction: 'Add counting' },
+          { id: 6, instruction: 'Make it fun!' }
+        ]
+      case 'visual-tracking':
+        return [
+          { id: 1, instruction: 'Hold a small object' },
+          { id: 2, instruction: 'Move it slowly left to right' },
+          { id: 3, instruction: 'Follow with eyes only' },
+          { id: 4, instruction: 'Move up and down' },
+          { id: 5, instruction: 'Make figure-8 pattern' },
+          { id: 6, instruction: 'Take breaks if eyes get tired' }
+        ]
+      case 'dim-lighting':
+        return [
+          { id: 1, instruction: 'Turn off bright lights' },
+          { id: 2, instruction: 'Use soft lighting' },
+          { id: 3, instruction: 'Find comfortable spot' },
+          { id: 4, instruction: 'Close eyes if needed' },
+          { id: 5, instruction: 'Stay for 5-10 minutes' },
+          { id: 6, instruction: 'Gradually increase light' }
+        ]
+      case 'body-scan':
+        return [
+          { id: 1, instruction: 'Lie down comfortably' },
+          { id: 2, instruction: 'Close your eyes' },
+          { id: 3, instruction: 'Focus on your toes' },
+          { id: 4, instruction: 'Move attention up your body' },
+          { id: 5, instruction: 'Notice how each part feels' },
+          { id: 6, instruction: 'End with your head' }
+        ]
+      case 'hunger-thirst-check':
+        return [
+          { id: 1, instruction: 'Stop what you\'re doing' },
+          { id: 2, instruction: 'Take a deep breath' },
+          { id: 3, instruction: 'Ask: "Am I hungry?"' },
+          { id: 4, instruction: 'Ask: "Am I thirsty?"' },
+          { id: 5, instruction: 'Notice how your body feels' },
+          { id: 6, instruction: 'Get what you need' }
         ]
       default:
         return [
@@ -265,6 +651,20 @@ export default function TodayDashboard() {
               </p>
             </div>
           )}
+
+          {assessment && (
+            <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-sm font-semibold text-blue-900">Personalized for {profile.child_name}</h3>
+                <span className="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
+                  {assessment.results.profile}
+                </span>
+              </div>
+              <p className="text-xs text-blue-700">
+                Activities selected based on {profile.child_name}'s sensory assessment results
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Quick Action Cards */}
@@ -303,14 +703,45 @@ export default function TodayDashboard() {
         <div className="today-activities">
           {todaysActivities.map((activity) => (
             <div key={activity.id} className="activity-card">
-              <p className="activity-context hig-footnote">{activity.context}</p>
-              <h3 className="activity-title hig-title-3">{activity.title}</h3>
-              <div className="activity-duration hig-subhead">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                {activity.duration}
+              <div className="flex items-start justify-between mb-2">
+                <p className="activity-context hig-footnote">{activity.context}</p>
+                <div className="flex items-center space-x-1">
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    activity.behaviorFit === 'seeking' ? 'bg-green-100 text-green-700' :
+                    activity.behaviorFit === 'avoiding' ? 'bg-blue-100 text-blue-700' :
+                    activity.behaviorFit === 'sensitive' ? 'bg-orange-100 text-orange-700' :
+                    activity.behaviorFit === 'low-registration' ? 'bg-purple-100 text-purple-700' :
+                    'bg-gray-100 text-gray-700'
+                  }`}>
+                    {activity.behaviorFit}
+                  </span>
+                  <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600">
+                    {activity.difficulty}
+                  </span>
+                </div>
               </div>
+              
+              <h3 className="activity-title hig-title-3 mb-2">{activity.title}</h3>
+              
+              <p className="text-sm text-gray-600 mb-3">{activity.description}</p>
+              
+              <div className="flex items-center justify-between mb-4">
+                <div className="activity-duration hig-subhead">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-4 h-4 mr-1">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {activity.duration}
+                </div>
+                
+                <div className="flex items-center space-x-1">
+                  {activity.sensorySystems.map((system, index) => (
+                    <span key={index} className="text-xs px-2 py-1 rounded-full bg-blue-50 text-blue-600">
+                      {system}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
               <button
                 onClick={() => handleStartActivity(activity)}
                 disabled={submittingActivity === activity.id}

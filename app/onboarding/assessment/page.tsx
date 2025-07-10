@@ -10,6 +10,7 @@ interface Question {
   text: string
   options: { text: string; score: number }[]
   system: string
+  behaviorType: 'avoiding' | 'seeking' | 'sensitive' | 'low-registration'
 }
 
 export default function Assessment() {
@@ -87,189 +88,506 @@ export default function Assessment() {
   }, [router])
 
   const questions: Question[] = [
-    // Tactile (Touch) Questions 1-3
+    // 1. Tactile / Touch (5 Questions)
     {
       id: 1,
-      text: `When ${profile?.child_name || '[Child\'s name]'} gets food on their hands or face during meals, they:`,
+      text: `My child avoids messy play like finger paint or slime.`,
       system: 'tactile',
+      behaviorType: 'avoiding',
       options: [
-        { text: 'Always get upset and want it cleaned off immediately', score: 1 },
-        { text: 'Usually get upset and want help cleaning it off', score: 2 },
-        { text: 'Sometimes notice and may ask for help', score: 3 },
-        { text: 'Rarely seem bothered by it', score: 4 },
-        { text: 'Never seem to notice or care', score: 5 }
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     },
     {
       id: 2,
-      text: `When playing with messy materials (playdough, finger paint, sand), ${profile?.child_name || '[Child\'s name]'}:`,
+      text: `My child constantly touches objects, textures, or other people.`,
       system: 'tactile',
+      behaviorType: 'seeking',
       options: [
-        { text: 'Always avoids or refuses to touch them', score: 1 },
-        { text: 'Usually avoids but might try briefly', score: 2 },
-        { text: 'Sometimes enjoys them, sometimes doesn\'t', score: 3 },
-        { text: 'Usually enjoys and explores them', score: 4 },
-        { text: 'Always seeks out and loves messy play', score: 5 }
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
       ]
     },
     {
       id: 3,
-      text: `When someone touches ${profile?.child_name || '[Child\'s name]'} unexpectedly (like a tap on the shoulder), they:`,
+      text: `My child complains about clothing tags, seams, or certain fabrics.`,
       system: 'tactile',
+      behaviorType: 'sensitive',
       options: [
-        { text: 'Always react strongly or get upset', score: 1 },
-        { text: 'Usually react with surprise or discomfort', score: 2 },
-        { text: 'Sometimes react, depending on their mood', score: 3 },
-        { text: 'Rarely react much to unexpected touch', score: 4 },
-        { text: 'Never seem bothered by unexpected touch', score: 5 }
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     },
-    // Auditory Questions 4-6
     {
       id: 4,
-      text: `When there are loud or sudden sounds (vacuum, blender, fire alarm), ${profile?.child_name || '[Child\'s name]'}:`,
-      system: 'auditory',
+      text: `My child doesn't notice when they have food or dirt on their face.`,
+      system: 'tactile',
+      behaviorType: 'low-registration',
       options: [
-        { text: 'Always covers ears or becomes very upset', score: 1 },
-        { text: 'Usually gets upset or tries to leave the area', score: 2 },
-        { text: 'Sometimes reacts but can usually handle it', score: 3 },
-        { text: 'Rarely seems bothered by loud sounds', score: 4 },
-        { text: 'Never seems to notice or react to loud sounds', score: 5 }
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
       ]
     },
     {
       id: 5,
-      text: `${profile?.child_name || '[Child\'s name]'} tends to:`,
-      system: 'auditory',
+      text: `My child pulls away from hugs or hand-holding.`,
+      system: 'tactile',
+      behaviorType: 'avoiding',
       options: [
-        { text: 'Always seek quiet environments', score: 1 },
-        { text: 'Usually prefer quieter spaces', score: 2 },
-        { text: 'Be okay with moderate noise levels', score: 3 },
-        { text: 'Usually enjoy louder, more active environments', score: 4 },
-        { text: 'Always seek out noisy, stimulating environments', score: 5 }
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     },
+    // 2. Visual / Sight (5 Questions)
     {
       id: 6,
-      text: `When trying to listen in a noisy environment (restaurant, classroom), ${profile?.child_name || '[Child\'s name]'}:`,
-      system: 'auditory',
+      text: `My child is easily distracted by lights, colors, or movement.`,
+      system: 'visual',
+      behaviorType: 'sensitive',
       options: [
-        { text: 'Always has great difficulty focusing', score: 1 },
-        { text: 'Usually struggles to pay attention', score: 2 },
-        { text: 'Sometimes has trouble, sometimes doesn\'t', score: 3 },
-        { text: 'Usually can focus okay', score: 4 },
-        { text: 'Never seems to have trouble filtering sounds', score: 5 }
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     },
-    // Visual Questions 7-9
     {
       id: 7,
-      text: `In bright lights or sunny environments, ${profile?.child_name || '[Child\'s name]'}:`,
+      text: `My child seeks out bright lights, spinning objects, or visual patterns.`,
       system: 'visual',
+      behaviorType: 'seeking',
       options: [
-        { text: 'Always squints, complains, or seeks dimmer areas', score: 1 },
-        { text: 'Usually shows discomfort with bright lights', score: 2 },
-        { text: 'Sometimes is bothered, sometimes isn\'t', score: 3 },
-        { text: 'Usually handles bright lights fine', score: 4 },
-        { text: 'Never seems bothered by any lighting', score: 5 }
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
       ]
     },
     {
       id: 8,
-      text: `In busy visual environments (stores, parties, crowded places), ${profile?.child_name || '[Child\'s name]'}:`,
+      text: `My child struggles to find objects even when they're visible.`,
       system: 'visual',
+      behaviorType: 'low-registration',
       options: [
-        { text: 'Always becomes overwhelmed or upset', score: 1 },
-        { text: 'Usually gets overstimulated or tired', score: 2 },
-        { text: 'Sometimes handles it well, sometimes doesn\'t', score: 3 },
-        { text: 'Usually enjoys the visual activity', score: 4 },
-        { text: 'Always seeks out visually busy, exciting places', score: 5 }
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
       ]
     },
     {
       id: 9,
-      text: `When looking at books or doing visual tasks, ${profile?.child_name || '[Child\'s name]'}:`,
+      text: `My child stares at lights or spinning fans.`,
       system: 'visual',
+      behaviorType: 'seeking',
       options: [
-        { text: 'Always has difficulty focusing or gets overwhelmed', score: 1 },
-        { text: 'Usually struggles with visual attention', score: 2 },
-        { text: 'Sometimes focuses well, sometimes struggles', score: 3 },
-        { text: 'Usually maintains good visual attention', score: 4 },
-        { text: 'Always focuses intensely and for long periods', score: 5 }
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
       ]
     },
-    // Vestibular Questions 10-12
     {
       id: 10,
-      text: `On playground equipment (swings, slides, merry-go-rounds), ${profile?.child_name || '[Child\'s name]'}:`,
-      system: 'vestibular',
+      text: `My child squints, looks away, or shields eyes from lights.`,
+      system: 'visual',
+      behaviorType: 'sensitive',
       options: [
-        { text: 'Always avoids or becomes fearful', score: 1 },
-        { text: 'Usually shows caution or mild fear', score: 2 },
-        { text: 'Sometimes enjoys it, sometimes is cautious', score: 3 },
-        { text: 'Usually enjoys movement activities', score: 4 },
-        { text: 'Always seeks intense movement and spinning', score: 5 }
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     },
+    // 3. Auditory / Sound (5 Questions)
     {
       id: 11,
-      text: `Throughout the day, ${profile?.child_name || '[Child\'s name]'}:`,
-      system: 'vestibular',
+      text: `My child covers their ears in noisy environments.`,
+      system: 'auditory',
+      behaviorType: 'sensitive',
       options: [
-        { text: 'Always prefers to stay still and calm', score: 1 },
-        { text: 'Usually chooses quieter, less active play', score: 2 },
-        { text: 'Sometimes seeks movement, sometimes prefers calm', score: 3 },
-        { text: 'Usually seeks active, moving activities', score: 4 },
-        { text: 'Always needs to be moving or fidgeting', score: 5 }
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     },
     {
       id: 12,
-      text: `When walking on uneven surfaces or stairs, ${profile?.child_name || '[Child\'s name]'}:`,
-      system: 'vestibular',
+      text: `My child doesn't respond when their name is called.`,
+      system: 'auditory',
+      behaviorType: 'low-registration',
       options: [
-        { text: 'Always shows fear or needs extra support', score: 1 },
-        { text: 'Usually is cautious or needs some help', score: 2 },
-        { text: 'Sometimes is confident, sometimes cautious', score: 3 },
-        { text: 'Usually moves confidently', score: 4 },
-        { text: 'Never shows any concern about balance', score: 5 }
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
       ]
     },
-    // Proprioceptive Questions 13-15
     {
       id: 13,
-      text: `${profile?.child_name || '[Child\'s name]'} enjoys activities that involve pushing, pulling, or carrying heavy things:`,
-      system: 'proprioceptive',
+      text: `My child seeks out loud or repetitive noises.`,
+      system: 'auditory',
+      behaviorType: 'seeking',
       options: [
-        { text: 'Never - they avoid any physical effort', score: 1 },
-        { text: 'Rarely - they prefer light activities', score: 2 },
-        { text: 'Sometimes - depends on their mood', score: 3 },
-        { text: 'Usually - they often choose these activities', score: 4 },
-        { text: 'Always - they constantly seek heavy work', score: 5 }
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
       ]
     },
     {
       id: 14,
-      text: `${profile?.child_name || '[Child\'s name]'} seems to know where their body is in space and how much force to use:`,
-      system: 'proprioceptive',
+      text: `My child is startled by sudden sounds more than others.`,
+      system: 'auditory',
+      behaviorType: 'sensitive',
       options: [
-        { text: 'Never - often bumps into things or uses too much/little force', score: 1 },
-        { text: 'Rarely - frequently has trouble with body awareness', score: 2 },
-        { text: 'Sometimes - depends on the situation', score: 3 },
-        { text: 'Usually - good body awareness most of the time', score: 4 },
-        { text: 'Always - excellent body awareness and motor control', score: 5 }
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     },
     {
       id: 15,
-      text: `When upset or overwhelmed, ${profile?.child_name || '[Child\'s name]'} responds well to:`,
-      system: 'proprioceptive',
+      text: `My child talks loudly or constantly makes noise.`,
+      system: 'auditory',
+      behaviorType: 'seeking',
       options: [
-        { text: 'Very gentle, minimal touch or pressure', score: 1 },
-        { text: 'Light, soothing touch', score: 2 },
-        { text: 'It depends on the situation', score: 3 },
-        { text: 'Firm hugs or pressure', score: 4 },
-        { text: 'Very tight hugs, weighted blankets, or deep pressure', score: 5 }
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    // 4. Olfactory / Smell (4 Questions)
+    {
+      id: 16,
+      text: `My child complains about smells others don't notice.`,
+      system: 'olfactory',
+      behaviorType: 'sensitive',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 17,
+      text: `My child frequently smells objects, food, or people.`,
+      system: 'olfactory',
+      behaviorType: 'seeking',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 18,
+      text: `My child avoids foods or places due to smell.`,
+      system: 'olfactory',
+      behaviorType: 'avoiding',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 19,
+      text: `My child doesn't notice strong odors (like perfume or cleaning products).`,
+      system: 'olfactory',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    // 5. Proprioception / Body Awareness (5 Questions)
+    {
+      id: 20,
+      text: `My child enjoys crashing, jumping, or falling into things.`,
+      system: 'proprioceptive',
+      behaviorType: 'seeking',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 21,
+      text: `My child hugs too hard or plays roughly.`,
+      system: 'proprioceptive',
+      behaviorType: 'seeking',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 22,
+      text: `My child appears clumsy or bumps into people/objects.`,
+      system: 'proprioceptive',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 23,
+      text: `My child tires easily or avoids movement games.`,
+      system: 'proprioceptive',
+      behaviorType: 'avoiding',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 24,
+      text: `My child presses too hard when writing or coloring.`,
+      system: 'proprioceptive',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    // 6. Vestibular / Balance & Movement (5 Questions)
+    {
+      id: 25,
+      text: `My child loves spinning, swinging, or being upside down.`,
+      system: 'vestibular',
+      behaviorType: 'seeking',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 26,
+      text: `My child avoids swings, slides, or fast-moving activities.`,
+      system: 'vestibular',
+      behaviorType: 'avoiding',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 27,
+      text: `My child becomes dizzy or off-balance easily.`,
+      system: 'vestibular',
+      behaviorType: 'sensitive',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 28,
+      text: `My child constantly moves, even when sitting.`,
+      system: 'vestibular',
+      behaviorType: 'seeking',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 29,
+      text: `My child seems unaware of their speed or body in space.`,
+      system: 'vestibular',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    // 7. Interoception / Internal Body Awareness (5 Questions)
+    {
+      id: 30,
+      text: `My child doesn't notice when they're hungry, thirsty, or tired.`,
+      system: 'interoception',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 31,
+      text: `My child overreacts to small injuries or internal sensations.`,
+      system: 'interoception',
+      behaviorType: 'sensitive',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 32,
+      text: `My child doesn't recognize when they need to go to the bathroom.`,
+      system: 'interoception',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 33,
+      text: `My child complains often of being "too hot" or "too cold."`,
+      system: 'interoception',
+      behaviorType: 'sensitive',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 34,
+      text: `My child doesn't ask for help when uncomfortable or unwell.`,
+      system: 'interoception',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    // 8. Social-Emotional Regulation (4 Questions)
+    {
+      id: 35,
+      text: `My child has frequent emotional outbursts or meltdowns.`,
+      system: 'social-emotional',
+      behaviorType: 'sensitive',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 36,
+      text: `My child doesn't notice when others are upset or reacting.`,
+      system: 'social-emotional',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 37,
+      text: `My child seeks excessive attention through physical play or sound.`,
+      system: 'social-emotional',
+      behaviorType: 'seeking',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 38,
+      text: `My child avoids group play or social situations.`,
+      system: 'social-emotional',
+      behaviorType: 'avoiding',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     }
   ]
@@ -277,42 +595,55 @@ export default function Assessment() {
   const calculateSensoryProfile = (): SensoryProfile => {
     const systemScores = {
       tactile: 0,
-      auditory: 0,
       visual: 0,
+      auditory: 0,
+      olfactory: 0,
+      proprioceptive: 0,
       vestibular: 0,
-      proprioceptive: 0
+      interoception: 0,
+      'social-emotional': 0
     }
 
-    // Calculate scores for each system
+    const behaviorScores = {
+      avoiding: 0,
+      seeking: 0,
+      sensitive: 0,
+      'low-registration': 0
+    }
+
+    // Calculate scores for each system and behavior type
     questions.forEach(question => {
       const answer = answers[question.id]
       if (answer) {
         systemScores[question.system as keyof typeof systemScores] += answer
+        behaviorScores[question.behaviorType] += answer
       }
     })
 
     const total = Object.values(systemScores).reduce((sum, score) => sum + score, 0)
     
-    // Determine profile based on scores
+    // Determine profile based on behavior patterns
     let profile = 'Mixed/Typical'
-    if (total >= 60) {
+    const maxBehavior = Math.max(...Object.values(behaviorScores))
+    const behaviorThreshold = 20 // Threshold for significant behavior pattern
+    
+    if (behaviorScores.seeking >= behaviorThreshold && behaviorScores.seeking > behaviorScores.avoiding) {
       profile = 'Sensory Seeking'
-    } else if (total <= 30) {
+    } else if (behaviorScores.avoiding >= behaviorThreshold && behaviorScores.avoiding > behaviorScores.seeking) {
       profile = 'Sensory Avoiding'
-    } else {
-      // Check for mixed patterns
-      const seekingCount = Object.values(systemScores).filter(score => score >= 12).length
-      const avoidingCount = Object.values(systemScores).filter(score => score <= 6).length
-      
-      if (seekingCount >= 2 && avoidingCount >= 2) {
-        profile = 'Mixed Profile'
-      }
+    } else if (behaviorScores.sensitive >= behaviorThreshold) {
+      profile = 'Sensory Sensitive'
+    } else if (behaviorScores['low-registration'] >= behaviorThreshold) {
+      profile = 'Low Registration'
+    } else if (maxBehavior >= behaviorThreshold) {
+      profile = 'Mixed Profile'
     }
 
     return {
       ...systemScores,
       total,
-      profile
+      profile,
+      behaviorScores
     }
   }
 
@@ -322,7 +653,7 @@ export default function Assessment() {
     
     // Auto-advance to next question after a short delay
     setTimeout(() => {
-      if (currentQ < 15) {
+      if (currentQ < 38) {
         setCurrentQ(currentQ + 1)
       } else {
         // Submit assessment on last question
@@ -364,8 +695,6 @@ export default function Assessment() {
     }
   }
 
-
-
   const handleBack = () => {
     if (currentQ > 1) {
       setCurrentQ(currentQ - 1)
@@ -393,7 +722,7 @@ export default function Assessment() {
 
   const currentQuestion = questions[currentQ - 1]
   const hasAnswer = answers[currentQ]
-  const progress = Math.round((currentQ / 15) * 100)
+  const progress = Math.round((currentQ / 38) * 100)
   const overallProgress = Math.round(33 + (progress * 0.34)) // 33% from onboarding + 34% for assessment
 
   return (
@@ -417,7 +746,7 @@ export default function Assessment() {
           {/* Progress Section */}
           <div className="mb-6">
             <div className="flex justify-between items-center mb-3">
-              <span className="text-gray-600 text-sm">Question {currentQ} of 15</span>
+              <span className="text-gray-600 text-sm">Question {currentQ} of 38</span>
             </div>
             {/* Progress Bar */}
             <div className="bg-gray-200 h-2 rounded-full overflow-hidden">
