@@ -246,95 +246,103 @@ export default function TodayDashboard() {
   ]
 
   // Personalization Logic
-  const getPersonalizedActivities = (): Activity[] => {
-    if (!assessment || !assessment.results) {
-      // Return general activities if no assessment
-      return activityLibrary.slice(0, 3)
-    }
+  const getPersonalizedActivities = async (assessment: Assessment) => {
+    if (!assessment?.results) return []
 
     const results = assessment.results as any
     const behaviorScores = results.behaviorScores || {}
-    const systemScores = {
-      tactile: results.tactile || 0,
-      visual: results.visual || 0,
-      auditory: results.auditory || 0,
-      olfactory: results.olfactory || 0,
-      proprioceptive: results.proprioceptive || 0,
-      vestibular: results.vestibular || 0,
-      interoception: results.interoception || 0,
-      'social-emotional': results['social-emotional'] || 0
+    
+    // Get activities from database
+    const { data: activities, error } = await supabase
+      .from('activities')
+      .select('*')
+      .eq('is_active', true)
+      .order('created_at', { ascending: false })
+
+    if (error || !activities) {
+      console.error('Error fetching activities:', error)
+      return []
     }
 
-    // Determine primary behavior pattern
-    const maxBehavior = Math.max(
-      behaviorScores.seeking || 0,
-      behaviorScores.avoiding || 0,
-      behaviorScores.sensitive || 0,
-      behaviorScores['low-registration'] || 0
-    )
+    // Score activities based on child's profile
+    const scoredActivities = activities.map(activity => {
+      let score = 0
+      
+      // Score based on behavior fit
+      const dominantBehavior = getDominantBehavior(behaviorScores)
+      if (activity.behavior_fit === dominantBehavior) {
+        score += 10
+      } else if (activity.behavior_fit === 'mixed') {
+        score += 5
+      }
 
-    let primaryBehavior: string = 'mixed'
-    if (maxBehavior >= 15) { // Threshold for significant behavior
-      if (behaviorScores.seeking === maxBehavior) primaryBehavior = 'seeking'
-      else if (behaviorScores.avoiding === maxBehavior) primaryBehavior = 'avoiding'
-      else if (behaviorScores.sensitive === maxBehavior) primaryBehavior = 'sensitive'
-      else if (behaviorScores['low-registration'] === maxBehavior) primaryBehavior = 'low-registration'
-    }
+      // Score based on sensory system needs
+      const challengingSystems = getChallengingSystems(results)
+      const activitySystems = activity.sensory_systems || []
+      
+      challengingSystems.forEach(system => {
+        if (activitySystems.includes(system)) {
+          score += 8
+        }
+      })
 
-    // Find areas needing support (high scores = more challenging)
-    const challengingSystems = Object.entries(systemScores)
-      .filter(([_, score]) => score > 15) // High score indicates challenges
-      .map(([system, _]) => system)
+      // Score based on difficulty (prefer beginner for high avoiding/sensitive)
+      if (behaviorScores.avoiding > 15 || behaviorScores.sensitive > 15) {
+        if (activity.difficulty === 'beginner') score += 5
+        else if (activity.difficulty === 'advanced') score -= 3
+      }
 
-    // Select activities based on profile
-    let selectedActivities: Activity[] = []
+      // Score based on age appropriateness
+      if (profile?.child_age && activity.age_range) {
+        const childAge = parseInt(profile.child_age.split('-')[0])
+        const activityAge = parseInt(activity.age_range.split('-')[0])
+        if (Math.abs(childAge - activityAge) <= 2) {
+          score += 3
+        }
+      }
 
-    // Add activities for challenging systems
-    challengingSystems.forEach(system => {
-      const systemActivities = activityLibrary.filter(activity => 
-        activity.sensorySystems.includes(system) &&
-        activity.behaviorFit === primaryBehavior
-      )
-      selectedActivities.push(...systemActivities.slice(0, 1))
+      return { ...activity, score }
     })
 
-    // Add general behavior-fit activities
-    const behaviorActivities = activityLibrary.filter(activity => 
-      activity.behaviorFit === primaryBehavior &&
-      !selectedActivities.includes(activity)
-    )
-    selectedActivities.push(...behaviorActivities.slice(0, 2))
-
-    // Add calming activities for avoiding/sensitive profiles
-    if (primaryBehavior === 'avoiding' || primaryBehavior === 'sensitive') {
-      const calmingActivities = activityLibrary.filter(activity => 
-        activity.type === 'calming' &&
-        !selectedActivities.includes(activity)
-      )
-      selectedActivities.push(...calmingActivities.slice(0, 1))
-    }
-
-    // Add seeking activities for low registration
-    if (primaryBehavior === 'low-registration') {
-      const seekingActivities = activityLibrary.filter(activity => 
-        activity.behaviorFit === 'seeking' &&
-        !selectedActivities.includes(activity)
-      )
-      selectedActivities.push(...seekingActivities.slice(0, 1))
-    }
-
-    // Ensure we have 3-4 activities
-    if (selectedActivities.length < 3) {
-      const remainingActivities = activityLibrary.filter(activity => 
-        !selectedActivities.includes(activity)
-      )
-      selectedActivities.push(...remainingActivities.slice(0, 3 - selectedActivities.length))
-    }
-
-    return selectedActivities.slice(0, 4)
+    // Sort by score and return top 6
+    return scoredActivities
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6)
   }
 
-  const todaysActivities = getPersonalizedActivities()
+  const getDominantBehavior = (behaviorScores: any) => {
+    const scores = [
+      { type: 'seeking', score: behaviorScores.seeking || 0 },
+      { type: 'avoiding', score: behaviorScores.avoiding || 0 },
+      { type: 'sensitive', score: behaviorScores.sensitive || 0 },
+      { type: 'low-registration', score: behaviorScores['low-registration'] || 0 }
+    ]
+    
+    return scores.reduce((max, current) => 
+      current.score > max.score ? current : max
+    ).type
+  }
+
+  const getChallengingSystems = (results: any) => {
+    const systems = ['tactile', 'visual', 'auditory', 'olfactory', 'proprioceptive', 'vestibular', 'interoception', 'social-emotional']
+    const challenging: string[] = []
+    
+    systems.forEach(system => {
+      if (results[system] && results[system] > 15) {
+        challenging.push(system)
+      }
+    })
+    
+    return challenging
+  }
+
+  const todaysActivities = async () => {
+    if (!assessment) {
+      // Return general activities if no assessment
+      return activityLibrary.slice(0, 3)
+    }
+    return await getPersonalizedActivities(assessment)
+  }
 
   // Activity instructions for all activities
   const getActivitySteps = (activityId: string): ActivityStep[] => {
@@ -701,19 +709,19 @@ export default function TodayDashboard() {
 
         {/* Activity Cards */}
         <div className="today-activities">
-          {todaysActivities.map((activity) => (
+          {todaysActivities().map((activity) => (
             <div key={activity.id} className="activity-card">
               <div className="flex items-start justify-between mb-2">
                 <p className="activity-context hig-footnote">{activity.context}</p>
                 <div className="flex items-center space-x-1">
                   <span className={`text-xs px-2 py-1 rounded-full ${
-                    activity.behaviorFit === 'seeking' ? 'bg-green-100 text-green-700' :
-                    activity.behaviorFit === 'avoiding' ? 'bg-blue-100 text-blue-700' :
-                    activity.behaviorFit === 'sensitive' ? 'bg-orange-100 text-orange-700' :
-                    activity.behaviorFit === 'low-registration' ? 'bg-purple-100 text-purple-700' :
+                    activity.behavior_fit === 'seeking' ? 'bg-green-100 text-green-700' :
+                    activity.behavior_fit === 'avoiding' ? 'bg-blue-100 text-blue-700' :
+                    activity.behavior_fit === 'sensitive' ? 'bg-orange-100 text-orange-700' :
+                    activity.behavior_fit === 'low-registration' ? 'bg-purple-100 text-purple-700' :
                     'bg-gray-100 text-gray-700'
                   }`}>
-                    {activity.behaviorFit}
+                    {activity.behavior_fit}
                   </span>
                   <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600">
                     {activity.difficulty}
@@ -734,7 +742,7 @@ export default function TodayDashboard() {
                 </div>
                 
                 <div className="flex items-center space-x-1">
-                  {activity.sensorySystems.map((system, index) => (
+                  {activity.sensory_systems.map((system, index) => (
                     <span key={index} className="text-xs px-2 py-1 rounded-full bg-blue-50 text-blue-600">
                       {system}
                     </span>

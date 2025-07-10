@@ -203,6 +203,48 @@ export type SensoryProfile = {
   }
 }
 
+export type Activity = {
+  id: string
+  title: string
+  description: string
+  context: string
+  duration_minutes: number
+  difficulty: 'beginner' | 'intermediate' | 'advanced'
+  activity_type: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming' | 'auditory' | 'visual' | 'olfactory' | 'interoception'
+  sensory_systems: string[]
+  behavior_fit: 'seeking' | 'avoiding' | 'sensitive' | 'low-registration' | 'mixed'
+  benefits: string[]
+  when_to_use: string
+  materials_needed: string[]
+  steps: ActivityStep[]
+  variations?: ActivityVariation[]
+  age_range?: string
+  environment?: 'indoor' | 'outdoor' | 'both'
+  is_active: boolean
+  created_at: string
+  updated_at: string
+}
+
+export type ActivityStep = {
+  id: string
+  activity_id: string
+  step_number: number
+  title: string
+  description: string
+  duration_seconds?: number
+  image_url?: string
+  audio_url?: string
+  created_at: string
+}
+
+export type ActivityVariation = {
+  name: string
+  description: string
+  modifications: string[]
+  age_range?: string
+  difficulty?: 'beginner' | 'intermediate' | 'advanced'
+}
+
 export type OnboardingData = {
   parentName: string
   email: string
