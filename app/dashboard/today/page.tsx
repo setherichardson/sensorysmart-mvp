@@ -673,7 +673,7 @@ export default function TodayDashboard() {
     }
   }
 
-  const handleCompleteActivity = async (activity: Activity, durationMinutes?: number) => {
+  const handleCompleteActivity = async (activity: Activity, durationMinutes?: number, rating?: string) => {
     try {
       setSubmittingActivity(activity.id)
       
@@ -689,12 +689,13 @@ export default function TodayDashboard() {
           completed_at: new Date().toISOString(),
           duration_minutes: duration,
           activity_name: activity.title,
-          activity_type: activity.activity_type
+          activity_type: activity.activity_type,
+          regulation_rating: rating // Add the rating to the database
         })
 
       if (error) {
         console.error('Error saving activity completion:', error)
-        return
+        throw error // Re-throw to be caught by the calling function
       }
 
       // Close the story modal
@@ -704,11 +705,11 @@ export default function TodayDashboard() {
       // Refresh activities to show updated state
       await loadTodaysActivities()
       
-      // Show success message
-      alert(`Great job completing "${activity.title}"!`)
+      console.log(`Activity "${activity.title}" completed with rating: ${rating}`)
       
     } catch (error) {
       console.error('Error completing activity:', error)
+      throw error // Re-throw to be caught by the calling function
     } finally {
       setSubmittingActivity(null)
     }
@@ -789,7 +790,7 @@ export default function TodayDashboard() {
             activityData={currentActivity}
             childName={profile.child_name}
             onClose={handleCloseStory}
-            onComplete={() => handleCompleteActivity(currentActivity)}
+            onComplete={(rating) => handleCompleteActivity(currentActivity, undefined, rating)}
           />
         )}
 
