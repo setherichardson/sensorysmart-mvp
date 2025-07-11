@@ -359,7 +359,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
     setSelectedRating(rating)
     setSaving(true)
     try {
-      // Save completion with rating (existing logic)
+      // Save completion with rating
       if (onComplete) {
         await onComplete(rating)
       }
@@ -369,6 +369,8 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
     } catch (err) {
       setSaving(false)
       console.error('Error saving activity completion:', err)
+      // Still redirect even if there's an error
+      router.push('/dashboard/journal?new=1')
     }
   }
 
@@ -436,23 +438,23 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
         {/* Main content: label and ratings */}
         <div style={{ paddingTop: 24, paddingLeft: 24, paddingRight: 24, maxWidth: 480, margin: '0 auto', width: '100%' }}>
           <div style={{ fontWeight: 600, fontSize: 32, color: '#252225', marginBottom: 32, lineHeight: 1.3 }}>
-            {`You're done! How is ${activity?.title || 'your child'} after completing this activity?`}
+            {`You're done! How is ${childName || 'your child'} after completing this activity?`}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <button onClick={() => handleRating('dysregulated')} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225' }}>
-              <img src="/Icons/sad.svg" alt="Dysregulated" style={{ width: 32, height: 32, marginRight: 16 }} /> Dysregulated
+            <button onClick={() => handleRating('dysregulated')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
+              <img src="/Icons/sad.svg" alt="Dysregulated" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Dysregulated'}
             </button>
-            <button onClick={() => handleRating('distracted')} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225' }}>
-              <img src="/Icons/distracted.svg" alt="Distracted" style={{ width: 32, height: 32, marginRight: 16 }} /> Distracted
+            <button onClick={() => handleRating('distracted')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
+              <img src="/Icons/distracted.svg" alt="Distracted" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Distracted'}
             </button>
-            <button onClick={() => handleRating('neutral')} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225' }}>
-              <img src="/Icons/meh.svg" alt="Neutral" style={{ width: 32, height: 32, marginRight: 16 }} /> Neutral
+            <button onClick={() => handleRating('neutral')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
+              <img src="/Icons/meh.svg" alt="Neutral" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Neutral'}
             </button>
-            <button onClick={() => handleRating('calmer')} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225' }}>
-              <img src="/Icons/Calmer.svg" alt="Calmer" style={{ width: 32, height: 32, marginRight: 16 }} /> Calmer
+            <button onClick={() => handleRating('calmer')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
+              <img src="/Icons/Calmer.svg" alt="Calmer" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Calmer'}
             </button>
-            <button onClick={() => handleRating('regulated')} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225' }}>
-              <img src="/Icons/smile.svg" alt="Regulated" style={{ width: 32, height: 32, marginRight: 16 }} /> Regulated
+            <button onClick={() => handleRating('regulated')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
+              <img src="/Icons/smile.svg" alt="Regulated" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Regulated'}
             </button>
           </div>
         </div>

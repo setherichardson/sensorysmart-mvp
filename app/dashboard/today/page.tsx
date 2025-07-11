@@ -787,6 +787,7 @@ export default function TodayDashboard() {
           <ActivityStory
             activityId={currentActivity.id}
             activityData={currentActivity}
+            childName={profile.child_name}
             onClose={handleCloseStory}
             onComplete={() => handleCompleteActivity(currentActivity)}
           />
