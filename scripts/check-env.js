@@ -7,7 +7,7 @@ require('dotenv').config({ path: '.env.local' })
 const requiredEnvVars = [
   'NEXT_PUBLIC_SUPABASE_URL',
   'NEXT_PUBLIC_SUPABASE_ANON_KEY',
-  'SERVICE_ROLE_KEY',
+  'SUPABASE_SERVICE_ROLE_KEY',
   'OPENAI_API_KEY',
   // Optional: Stripe configuration (for billing)
   'STRIPE_SECRET_KEY',

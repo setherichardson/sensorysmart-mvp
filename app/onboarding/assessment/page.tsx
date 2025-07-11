@@ -87,11 +87,11 @@ export default function Assessment() {
     loadUserData()
   }, [router])
 
-  const questions: Question[] = [
+  const getPersonalizedQuestions = (childName: string): Question[] => [
     // 1. Tactile / Touch (5 Questions)
     {
       id: 1,
-      text: `My child avoids messy play like finger paint or slime.`,
+      text: `${childName} avoids messy play like finger paint or slime.`,
       system: 'tactile',
       behaviorType: 'avoiding',
       options: [
@@ -104,7 +104,7 @@ export default function Assessment() {
     },
     {
       id: 2,
-      text: `My child constantly touches objects, textures, or other people.`,
+      text: `${childName} constantly touches objects, textures, or other people.`,
       system: 'tactile',
       behaviorType: 'seeking',
       options: [
@@ -117,7 +117,7 @@ export default function Assessment() {
     },
     {
       id: 3,
-      text: `My child complains about clothing tags, seams, or certain fabrics.`,
+      text: `${childName} complains about clothing tags, seams, or certain fabrics.`,
       system: 'tactile',
       behaviorType: 'sensitive',
       options: [
@@ -130,7 +130,7 @@ export default function Assessment() {
     },
     {
       id: 4,
-      text: `My child doesn't notice when they have food or dirt on their face.`,
+      text: `${childName} doesn't notice when they have food or dirt on their face.`,
       system: 'tactile',
       behaviorType: 'low-registration',
       options: [
@@ -143,7 +143,7 @@ export default function Assessment() {
     },
     {
       id: 5,
-      text: `My child pulls away from hugs or hand-holding.`,
+      text: `${childName} pulls away from hugs or hand-holding.`,
       system: 'tactile',
       behaviorType: 'avoiding',
       options: [
@@ -157,7 +157,7 @@ export default function Assessment() {
     // 2. Visual / Sight (5 Questions)
     {
       id: 6,
-      text: `My child is easily distracted by lights, colors, or movement.`,
+      text: `${childName} is easily distracted by lights, colors, or movement.`,
       system: 'visual',
       behaviorType: 'sensitive',
       options: [
@@ -170,7 +170,7 @@ export default function Assessment() {
     },
     {
       id: 7,
-      text: `My child seeks out bright lights, spinning objects, or visual patterns.`,
+      text: `${childName} seeks out bright lights, spinning objects, or visual patterns.`,
       system: 'visual',
       behaviorType: 'seeking',
       options: [
@@ -183,7 +183,7 @@ export default function Assessment() {
     },
     {
       id: 8,
-      text: `My child struggles to find objects even when they're visible.`,
+      text: `${childName} struggles to find objects even when they're visible.`,
       system: 'visual',
       behaviorType: 'low-registration',
       options: [
@@ -196,7 +196,7 @@ export default function Assessment() {
     },
     {
       id: 9,
-      text: `My child stares at lights or spinning fans.`,
+      text: `${childName} stares at lights or spinning fans.`,
       system: 'visual',
       behaviorType: 'seeking',
       options: [
@@ -209,9 +209,9 @@ export default function Assessment() {
     },
     {
       id: 10,
-      text: `My child squints, looks away, or shields eyes from lights.`,
+      text: `${childName} avoids looking at bright lights or busy patterns.`,
       system: 'visual',
-      behaviorType: 'sensitive',
+      behaviorType: 'avoiding',
       options: [
         { text: 'Never', score: 5 },
         { text: 'Rarely', score: 4 },
@@ -220,10 +220,10 @@ export default function Assessment() {
         { text: 'Always', score: 1 }
       ]
     },
-    // 3. Auditory / Sound (5 Questions)
+    // 3. Auditory / Hearing (5 Questions)
     {
       id: 11,
-      text: `My child covers their ears in noisy environments.`,
+      text: `${childName} covers their ears at loud sounds.`,
       system: 'auditory',
       behaviorType: 'sensitive',
       options: [
@@ -236,20 +236,7 @@ export default function Assessment() {
     },
     {
       id: 12,
-      text: `My child doesn't respond when their name is called.`,
-      system: 'auditory',
-      behaviorType: 'low-registration',
-      options: [
-        { text: 'Never', score: 1 },
-        { text: 'Rarely', score: 2 },
-        { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 4 },
-        { text: 'Always', score: 5 }
-      ]
-    },
-    {
-      id: 13,
-      text: `My child seeks out loud or repetitive noises.`,
+      text: `${childName} seeks out loud noises or repetitive sounds.`,
       system: 'auditory',
       behaviorType: 'seeking',
       options: [
@@ -261,8 +248,21 @@ export default function Assessment() {
       ]
     },
     {
+      id: 13,
+      text: `${childName} doesn't respond when called by name.`,
+      system: 'auditory',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
       id: 14,
-      text: `My child is startled by sudden sounds more than others.`,
+      text: `${childName} gets distracted by background noises.`,
       system: 'auditory',
       behaviorType: 'sensitive',
       options: [
@@ -275,21 +275,21 @@ export default function Assessment() {
     },
     {
       id: 15,
-      text: `My child talks loudly or constantly makes noise.`,
+      text: `${childName} avoids noisy environments.`,
       system: 'auditory',
-      behaviorType: 'seeking',
+      behaviorType: 'avoiding',
       options: [
-        { text: 'Never', score: 1 },
-        { text: 'Rarely', score: 2 },
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
         { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 4 },
-        { text: 'Always', score: 5 }
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     },
-    // 4. Olfactory / Smell (4 Questions)
+    // 4. Olfactory / Smell (5 Questions)
     {
       id: 16,
-      text: `My child complains about smells others don't notice.`,
+      text: `${childName} is bothered by strong smells.`,
       system: 'olfactory',
       behaviorType: 'sensitive',
       options: [
@@ -302,7 +302,7 @@ export default function Assessment() {
     },
     {
       id: 17,
-      text: `My child frequently smells objects, food, or people.`,
+      text: `${childName} seeks out strong smells or scents.`,
       system: 'olfactory',
       behaviorType: 'seeking',
       options: [
@@ -315,7 +315,20 @@ export default function Assessment() {
     },
     {
       id: 18,
-      text: `My child avoids foods or places due to smell.`,
+      text: `${childName} doesn't notice strong odors.`,
+      system: 'olfactory',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 19,
+      text: `${childName} avoids certain foods due to smell.`,
       system: 'olfactory',
       behaviorType: 'avoiding',
       options: [
@@ -327,23 +340,9 @@ export default function Assessment() {
       ]
     },
     {
-      id: 19,
-      text: `My child doesn't notice strong odors (like perfume or cleaning products).`,
-      system: 'olfactory',
-      behaviorType: 'low-registration',
-      options: [
-        { text: 'Never', score: 1 },
-        { text: 'Rarely', score: 2 },
-        { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 4 },
-        { text: 'Always', score: 5 }
-      ]
-    },
-    // 5. Proprioception / Body Awareness (5 Questions)
-    {
       id: 20,
-      text: `My child enjoys crashing, jumping, or falling into things.`,
-      system: 'proprioceptive',
+      text: `${childName} sniffs objects or people.`,
+      system: 'olfactory',
       behaviorType: 'seeking',
       options: [
         { text: 'Never', score: 1 },
@@ -353,11 +352,12 @@ export default function Assessment() {
         { text: 'Always', score: 5 }
       ]
     },
+    // 5. Proprioceptive / Body Awareness (5 Questions)
     {
       id: 21,
-      text: `My child hugs too hard or plays roughly.`,
+      text: `${childName} crashes into things or people.`,
       system: 'proprioceptive',
-      behaviorType: 'seeking',
+      behaviorType: 'low-registration',
       options: [
         { text: 'Never', score: 1 },
         { text: 'Rarely', score: 2 },
@@ -368,9 +368,9 @@ export default function Assessment() {
     },
     {
       id: 22,
-      text: `My child appears clumsy or bumps into people/objects.`,
+      text: `${childName} seeks out heavy work or deep pressure.`,
       system: 'proprioceptive',
-      behaviorType: 'low-registration',
+      behaviorType: 'seeking',
       options: [
         { text: 'Never', score: 1 },
         { text: 'Rarely', score: 2 },
@@ -381,7 +381,20 @@ export default function Assessment() {
     },
     {
       id: 23,
-      text: `My child tires easily or avoids movement games.`,
+      text: `${childName} is sensitive to being touched or moved.`,
+      system: 'proprioceptive',
+      behaviorType: 'sensitive',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 24,
+      text: `${childName} avoids physical activities or sports.`,
       system: 'proprioceptive',
       behaviorType: 'avoiding',
       options: [
@@ -393,8 +406,8 @@ export default function Assessment() {
       ]
     },
     {
-      id: 24,
-      text: `My child presses too hard when writing or coloring.`,
+      id: 25,
+      text: `${childName} has difficulty with fine motor tasks.`,
       system: 'proprioceptive',
       behaviorType: 'low-registration',
       options: [
@@ -405,10 +418,10 @@ export default function Assessment() {
         { text: 'Always', score: 5 }
       ]
     },
-    // 6. Vestibular / Balance & Movement (5 Questions)
+    // 6. Vestibular / Movement (5 Questions)
     {
-      id: 25,
-      text: `My child loves spinning, swinging, or being upside down.`,
+      id: 26,
+      text: `${childName} seeks out spinning, swinging, or bouncing.`,
       system: 'vestibular',
       behaviorType: 'seeking',
       options: [
@@ -420,21 +433,8 @@ export default function Assessment() {
       ]
     },
     {
-      id: 26,
-      text: `My child avoids swings, slides, or fast-moving activities.`,
-      system: 'vestibular',
-      behaviorType: 'avoiding',
-      options: [
-        { text: 'Never', score: 5 },
-        { text: 'Rarely', score: 4 },
-        { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 2 },
-        { text: 'Always', score: 1 }
-      ]
-    },
-    {
       id: 27,
-      text: `My child becomes dizzy or off-balance easily.`,
+      text: `${childName} gets dizzy easily.`,
       system: 'vestibular',
       behaviorType: 'sensitive',
       options: [
@@ -447,8 +447,74 @@ export default function Assessment() {
     },
     {
       id: 28,
-      text: `My child constantly moves, even when sitting.`,
+      text: `${childName} avoids playground equipment or rides.`,
       system: 'vestibular',
+      behaviorType: 'avoiding',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 29,
+      text: `${childName} doesn't notice when they're moving.`,
+      system: 'vestibular',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 30,
+      text: `${childName} has poor balance or coordination.`,
+      system: 'vestibular',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    // 7. Interoception / Internal Sensations (4 Questions)
+    {
+      id: 31,
+      text: `${childName} doesn't notice when they are hungry, thirsty, or tired.`,
+      system: 'interoception',
+      behaviorType: 'low-registration',
+      options: [
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
+      ]
+    },
+    {
+      id: 32,
+      text: `${childName} is very aware of internal sensations.`,
+      system: 'interoception',
+      behaviorType: 'sensitive',
+      options: [
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
+        { text: 'Sometimes', score: 3 },
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
+      ]
+    },
+    {
+      id: 33,
+      text: `${childName} seeks out activities that provide internal feedback.`,
+      system: 'interoception',
       behaviorType: 'seeking',
       options: [
         { text: 'Never', score: 1 },
@@ -459,114 +525,48 @@ export default function Assessment() {
       ]
     },
     {
-      id: 29,
-      text: `My child seems unaware of their speed or body in space.`,
-      system: 'vestibular',
-      behaviorType: 'low-registration',
-      options: [
-        { text: 'Never', score: 1 },
-        { text: 'Rarely', score: 2 },
-        { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 4 },
-        { text: 'Always', score: 5 }
-      ]
-    },
-    // 7. Interoception / Internal Body Awareness (5 Questions)
-    {
-      id: 30,
-      text: `My child doesn't notice when they're hungry, thirsty, or tired.`,
-      system: 'interoception',
-      behaviorType: 'low-registration',
-      options: [
-        { text: 'Never', score: 1 },
-        { text: 'Rarely', score: 2 },
-        { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 4 },
-        { text: 'Always', score: 5 }
-      ]
-    },
-    {
-      id: 31,
-      text: `My child overreacts to small injuries or internal sensations.`,
-      system: 'interoception',
-      behaviorType: 'sensitive',
-      options: [
-        { text: 'Never', score: 5 },
-        { text: 'Rarely', score: 4 },
-        { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 2 },
-        { text: 'Always', score: 1 }
-      ]
-    },
-    {
-      id: 32,
-      text: `My child doesn't recognize when they need to go to the bathroom.`,
-      system: 'interoception',
-      behaviorType: 'low-registration',
-      options: [
-        { text: 'Never', score: 1 },
-        { text: 'Rarely', score: 2 },
-        { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 4 },
-        { text: 'Always', score: 5 }
-      ]
-    },
-    {
-      id: 33,
-      text: `My child complains often of being "too hot" or "too cold."`,
-      system: 'interoception',
-      behaviorType: 'sensitive',
-      options: [
-        { text: 'Never', score: 5 },
-        { text: 'Rarely', score: 4 },
-        { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 2 },
-        { text: 'Always', score: 1 }
-      ]
-    },
-    {
       id: 34,
-      text: `My child doesn't ask for help when uncomfortable or unwell.`,
+      text: `${childName} avoids activities that might cause internal sensations.`,
       system: 'interoception',
-      behaviorType: 'low-registration',
+      behaviorType: 'avoiding',
       options: [
-        { text: 'Never', score: 1 },
-        { text: 'Rarely', score: 2 },
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
         { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 4 },
-        { text: 'Always', score: 5 }
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     },
-    // 8. Social-Emotional Regulation (4 Questions)
+    // 8. Social-Emotional (4 Questions)
     {
       id: 35,
-      text: `My child has frequent emotional outbursts or meltdowns.`,
+      text: `${childName} has difficulty reading social cues.`,
       system: 'social-emotional',
-      behaviorType: 'sensitive',
+      behaviorType: 'low-registration',
       options: [
-        { text: 'Never', score: 5 },
-        { text: 'Rarely', score: 4 },
+        { text: 'Never', score: 1 },
+        { text: 'Rarely', score: 2 },
         { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 2 },
-        { text: 'Always', score: 1 }
+        { text: 'Often', score: 4 },
+        { text: 'Always', score: 5 }
       ]
     },
     {
       id: 36,
-      text: `My child doesn't notice when others are upset or reacting.`,
+      text: `${childName} is very sensitive to others' emotions.`,
       system: 'social-emotional',
-      behaviorType: 'low-registration',
+      behaviorType: 'sensitive',
       options: [
-        { text: 'Never', score: 1 },
-        { text: 'Rarely', score: 2 },
+        { text: 'Never', score: 5 },
+        { text: 'Rarely', score: 4 },
         { text: 'Sometimes', score: 3 },
-        { text: 'Often', score: 4 },
-        { text: 'Always', score: 5 }
+        { text: 'Often', score: 2 },
+        { text: 'Always', score: 1 }
       ]
     },
     {
       id: 37,
-      text: `My child seeks excessive attention through physical play or sound.`,
+      text: `${childName} seeks out social interactions intensely.`,
       system: 'social-emotional',
       behaviorType: 'seeking',
       options: [
@@ -579,7 +579,7 @@ export default function Assessment() {
     },
     {
       id: 38,
-      text: `My child avoids group play or social situations.`,
+      text: `${childName} avoids social situations or crowds.`,
       system: 'social-emotional',
       behaviorType: 'avoiding',
       options: [
@@ -591,6 +591,9 @@ export default function Assessment() {
       ]
     }
   ]
+
+  // Get personalized questions based on profile
+  const questions = profile ? getPersonalizedQuestions(profile.child_name) : []
 
   const calculateSensoryProfile = (): SensoryProfile => {
     const systemScores = {

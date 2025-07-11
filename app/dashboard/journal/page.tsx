@@ -347,7 +347,7 @@ export default function JournalPage() {
   }
 
   return (
-    <div className="journal-container">
+    <div className="journal-container min-h-screen" style={{ background: '#F6F6F6' }}>
       {/* Completion Animation */}
       {showCompletionAnimation && (
         <div className="completion-animation">
@@ -358,13 +358,13 @@ export default function JournalPage() {
         </div>
       )}
       
-      <div className="journal-wrapper">
+      <div className="journal-wrapper mx-auto w-full max-w-md px-4">
         {/* Header */}
         <div className="journal-header">
           <div className="journal-header-nav">
             <h1 className="journal-title">Activity Journal</h1>
             <Link href="/dashboard/today" className="journal-header-icon">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg fill="none" stroke="#252225" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 15l4-4 4 4" />
               </svg>
@@ -410,58 +410,42 @@ export default function JournalPage() {
               </Link>
             </div>
           ) : (
-            <div className="activity-list">
+            <div className="activity-list flex flex-col gap-4">
               {filteredActivities.map((activity) => {
                 const ratingDisplay = getRatingDisplay(activity.rating)
                 return (
-                  <div key={activity.id} className="activity-card">
-                    <div className="activity-card-header">
-                      <div className="activity-info">
-                        <h3 className="activity-name">{activity.activity_name}</h3>
-                        <div className="activity-meta">
-                          <span className={`activity-type ${getActivityTypeColor(activity.activity_type)}`}>
-                            {getActivityTypeLabel(activity.activity_type)}
-                          </span>
-                          {activity.duration_minutes && (
-                            <span className="activity-duration">
-                              {activity.duration_minutes} min
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <div className="activity-actions">
-                        <div className={`activity-rating ${ratingDisplay.color}`}>
-                          <span className="rating-emoji">{ratingDisplay.emoji}</span>
-                          <span className="rating-label">{ratingDisplay.label}</span>
-                        </div>
-                        <button
-                          onClick={() => openNoteModal(activity)}
-                          className="note-button"
-                          title={activity.notes ? "Edit note" : "Add note"}
-                        >
-                          {activity.notes ? (
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="note-icon has-note">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                          ) : (
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="note-icon">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                          )}
-                        </button>
-                      </div>
+                  <div key={activity.id} className="activity-card" style={{ borderRadius: 24, background: '#fff', boxShadow: '0 2px 8px 0 rgba(44, 62, 80, 0.06)', padding: 24, marginBottom: 0, width: '100%' }}>
+                    <h3 className="activity-title mb-2" style={{ color: '#252225', fontWeight: 600, fontSize: 20 }}>{activity.activity_name}</h3>
+                    <div className="flex items-center mb-2">
+                      <img src="/icons/target.svg" alt="target" style={{ width: 18, height: 18, marginRight: 8, color: '#3D3A3D' }} />
+                      <span style={{ color: '#252225', fontSize: 15, fontWeight: 400 }}>{getActivityTypeLabel(activity.activity_type)}</span>
                     </div>
-                    
-                    <div className="activity-card-content">
-                      <div className="activity-time">
-                        {formatDate(activity.completed_at)}
-                      </div>
-                      {activity.notes && (
-                        <div className="activity-notes-preview">
-                          <p className="notes-text">{activity.notes}</p>
-                        </div>
-                      )}
+                    <div className="flex items-center mb-4">
+                      <svg fill="none" stroke="#3D3A3D" viewBox="0 0 24 24" className="w-4 h-4 mr-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span style={{ color: '#252225', fontSize: 15 }}>{activity.duration_minutes ? `${activity.duration_minutes} min` : ''}</span>
                     </div>
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className={`activity-rating ${ratingDisplay.color}`} style={{ fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center' }}>
+                        <span className="rating-emoji mr-1">{ratingDisplay.emoji}</span>
+                        <span className="rating-label">{ratingDisplay.label}</span>
+                      </div>
+                      <button
+                        onClick={() => openNoteModal(activity)}
+                        className="note-button"
+                        title={activity.notes ? "Edit note" : "Add note"}
+                        style={{ marginLeft: 8, background: '#F6F6F6', border: '1px solid #EEE6E5', borderRadius: 8, padding: '4px 10px', color: '#252225', fontWeight: 500, fontSize: 15 }}
+                      >
+                        {activity.notes ? 'Edit note' : 'Add note'}
+                      </button>
+                    </div>
+                    {activity.notes && (
+                      <div className="activity-notes-preview mt-2">
+                        <p className="notes-text" style={{ color: '#252225', fontSize: 15 }}>{activity.notes}</p>
+                      </div>
+                    )}
+                    <div className="activity-time mt-2" style={{ color: '#6C6C6C', fontSize: 13 }}>{formatDate(activity.completed_at)}</div>
                   </div>
                 )
               })}
@@ -483,47 +467,32 @@ export default function JournalPage() {
         {/* Bottom Navigation */}
         <div className="bottom-nav">
           <div className="bottom-nav-wrapper">
-            <div className="bottom-nav-container">
+            <div className="bottom-nav-container flex justify-between">
               {/* Today Tab */}
               <Link href="/dashboard/today" className="nav-tab">
-                <div className="nav-tab-content nav-tab-inactive">
-                  <div className="nav-tab-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 15l4-4 4 4" />
-                    </svg>
-                  </div>
-                  <span className="nav-tab-label-inactive">Today</span>
+                <div className="nav-tab-content nav-tab-inactive flex flex-col items-center">
+                  <img src="/icons/Calendar-Default.svg" alt="Today" style={{ width: 28, height: 28 }} />
+                  <span className="nav-tab-label-inactive hig-caption-1">Today</span>
                 </div>
               </Link>
-
               {/* Coach Tab */}
               <Link href="/dashboard/coach" className="nav-tab">
-                <div className="nav-tab-content nav-tab-inactive">
-                  <div className="nav-tab-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  </div>
-                  <span className="nav-tab-label-inactive">Coach</span>
+                <div className="nav-tab-content nav-tab-inactive flex flex-col items-center">
+                  <img src="/icons/Chat-Default.svg" alt="Coach" style={{ width: 28, height: 28 }} />
+                  <span className="nav-tab-label-inactive hig-caption-1">Coach</span>
                 </div>
               </Link>
-
               {/* Journal Tab - Active */}
               <Link href="/dashboard/journal" className="nav-tab">
-                <div className="nav-tab-content nav-tab-active">
-                  <div className="nav-tab-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </div>
-                  <span className="nav-tab-label-active">Journal</span>
+                <div className="nav-tab-content nav-tab-active flex flex-col items-center">
+                  <img src="/icons/Journal-Active.svg" alt="Journal" style={{ width: 28, height: 28 }} />
+                  <span className="nav-tab-label-active hig-caption-1">Journal</span>
                 </div>
               </Link>
             </div>
           </div>
         </div>
       </div>
-        </div>
+    </div>
   )
 } 

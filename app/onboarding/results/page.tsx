@@ -229,12 +229,13 @@ export default function Results() {
               <h3 className="font-semibold text-gray-900">Sensory System Breakdown</h3>
               {Object.entries(assessment.results).map(([system, score]) => {
                 if (system === 'total' || system === 'profile') return null
-                const interpretation = getScoreInterpretation(score as number)
+                const numericScore = typeof score === 'number' ? score : 0
+                const interpretation = getScoreInterpretation(numericScore)
                 return (
                   <div key={system} className="flex items-center justify-between">
                     <span className="text-gray-700">{getSystemLabel(system)}</span>
                     <div className="flex items-center space-x-2">
-                      <span className="text-sm text-gray-500">{score}/15</span>
+                      <span className="text-sm text-gray-500">{numericScore}/15</span>
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${interpretation.color}`}>
                         {interpretation.label}
                       </span>

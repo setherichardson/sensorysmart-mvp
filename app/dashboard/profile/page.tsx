@@ -136,127 +136,72 @@ export default function ProfilePage() {
   const sensoryProfileSummary = getSensoryProfileSummary()
 
   return (
-    <div className="profile-container">
-      <div className="profile-wrapper">
+    <div className="profile-container" style={{ background: '#F6F6F6', minHeight: '100vh' }}>
+      <div className="profile-wrapper mx-auto w-full max-w-md px-4">
         {/* Header with Back Button */}
-        <div className="profile-header">
-          <div className="profile-header-nav">
-            <Link href="/dashboard/today" className="profile-back-button">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              <span>Today</span>
-            </Link>
-          </div>
-
-          <h1 className="profile-title hig-title-1">
-            Settings
-          </h1>
+        <div className="profile-header flex items-center mb-6">
+          <button onClick={() => router.push('/dashboard/today')} className="mr-2 p-0 bg-transparent border-none flex items-center">
+            <svg fill="none" stroke="#252225" viewBox="0 0 24 24" width={28} height={28}>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <h1 className="profile-title hig-title-1 flex items-center" style={{ fontWeight: 700, fontSize: 28, color: '#252225' }}>Settings</h1>
         </div>
-
         {/* Profile Information */}
         <div className="profile-content">
-          <div className="profile-section">
+          <div className="profile-section" style={{ borderRadius: 24, background: '#fff', marginBottom: 16 }}>
             <div className="profile-section-header">
-              <div className="profile-section-icon">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
               <h2 className="profile-section-title hig-title-2">Profile</h2>
             </div>
-
             <div className="profile-fields">
               <div className="profile-field">
-                <label className="profile-field-label hig-subhead">Your name</label>
+                <label className="profile-field-label hig-subhead">Parent name</label>
                 <div className="profile-field-value hig-body">{profile.parent_name}</div>
               </div>
-              
               <div className="profile-field">
                 <label className="profile-field-label hig-subhead">Child's name</label>
                 <div className="profile-field-value hig-body">{profile.child_name}</div>
               </div>
             </div>
           </div>
-
           {/* Sensory Profile Section */}
           {sensoryProfileSummary && (
-            <div className="profile-section">
+            <div className="profile-section" style={{ borderRadius: 24, background: '#fff', marginBottom: 16 }}>
               <div className="profile-section-header">
-                <div className="profile-section-icon">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
                 <h2 className="profile-section-title hig-title-2">Child's Sensory Profile</h2>
               </div>
-
-              <div className="sensory-profile-summary">
+              <div className="sensory-profile-summary flex flex-col gap-4">
                 {sensoryProfileSummary.map((item, index) => (
-                  <div key={index} className="sensory-profile-item">
-                    <div className="sensory-profile-header">
-                      <h3 className="sensory-profile-name hig-headline">{item.name}</h3>
-                      <span className={`sensory-profile-status hig-caption-1 ${getStatusColor(item.status)}`}>
-                        {item.status}
-                      </span>
+                  <div key={index} className="sensory-profile-item" style={{ background: '#F6F6F6', border: '1px solid #EEE6E5', borderRadius: 16, color: '#252225', padding: 16 }}>
+                    <div className="sensory-profile-header flex items-center justify-between mb-1">
+                      <h3 className="sensory-profile-name hig-headline" style={{ fontWeight: 600 }}>{item.name}</h3>
+                      <span className={`sensory-profile-status hig-caption-1 ${getStatusColor(item.status)}`}>{item.status}</span>
                     </div>
-                    <p className="sensory-profile-description hig-subhead">{item.description}</p>
+                    <p className="sensory-profile-description hig-subhead" style={{ color: '#252225' }}>{item.description}</p>
                   </div>
                 ))}
               </div>
-
-              <Link href="/dashboard/profile/sensory-details" className="view-full-profile-button">
-                <span>View full sensory profile</span>
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
             </div>
           )}
-
-          {!assessment && (
-            <div className="profile-section">
-              <div className="assessment-prompt">
-                <p className="assessment-prompt-text hig-body">
-                  Complete your sensory assessment to see your child's profile here.
-                </p>
-                <Link href="/onboarding/assessment" className="assessment-prompt-button">
-                  Take Assessment
-                </Link>
-              </div>
-            </div>
-          )}
-
-          {/* Sign Out Section */}
-          <div className="profile-section">
-            <div className="profile-section-header">
-              <div className="profile-section-icon">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                </svg>
-              </div>
+          {/* Sign Out & Billing Section */}
+          <div className="profile-section" style={{ borderRadius: 24, background: '#fff', marginBottom: 8, padding: 24 }}>
+            <div className="profile-section-header mb-4">
               <h2 className="profile-section-title hig-title-2">Account</h2>
             </div>
-
-            <button 
-              onClick={handleSignOut}
-              disabled={signingOut}
-              className="sign-out-button"
-            >
-              {signingOut ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  Signing out...
-                </>
-              ) : (
-                <>
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-4 h-4 mr-2">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                  </svg>
-                  Sign Out
-                </>
-              )}
-            </button>
+            <div className="flex gap-4 mb-2">
+              <Link href="/dashboard/billing" style={{ flex: 1, height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Billing</Link>
+              <button
+                onClick={handleSignOut}
+                disabled={signingOut}
+                style={{ flex: 1, height: 40, border: '1px solid #A7230C', borderRadius: 16, background: '#fff', color: '#A7230C', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
+                {signingOut ? 'Signing out...' : 'Sign out'}
+              </button>
+            </div>
+          </div>
+          {/* EA Release Note */}
+          <div className="w-full flex justify-center mt-2">
+            <p style={{ fontSize: 12, color: '#6C6C6C', fontWeight: 400, textAlign: 'center' }}>EA release. 0.1</p>
           </div>
         </div>
       </div>

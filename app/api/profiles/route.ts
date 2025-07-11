@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { profileService, createClient } from '@/lib/supabase/server'
 
+// Ensure environment variables are loaded
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('❌ Missing required environment variables for Supabase')
+  console.error('NEXT_PUBLIC_SUPABASE_URL:', !!process.env.NEXT_PUBLIC_SUPABASE_URL)
+  console.error('SUPABASE_SERVICE_ROLE_KEY:', !!process.env.SUPABASE_SERVICE_ROLE_KEY)
+}
+
 // Handle preflight requests
 export async function OPTIONS(request: NextRequest) {
   console.log('🌐 OPTIONS request to /api/profiles')

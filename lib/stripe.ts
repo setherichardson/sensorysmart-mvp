@@ -1,17 +1,23 @@
 import Stripe from 'stripe'
 
-// Initialize Stripe with test mode
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-06-30.basil',
-  typescript: true,
-})
+// Check if Stripe is configured
+const isStripeConfigured = process.env.STRIPE_SECRET_KEY && process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+
+// Initialize Stripe with test mode (only if configured)
+export const stripe = isStripeConfigured 
+  ? new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: '2025-06-30.basil',
+      typescript: true,
+    })
+  : null
 
 // Test mode configuration
 export const STRIPE_CONFIG = {
-  publishableKey: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
-  secretKey: process.env.STRIPE_SECRET_KEY!,
-  webhookSecret: process.env.STRIPE_WEBHOOK_SECRET!,
+  publishableKey: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '',
+  secretKey: process.env.STRIPE_SECRET_KEY || '',
+  webhookSecret: process.env.STRIPE_WEBHOOK_SECRET || '',
   isTestMode: true, // Always use test mode for now
+  isConfigured: isStripeConfigured,
 }
 
 // Product configuration for Sensory Smart

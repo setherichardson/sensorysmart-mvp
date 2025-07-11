@@ -246,46 +246,35 @@ export default function ResultsPayment() {
   const profileInfo = getProfileDescription(assessment.results.profile, profile.child_name)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen" style={{ backgroundColor: '#F6F6F6' }}>
       <div className="max-w-2xl mx-auto p-4">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {profile.child_name}'s Sensory Profile
+        <div className="text-left mb-8" style={{ marginTop: '70px' }}>
+          {/* Title */}
+          <h1 className="text-2xl font-bold text-left mb-2" style={{ color: '#252225' }}>
+            {profile.child_name}&apos;s sensory profile is ready
           </h1>
-          <p className="text-lg text-gray-600">
-            Based on your assessment, here's what we found and how we can help.
+          <p className="mb-6 text-left" style={{ fontSize: '16px', color: '#252225', fontWeight: 400 }}>
+            Based on your assessment, here’s a personalized plan to support {profile.child_name}&apos;s sensory needs.
           </p>
         </div>
 
         {/* Assessment Results */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Assessment Results</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Assessment Results</h2>
           
-          {/* Profile Summary */}
-          <div className={`p-6 rounded-xl ${profileInfo.color} mb-6`}>
-            <h3 className="text-lg font-bold mb-2">{profileInfo.title}</h3>
-            <p className="text-sm leading-relaxed">{profileInfo.description}</p>
-          </div>
-
           {/* System Breakdown */}
-          <div className="space-y-4 mb-6">
-            <h3 className="font-semibold text-gray-900">Sensory System Breakdown</h3>
+          <div className="space-y-4">
             {Object.entries(assessment.results).map(([system, score]) => {
               if (system === 'total' || system === 'profile' || system === 'behaviorScores') return null
               if (typeof score !== 'number') return null
               const interpretation = getScoreInterpretation(score)
               return (
                 <div key={system} className="flex items-center justify-between">
-                  <span className="text-gray-700">{getSystemLabel(system)}</span>
+                  <span className="text-gray-700 font-medium">{getSystemLabel(system)}</span>
                   <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-500">{score}/25</span>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${interpretation.color}`}>
+                    <span className="text-sm text-gray-500 font-medium">{score}/25</span>
+                    <span className={`px-2 py-1 rounded-full text-xs font-bold ${interpretation.color}`}>
                       {interpretation.label}
                     </span>
                   </div>
@@ -293,83 +282,64 @@ export default function ResultsPayment() {
               )
             })}
           </div>
-
-          {/* Recommendations */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Recommended Activities</h3>
-            <div className="space-y-3">
-              {profileInfo.recommendations.map((rec, index) => (
-                <div key={index} className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-sm text-gray-700">{rec}</p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Value Proposition */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">What You'll Get:</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">How Sensorysmart helps</h2>
           <div className="space-y-3">
             <div className="flex items-center">
-              <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-gray-700">Personalized daily activities tailored to {profile.child_name}'s sensory profile</span>
+              <span className="text-gray-700 font-medium">No more guessing what activities will work</span>
             </div>
             <div className="flex items-center">
-              <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-gray-700">AI-powered coaching and progress tracking</span>
+              <span className="text-gray-700 font-medium">Stop the daily meltdowns and sensory overwhelm</span>
             </div>
             <div className="flex items-center">
-              <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-gray-700">Expert-curated activities for all sensory systems</span>
+              <span className="text-gray-700 font-medium">Get support throughout the week and in between therapy visits</span>
             </div>
             <div className="flex items-center">
-              <svg className="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-gray-700">Progress reports and insights for parents</span>
+              <span className="text-gray-700 font-medium">Track what works so you can do more of it</span>
             </div>
           </div>
         </div>
 
         {/* Plan Selection */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Choose Your Plan:</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Select your plan</h2>
+          <div className="grid grid-cols-2 gap-4">
             {Object.entries(plans).map(([key, plan]) => (
               <div
                 key={key}
                 className={`relative p-4 border-2 rounded-xl cursor-pointer transition-all ${
                   selectedPlan === key
-                    ? 'border-blue-500 bg-blue-50'
-                    : 'border-gray-200 hover:border-gray-300'
+                    ? 'border-[#367A87] bg-white'
+                    : 'border-[#EEE6E5] bg-white'
                 }`}
                 onClick={() => setSelectedPlan(key)}
               >
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">
+                  <div className={`text-2xl font-bold ${
+                    selectedPlan === key ? 'text-[#367A87]' : 'text-[#252225]'
+                  }`}>
                     ${plan.price}
                   </div>
-                  <div className="text-gray-600">per {plan.period}</div>
-                  {plan.savings && (
-                    <div className="text-sm text-green-600 font-medium mt-1">
-                      {plan.savings}
-                    </div>
-                  )}
+                  <div className={`${
+                    selectedPlan === key ? 'text-[#367A87]' : 'text-[#6C6C6C]'
+                  } font-medium`}>
+                    billed {plan.period === 'month' ? 'monthly' : 'yearly'}
+                  </div>
                 </div>
               </div>
             ))}
@@ -378,10 +348,10 @@ export default function ResultsPayment() {
 
         {/* Payment Form */}
         <div className="bg-white rounded-2xl p-6 shadow-lg">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Payment Information</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Payment details</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-bold text-gray-700 mb-1">
                 Card Number
               </label>
               <input
@@ -390,14 +360,14 @@ export default function ResultsPayment() {
                 value={formData.cardNumber}
                 onChange={handleInputChange}
                 placeholder="1234 5678 9012 3456"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 font-medium"
                 required
               />
             </div>
             
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-bold text-gray-700 mb-1">
                   Expiry Date
                 </label>
                 <input
@@ -406,12 +376,12 @@ export default function ResultsPayment() {
                   value={formData.expiryDate}
                   onChange={handleInputChange}
                   placeholder="MM/YY"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 font-medium"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-bold text-gray-700 mb-1">
                   CVV
                 </label>
                 <input
@@ -420,14 +390,14 @@ export default function ResultsPayment() {
                   value={formData.cvv}
                   onChange={handleInputChange}
                   placeholder="123"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 font-medium"
                   required
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-bold text-gray-700 mb-1">
                 Name on Card
               </label>
               <input
@@ -436,13 +406,13 @@ export default function ResultsPayment() {
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="John Doe"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 font-medium"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-bold text-gray-700 mb-1">
                 Email Address
               </label>
               <input
@@ -451,16 +421,19 @@ export default function ResultsPayment() {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="john@example.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 font-medium"
                 required
               />
             </div>
 
             {/* Total */}
             <div className="border-t pt-4">
-              <div className="flex justify-between items-center text-lg font-semibold">
-                <span>Total:</span>
-                <span>${plans[selectedPlan as keyof typeof plans].price}</span>
+              <div className="flex justify-between items-center text-lg font-bold">
+                <span className="text-[#252225]">Total:</span>
+                <span className="text-[#252225]">
+                  ${plans[selectedPlan as keyof typeof plans].price}
+                  {selectedPlan === 'monthly' ? '/mo' : '/year'}
+                </span>
               </div>
             </div>
 
@@ -468,7 +441,8 @@ export default function ResultsPayment() {
             <button
               type="submit"
               disabled={isProcessing}
-              className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full py-4 px-6 rounded-2xl font-bold text-base hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              style={{ backgroundColor: '#367A87', color: 'white' }}
             >
               {isProcessing ? (
                 <div className="flex items-center justify-center">
@@ -479,26 +453,16 @@ export default function ResultsPayment() {
                   Processing...
                 </div>
               ) : (
-                `Start ${profile.child_name}'s Sensory Journey - $${plans[selectedPlan as keyof typeof plans].price}`
+                `Start ${profile.child_name}'s sensory journey`
               )}
             </button>
           </form>
-
-          {/* Security Notice */}
-          <div className="mt-4 text-center">
-            <div className="flex items-center justify-center text-sm text-gray-500">
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              Your payment is secure and encrypted
-            </div>
-          </div>
         </div>
 
-        {/* Trust Indicators */}
-        <div className="text-center mt-6">
-          <p className="text-sm text-gray-500">
-            Trusted by occupational therapists and sensory parents worldwide
+        {/* Disclaimer Blurb */}
+        <div className="w-full flex justify-center mt-4">
+          <p style={{ fontSize: '12pt', color: '#6C6C6C', lineHeight: '18px', fontWeight: 400, maxWidth: 600, textAlign: 'center' }}>
+            Sensorysmart was developed with input from a licensed occupational therapist and provides educational activities based on professional knowledge. However, this app does not replace individualized therapy or medical consultation.
           </p>
         </div>
       </div>

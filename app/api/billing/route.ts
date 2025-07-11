@@ -1,9 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { stripe, PRODUCTS } from '@/lib/stripe'
+import { stripe, PRODUCTS, STRIPE_CONFIG } from '@/lib/stripe'
 import { createClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if Stripe is configured
+    if (!stripe || !STRIPE_CONFIG.isConfigured) {
+      return NextResponse.json(
+        { error: 'Billing is not configured' },
+        { status: 503 }
+      )
+    }
+
     const { priceId, successUrl, cancelUrl } = await request.json()
     
     // Get authenticated user
@@ -47,6 +55,11 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
+    // Check if Stripe is configured
+    if (!stripe || !STRIPE_CONFIG.isConfigured) {
+      return NextResponse.json({ hasSubscription: false, configured: false })
+    }
+
     // Get authenticated user
     const supabase = await createClient()
     const { data: { user }, error: authError } = await supabase.auth.getUser()
@@ -62,7 +75,7 @@ export async function GET(request: NextRequest) {
     })
 
     if (customers.data.length === 0) {
-      return NextResponse.json({ hasSubscription: false })
+      return NextResponse.json({ hasSubscription: false, configured: true })
     }
 
     const customer = customers.data[0]
@@ -74,6 +87,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       hasSubscription: subscriptions.data.length > 0,
       subscription: subscriptions.data[0] || null,
+      configured: true,
     })
   } catch (error) {
     console.error('Subscription check error:', error)
