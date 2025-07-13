@@ -743,18 +743,18 @@ export default function TodayDashboard() {
       // Calculate duration in minutes if not provided
       const duration = durationMinutes || Math.floor(Math.random() * 10) + 5 // Default 5-15 minutes
       
-      // Create activity completion record
-      const { error } = await supabase
-        .from('activity_completions')
-        .insert({
-          user_id: user?.id,
-          activity_id: activity.id,
-          completed_at: new Date().toISOString(),
-          duration_minutes: duration,
-          activity_name: activity.title,
-          activity_type: activity.activity_type,
-          regulation_rating: rating // Add the rating to the database
-        })
+              // Create activity completion record
+        const { error } = await supabase
+          .from('activity_completions')
+          .insert({
+            user_id: user?.id,
+            activity_id: activity.id,
+            completed_at: new Date().toISOString(),
+            duration_minutes: duration,
+            activity_name: activity.title,
+            activity_type: activity.activity_type,
+            rating: rating // Add the rating to the database
+          })
 
       if (error) {
         console.error('Error saving activity completion:', error)
