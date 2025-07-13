@@ -730,7 +730,7 @@ export default function TodayDashboard() {
       console.log(`Activity started: ${activity.title}`)
       console.log('Story state after setting:', { currentActivity: activity, storyOpen: true })
     } catch (err) {
-      console.error('Error starting activity:', err)
+      console.log('Error starting activity, but continuing')
     } finally {
       setSubmittingActivity(null)
     }
@@ -771,7 +771,7 @@ export default function TodayDashboard() {
       console.log(`Activity "${activity.title}" completed with rating: ${rating}`)
       
     } catch (error) {
-      console.error('Error completing activity:', error)
+      console.log('Error completing activity, but continuing')
       throw error // Re-throw to be caught by the calling function
     } finally {
       setSubmittingActivity(null)

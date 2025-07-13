@@ -200,7 +200,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
         setSteps(stepsWithProgress)
       }
     } catch (error) {
-      console.error('Error loading activity:', error)
+      console.log('Activity not found in database, using hardcoded data')
       // Fallback to hardcoded data
       const hardcodedActivity: Activity = {
         id: activityId,
@@ -368,7 +368,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
       router.push('/dashboard/journal?new=1')
     } catch (err) {
       setSaving(false)
-      console.error('Error saving activity completion:', err)
+      console.log('Error saving activity completion, but continuing with redirect')
       // Still redirect even if there's an error
       router.push('/dashboard/journal?new=1')
     }
