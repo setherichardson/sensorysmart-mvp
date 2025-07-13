@@ -417,10 +417,24 @@ export default function JournalPage() {
             </div>
           ) : (
             <div className="activity-list flex flex-col gap-4">
-              {filteredActivities.map((activity) => {
+              {filteredActivities.map((activity, index) => {
                 const ratingDisplay = getRatingDisplay(activity.rating)
+                const isNewActivity = index === 0 && showCompletionAnimation
                 return (
-                  <div key={activity.id} className="activity-card" style={{ borderRadius: 24, background: '#fff', boxShadow: '0 2px 8px 0 rgba(44, 62, 80, 0.06)', padding: 24, marginBottom: 0, width: '100%' }}>
+                  <div 
+                    key={activity.id} 
+                    className={`activity-card ${isNewActivity ? 'new-activity-highlight' : ''}`} 
+                    style={{ 
+                      borderRadius: 24, 
+                      background: isNewActivity ? '#f0fdf4' : '#fff', 
+                      boxShadow: isNewActivity ? '0 4px 12px 0 rgba(16, 185, 129, 0.15)' : '0 2px 8px 0 rgba(44, 62, 80, 0.06)', 
+                      padding: 24, 
+                      marginBottom: 0, 
+                      width: '100%',
+                      border: isNewActivity ? '2px solid #10b981' : 'none',
+                      animation: isNewActivity ? 'pulse 2s ease-in-out' : 'none'
+                    }}
+                  >
                     <h3 className="activity-title mb-2" style={{ color: '#252225', fontWeight: 600, fontSize: 20 }}>{activity.activity_name}</h3>
                     <div className="flex items-center mb-2">
                       <img src="/icons/target.svg" alt="target" style={{ width: 18, height: 18, marginRight: 8, color: '#3D3A3D' }} />
