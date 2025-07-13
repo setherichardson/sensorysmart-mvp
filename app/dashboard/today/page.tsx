@@ -718,7 +718,8 @@ export default function TodayDashboard() {
   const handleStartActivity = async (activity: Activity) => {
     if (!user) return
     
-    console.log('Starting activity:', activity.title)
+    console.log('Starting activity:', activity.title, 'ID:', activity.id)
+    console.log('Activity data:', activity)
     setSubmittingActivity(activity.id)
 
     try {

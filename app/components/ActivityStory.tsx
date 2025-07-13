@@ -61,6 +61,105 @@ const getHardcodedSteps = (activityId: string): ActivityStepWithProgress[] => {
         { id: 5, step_number: 5, title: 'Wait', description: 'Stop and wait 10 seconds', duration_seconds: 10, completed: false },
         { id: 6, step_number: 6, title: 'Reverse', description: 'Repeat in opposite direction', duration_seconds: null, completed: false }
       ]
+    case 'resistance-band-pull':
+      return [
+        { id: 1, step_number: 1, title: 'Hold Band', description: 'Hold the resistance band with both hands', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Extend Arms', description: 'Extend your arms straight out', duration_seconds: null, completed: false },
+        { id: 3, step_number: 3, title: 'Pull Apart', description: 'Pull the band apart slowly', duration_seconds: 20, completed: false },
+        { id: 4, step_number: 4, title: 'Hold', description: 'Hold the stretch for 5 seconds', duration_seconds: 5, completed: false },
+        { id: 5, step_number: 5, title: 'Release', description: 'Slowly release the tension', duration_seconds: null, completed: false },
+        { id: 6, step_number: 6, title: 'Repeat', description: 'Repeat 8 times', duration_seconds: null, completed: false }
+      ]
+    case 'weighted-lap-pad':
+      return [
+        { id: 1, step_number: 1, title: 'Sit Comfortably', description: 'Sit in a comfortable chair', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Place Pad', description: 'Place the weighted pad on your lap', duration_seconds: null, completed: false },
+        { id: 3, step_number: 3, title: 'Adjust', description: 'Adjust the pad so it feels comfortable', duration_seconds: null, completed: false },
+        { id: 4, step_number: 4, title: 'Relax', description: 'Sit quietly and feel the gentle pressure', duration_seconds: 300, completed: false },
+        { id: 5, step_number: 5, title: 'Breathe', description: 'Take slow, deep breaths', duration_seconds: null, completed: false },
+        { id: 6, step_number: 6, title: 'Complete', description: 'Remove the pad when ready', duration_seconds: null, completed: false }
+      ]
+    case 'rocking-chair':
+      return [
+        { id: 1, step_number: 1, title: 'Sit', description: 'Sit in a rocking chair', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Get Comfortable', description: 'Find a comfortable position', duration_seconds: null, completed: false },
+        { id: 3, step_number: 3, title: 'Start Rocking', description: 'Begin gentle rocking motion', duration_seconds: null, completed: false },
+        { id: 4, step_number: 4, title: 'Rock Slowly', description: 'Rock slowly and rhythmically', duration_seconds: 180, completed: false },
+        { id: 5, step_number: 5, title: 'Breathe', description: 'Focus on your breathing', duration_seconds: null, completed: false },
+        { id: 6, step_number: 6, title: 'Stop', description: 'Gradually stop rocking', duration_seconds: null, completed: false }
+      ]
+    case 'texture-exploration':
+      return [
+        { id: 1, step_number: 1, title: 'Gather Materials', description: 'Collect different textured items', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Touch First', description: 'Touch the first texture with your fingertips', duration_seconds: 10, completed: false },
+        { id: 3, step_number: 3, title: 'Describe', description: 'Describe how it feels', duration_seconds: null, completed: false },
+        { id: 4, step_number: 4, title: 'Explore More', description: 'Try different textures', duration_seconds: 120, completed: false },
+        { id: 5, step_number: 5, title: 'Compare', description: 'Compare how different textures feel', duration_seconds: null, completed: false },
+        { id: 6, step_number: 6, title: 'Clean Up', description: 'Put materials away', duration_seconds: null, completed: false }
+      ]
+    case 'finger-painting':
+      return [
+        { id: 1, step_number: 1, title: 'Set Up', description: 'Cover the table with paper', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Get Paint', description: 'Pour paint onto the paper', duration_seconds: null, completed: false },
+        { id: 3, step_number: 3, title: 'Touch Paint', description: 'Touch the paint with your fingers', duration_seconds: 10, completed: false },
+        { id: 4, step_number: 4, title: 'Paint', description: 'Create pictures with your fingers', duration_seconds: 300, completed: false },
+        { id: 5, step_number: 5, title: 'Explore', description: 'Try different colors and movements', duration_seconds: null, completed: false },
+        { id: 6, step_number: 6, title: 'Clean Up', description: 'Wash hands and clean up', duration_seconds: null, completed: false }
+      ]
+    case 'quiet-time':
+      return [
+        { id: 1, step_number: 1, title: 'Find Space', description: 'Find a quiet, comfortable space', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Sit Comfortably', description: 'Sit or lie down comfortably', duration_seconds: null, completed: false },
+        { id: 3, step_number: 3, title: 'Close Eyes', description: 'Close your eyes gently', duration_seconds: null, completed: false },
+        { id: 4, step_number: 4, title: 'Listen', description: 'Listen to the quiet sounds around you', duration_seconds: 180, completed: false },
+        { id: 5, step_number: 5, title: 'Breathe', description: 'Take slow, deep breaths', duration_seconds: null, completed: false },
+        { id: 6, step_number: 6, title: 'Open Eyes', description: 'Open your eyes slowly', duration_seconds: null, completed: false }
+      ]
+    case 'rhythm-clapping':
+      return [
+        { id: 1, step_number: 1, title: 'Get Ready', description: 'Sit comfortably with hands ready', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Start Simple', description: 'Clap a simple rhythm', duration_seconds: 30, completed: false },
+        { id: 3, step_number: 3, title: 'Follow Pattern', description: 'Follow a pattern: clap-clap-pause', duration_seconds: 60, completed: false },
+        { id: 4, step_number: 4, title: 'Try Different', description: 'Try different rhythm patterns', duration_seconds: 90, completed: false },
+        { id: 5, step_number: 5, title: 'Get Creative', description: 'Create your own rhythm', duration_seconds: null, completed: false },
+        { id: 6, step_number: 6, title: 'Finish', description: 'End with a big clap', duration_seconds: null, completed: false }
+      ]
+    case 'visual-tracking':
+      return [
+        { id: 1, step_number: 1, title: 'Find Object', description: 'Find a small object to track', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Hold Object', description: 'Hold the object at arm\'s length', duration_seconds: null, completed: false },
+        { id: 3, step_number: 3, title: 'Move Slowly', description: 'Move the object slowly left and right', duration_seconds: 60, completed: false },
+        { id: 4, step_number: 4, title: 'Up and Down', description: 'Move the object up and down', duration_seconds: 60, completed: false },
+        { id: 5, step_number: 5, title: 'Circles', description: 'Move the object in circles', duration_seconds: 60, completed: false },
+        { id: 6, step_number: 6, title: 'Complete', description: 'Put the object away', duration_seconds: null, completed: false }
+      ]
+    case 'dim-lighting':
+      return [
+        { id: 1, step_number: 1, title: 'Find Space', description: 'Find a room where you can dim the lights', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Dim Lights', description: 'Turn down the lights or close curtains', duration_seconds: null, completed: false },
+        { id: 3, step_number: 3, title: 'Sit Comfortably', description: 'Sit or lie down comfortably', duration_seconds: null, completed: false },
+        { id: 4, step_number: 4, title: 'Relax', description: 'Relax in the dim lighting', duration_seconds: 300, completed: false },
+        { id: 5, step_number: 5, title: 'Breathe', description: 'Take slow, deep breaths', duration_seconds: null, completed: false },
+        { id: 6, step_number: 6, title: 'Gradually Brighten', description: 'Slowly turn lights back up', duration_seconds: null, completed: false }
+      ]
+    case 'body-scan':
+      return [
+        { id: 1, step_number: 1, title: 'Lie Down', description: 'Lie down comfortably on your back', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Close Eyes', description: 'Close your eyes gently', duration_seconds: null, completed: false },
+        { id: 3, step_number: 3, title: 'Focus on Toes', description: 'Focus your attention on your toes', duration_seconds: 30, completed: false },
+        { id: 4, step_number: 4, title: 'Scan Up', description: 'Slowly scan up your body', duration_seconds: 120, completed: false },
+        { id: 5, step_number: 5, title: 'Notice Sensations', description: 'Notice any sensations in each part', duration_seconds: null, completed: false },
+        { id: 6, step_number: 6, title: 'Complete', description: 'Open your eyes slowly', duration_seconds: null, completed: false }
+      ]
+    case 'hunger-thirst-check':
+      return [
+        { id: 1, step_number: 1, title: 'Pause', description: 'Take a moment to pause', duration_seconds: null, completed: false },
+        { id: 2, step_number: 2, title: 'Check Stomach', description: 'Notice how your stomach feels', duration_seconds: 10, completed: false },
+        { id: 3, step_number: 3, title: 'Check Throat', description: 'Notice how your throat feels', duration_seconds: 10, completed: false },
+        { id: 4, step_number: 4, title: 'Ask Yourself', description: 'Ask: Am I hungry or thirsty?', duration_seconds: 30, completed: false },
+        { id: 5, step_number: 5, title: 'Decide', description: 'Decide if you need food or water', duration_seconds: null, completed: false },
+        { id: 6, step_number: 6, title: 'Act', description: 'Get what you need', duration_seconds: null, completed: false }
+      ]
     default:
       return [
         { id: 1, step_number: 1, title: 'Get Ready', description: 'Find a comfortable position', duration_seconds: null, completed: false },
@@ -133,6 +232,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
       
       // If activityData is provided, use it directly
       if (activityData) {
+        console.log('Using provided activity data:', activityData)
         setActivity(activityData)
         const hardcodedSteps = getHardcodedSteps(activityId)
         setSteps(hardcodedSteps)
