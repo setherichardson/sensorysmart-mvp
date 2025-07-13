@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
@@ -27,7 +27,6 @@ interface JournalStats {
 
 export default function JournalPage() {
   const router = useRouter()
-  const searchParams = useSearchParams()
   const [user, setUser] = useState<User | null>(null)
   const [profile, setProfile] = useState<Profile | null>(null)
   const [assessment, setAssessment] = useState<Assessment | null>(null)
@@ -52,7 +51,7 @@ export default function JournalPage() {
     activityDate: '',
     initialNote: ''
   })
-  const [showCompletionAnimation, setShowCompletionAnimation] = useState(false)
+
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -111,21 +110,7 @@ export default function JournalPage() {
           // Calculate stats
           calculateStats(transformedActivities)
           
-          // Check if we just completed an activity (most recent activity is within last 5 minutes)
-          // or if we came from the activity story with ?new=1
-          const shouldShowAnimation = 
-            (transformedActivities.length > 0 && (() => {
-              const mostRecent = transformedActivities[0]
-              const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000)
-              return mostRecent.completed_at > fiveMinutesAgo
-            })()) ||
-            searchParams.get('new') === '1'
-          
-          if (shouldShowAnimation) {
-            setShowCompletionAnimation(true)
-            // Hide animation after 3 seconds
-            setTimeout(() => setShowCompletionAnimation(false), 3000)
-          }
+
         }
 
         setUser(user)
@@ -354,15 +339,7 @@ export default function JournalPage() {
 
   return (
     <div className="journal-container min-h-screen" style={{ background: '#F6F6F6' }}>
-      {/* Completion Animation */}
-      {showCompletionAnimation && (
-        <div className="completion-animation">
-          <div className="completion-content">
-            <div className="completion-icon">✅</div>
-            <div className="completion-text">Activity completed!</div>
-          </div>
-        </div>
-      )}
+
       
       <div className="journal-wrapper mx-auto w-full max-w-md px-4">
         {/* Header */}
@@ -417,22 +394,19 @@ export default function JournalPage() {
             </div>
           ) : (
             <div className="activity-list flex flex-col gap-4">
-              {filteredActivities.map((activity, index) => {
+              {filteredActivities.map((activity) => {
                 const ratingDisplay = getRatingDisplay(activity.rating)
-                const isNewActivity = index === 0 && showCompletionAnimation
                 return (
                   <div 
                     key={activity.id} 
-                    className={`activity-card ${isNewActivity ? 'new-activity-highlight' : ''}`} 
+                    className="activity-card"
                     style={{ 
                       borderRadius: 24, 
-                      background: isNewActivity ? '#f0fdf4' : '#fff', 
-                      boxShadow: isNewActivity ? '0 4px 12px 0 rgba(16, 185, 129, 0.15)' : '0 2px 8px 0 rgba(44, 62, 80, 0.06)', 
+                      background: '#fff', 
+                      boxShadow: '0 2px 8px 0 rgba(44, 62, 80, 0.06)', 
                       padding: 24, 
                       marginBottom: 0, 
-                      width: '100%',
-                      border: isNewActivity ? '2px solid #10b981' : 'none',
-                      animation: isNewActivity ? 'pulse 2s ease-in-out' : 'none'
+                      width: '100%'
                     }}
                   >
                     <h3 className="activity-title mb-2" style={{ color: '#252225', fontWeight: 600, fontSize: 20 }}>{activity.activity_name}</h3>
