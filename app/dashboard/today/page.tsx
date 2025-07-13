@@ -748,7 +748,6 @@ export default function TodayDashboard() {
           .from('activity_completions')
           .insert({
             user_id: user?.id,
-            activity_id: activity.id,
             completed_at: new Date().toISOString(),
             duration_minutes: duration,
             activity_name: activity.title,
