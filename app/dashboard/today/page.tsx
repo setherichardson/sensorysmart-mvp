@@ -740,36 +740,30 @@ export default function TodayDashboard() {
   const handleCompleteActivity = async (activity: Activity, durationMinutes?: number, rating?: string) => {
     try {
       setSubmittingActivity(activity.id)
-      
       // Calculate duration in minutes if not provided
       const duration = durationMinutes || Math.floor(Math.random() * 10) + 5 // Default 5-15 minutes
-      
-              // Create activity completion record
-        const { error } = await supabase
-          .from('activity_completions')
-          .insert({
-            user_id: user?.id,
-            completed_at: new Date().toISOString(),
-            duration_minutes: duration,
-            activity_name: activity.title,
-            activity_type: activity.activity_type,
-            rating: rating // Add the rating to the database
-          })
-
+      // Fallback to 'neutral' if rating is missing
+      const safeRating = rating || 'neutral'
+      const { error } = await supabase
+        .from('activity_completions')
+        .insert({
+          user_id: user?.id,
+          completed_at: new Date().toISOString(),
+          duration_minutes: duration,
+          activity_name: activity.title,
+          activity_type: activity.activity_type,
+          rating: safeRating // Always non-null
+        })
       if (error) {
-        console.error('Error saving activity completion:', error)
+        console.error('Error saving activity completion:', error, { rating, safeRating })
         throw error // Re-throw to be caught by the calling function
       }
-
       // Close the story modal
       setStoryOpen(false)
       setCurrentActivity(null)
-      
       // Refresh activities to show updated state
       await loadTodaysActivities()
-      
-      console.log(`Activity "${activity.title}" completed with rating: ${rating}`)
-      
+      console.log(`Activity "${activity.title}" completed with rating: ${safeRating}`)
     } catch (error) {
       console.log('Error completing activity, but continuing')
       throw error // Re-throw to be caught by the calling function
