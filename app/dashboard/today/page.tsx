@@ -5,23 +5,11 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
-import type { Profile, Assessment, ActivityCompletion } from '@/lib/supabase/client'
+import type { Profile, Assessment, ActivityCompletion, Activity } from '@/lib/supabase/client'
 import ActivityStory from '../../components/ActivityStory'
 import BehaviorHelpModal from '../../components/BehaviorHelpModal'
 
-interface Activity {
-  id: string
-  title: string
-  context: string
-  duration: string
-  activity_type: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming' | 'auditory' | 'visual' | 'olfactory' | 'interoception'
-  difficulty: 'beginner' | 'intermediate' | 'advanced'
-  sensory_systems: string[] // Which sensory systems this activity targets
-  behavior_fit: 'seeking' | 'avoiding' | 'sensitive' | 'low-registration' | 'mixed'
-  description: string
-  benefits: string[]
-  when_to_use: string
-}
+
 
 interface ActivityStep {
   id: number
@@ -63,201 +51,276 @@ export default function TodayDashboard() {
       id: 'wall-pushups',
       title: 'Wall Push-ups',
       context: 'Great for morning regulation',
-      duration: '2-3 minutes',
+      duration_minutes: 3,
       activity_type: 'proprioceptive',
       difficulty: 'beginner',
       sensory_systems: ['proprioceptive'],
       behavior_fit: 'seeking',
       description: 'Deep pressure input through pushing against a wall',
       benefits: ['Provides deep pressure input', 'Helps with regulation', 'Easy to do anywhere'],
-      when_to_use: 'When seeking proprioceptive input or needing to calm down'
+      when_to_use: 'When seeking proprioceptive input or needing to calm down',
+      materials_needed: [],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     {
       id: 'resistance-band-pull',
       title: 'Resistance Band Pull',
       context: 'Perfect before lunch to help focus',
-      duration: '3-5 minutes',
+      duration_minutes: 5,
       activity_type: 'heavy-work',
       difficulty: 'beginner',
       sensory_systems: ['proprioceptive'],
       behavior_fit: 'seeking',
       description: 'Pulling resistance band for muscle input',
       benefits: ['Provides heavy work', 'Improves focus', 'Strengthens muscles'],
-      when_to_use: 'Before tasks requiring concentration'
+      when_to_use: 'Before tasks requiring concentration',
+      materials_needed: ['Resistance band'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     {
       id: 'weighted-lap-pad',
       title: 'Weighted Lap Pad',
       context: 'Ideal for afternoon energy',
-      duration: '10-15 minutes',
+      duration_minutes: 15,
       activity_type: 'calming',
       difficulty: 'beginner',
       sensory_systems: ['proprioceptive', 'tactile'],
       behavior_fit: 'avoiding',
       description: 'Gentle pressure from weighted pad on lap',
       benefits: ['Provides gentle pressure', 'Calming effect', 'Non-intrusive'],
-      when_to_use: 'When feeling overwhelmed or needing gentle input'
+      when_to_use: 'When feeling overwhelmed or needing gentle input',
+      materials_needed: ['Weighted lap pad'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     {
       id: 'bear-hugs',
       title: 'Bear Hugs',
       context: 'Great for transitions',
-      duration: '1-2 minutes',
+      duration_minutes: 2,
       activity_type: 'proprioceptive',
       difficulty: 'beginner',
       sensory_systems: ['proprioceptive', 'tactile'],
       behavior_fit: 'seeking',
       description: 'Firm, deep pressure hugs',
       benefits: ['Provides deep pressure', 'Emotional connection', 'Calming'],
-      when_to_use: 'During transitions or when seeking comfort'
+      when_to_use: 'During transitions or when seeking comfort',
+      materials_needed: [],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     {
       id: 'chair-pushups',
       title: 'Chair Push-ups',
       context: 'Good for focus during seated work',
-      duration: '1-2 minutes',
+      duration_minutes: 2,
       activity_type: 'proprioceptive',
       difficulty: 'beginner',
       sensory_systems: ['proprioceptive'],
       behavior_fit: 'seeking',
       description: 'Lifting body from chair using arm strength',
       benefits: ['Provides proprioceptive input', 'Improves focus', 'Strengthens arms'],
-      when_to_use: 'During seated activities when needing input'
+      when_to_use: 'During seated activities when needing input',
+      materials_needed: ['Chair with armrests'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     // Vestibular Activities
     {
       id: 'slow-spinning',
       title: 'Slow Spinning',
       context: 'Good for vestibular seeking',
-      duration: '2-3 minutes',
+      duration_minutes: 3,
       activity_type: 'vestibular',
       difficulty: 'beginner',
       sensory_systems: ['vestibular'],
       behavior_fit: 'seeking',
       description: 'Gentle spinning in a chair or standing',
       benefits: ['Provides vestibular input', 'Can be calming', 'Improves balance'],
-      when_to_use: 'When seeking movement input'
+      when_to_use: 'When seeking movement input',
+      materials_needed: [],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     {
       id: 'rocking-chair',
       title: 'Rocking Chair',
       context: 'Calming vestibular input',
-      duration: '5-10 minutes',
+      duration_minutes: 10,
       activity_type: 'calming',
       difficulty: 'beginner',
       sensory_systems: ['vestibular'],
       behavior_fit: 'avoiding',
       description: 'Gentle rocking motion',
       benefits: ['Calming effect', 'Gentle vestibular input', 'Relaxing'],
-      when_to_use: 'When feeling overwhelmed or needing to calm down'
+      when_to_use: 'When feeling overwhelmed or needing to calm down',
+      materials_needed: ['Rocking chair'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     // Tactile Activities
     {
       id: 'texture-exploration',
       title: 'Texture Exploration',
       context: 'Good for tactile integration',
-      duration: '5-10 minutes',
+      duration_minutes: 10,
       activity_type: 'tactile',
       difficulty: 'beginner',
       sensory_systems: ['tactile'],
       behavior_fit: 'avoiding',
       description: 'Exploring different textures with hands',
       benefits: ['Desensitizes tactile sensitivity', 'Improves tolerance', 'Educational'],
-      when_to_use: 'When working on tactile tolerance'
+      when_to_use: 'When working on tactile tolerance',
+      materials_needed: ['Various textured objects'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     {
       id: 'finger-painting',
       title: 'Finger Painting',
       context: 'Messy play for tactile seekers',
-      duration: '10-15 minutes',
+      duration_minutes: 15,
       activity_type: 'tactile',
       difficulty: 'intermediate',
       sensory_systems: ['tactile'],
       behavior_fit: 'seeking',
       description: 'Painting with fingers for tactile input',
       benefits: ['Provides tactile input', 'Creative expression', 'Sensory exploration'],
-      when_to_use: 'When seeking tactile input or creative activities'
+      when_to_use: 'When seeking tactile input or creative activities',
+      materials_needed: ['Paint', 'Paper', 'Protective covering'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     // Auditory Activities
     {
       id: 'quiet-time',
       title: 'Quiet Time',
       context: 'For auditory sensitivity',
-      duration: '5-10 minutes',
+      duration_minutes: 10,
       activity_type: 'calming',
       difficulty: 'beginner',
       sensory_systems: ['auditory'],
       behavior_fit: 'avoiding',
       description: 'Time in a quiet space with noise reduction',
       benefits: ['Reduces auditory input', 'Calming effect', 'Regulation'],
-      when_to_use: 'When feeling overwhelmed by noise'
+      when_to_use: 'When feeling overwhelmed by noise',
+      materials_needed: ['Quiet space'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     {
       id: 'rhythm-clapping',
       title: 'Rhythm Clapping',
       context: 'Good for auditory seekers',
-      duration: '3-5 minutes',
+      duration_minutes: 5,
       activity_type: 'auditory',
       difficulty: 'beginner',
       sensory_systems: ['auditory', 'proprioceptive'],
       behavior_fit: 'seeking',
       description: 'Clapping to rhythms and patterns',
       benefits: ['Provides auditory input', 'Improves rhythm', 'Fun activity'],
-      when_to_use: 'When seeking auditory input or needing energy'
+      when_to_use: 'When seeking auditory input or needing energy',
+      materials_needed: [],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     // Visual Activities
     {
       id: 'visual-tracking',
       title: 'Visual Tracking',
       context: 'For visual processing',
-      duration: '3-5 minutes',
+      duration_minutes: 5,
       activity_type: 'visual',
       difficulty: 'beginner',
       sensory_systems: ['visual'],
       behavior_fit: 'mixed',
       description: 'Following objects with eyes',
       benefits: ['Improves visual tracking', 'Focus development', 'Eye coordination'],
-      when_to_use: 'When working on visual skills'
+      when_to_use: 'When working on visual skills',
+      materials_needed: ['Moving object or toy'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     {
       id: 'dim-lighting',
       title: 'Dim Lighting Time',
       context: 'For visual sensitivity',
-      duration: '5-10 minutes',
+      duration_minutes: 10,
       activity_type: 'calming',
       difficulty: 'beginner',
       sensory_systems: ['visual'],
       behavior_fit: 'avoiding',
       description: 'Time in reduced lighting',
       benefits: ['Reduces visual input', 'Calming effect', 'Regulation'],
-      when_to_use: 'When feeling overwhelmed by bright lights'
+      when_to_use: 'When feeling overwhelmed by bright lights',
+      materials_needed: ['Dimmed lighting'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     // Interoception Activities
     {
       id: 'body-scan',
       title: 'Body Scan',
       context: 'For interoception awareness',
-      duration: '3-5 minutes',
+      duration_minutes: 5,
       activity_type: 'interoception',
       difficulty: 'beginner',
       sensory_systems: ['interoception'],
       behavior_fit: 'low-registration',
       description: 'Mindful awareness of body sensations',
       benefits: ['Improves body awareness', 'Self-regulation', 'Mindfulness'],
-      when_to_use: 'When working on body awareness'
+      when_to_use: 'When working on body awareness',
+      materials_needed: ['Quiet space'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     {
       id: 'hunger-thirst-check',
       title: 'Hunger & Thirst Check',
       context: 'For interoception development',
-      duration: '1-2 minutes',
+      duration_minutes: 2,
       activity_type: 'interoception',
       difficulty: 'beginner',
       sensory_systems: ['interoception'],
       behavior_fit: 'low-registration',
       description: 'Regular check-ins for hunger and thirst',
       benefits: ['Improves body awareness', 'Self-care skills', 'Regulation'],
-      when_to_use: 'Throughout the day for body awareness'
+      when_to_use: 'Throughout the day for body awareness',
+      materials_needed: [],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     }
   ]
 
@@ -770,7 +833,7 @@ export default function TodayDashboard() {
                 <svg fill="none" stroke="#3D3A3D" viewBox="0 0 24 24" className="w-4 h-4 mr-1">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span style={{ color: '#252225', fontSize: 15 }}>{activity.duration}</span>
+                <span style={{ color: '#252225', fontSize: 15 }}>{activity.duration_minutes} min</span>
               </div>
               <button 
                 onClick={() => handleStartActivity(activity)}
