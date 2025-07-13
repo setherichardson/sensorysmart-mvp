@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
@@ -27,6 +27,7 @@ interface JournalStats {
 
 export default function JournalPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [user, setUser] = useState<User | null>(null)
   const [profile, setProfile] = useState<Profile | null>(null)
   const [assessment, setAssessment] = useState<Assessment | null>(null)
@@ -111,14 +112,19 @@ export default function JournalPage() {
           calculateStats(transformedActivities)
           
           // Check if we just completed an activity (most recent activity is within last 5 minutes)
-          if (transformedActivities.length > 0) {
-            const mostRecent = transformedActivities[0]
-            const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000)
-            if (mostRecent.completed_at > fiveMinutesAgo) {
-              setShowCompletionAnimation(true)
-              // Hide animation after 3 seconds
-              setTimeout(() => setShowCompletionAnimation(false), 3000)
-            }
+          // or if we came from the activity story with ?new=1
+          const shouldShowAnimation = 
+            (transformedActivities.length > 0 && (() => {
+              const mostRecent = transformedActivities[0]
+              const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000)
+              return mostRecent.completed_at > fiveMinutesAgo
+            })()) ||
+            searchParams.get('new') === '1'
+          
+          if (shouldShowAnimation) {
+            setShowCompletionAnimation(true)
+            // Hide animation after 3 seconds
+            setTimeout(() => setShowCompletionAnimation(false), 3000)
           }
         }
 
