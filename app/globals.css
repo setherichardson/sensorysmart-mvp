@@ -1695,14 +1695,21 @@ body {
   right: 0;
   background: #F6F6F6;
   padding: 1rem 1.5rem;
-  border-top: 1px solid #e5e7eb;
   z-index: 50;
   transition: all 0.3s ease;
 }
 
 .chat-input-container.keyboard-visible {
   background: white;
-  border-top: 1px solid #d1d5db;
+}
+
+/* Modal chat input - no bottom navigation to account for */
+.chat-input-container.modal-chat {
+  bottom: 0;
+}
+
+.chat-input-container.modal-chat.keyboard-visible {
+  background: white;
 }
 
 .chat-input-wrapper {

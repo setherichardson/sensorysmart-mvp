@@ -530,7 +530,7 @@ export default function CoachPage() {
             </div>
 
             {/* Chat Input in Modal */}
-            <div className={`chat-input-container ${isKeyboardVisible ? 'keyboard-visible' : ''}`}>
+            <div className={`chat-input-container modal-chat ${isKeyboardVisible ? 'keyboard-visible' : ''}`}>
               <form onSubmit={handleSubmit} className="chat-input-wrapper">
                 <div className="chat-input-field">
                   <textarea
