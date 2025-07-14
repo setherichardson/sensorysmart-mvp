@@ -549,21 +549,21 @@ export default function JournalPage() {
               {/* Today Tab */}
               <Link href="/dashboard/today" className="nav-tab">
                 <div className="nav-tab-content nav-tab-inactive flex flex-col items-center">
-                  <img src="/icons/Calendar-Default.svg" alt="Today" style={{ width: 28, height: 28 }} />
+                  <img src="/Icons/Calendar-Default.svg" alt="Today" style={{ width: 28, height: 28 }} />
                   <span className="nav-tab-label-inactive hig-caption-1">Today</span>
                 </div>
               </Link>
               {/* Coach Tab */}
               <Link href="/dashboard/coach" className="nav-tab">
                 <div className="nav-tab-content nav-tab-inactive flex flex-col items-center">
-                  <img src="/icons/Chat-Default.svg" alt="Coach" style={{ width: 28, height: 28 }} />
+                  <img src="/Icons/Chat-Default.svg" alt="Coach" style={{ width: 28, height: 28 }} />
                   <span className="nav-tab-label-inactive hig-caption-1">Coach</span>
                 </div>
               </Link>
               {/* Journal Tab - Active */}
               <Link href="/dashboard/journal" className="nav-tab">
                 <div className="nav-tab-content nav-tab-active flex flex-col items-center">
-                  <img src="/icons/Journal-Active.svg" alt="Journal" style={{ width: 28, height: 28 }} />
+                  <img src="/Icons/Journal-Active.svg" alt="Journal" style={{ width: 28, height: 28 }} />
                   <span className="nav-tab-label-active hig-caption-1">Journal</span>
                 </div>
               </Link>

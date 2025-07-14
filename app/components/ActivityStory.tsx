@@ -535,10 +535,10 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <button onClick={() => handleRating('dysregulated')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
-              <img src="/Icons/sad.svg" alt="Dysregulated" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Dysregulated'}
+              <img src="/Icons/Sad.svg" alt="Dysregulated" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Dysregulated'}
             </button>
             <button onClick={() => handleRating('distracted')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
-              <img src="/Icons/distracted.svg" alt="Distracted" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Distracted'}
+              <img src="/Icons/Distracted.svg" alt="Distracted" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Distracted'}
             </button>
             <button onClick={() => handleRating('neutral')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
               <img src="/Icons/meh.svg" alt="Neutral" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Neutral'}

@@ -38,18 +38,52 @@ export default function NoteModal({
     if (saving) return
     setSaving(true)
     try {
-      const { error } = await supabase
+      // Try to update by ID first
+      let { error } = await supabase
         .from('activity_completions')
         .update({ notes: note })
         .eq('id', activityId)
 
+      // If that fails, try to update by matching activity name and date
       if (error) {
-        console.error('Error saving note:', error)
-        alert('Failed to save note. Please try again.')
-      } else {
-        onSave?.()
-        onClose()
+        console.log('Failed to update by ID, trying by activity name and date:', error)
+        const parsedDate = new Date(activityDate)
+        const startOfDay = new Date(parsedDate.getFullYear(), parsedDate.getMonth(), parsedDate.getDate())
+        const endOfDay = new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000)
+        
+        error = null
+        const { error: updateError } = await supabase
+          .from('activity_completions')
+          .update({ notes: note })
+          .eq('activity_name', activityName)
+          .gte('completed_at', startOfDay.toISOString())
+          .lt('completed_at', endOfDay.toISOString())
+
+        if (updateError) {
+          console.error('Error saving note:', updateError)
+          alert('Failed to save note. Please try again.')
+          return
+        }
       }
+
+      // Also save to localStorage as backup
+      try {
+        const existingCompletions = JSON.parse(localStorage.getItem('activity_completions') || '[]')
+        const updatedCompletions = existingCompletions.map((completion: any) => {
+          if (completion.id === activityId || 
+              (completion.activity_name === activityName && 
+               completion.completed_at === activityDate)) {
+            return { ...completion, notes: note }
+          }
+          return completion
+        })
+        localStorage.setItem('activity_completions', JSON.stringify(updatedCompletions))
+      } catch (localStorageError) {
+        console.log('localStorage update failed, but database update succeeded:', localStorageError)
+      }
+
+      onSave?.()
+      onClose()
     } catch (err) {
       console.error('Error saving note:', err)
       alert('Failed to save note. Please try again.')

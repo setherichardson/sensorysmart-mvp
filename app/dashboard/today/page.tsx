@@ -1089,12 +1089,17 @@ export default function TodayDashboard() {
         console.log('New activity added:', newActivity.title)
         console.log('Final activities:', currentActivities.map(a => a.title))
         
-        // Update the state
+        // Update the state immediately
         setTodaysActivities([...currentActivities])
+        
+        // Force a re-render by updating localStorage
+        localStorage.setItem('lastActivityUpdate', Date.now().toString())
       }
       
-      // Redirect to journal to show the new activity (regardless of list update)
-      router.push('/dashboard/journal')
+      // Show a brief success message before redirecting
+      setTimeout(() => {
+        router.push('/dashboard/journal')
+      }, 500)
       
     } catch (error) {
       console.log('Error completing activity:', error)
@@ -1152,7 +1157,7 @@ export default function TodayDashboard() {
                 {activity.title}
               </h3>
               <div className="flex items-center mb-2">
-                <img src="/icons/target.svg" alt="target" style={{ width: 18, height: 18, marginRight: 8, color: '#3D3A3D' }} />
+                <img src="/Icons/target.svg" alt="target" style={{ width: 18, height: 18, marginRight: 8, color: '#3D3A3D' }} />
                 <span style={{ color: '#252225', fontSize: 15, fontWeight: 400 }}>{activity.context}</span>
               </div>
               <div className="flex items-center mb-4">
@@ -1216,21 +1221,21 @@ export default function TodayDashboard() {
               {/* Today Tab - Active */}
               <Link href="/dashboard/today" className="nav-tab">
                 <div className="nav-tab-content nav-tab-active flex flex-col items-center">
-                  <img src="/icons/Calendar-Active.svg" alt="Today" style={{ width: 28, height: 28 }} />
+                  <img src="/Icons/Calendar-Active.svg" alt="Today" style={{ width: 28, height: 28 }} />
                   <span className="nav-tab-label-active hig-caption-1">Today</span>
                 </div>
               </Link>
               {/* Coach Tab */}
               <Link href="/dashboard/coach" className="nav-tab">
                 <div className="nav-tab-content nav-tab-inactive flex flex-col items-center">
-                  <img src="/icons/Chat-Default.svg" alt="Coach" style={{ width: 28, height: 28 }} />
+                  <img src="/Icons/Chat-Default.svg" alt="Coach" style={{ width: 28, height: 28 }} />
                   <span className="nav-tab-label-inactive hig-caption-1">Coach</span>
                 </div>
               </Link>
               {/* Journal Tab */}
               <Link href="/dashboard/journal" className="nav-tab">
                 <div className="nav-tab-content nav-tab-inactive flex flex-col items-center">
-                  <img src="/icons/Journal-Default.svg" alt="Journal" style={{ width: 28, height: 28 }} />
+                  <img src="/Icons/Journal-Default.svg" alt="Journal" style={{ width: 28, height: 28 }} />
                   <span className="nav-tab-label-inactive hig-caption-1">Journal</span>
                 </div>
               </Link>
