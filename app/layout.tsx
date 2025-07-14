@@ -72,9 +72,9 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-status-bar-style': 'default',
     'apple-mobile-web-app-title': 'SensorySmart',
     'application-name': 'SensorySmart',
-    'msapplication-TileColor': '#2563eb',
+    'msapplication-TileColor': '#F6F6F6',
     'msapplication-tap-highlight': 'no',
-    'theme-color': '#2563eb',
+    'theme-color': '#F6F6F6',
   },
 };
 
@@ -84,8 +84,8 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#2563eb' },
-    { media: '(prefers-color-scheme: dark)', color: '#1e40af' },
+    { media: '(prefers-color-scheme: light)', color: '#F6F6F6' },
+    { media: '(prefers-color-scheme: dark)', color: '#F6F6F6' },
   ],
   viewportFit: 'cover',
 };
@@ -105,12 +105,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-        <meta name="theme-color" content="#2563eb" />
+        <meta name="theme-color" content="#F6F6F6" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="SensorySmart" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-TileColor" content="#2563eb" />
+        <meta name="msapplication-TileColor" content="#F6F6F6" />
         <meta name="msapplication-tap-highlight" content="no" />
       </head>
       <body
