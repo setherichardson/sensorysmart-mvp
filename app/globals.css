@@ -1449,10 +1449,11 @@ body {
 }
 
 .coach-title {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   color: #252225;
   margin: 0;
+  letter-spacing: -1.5px;
 }
 
 .coach-header-icon {
@@ -1521,7 +1522,7 @@ body {
 .suggestion-card {
   background: white;
   border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
+  border-radius: 24px;
   padding: 0.875rem 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -1531,6 +1532,7 @@ body {
   font-size: 16px;
   color: #252225;
   line-height: 1.4;
+  margin-bottom: 16px;
 }
 
 .suggestion-card:hover {
@@ -1621,7 +1623,7 @@ body {
 }
 
 .message-text p {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .message-text p:last-child {
@@ -2000,7 +2002,7 @@ body {
   .suggestions-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 12px;
   }
 
   .suggestion-card {
@@ -2042,7 +2044,7 @@ body {
 .suggestions-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .suggestion-card {
@@ -3141,14 +3143,13 @@ body {
 
 /* Thinking Animation Styles */
 .thinking-bubble {
-  background: white;
-  border: 1px solid #D1CBCA;
-  border-radius: 1.5rem;
-  border-bottom-left-radius: 0.5rem;
-  max-width: 85%;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
+  background: none;
+  border: none;
+  border-radius: 0;
+  max-width: none;
+  padding: 0;
+  box-shadow: none;
+  margin-bottom: 0;
 }
 
 .thinking-content {

@@ -31,10 +31,10 @@ export default function CoachPage() {
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
   const suggestedTopics = [
-    "Managing sensory meltdowns in public",
-    "Dealing with aggressive behavior at home",
-    `Help ${profile?.child_name || 'my child'} with bedtime routine`,
-    "Strategies for mealtime challenges"
+    "My child is melting down at the store - help!",
+    "Why does my child hit when overwhelmed?",
+    "My child won't settle down for bed",
+    "Help with picky eating and textures"
   ]
 
   useEffect(() => {
@@ -115,11 +115,11 @@ export default function CoachPage() {
   useEffect(() => {
     // Scroll to bottom when new messages are added
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-    // Scroll to top of chat when a new assistant message is added
+    // Scroll to bottom of chat when a new assistant message is added (most recent response)
     if (messages.length > 0 && messages[messages.length - 1].type === 'assistant') {
       const chatMessages = document.querySelector('.chat-messages');
       if (chatMessages) {
-        chatMessages.scrollTo({ top: 0, behavior: 'smooth' });
+        chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
       }
     }
   }, [messages])
@@ -326,7 +326,7 @@ export default function CoachPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <img src="/Icons/sensory-coach.png" alt="Sensory Coach Mascot" style={{ width: 48, height: 48, marginRight: 8 }} />
               <div>
-                <h1 className="coach-title" style={{ fontSize: 28, fontWeight: 700, color: '#252225', margin: 0, lineHeight: 1 }}>Sensory Coach</h1>
+                <h1 className="coach-title" style={{ fontSize: 18, fontWeight: 600, color: '#252225', margin: 0, lineHeight: 1, letterSpacing: '-0.5px' }}>Sensory Coach</h1>
                 <div style={{ fontSize: 15, color: '#6B7280', fontWeight: 400, marginTop: 2, lineHeight: 1.2 }}>Expert sensory guidance whenever you need it</div>
               </div>
             </div>
@@ -348,13 +348,13 @@ export default function CoachPage() {
         <div className="coach-content">
           {/* Suggestions - Show when not in chat modal */}
           {!isChatModalOpen && (
-            <div className="suggestions-grid" style={{ marginTop: 24, marginBottom: 24 }}>
+            <div className="suggestions-grid" style={{ marginTop: 12, marginBottom: 12 }}>
               {suggestedTopics.map((suggestion, index) => (
                 <button
                   key={index}
                   onClick={() => handleSuggestionClick(suggestion)}
                   className={`suggestion-card ${visibleSuggestions.includes(index) ? 'suggestion-visible' : 'suggestion-hidden'}`}
-                  style={{ fontSize: '16px', width: '100%', marginBottom: 12 }}
+                  style={{ fontSize: '16px', width: '100%', marginBottom: 12, borderRadius: 24 }}
                 >
                   {suggestion}
                 </button>
@@ -389,11 +389,13 @@ export default function CoachPage() {
                     type="submit"
                     disabled={!inputValue.trim() || isTyping}
                     className="chat-send-button"
-                    style={{ background: 'linear-gradient(90deg, #3B82F6 0%, #6366F1 100%)', color: 'white', boxShadow: '0 2px 8px rgba(44,62,80,0.10)' }}
+                    style={{
+                      background: !inputValue.trim() || isTyping ? '#AFCACF' : '#367A87',
+                      color: 'white',
+                      boxShadow: '0 2px 8px rgba(44,62,80,0.10)'
+                    }}
                   >
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
+                    <img src="/Icons/Arrow-up.svg" alt="Send" style={{ width: 20, height: 20, filter: 'brightness(0) invert(1)' }} />
                   </button>
                 </div>
               </form>
@@ -455,7 +457,7 @@ export default function CoachPage() {
             <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 12 }}>
               <img src="/Icons/sensory-coach.png" alt="Sensory Coach Mascot" style={{ width: 48, height: 48, marginRight: 8 }} />
               <div>
-                <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#252225', margin: 0, lineHeight: 1 }}>Sensory Coach</h1>
+                <h1 style={{ fontSize: 18, fontWeight: 600, color: '#252225', margin: 0, lineHeight: 1, letterSpacing: '-0.5px' }}>Sensory Coach</h1>
                 <div style={{ fontSize: 15, color: '#6B7280', fontWeight: 400, marginTop: 2, lineHeight: 1.2 }}>Expert sensory guidance whenever you need it</div>
               </div>
             </div>
@@ -529,7 +531,7 @@ export default function CoachPage() {
                 </div>
               )}
               
-              <div ref={messagesEndRef} />
+              <div ref={messagesEndRef} style={{ marginBottom: 16 }} />
             </div>
 
             {/* Chat Input in Modal */}
@@ -558,11 +560,13 @@ export default function CoachPage() {
                     type="submit"
                     disabled={!inputValue.trim() || isTyping}
                     className="chat-send-button"
-                    style={{ background: 'linear-gradient(90deg, #3B82F6 0%, #6366F1 100%)', color: 'white', boxShadow: '0 2px 8px rgba(44,62,80,0.10)' }}
+                    style={{
+                      background: !inputValue.trim() || isTyping ? '#AFCACF' : '#367A87',
+                      color: 'white',
+                      boxShadow: '0 2px 8px rgba(44,62,80,0.10)'
+                    }}
                   >
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
+                    <img src="/Icons/Arrow-up.svg" alt="Send" style={{ width: 20, height: 20, filter: 'brightness(0) invert(1)' }} />
                   </button>
                 </div>
               </form>
