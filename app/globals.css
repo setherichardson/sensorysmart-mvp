@@ -3158,9 +3158,11 @@ body {
 }
 
 .thinking-text {
-  color: #374151;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 12px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #6B7280;
 }
 
 .thinking-dots {

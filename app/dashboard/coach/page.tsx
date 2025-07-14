@@ -115,6 +115,13 @@ export default function CoachPage() {
   useEffect(() => {
     // Scroll to bottom when new messages are added
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    // Scroll to top of chat when a new assistant message is added
+    if (messages.length > 0 && messages[messages.length - 1].type === 'assistant') {
+      const chatMessages = document.querySelector('.chat-messages');
+      if (chatMessages) {
+        chatMessages.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
   }, [messages])
 
   // Handle keyboard visibility
