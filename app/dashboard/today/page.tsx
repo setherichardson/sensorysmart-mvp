@@ -47,14 +47,24 @@ export default function TodayDashboard() {
   // Refresh activities when user returns to the app
   useEffect(() => {
     const handleFocus = () => {
-      // Check if it's been more than 1 hour since last activity load
-      const lastLoad = localStorage.getItem('lastActivityLoad')
+      // Check if there was a recent activity completion
+      const lastActivityUpdate = localStorage.getItem('lastActivityUpdate')
       const now = new Date().getTime()
       
-      if (!lastLoad || (now - parseInt(lastLoad)) > 3600000) { // 1 hour
-        console.log('Refreshing activities due to app focus')
+      // Refresh if there was a recent activity completion (within last 5 minutes)
+      if (lastActivityUpdate && (now - parseInt(lastActivityUpdate)) < 300000) {
+        console.log('Refreshing activities due to recent completion')
         loadTodaysActivities()
-        localStorage.setItem('lastActivityLoad', now.toString())
+        localStorage.removeItem('lastActivityUpdate') // Clear the flag
+      }
+      // Also refresh if it's been more than 1 hour since last activity load
+      else {
+        const lastLoad = localStorage.getItem('lastActivityLoad')
+        if (!lastLoad || (now - parseInt(lastLoad)) > 3600000) { // 1 hour
+          console.log('Refreshing activities due to app focus')
+          loadTodaysActivities()
+          localStorage.setItem('lastActivityLoad', now.toString())
+        }
       }
     }
 
@@ -978,6 +988,19 @@ export default function TodayDashboard() {
     loadTodaysActivities()
   }, [assessment, profile])
 
+  // Check for recent activity updates when component mounts
+  useEffect(() => {
+    const lastActivityUpdate = localStorage.getItem('lastActivityUpdate')
+    if (lastActivityUpdate) {
+      const now = new Date().getTime()
+      if ((now - parseInt(lastActivityUpdate)) < 300000) { // Within 5 minutes
+        console.log('Detected recent activity completion, refreshing activities')
+        loadTodaysActivities()
+        localStorage.removeItem('lastActivityUpdate')
+      }
+    }
+  }, [])
+
   const handleStartActivity = async (activity: Activity) => {
     if (!user) return
     
@@ -1094,12 +1117,12 @@ export default function TodayDashboard() {
         
         // Force a re-render by updating localStorage
         localStorage.setItem('lastActivityUpdate', Date.now().toString())
+        
+        console.log('✅ Activity list updated successfully')
       }
       
-      // Show a brief success message before redirecting
-      setTimeout(() => {
-        router.push('/dashboard/journal')
-      }, 500)
+      // Show a brief success message and stay on the page
+      console.log('✅ Activity completed successfully!')
       
     } catch (error) {
       console.log('Error completing activity:', error)
