@@ -1,6 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { supabase } from '@/lib/supabase/client'
+import { Activity } from '@/lib/supabase/client'
 
 interface ActivityCard {
   id: string
@@ -24,6 +26,8 @@ interface BehaviorIssue {
 interface BehaviorHelpModalProps {
   isOpen: boolean
   onClose: () => void
+  user?: any
+  assessment?: any
 }
 
 const behaviorIssues: BehaviorIssue[] = [
@@ -38,50 +42,7 @@ const behaviorIssues: BehaviorIssue[] = [
       'Deep breathing exercises'
     ],
     icon: '🍽️',
-    activityCards: [
-      {
-        id: 'restaurant-1',
-        title: 'Table Push-Ups',
-        description: 'Gentle pressure activities to help your child feel grounded',
-        duration: '2-3 minutes',
-        materials: ['Table or chair'],
-        steps: [
-          'Have your child place their hands flat on the table',
-          'Ask them to push down gently for 10 seconds',
-          'Release and repeat 3-5 times',
-          'This provides deep pressure input'
-        ],
-        category: 'proprioceptive'
-      },
-      {
-        id: 'restaurant-2',
-        title: 'Fidget Toy Play',
-        description: 'Quiet sensory activities to keep hands busy',
-        duration: '5-10 minutes',
-        materials: ['Stress ball, fidget spinner, or small toy'],
-        steps: [
-          'Give your child a small fidget toy',
-          'Let them explore it quietly',
-          'Encourage gentle manipulation',
-          'Use as needed throughout the meal'
-        ],
-        category: 'tactile'
-      },
-      {
-        id: 'restaurant-3',
-        title: 'Deep Breathing',
-        description: 'Calming breathing exercise for overstimulation',
-        duration: '1-2 minutes',
-        materials: ['None'],
-        steps: [
-          'Have your child take a deep breath in for 4 counts',
-          'Hold for 4 counts',
-          'Exhale slowly for 4 counts',
-          'Repeat 3-5 times'
-        ],
-        category: 'calming'
-      }
-    ]
+    activityCards: []
   },
   {
     id: 'bedtime',
@@ -94,50 +55,7 @@ const behaviorIssues: BehaviorIssue[] = [
       'Deep pressure massage'
     ],
     icon: '😴',
-    activityCards: [
-      {
-        id: 'bedtime-1',
-        title: 'Gentle Back Massage',
-        description: 'Deep pressure massage to promote relaxation',
-        duration: '5-10 minutes',
-        materials: ['None'],
-        steps: [
-          'Have your child lie on their stomach',
-          'Use firm, slow strokes on their back',
-          'Focus on shoulders and back muscles',
-          'Use deep pressure but not painful pressure'
-        ],
-        category: 'proprioceptive'
-      },
-      {
-        id: 'bedtime-2',
-        title: 'Weighted Blanket Time',
-        description: 'Deep pressure input for calming',
-        duration: '10-15 minutes',
-        materials: ['Weighted blanket or heavy pillows'],
-        steps: [
-          'Place weighted blanket over your child',
-          'Ensure it covers their body evenly',
-          'Let them relax under the pressure',
-          'Remove if they become uncomfortable'
-        ],
-        category: 'proprioceptive'
-      },
-      {
-        id: 'bedtime-3',
-        title: 'Calming Hand Squeezes',
-        description: 'Gentle pressure activities for hands',
-        duration: '3-5 minutes',
-        materials: ['None'],
-        steps: [
-          'Have your child squeeze their hands into fists',
-          'Hold for 5 seconds, then release',
-          'Repeat 5-10 times',
-          'This provides proprioceptive input'
-        ],
-        category: 'proprioceptive'
-      }
-    ]
+    activityCards: []
   },
   {
     id: 'transitions',
@@ -150,421 +68,516 @@ const behaviorIssues: BehaviorIssue[] = [
       'Movement breaks between activities'
     ],
     icon: '⏰',
-    activityCards: [
-      {
-        id: 'transitions-1',
-        title: 'Transition Dance',
-        description: 'Fun movement activity to help with transitions',
-        duration: '2-3 minutes',
-        materials: ['Music (optional)'],
-        steps: [
-          'Play upbeat music or create rhythm',
-          'Have your child dance or move around',
-          'Gradually slow down the movement',
-          'End with a calming activity'
-        ],
-        category: 'movement'
-      },
-      {
-        id: 'transitions-2',
-        title: 'Heavy Work Break',
-        description: 'Proprioceptive input to help with transitions',
-        duration: '3-5 minutes',
-        materials: ['None'],
-        steps: [
-          'Have your child do wall push-ups',
-          'Or carry heavy books/items',
-          'Jump in place 10 times',
-          'Then transition to the next activity'
-        ],
-        category: 'proprioceptive'
-      },
-      {
-        id: 'transitions-3',
-        title: 'Transition Object',
-        description: 'Using a comfort item during transitions',
-        duration: 'As needed',
-        materials: ['Small toy or comfort item'],
-        steps: [
-          'Give your child a small comfort item',
-          'Let them hold it during the transition',
-          'Use it as a bridge between activities',
-          'Return it when settled in new activity'
-        ],
-        category: 'calming'
-      }
-    ]
+    activityCards: []
   },
   {
     id: 'focus',
     title: 'Trouble focusing',
-    description: 'Your child has difficulty paying attention or staying on task',
+    description: 'Your child has difficulty maintaining attention',
     activities: [
-      'Fidget tools and sensory toys',
       'Movement breaks every 15-20 minutes',
-      'Chewing gum or crunchy snacks',
-      'Seat cushions or stability balls'
+      'Fidget tools for hands',
+      'Heavy work activities',
+      'Visual supports and timers'
     ],
     icon: '🎯',
-    activityCards: [
-      {
-        id: 'focus-1',
-        title: 'Movement Break',
-        description: 'Quick movement to help refocus',
-        duration: '2-3 minutes',
-        materials: ['None'],
-        steps: [
-          'Have your child stand up and stretch',
-          'Do 10 jumping jacks',
-          'March in place for 30 seconds',
-          'Return to task with renewed focus'
-        ],
-        category: 'movement'
-      },
-      {
-        id: 'focus-2',
-        title: 'Fidget Tool Time',
-        description: 'Sensory tools to help maintain focus',
-        duration: 'As needed',
-        materials: ['Fidget spinner, stress ball, or putty'],
-        steps: [
-          'Give your child a fidget tool',
-          'Let them use it while working',
-          'Monitor that it helps, not distracts',
-          'Use as needed throughout tasks'
-        ],
-        category: 'tactile'
-      },
-      {
-        id: 'focus-3',
-        title: 'Chair Push-Ups',
-        description: 'Seated proprioceptive activity',
-        duration: '1-2 minutes',
-        materials: ['Chair'],
-        steps: [
-          'Have your child place hands on chair seat',
-          'Lift their bottom off the chair',
-          'Hold for 5 seconds, then sit back down',
-          'Repeat 5-10 times'
-        ],
-        category: 'proprioceptive'
-      }
-    ]
-  },
-  {
-    id: 'anxiety',
-    title: 'Anxiety or nervousness',
-    description: 'Your child is feeling worried or overwhelmed',
-    activities: [
-      'Deep breathing exercises',
-      'Progressive muscle relaxation',
-      'Calming sensory activities',
-      'Heavy work and proprioceptive input'
-    ],
-    icon: '😰',
-    activityCards: [
-      {
-        id: 'anxiety-1',
-        title: 'Box Breathing',
-        description: 'Calming breathing technique',
-        duration: '2-3 minutes',
-        materials: ['None'],
-        steps: [
-          'Breathe in for 4 counts',
-          'Hold for 4 counts',
-          'Breathe out for 4 counts',
-          'Hold for 4 counts, then repeat'
-        ],
-        category: 'calming'
-      },
-      {
-        id: 'anxiety-2',
-        title: 'Progressive Muscle Relaxation',
-        description: 'Tensing and relaxing muscles for calm',
-        duration: '5-10 minutes',
-        materials: ['None'],
-        steps: [
-          'Start with toes, tense for 5 seconds',
-          'Release and feel the relaxation',
-          'Move up through each muscle group',
-          'End with full body relaxation'
-        ],
-        category: 'calming'
-      },
-      {
-        id: 'anxiety-3',
-        title: 'Heavy Work Activities',
-        description: 'Proprioceptive input for calming',
-        duration: '5-10 minutes',
-        materials: ['None'],
-        steps: [
-          'Have your child push against a wall',
-          'Or carry heavy books/items',
-          'Do jumping jacks or wall push-ups',
-          'This provides grounding input'
-        ],
-        category: 'proprioceptive'
-      }
-    ]
+    activityCards: []
   },
   {
     id: 'meltdowns',
-    title: 'Meltdowns or tantrums',
-    description: 'Your child is having emotional outbursts',
+    title: 'Sensory meltdowns',
+    description: 'Your child becomes overwhelmed and has meltdowns',
     activities: [
-      'Quiet space with sensory tools',
+      'Create a calm-down space',
       'Deep pressure activities',
-      'Calming music or white noise',
-      'Structured routine and predictability'
+      'Slow, rhythmic movements',
+      'Sensory tools for regulation'
     ],
     icon: '😤',
-    activityCards: [
-      {
-        id: 'meltdowns-1',
-        title: 'Calm Down Corner',
-        description: 'Quiet space with sensory tools',
-        duration: '5-15 minutes',
-        materials: ['Soft pillows, blankets, sensory toys'],
-        steps: [
-          'Create a quiet, comfortable space',
-          'Include soft pillows and blankets',
-          'Add calming sensory toys',
-          'Let your child use it when needed'
-        ],
-        category: 'calming'
-      },
-      {
-        id: 'meltdowns-2',
-        title: 'Deep Pressure Hug',
-        description: 'Gentle but firm pressure for calming',
-        duration: '1-2 minutes',
-        materials: ['None'],
-        steps: [
-          'Give your child a firm but gentle hug',
-          'Apply steady pressure to their back',
-          'Hold for 30-60 seconds',
-          'Release slowly and check their response'
-        ],
-        category: 'proprioceptive'
-      },
-      {
-        id: 'meltdowns-3',
-        title: 'Calming Sensory Tools',
-        description: 'Using sensory tools for regulation',
-        duration: 'As needed',
-        materials: ['Stress ball, putty, or soft toy'],
-        steps: [
-          'Offer a soft sensory toy',
-          'Let them squeeze or manipulate it',
-          'Encourage slow, gentle movements',
-          'Use until they feel calmer'
-        ],
-        category: 'tactile'
-      }
-    ]
+    activityCards: []
   }
 ]
 
-export default function BehaviorHelpModal({ isOpen, onClose }: BehaviorHelpModalProps) {
+export default function BehaviorHelpModal({ isOpen, onClose, user, assessment }: BehaviorHelpModalProps) {
   const [selectedIssue, setSelectedIssue] = useState<BehaviorIssue | null>(null)
-  const [selectedActivity, setSelectedActivity] = useState<ActivityCard | null>(null)
+  const [personalizedActivities, setPersonalizedActivities] = useState<Activity[]>([])
+  const [loadingActivities, setLoadingActivities] = useState(false)
+
+  console.log('🔍 BehaviorHelpModal props:', { isOpen, user: !!user, assessment: !!assessment })
+  console.log('📊 Assessment data:', assessment)
 
   if (!isOpen) return null
 
-  const handleIssueSelect = (issue: BehaviorIssue) => {
+  const handleIssueSelect = async (issue: BehaviorIssue) => {
     setSelectedIssue(issue)
-    setSelectedActivity(null)
+    await loadPersonalizedActivities(issue)
   }
 
   const handleBack = () => {
-    if (selectedActivity) {
-      setSelectedActivity(null)
-    } else {
-      setSelectedIssue(null)
+    setSelectedIssue(null)
+    setPersonalizedActivities([])
+  }
+
+  const loadPersonalizedActivities = async (issue: BehaviorIssue) => {
+    console.log('🔍 Loading personalized activities for issue:', issue.id)
+    console.log('📊 Assessment data:', assessment)
+    
+    if (!assessment?.results) {
+      console.log('❌ No assessment results available')
+      setLoadingActivities(false)
+      return
+    }
+
+    setLoadingActivities(true)
+    try {
+      const results = assessment.results as any
+      const behaviorScores = results.behaviorScores || {}
+      
+      console.log('🎯 Behavior scores:', behaviorScores)
+
+      // Get activities from database
+      const { data: activities, error } = await supabase
+        .from('activities')
+        .select('*')
+        .eq('is_active', true)
+        .order('created_at', { ascending: false })
+
+      console.log('📦 Database activities:', activities?.length || 0)
+      console.log('❌ Database error:', error)
+
+      if (error || !activities || activities.length === 0) {
+        console.log('📚 No database activities available, using fallback library')
+        
+        // Use fallback activities from the activity library
+        const fallbackActivities: Activity[] = [
+          {
+            id: '1',
+            title: 'Deep Pressure Hug',
+            description: 'A calming activity that provides deep pressure input',
+            context: 'Before transitions',
+            duration_minutes: 3,
+            activity_type: 'proprioceptive',
+            sensory_systems: ['proprioceptive'],
+            behavior_fit: 'seeking',
+            difficulty: 'beginner',
+            materials_needed: ['None'],
+            steps: [],
+            benefits: ['Calming', 'Regulation'],
+            when_to_use: 'Before challenging situations',
+            variations: [],
+            age_range: '3-12',
+            environment: 'indoor',
+            is_active: true,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          },
+          {
+            id: '2',
+            title: 'Wall Push-Ups',
+            description: 'Heavy work activity for proprioceptive input',
+            context: 'When overstimulated',
+            duration_minutes: 5,
+            activity_type: 'heavy-work',
+            sensory_systems: ['proprioceptive'],
+            behavior_fit: 'seeking',
+            difficulty: 'beginner',
+            materials_needed: ['Wall'],
+            steps: [],
+            benefits: ['Calming', 'Focus'],
+            when_to_use: 'When needing regulation',
+            variations: [],
+            age_range: '4-12',
+            environment: 'indoor',
+            is_active: true,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          },
+          {
+            id: '3',
+            title: 'Quiet Time with Weighted Blanket',
+            description: 'Calming activity with deep pressure',
+            context: 'After overstimulation',
+            duration_minutes: 10,
+            activity_type: 'calming',
+            sensory_systems: ['proprioceptive'],
+            behavior_fit: 'avoiding',
+            difficulty: 'beginner',
+            materials_needed: ['Weighted blanket'],
+            steps: [],
+            benefits: ['Calming', 'Regulation'],
+            when_to_use: 'When overwhelmed',
+            variations: [],
+            age_range: '3-12',
+            environment: 'indoor',
+            is_active: true,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          }
+        ]
+        
+        console.log('📚 Using fallback activities:', fallbackActivities.length)
+        setPersonalizedActivities(fallbackActivities)
+      } else {
+        console.log('✅ Using database activities:', activities.length)
+        
+        // Filter activities based on the specific issue
+        let filteredActivities = activities
+        
+        // Apply issue-specific filtering
+        if (issue.id === 'restaurant') {
+          filteredActivities = activities.filter(activity => 
+            activity.activity_type === 'proprioceptive' || 
+            activity.activity_type === 'calming' ||
+            activity.behavior_fit === 'seeking'
+          )
+        } else if (issue.id === 'bedtime') {
+          filteredActivities = activities.filter(activity => 
+            activity.activity_type === 'calming' || 
+            activity.activity_type === 'proprioceptive'
+          )
+        } else if (issue.id === 'transitions') {
+          filteredActivities = activities.filter(activity => 
+            activity.activity_type === 'proprioceptive' || 
+            activity.activity_type === 'heavy-work'
+          )
+        } else if (issue.id === 'focus') {
+          filteredActivities = activities.filter(activity => 
+            activity.activity_type === 'heavy-work' || 
+            activity.activity_type === 'proprioceptive'
+          )
+        } else if (issue.id === 'meltdowns') {
+          filteredActivities = activities.filter(activity => 
+            activity.activity_type === 'calming' || 
+            activity.activity_type === 'proprioceptive'
+          )
+        }
+        
+        // Score activities based on assessment results
+        const scoredActivities = filteredActivities.map(activity => {
+          let score = 0
+          
+          // Score based on behavior fit
+          if (behaviorScores.seeking && activity.behavior_fit === 'seeking') {
+            score += 3
+          }
+          if (behaviorScores.avoiding && activity.behavior_fit === 'avoiding') {
+            score += 3
+          }
+          
+          // Score based on challenging sensory systems
+          const challengingSystems = getChallengingSystems(results)
+          if (challengingSystems.some(system => 
+            activity.sensory_systems.includes(system)
+          )) {
+            score += 2
+          }
+          
+          // Score based on difficulty level
+          if (activity.difficulty === 'beginner') {
+            score += 1
+          }
+          
+          return { ...activity, score }
+        })
+        
+        // Sort by score and take top 3
+        const topActivities = scoredActivities
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 3)
+        
+        console.log('🎯 Top scored activities:', topActivities)
+        setPersonalizedActivities(topActivities)
+      }
+    } catch (error) {
+      console.error('❌ Error loading personalized activities:', error)
+    } finally {
+      setLoadingActivities(false)
     }
   }
 
-  const handleActivitySelect = (activity: ActivityCard) => {
-    setSelectedActivity(activity)
+  const getDominantBehavior = (behaviorScores: any) => {
+    if (!behaviorScores) return 'seeking'
+    
+    const seeking = behaviorScores.seeking || 0
+    const avoiding = behaviorScores.avoiding || 0
+    
+    return seeking > avoiding ? 'seeking' : 'avoiding'
+  }
+
+  const getChallengingSystems = (results: any) => {
+    const challengingSystems: string[] = []
+    
+    if (results.sensoryScores) {
+      const scores = results.sensoryScores
+      if (scores.proprioceptive > 3) challengingSystems.push('proprioceptive')
+      if (scores.vestibular > 3) challengingSystems.push('vestibular')
+      if (scores.tactile > 3) challengingSystems.push('tactile')
+      if (scores.auditory > 3) challengingSystems.push('auditory')
+      if (scores.visual > 3) challengingSystems.push('visual')
+    }
+    
+    return challengingSystems
+  }
+
+  const handleStartActivity = (activity: Activity) => {
+    // This would open the activity modal
+    console.log('🎯 Starting activity:', activity.title)
+    // For now, just close the modal
+    onClose()
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-white">
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: '#F6F6F6',
+      zIndex: 1000,
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
-        <div className="flex-1">
-          <h2 className="text-lg font-semibold text-gray-900">
-            {selectedActivity ? selectedActivity.title : 
-             selectedIssue ? selectedIssue.title : 
-             'Help with a behavior'}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '16px',
+        background: '#F6F6F6'
+      }}>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+          <h2 style={{
+            fontSize: 18,
+            fontWeight: 600,
+            color: '#252225',
+            margin: 0,
+            flex: 1,
+            textAlign: selectedIssue ? 'center' : 'left'
+          }}>
+            {selectedIssue ? selectedIssue.title : 'Behavior Support'}
           </h2>
-          {(selectedIssue || selectedActivity) && (
-            <button
-              onClick={handleBack}
-              className="flex items-center text-blue-600 hover:text-blue-700 mt-1 transition-colors text-sm"
-            >
-              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              {selectedActivity ? `Back to ${selectedIssue?.title}` : 'Back to all issues'}
-            </button>
-          )}
         </div>
         <button
           onClick={onClose}
-          className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#6B7280',
+            cursor: 'pointer',
+            padding: '8px',
+            borderRadius: '8px',
+            transition: 'background-color 0.2s'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#E5E7EB'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'transparent'
+          }}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-4">
+      <div style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
         {!selectedIssue ? (
           // Issue selection view
-          <div className="space-y-4">
-            <p className="text-gray-600 text-sm mb-4">
+          <div style={{ maxWidth: '100%', margin: '0 auto' }}>
+            <p style={{ 
+              color: '#6B7280', 
+              fontSize: 14, 
+              marginBottom: 16,
+              lineHeight: 1.4
+            }}>
               Select a common issue to get quick activity suggestions:
             </p>
-            <div className="space-y-3">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {behaviorIssues.map((issue) => (
                 <button
                   key={issue.id}
                   onClick={() => handleIssueSelect(issue)}
-                  className="w-full text-left p-4 border border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all duration-200"
+                  style={{
+                    width: '100%',
+                    textAlign: 'left',
+                    padding: '16px',
+                    border: '1px solid #EEE6E5',
+                    borderRadius: 16,
+                    background: '#fff',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: 12
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = '#367A87'
+                    e.currentTarget.style.background = '#F0F9FF'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = '#EEE6E5'
+                    e.currentTarget.style.background = '#fff'
+                  }}
                 >
-                  <div className="flex items-start space-x-3">
-                    <span className="text-2xl">{issue.icon}</span>
-                    <div className="flex-1">
-                      <h3 className="font-medium text-gray-900 mb-1">{issue.title}</h3>
-                      <p className="text-sm text-gray-600">{issue.description}</p>
-                    </div>
+                  <span style={{ fontSize: 24, flexShrink: 0 }}>{issue.icon}</span>
+                  <div style={{ flex: 1 }}>
+                    <h3 style={{ 
+                      fontWeight: 600, 
+                      color: '#252225', 
+                      marginBottom: 4,
+                      fontSize: 16,
+                      lineHeight: 1.3
+                    }}>
+                      {issue.title}
+                    </h3>
+                    <p style={{ 
+                      fontSize: 14, 
+                      color: '#6B7280',
+                      lineHeight: 1.4,
+                      margin: 0
+                    }}>
+                      {issue.description}
+                    </p>
                   </div>
                 </button>
               ))}
             </div>
           </div>
-        ) : selectedActivity ? (
-          // Activity detail view
-          <div className="space-y-4">
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 mb-4">
-              <h3 className="font-semibold text-gray-900 mb-2">{selectedActivity.title}</h3>
-              <p className="text-sm text-gray-600 mb-3">{selectedActivity.description}</p>
-              <div className="flex items-center space-x-4 text-sm">
-                <span className="text-gray-600">⏱️ {selectedActivity.duration}</span>
-                <span className="text-gray-600">📋 {selectedActivity.category}</span>
-              </div>
-            </div>
-
-            <div className="bg-blue-50 rounded-xl p-4 mb-4">
-              <h4 className="font-medium text-blue-900 mb-2">Materials Needed:</h4>
-              <ul className="space-y-1">
-                {selectedActivity.materials.map((material, index) => (
-                  <li key={index} className="flex items-start space-x-2">
-                    <span className="text-blue-600 text-sm mt-1">•</span>
-                    <span className="text-sm text-blue-800">{material}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-green-50 rounded-xl p-4 mb-4">
-              <h4 className="font-medium text-green-900 mb-2">Steps:</h4>
-              <ol className="space-y-2">
-                {selectedActivity.steps.map((step, index) => (
-                  <li key={index} className="flex items-start space-x-2">
-                    <span className="text-green-600 text-sm font-medium mt-1">{index + 1}.</span>
-                    <span className="text-sm text-green-800">{step}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
         ) : (
-          // Issue detail view with activity cards
-          <div className="space-y-4">
-            <div className="flex items-center space-x-3 mb-4">
-              <span className="text-3xl">{selectedIssue.icon}</span>
-              <div>
-                <h3 className="font-semibold text-gray-900">{selectedIssue.title}</h3>
-                <p className="text-sm text-gray-600">{selectedIssue.description}</p>
-              </div>
-            </div>
-
-            <div className="bg-blue-50 rounded-xl p-4 mb-4">
-              <h4 className="font-medium text-blue-900 mb-2">Quick Activities to Try:</h4>
-              <ul className="space-y-2">
+          // Issue detail view
+          <div style={{ maxWidth: '100%', margin: '0 auto' }}>
+            <div style={{
+              background: '#fff',
+              borderRadius: 24,
+              border: '1px solid #EEE6E5',
+              padding: '16px',
+              marginBottom: 16
+            }}>
+              <h4 style={{ 
+                fontWeight: 600, 
+                color: '#252225', 
+                marginBottom: 8,
+                fontSize: 16
+              }}>
+                Quick Activities to Try:
+              </h4>
+              <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
                 {selectedIssue.activities.map((activity, index) => (
-                  <li key={index} className="flex items-start space-x-2">
-                    <span className="text-blue-600 text-sm mt-1">•</span>
-                    <span className="text-sm text-blue-800">{activity}</span>
+                  <li key={index} style={{ 
+                    display: 'flex', 
+                    alignItems: 'flex-start', 
+                    gap: 8,
+                    marginBottom: 8,
+                    fontSize: 14,
+                    color: '#6C6C6C',
+                    lineHeight: 1.4
+                  }}>
+                    <span style={{ color: '#6C6C6C', fontSize: 14, marginTop: 2 }}>•</span>
+                    <span>{activity}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-gray-50 rounded-xl p-4 mb-4">
-              <h4 className="font-medium text-gray-900 mb-2">Pro Tips:</h4>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>• Start with one activity and observe the response</li>
-                <li>• Be consistent with the timing and approach</li>
-                <li>• Adjust activities based on your child's preferences</li>
-                <li>• Consider the environment and available tools</li>
+            <div style={{
+              background: '#fff',
+              borderRadius: 24,
+              border: '1px solid #EEE6E5',
+              padding: '16px',
+              marginBottom: 16
+            }}>
+              <h4 style={{ 
+                fontWeight: 600, 
+                color: '#252225', 
+                marginBottom: 8,
+                fontSize: 16
+              }}>
+                Pro Tips:
+              </h4>
+              <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+                <li style={{ fontSize: 14, color: '#6C6C6C', marginBottom: 8, lineHeight: 1.4 }}>• Start with one activity and observe the response</li>
+                <li style={{ fontSize: 14, color: '#6C6C6C', marginBottom: 8, lineHeight: 1.4 }}>• Be consistent with the timing and approach</li>
+                <li style={{ fontSize: 14, color: '#6C6C6C', marginBottom: 8, lineHeight: 1.4 }}>• Adjust activities based on your child's preferences</li>
+                <li style={{ fontSize: 14, color: '#6C6C6C', lineHeight: 1.4 }}>• Consider the environment and available tools</li>
               </ul>
             </div>
 
-            <div className="border-t pt-4">
-              <h4 className="font-medium text-gray-900 mb-3">Ready to try an activity?</h4>
-              <div className="space-y-3">
-                {selectedIssue.activityCards.map((activity) => (
-                  <button
-                    key={activity.id}
-                    onClick={() => handleActivitySelect(activity)}
-                    className="w-full text-left p-4 border border-gray-200 rounded-xl hover:border-green-300 hover:bg-green-50 transition-all duration-200"
-                  >
-                    <div className="flex items-start space-x-3">
-                      <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-2 rounded-lg">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            <div style={{ paddingTop: 16 }}>
+              <h4 style={{ 
+                fontWeight: 600, 
+                color: '#252225', 
+                marginBottom: 12,
+                fontSize: 16
+              }}>
+                Ready to try an activity?
+              </h4>
+              {loadingActivities ? (
+                <div style={{ textAlign: 'center', padding: '20px', color: '#6B7280' }}>
+                  Loading personalized activities...
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  {personalizedActivities.map((activity) => (
+                    <div key={activity.id} style={{ 
+                      borderRadius: 24, 
+                      background: '#fff', 
+                      boxShadow: '0 2px 8px 0 rgba(44, 62, 80, 0.06)', 
+                      padding: '16px',
+                      border: '1px solid #EEE6E5'
+                    }}>
+                      <h3 style={{ 
+                        color: '#252225', 
+                        fontWeight: 600, 
+                        fontSize: 18,
+                        margin: '0 0 8px 0',
+                        lineHeight: 1.3
+                      }}>
+                        {activity.title}
+                      </h3>
+                      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
+                        <img src="/Icons/target.svg" alt="target" style={{ width: 18, height: 18, marginRight: 8, color: '#3D3A3D' }} />
+                        <span style={{ color: '#252225', fontSize: 15, fontWeight: 400 }}>{activity.context}</span>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
+                        <svg fill="none" stroke="#3D3A3D" viewBox="0 0 24 24" style={{ width: 16, height: 16, marginRight: 4 }}>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
+                        <span style={{ color: '#252225', fontSize: 15 }}>{activity.duration_minutes} min</span>
                       </div>
-                      <div className="flex-1">
-                        <h3 className="font-medium text-gray-900 mb-1">{activity.title}</h3>
-                        <p className="text-sm text-gray-600 mb-2">{activity.description}</p>
-                        <div className="flex items-center space-x-3 text-xs text-gray-500">
-                          <span>⏱️ {activity.duration}</span>
-                          <span>📋 {activity.category}</span>
-                        </div>
-                      </div>
+                      <button 
+                        onClick={() => handleStartActivity(activity)}
+                        style={{ 
+                          height: 40, 
+                          width: '100%', 
+                          background: '#fff', 
+                          color: '#252225', 
+                          fontWeight: 600, 
+                          borderRadius: 16, 
+                          fontSize: 16, 
+                          border: '1px solid #EEE6E5',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.borderColor = '#367A87'
+                          e.currentTarget.style.background = '#F0F9FF'
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.borderColor = '#EEE6E5'
+                          e.currentTarget.style.background = '#fff'
+                        }}
+                      >
+                        Start activity
+                      </button>
                     </div>
-                  </button>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-        )}
-      </div>
-
-      {/* Footer */}
-      <div className="flex items-center justify-between p-4 border-t border-gray-200 bg-white">
-        <button
-          onClick={onClose}
-          className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-        >
-          Close
-        </button>
-        {selectedActivity && (
-          <button
-            onClick={() => {
-              // Here you could integrate with the activity system
-              console.log('Starting activity:', selectedActivity.title)
-            }}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Start Activity
-          </button>
         )}
       </div>
     </div>

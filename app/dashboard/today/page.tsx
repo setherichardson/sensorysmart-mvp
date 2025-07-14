@@ -1215,6 +1215,8 @@ export default function TodayDashboard() {
         <BehaviorHelpModal
           isOpen={behaviorHelpOpen}
           onClose={() => setBehaviorHelpOpen(false)}
+          user={user}
+          assessment={assessment}
         />
 
         {/* Full-width Behavior Help button at bottom */}

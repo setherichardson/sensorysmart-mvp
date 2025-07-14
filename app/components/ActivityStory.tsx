@@ -533,21 +533,81 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
           <div style={{ fontWeight: 600, fontSize: 32, color: '#252225', marginBottom: 32, lineHeight: 1.3 }}>
             {`You're done! How is ${childName || 'your child'} after completing this activity?`}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <button onClick={() => handleRating('dysregulated')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
-              <img src="/Icons/Sad.svg" alt="Dysregulated" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Dysregulated'}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <button onClick={() => handleRating('dysregulated')} disabled={saving} style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              padding: '12px', 
+              fontSize: '16px', 
+              fontWeight: 500, 
+              background: '#fff', 
+              color: '#252225', 
+              border: '1px solid #EEE6E5', 
+              borderRadius: 16, 
+              cursor: 'pointer', 
+              opacity: saving ? 0.6 : 1 
+            }}>
+              <img src="/Icons/Sad.svg" alt="Dysregulated" style={{ width: 24, height: 24, marginRight: 12 }} /> {saving ? 'Saving...' : 'Dysregulated'}
             </button>
-            <button onClick={() => handleRating('distracted')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
-              <img src="/Icons/Distracted.svg" alt="Distracted" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Distracted'}
+            <button onClick={() => handleRating('distracted')} disabled={saving} style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              padding: '12px', 
+              fontSize: '16px', 
+              fontWeight: 500, 
+              background: '#fff', 
+              color: '#252225', 
+              border: '1px solid #EEE6E5', 
+              borderRadius: 16, 
+              cursor: 'pointer', 
+              opacity: saving ? 0.6 : 1 
+            }}>
+              <img src="/Icons/Distracted.svg" alt="Distracted" style={{ width: 24, height: 24, marginRight: 12 }} /> {saving ? 'Saving...' : 'Distracted'}
             </button>
-            <button onClick={() => handleRating('neutral')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
-              <img src="/Icons/meh.svg" alt="Neutral" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Neutral'}
+            <button onClick={() => handleRating('neutral')} disabled={saving} style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              padding: '12px', 
+              fontSize: '16px', 
+              fontWeight: 500, 
+              background: '#fff', 
+              color: '#252225', 
+              border: '1px solid #EEE6E5', 
+              borderRadius: 16, 
+              cursor: 'pointer', 
+              opacity: saving ? 0.6 : 1 
+            }}>
+              <img src="/Icons/meh.svg" alt="Neutral" style={{ width: 24, height: 24, marginRight: 12 }} /> {saving ? 'Saving...' : 'Neutral'}
             </button>
-            <button onClick={() => handleRating('calmer')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
-              <img src="/Icons/Calmer.svg" alt="Calmer" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Calmer'}
+            <button onClick={() => handleRating('calmer')} disabled={saving} style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              padding: '12px', 
+              fontSize: '16px', 
+              fontWeight: 500, 
+              background: '#fff', 
+              color: '#252225', 
+              border: '1px solid #EEE6E5', 
+              borderRadius: 16, 
+              cursor: 'pointer', 
+              opacity: saving ? 0.6 : 1 
+            }}>
+              <img src="/Icons/Calmer.svg" alt="Calmer" style={{ width: 24, height: 24, marginRight: 12 }} /> {saving ? 'Saving...' : 'Calmer'}
             </button>
-            <button onClick={() => handleRating('regulated')} disabled={saving} style={{ ...ratingBtnStyle, fontSize: 24, color: '#252225', opacity: saving ? 0.6 : 1 }}>
-              <img src="/Icons/smile.svg" alt="Regulated" style={{ width: 32, height: 32, marginRight: 16 }} /> {saving ? 'Saving...' : 'Regulated'}
+            <button onClick={() => handleRating('regulated')} disabled={saving} style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              padding: '12px', 
+              fontSize: '16px', 
+              fontWeight: 500, 
+              background: '#fff', 
+              color: '#252225', 
+              border: '1px solid #EEE6E5', 
+              borderRadius: 16, 
+              cursor: 'pointer', 
+              opacity: saving ? 0.6 : 1 
+            }}>
+              <img src="/Icons/smile.svg" alt="Regulated" style={{ width: 24, height: 24, marginRight: 12 }} /> {saving ? 'Saving...' : 'Regulated'}
             </button>
           </div>
         </div>
@@ -613,30 +673,20 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
             {formatTime(timer)}
           </div>
         )}
-        {/* Show "Next Step" button when timer runs out */}
-        {timer === null && currentStepData && (
-          <div style={{ marginTop: 16 }}>
-            <button 
-              onClick={handleNextStep}
-              style={{ 
-                padding: '12px 24px', 
-                background: '#367A87', 
-                color: '#fff', 
-                border: 'none', 
-                borderRadius: 12, 
-                fontWeight: 600, 
-                fontSize: 16 
-              }}
-            >
-              Next Step
-            </button>
-          </div>
-        )}
+
       </div>
 
       {/* Navigation or Rating Buttons */}
-      <div style={{ marginTop: 'auto', padding: 24 }}>
-        <div style={{ display: 'flex', gap: 8 }}>
+      <div style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: '24px 24px calc(24px + env(safe-area-inset-bottom))',
+        background: 'linear-gradient(to top, #F6F6F6 0%, rgba(246, 246, 246, 0.9) 80%, transparent 100%)',
+        zIndex: 10
+      }}>
+        <div style={{ display: 'flex', gap: 8, maxWidth: 480, margin: '0 auto' }}>
           {currentStep > 0 && (
             <button onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))} style={{ flex: 1, padding: '16px 0', background: '#fff', color: '#252225', border: '1px solid #EEE6E5', borderRadius: 16, fontWeight: 600, fontSize: 16 }}>Previous</button>
           )}
@@ -644,12 +694,67 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
           {isLastStep ? (
             <div style={{ width: '100%' }}>
               <div style={{ fontWeight: 600, fontSize: 20, marginBottom: 16 }}>How’d {childName || 'your child'} do?</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                <button onClick={() => handleRating('dysregulated')} style={ratingBtnStyle}><span style={{ fontSize: 28, marginRight: 12 }}>☹️</span> Dysregulated</button>
-                <button onClick={() => handleRating('distracted')} style={ratingBtnStyle}><span style={{ fontSize: 28, marginRight: 12 }}>🙁</span> Distracted</button>
-                <button onClick={() => handleRating('neutral')} style={ratingBtnStyle}><span style={{ fontSize: 28, marginRight: 12 }}>😐</span> Neutral</button>
-                <button onClick={() => handleRating('calmer')} style={ratingBtnStyle}><span style={{ fontSize: 28, marginRight: 12 }}>🙂</span> Calmer</button>
-                <button onClick={() => handleRating('regulated')} style={ratingBtnStyle}><span style={{ fontSize: 28, marginRight: 12 }}>😊</span> Regulated</button>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <button onClick={() => handleRating('dysregulated')} style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  padding: '12px', 
+                  fontSize: '16px', 
+                  fontWeight: 500, 
+                  background: '#fff', 
+                  color: '#252225', 
+                  border: '1px solid #EEE6E5', 
+                  borderRadius: 16, 
+                  cursor: 'pointer' 
+                }}><span style={{ fontSize: 20, marginRight: 12 }}>☹️</span> Dysregulated</button>
+                <button onClick={() => handleRating('distracted')} style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  padding: '12px', 
+                  fontSize: '16px', 
+                  fontWeight: 500, 
+                  background: '#fff', 
+                  color: '#252225', 
+                  border: '1px solid #EEE6E5', 
+                  borderRadius: 16, 
+                  cursor: 'pointer' 
+                }}><span style={{ fontSize: 20, marginRight: 12 }}>🙁</span> Distracted</button>
+                <button onClick={() => handleRating('neutral')} style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  padding: '12px', 
+                  fontSize: '16px', 
+                  fontWeight: 500, 
+                  background: '#fff', 
+                  color: '#252225', 
+                  border: '1px solid #EEE6E5', 
+                  borderRadius: 16, 
+                  cursor: 'pointer' 
+                }}><span style={{ fontSize: 20, marginRight: 12 }}>😐</span> Neutral</button>
+                <button onClick={() => handleRating('calmer')} style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  padding: '12px', 
+                  fontSize: '16px', 
+                  fontWeight: 500, 
+                  background: '#fff', 
+                  color: '#252225', 
+                  border: '1px solid #EEE6E5', 
+                  borderRadius: 16, 
+                  cursor: 'pointer' 
+                }}><span style={{ fontSize: 20, marginRight: 12 }}>🙂</span> Calmer</button>
+                <button onClick={() => handleRating('regulated')} style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  padding: '12px', 
+                  fontSize: '16px', 
+                  fontWeight: 500, 
+                  background: '#fff', 
+                  color: '#252225', 
+                  border: '1px solid #EEE6E5', 
+                  borderRadius: 16, 
+                  cursor: 'pointer' 
+                }}><span style={{ fontSize: 20, marginRight: 12 }}>😊</span> Regulated</button>
               </div>
             </div>
           ) : (
