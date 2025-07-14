@@ -348,13 +348,12 @@ export default function CoachPage() {
         <div className="coach-content">
           {/* Suggestions - Show when not in chat modal */}
           {!isChatModalOpen && (
-            <div className="suggestions-grid" style={{ marginTop: 12, marginBottom: 12 }}>
+            <div className="suggestions-grid">
               {suggestedTopics.map((suggestion, index) => (
                 <button
                   key={index}
                   onClick={() => handleSuggestionClick(suggestion)}
                   className={`suggestion-card ${visibleSuggestions.includes(index) ? 'suggestion-visible' : 'suggestion-hidden'}`}
-                  style={{ fontSize: '16px', width: '100%', marginBottom: 12, borderRadius: 24 }}
                 >
                   {suggestion}
                 </button>
