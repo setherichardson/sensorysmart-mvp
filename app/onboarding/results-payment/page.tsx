@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 import type { Profile, Assessment } from '@/lib/supabase/client'
+import { PRODUCTS } from '@/lib/stripe'
+import { loadStripe } from '@stripe/stripe-js'
 
 export default function ResultsPayment() {
   const router = useRouter()
@@ -14,13 +16,6 @@ export default function ResultsPayment() {
   const [loading, setLoading] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState('monthly')
-  const [formData, setFormData] = useState({
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
-    name: '',
-    email: ''
-  })
   const [error, setError] = useState('')
 
   useEffect(() => {
@@ -79,13 +74,15 @@ export default function ResultsPayment() {
       price: 9.99,
       period: 'month',
       savings: null,
-      popular: false
+      popular: false,
+      stripePriceId: PRODUCTS.monthly.stripePriceId
     },
     yearly: {
       price: 99.99,
       period: 'year',
       savings: 'Save 17%',
-      popular: true
+      popular: true,
+      stripePriceId: PRODUCTS.yearly.stripePriceId
     }
   }
 
@@ -238,20 +235,46 @@ export default function ResultsPayment() {
     return null
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsProcessing(true)
+    setError('')
     
-    // Simulate payment processing
-    setTimeout(() => {
+    try {
+      const selectedPlanData = plans[selectedPlan as keyof typeof plans]
+      
+      // Create checkout session
+      const response = await fetch('/api/billing', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          priceId: selectedPlanData.stripePriceId,
+          successUrl: `${window.location.origin}/dashboard/today?success=true`,
+          cancelUrl: `${window.location.origin}/onboarding/results-payment?canceled=true`,
+        }),
+      })
+
+      const { sessionId, error: apiError } = await response.json()
+
+      if (apiError) {
+        throw new Error(apiError)
+      }
+
+      // Redirect to Stripe Checkout
+      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+      if (stripe) {
+        const { error } = await stripe.redirectToCheckout({ sessionId })
+        if (error) {
+          throw new Error(error.message)
+        }
+      }
+    } catch (err) {
+      console.error('Payment error:', err)
+      setError('Failed to process payment. Please try again.')
       setIsProcessing(false)
-      router.push('/dashboard/today')
-    }, 2000)
+    }
   }
 
   // Loading state
@@ -386,6 +409,11 @@ export default function ResultsPayment() {
                 }`}
                 onClick={() => setSelectedPlan(key)}
               >
+                {plan.popular && (
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-[#367A87] text-white px-3 py-1 rounded-full text-xs font-medium">
+                    {plan.savings}
+                  </div>
+                )}
                 <div className="text-center">
                   <div className={`text-2xl font-bold ${
                     selectedPlan === key ? 'text-[#367A87]' : 'text-[#252225]'
@@ -405,115 +433,49 @@ export default function ResultsPayment() {
 
         {/* Payment Form */}
         <div className="bg-white rounded-2xl p-6 shadow-lg">
-          <h2 className="text-xl font-medium text-gray-900 mb-4">Payment details</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">
-                Card Number
-              </label>
-              <input
-                type="text"
-                name="cardNumber"
-                value={formData.cardNumber}
-                onChange={handleInputChange}
-                placeholder="1234 5678 9012 3456"
-                className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 font-medium"
-                required
-              />
+          <h2 className="text-xl font-medium text-gray-900 mb-4">Start your subscription</h2>
+          
+          {/* Error Display */}
+          {error && (
+            <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-700 text-sm">{error}</p>
             </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-1">
-                  Expiry Date
-                </label>
-                <input
-                  type="text"
-                  name="expiryDate"
-                  value={formData.expiryDate}
-                  onChange={handleInputChange}
-                  placeholder="MM/YY"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 font-medium"
-                  required
-                />
+          )}
+
+          {/* Total */}
+          <div className="border-t pt-4 mb-6">
+            <div className="flex justify-between items-center text-lg font-bold">
+              <span className="text-[#252225]">Total:</span>
+              <span className="text-[#252225]">
+                ${plans[selectedPlan as keyof typeof plans].price}
+                {selectedPlan === 'monthly' ? '/mo' : '/year'}
+              </span>
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            onClick={handleSubmit}
+            disabled={isProcessing}
+            className="w-full py-4 px-6 rounded-2xl font-bold text-base hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            style={{ backgroundColor: '#367A87', color: 'white' }}
+          >
+            {isProcessing ? (
+              <div className="flex items-center justify-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
               </div>
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-1">
-                  CVV
-                </label>
-                <input
-                  type="text"
-                  name="cvv"
-                  value={formData.cvv}
-                  onChange={handleInputChange}
-                  placeholder="123"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 font-medium"
-                  required
-                />
-              </div>
-            </div>
+            ) : (
+              `Start ${profile.child_name}'s sensory journey`
+            )}
+          </button>
 
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">
-                Name on Card
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="John Doe"
-                className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 font-medium"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">
-                Email Address
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="john@example.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 font-medium"
-                required
-              />
-            </div>
-
-            {/* Total */}
-            <div className="border-t pt-4">
-              <div className="flex justify-between items-center text-lg font-bold">
-                <span className="text-[#252225]">Total:</span>
-                <span className="text-[#252225]">
-                  ${plans[selectedPlan as keyof typeof plans].price}
-                  {selectedPlan === 'monthly' ? '/mo' : '/year'}
-                </span>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isProcessing}
-              className="w-full py-4 px-6 rounded-2xl font-bold text-base hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              style={{ backgroundColor: '#367A87', color: 'white' }}
-            >
-              {isProcessing ? (
-                <div className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Processing...
-                </div>
-              ) : (
-                `Start ${profile.child_name}'s sensory journey`
-              )}
-            </button>
-          </form>
+          <p className="text-xs text-gray-500 mt-4 text-center">
+            You&apos;ll be redirected to Stripe to complete your payment securely
+          </p>
         </div>
 
         {/* Disclaimer Blurb */}

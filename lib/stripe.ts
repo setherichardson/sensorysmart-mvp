@@ -24,14 +24,14 @@ export const STRIPE_CONFIG = {
 export const PRODUCTS = {
   monthly: {
     name: 'Sensory Smart Monthly',
-    price: 1999, // $19.99 in cents
+    price: 999, // $9.99 in cents
     currency: 'usd',
     interval: 'month',
     stripePriceId: 'price_monthly_test', // You'll get this from Stripe dashboard
   },
   yearly: {
     name: 'Sensory Smart Yearly',
-    price: 19999, // $199.99 in cents (2 months free)
+    price: 9999, // $99.99 in cents (17% savings)
     currency: 'usd',
     interval: 'year',
     stripePriceId: 'price_yearly_test', // You'll get this from Stripe dashboard
