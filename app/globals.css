@@ -1690,7 +1690,7 @@ body {
 
 .chat-input-container {
   position: fixed;
-  bottom: 0;
+  bottom: 4rem; /* Position above bottom navigation */
   left: 0;
   right: 0;
   background: #F6F6F6;
@@ -1970,7 +1970,7 @@ body {
   }
 
   .coach-container {
-    padding-bottom: 6rem;
+    padding-bottom: 8rem; /* Account for chat input + bottom nav */
   }
 
   .chat-input-container {
@@ -1983,7 +1983,7 @@ body {
   }
 
   .coach-content {
-    padding-bottom: 6rem;
+    padding-bottom: 8rem; /* Account for chat input + bottom nav */
   }
 
   .suggestions-container {
