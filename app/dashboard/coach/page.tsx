@@ -316,7 +316,13 @@ export default function CoachPage() {
         {/* Header - Always visible */}
         <div className="coach-header">
           <div className="coach-header-nav">
-            <h1 className="coach-title">Coach</h1>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <img src="/Icons/sensory-coach.png" alt="Sensory Coach Mascot" style={{ width: 48, height: 48, marginRight: 8 }} />
+              <div>
+                <h1 className="coach-title" style={{ fontSize: 28, fontWeight: 700, color: '#252225', margin: 0, lineHeight: 1 }}>Sensory Coach</h1>
+                <div style={{ fontSize: 15, color: '#6B7280', fontWeight: 400, marginTop: 2, lineHeight: 1.2 }}>Expert sensory guidance whenever you need it</div>
+              </div>
+            </div>
           </div>
           {!assessment && (
             <div className="mt-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
@@ -335,19 +341,17 @@ export default function CoachPage() {
         <div className="coach-content">
           {/* Suggestions - Show when not in chat modal */}
           {!isChatModalOpen && (
-            <div className="suggestions-container">
-              <div className="suggestions-grid">
-                {suggestedTopics.map((suggestion, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleSuggestionClick(suggestion)}
-                    className={`suggestion-card ${visibleSuggestions.includes(index) ? 'suggestion-visible' : 'suggestion-hidden'}`}
-                    style={{ fontSize: '16px' }}
-                  >
-                    {suggestion}
-                  </button>
-                ))}
-              </div>
+            <div className="suggestions-grid" style={{ marginTop: 24, marginBottom: 24 }}>
+              {suggestedTopics.map((suggestion, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                  className={`suggestion-card ${visibleSuggestions.includes(index) ? 'suggestion-visible' : 'suggestion-hidden'}`}
+                  style={{ fontSize: '16px', width: '100%', marginBottom: 12 }}
+                >
+                  {suggestion}
+                </button>
+              ))}
             </div>
           )}
 
@@ -360,10 +364,11 @@ export default function CoachPage() {
                     ref={inputRef}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="ask coach a question..."
+                    placeholder="Ask coach a question..."
                     className="chat-input"
                     disabled={isTyping}
                     rows={1}
+                    style={{ alignItems: 'center', display: 'flex', paddingTop: 10, paddingBottom: 10 }}
                     onInput={(e) => {
                       const target = e.target as HTMLTextAreaElement;
                       target.style.height = 'auto';
@@ -377,6 +382,7 @@ export default function CoachPage() {
                     type="submit"
                     disabled={!inputValue.trim() || isTyping}
                     className="chat-send-button"
+                    style={{ background: 'linear-gradient(90deg, #3B82F6 0%, #6366F1 100%)', color: 'white', boxShadow: '0 2px 8px rgba(44,62,80,0.10)' }}
                   >
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -439,22 +445,12 @@ export default function CoachPage() {
             borderBottom: '1px solid #EEE6E5',
             flexShrink: 0
           }}>
-            <div style={{ flex: 1 }}>
-              <h1 style={{ 
-                fontSize: '24px', 
-                fontWeight: '600', 
-                color: '#252225',
-                margin: '0 0 4px 0'
-              }}>
-                Coach
-              </h1>
-              <p style={{ 
-                fontSize: '14px', 
-                color: '#6B7280',
-                margin: '0'
-              }}>
-                Chat with your sensory coach
-              </p>
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 12 }}>
+              <img src="/Icons/sensory-coach.png" alt="Sensory Coach Mascot" style={{ width: 48, height: 48, marginRight: 8 }} />
+              <div>
+                <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#252225', margin: 0, lineHeight: 1 }}>Sensory Coach</h1>
+                <div style={{ fontSize: 15, color: '#6B7280', fontWeight: 400, marginTop: 2, lineHeight: 1.2 }}>Expert sensory guidance whenever you need it</div>
+              </div>
             </div>
             <button
               onClick={handleCloseChat}
@@ -537,10 +533,11 @@ export default function CoachPage() {
                     ref={inputRef}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="ask coach a question..."
+                    placeholder="Ask coach a question..."
                     className="chat-input"
                     disabled={isTyping}
                     rows={1}
+                    style={{ alignItems: 'center', display: 'flex', paddingTop: 10, paddingBottom: 10 }}
                     onInput={(e) => {
                       const target = e.target as HTMLTextAreaElement;
                       target.style.height = 'auto';
@@ -554,6 +551,7 @@ export default function CoachPage() {
                     type="submit"
                     disabled={!inputValue.trim() || isTyping}
                     className="chat-send-button"
+                    style={{ background: 'linear-gradient(90deg, #3B82F6 0%, #6366F1 100%)', color: 'white', boxShadow: '0 2px 8px rgba(44,62,80,0.10)' }}
                   >
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
