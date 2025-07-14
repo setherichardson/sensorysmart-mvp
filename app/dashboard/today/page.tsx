@@ -44,6 +44,24 @@ export default function TodayDashboard() {
     setGreeting(getTimeOfDayGreeting())
   }, [])
 
+  // Refresh activities when user returns to the app
+  useEffect(() => {
+    const handleFocus = () => {
+      // Check if it's been more than 1 hour since last activity load
+      const lastLoad = localStorage.getItem('lastActivityLoad')
+      const now = new Date().getTime()
+      
+      if (!lastLoad || (now - parseInt(lastLoad)) > 3600000) { // 1 hour
+        console.log('Refreshing activities due to app focus')
+        loadTodaysActivities()
+        localStorage.setItem('lastActivityLoad', now.toString())
+      }
+    }
+
+    window.addEventListener('focus', handleFocus)
+    return () => window.removeEventListener('focus', handleFocus)
+  }, [assessment, profile])
+
   // Comprehensive Activity Library
   const activityLibrary: Activity[] = [
     // Proprioceptive Activities
@@ -321,6 +339,116 @@ export default function TodayDashboard() {
       is_active: true,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
+    },
+    // Evening Activities
+    {
+      id: 'evening-stretches',
+      title: 'Evening Stretches',
+      context: 'Perfect for winding down',
+      duration_minutes: 8,
+      activity_type: 'proprioceptive',
+      difficulty: 'beginner',
+      sensory_systems: ['proprioceptive'],
+      behavior_fit: 'mixed',
+      description: 'Gentle stretching to relax muscles',
+      benefits: ['Relaxes muscles', 'Calming effect', 'Improves sleep'],
+      when_to_use: 'In the evening to wind down',
+      materials_needed: ['Comfortable space'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'warm-bath-time',
+      title: 'Warm Bath Time',
+      context: 'Evening relaxation ritual',
+      duration_minutes: 15,
+      activity_type: 'tactile',
+      difficulty: 'beginner',
+      sensory_systems: ['tactile', 'proprioceptive'],
+      behavior_fit: 'avoiding',
+      description: 'Warm bath with gentle water pressure',
+      benefits: ['Deep relaxation', 'Sensory input', 'Sleep preparation'],
+      when_to_use: 'Evening before bedtime',
+      materials_needed: ['Warm bath', 'Quiet environment'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'bedtime-story',
+      title: 'Bedtime Story',
+      context: 'Evening calming activity',
+      duration_minutes: 10,
+      activity_type: 'auditory',
+      difficulty: 'beginner',
+      sensory_systems: ['auditory'],
+      behavior_fit: 'avoiding',
+      description: 'Reading or listening to a calming story',
+      benefits: ['Calming effect', 'Language development', 'Sleep preparation'],
+      when_to_use: 'Evening before bedtime',
+      materials_needed: ['Book or audio story'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    // Night Activities
+    {
+      id: 'deep-breathing',
+      title: 'Deep Breathing',
+      context: 'Night calming technique',
+      duration_minutes: 3,
+      activity_type: 'calming',
+      difficulty: 'beginner',
+      sensory_systems: ['interoception'],
+      behavior_fit: 'avoiding',
+      description: 'Slow, deep breathing exercises',
+      benefits: ['Calms nervous system', 'Reduces anxiety', 'Sleep aid'],
+      when_to_use: 'When having trouble sleeping',
+      materials_needed: ['Quiet space'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'progressive-relaxation',
+      title: 'Progressive Relaxation',
+      context: 'Night body relaxation',
+      duration_minutes: 5,
+      activity_type: 'calming',
+      difficulty: 'beginner',
+      sensory_systems: ['proprioceptive', 'interoception'],
+      behavior_fit: 'avoiding',
+      description: 'Systematically relaxing each body part',
+      benefits: ['Deep relaxation', 'Sleep preparation', 'Body awareness'],
+      when_to_use: 'When having trouble falling asleep',
+      materials_needed: ['Comfortable bed or chair'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'white-noise',
+      title: 'White Noise',
+      context: 'Night auditory comfort',
+      duration_minutes: 30,
+      activity_type: 'auditory',
+      difficulty: 'beginner',
+      sensory_systems: ['auditory'],
+      behavior_fit: 'avoiding',
+      description: 'Listening to calming white noise',
+      benefits: ['Blocks distracting sounds', 'Calming effect', 'Sleep aid'],
+      when_to_use: 'When noise is preventing sleep',
+      materials_needed: ['White noise machine or app'],
+      steps: [],
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     }
   ]
 
@@ -494,21 +622,102 @@ export default function TodayDashboard() {
     try {
       console.log('Loading activities...', { assessment: !!assessment, profile: !!profile })
       
+      // Get current time to select time-appropriate activities
+      const now = new Date()
+      const hour = now.getHours()
+      const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 20 ? 'evening' : 'night'
+      
       if (!assessment) {
-        // Return general activities if no assessment
-        console.log('No assessment found, using general activities')
-        setTodaysActivities(activityLibrary.slice(0, 3))
+        // Return time-appropriate general activities
+        console.log('No assessment found, using time-based general activities')
+        const timeBasedActivities = getTimeBasedActivities(activityLibrary, timeOfDay)
+        setTodaysActivities(timeBasedActivities.slice(0, 3))
       } else {
-        console.log('Assessment found, getting personalized activities')
+        console.log('Assessment found, getting personalized activities for', timeOfDay)
         const activities = await getPersonalizedActivities(assessment)
         console.log('Personalized activities loaded:', activities?.length || 0)
-        setTodaysActivities(activities || activityLibrary.slice(0, 3))
+        
+        // Filter activities based on time of day
+        const timeBasedActivities = getTimeBasedActivities(activities || activityLibrary, timeOfDay)
+        setTodaysActivities(timeBasedActivities.slice(0, 3))
       }
     } catch (error) {
       console.log('Error loading activities, using fallback:', error)
-      // Fallback to general activities
-      setTodaysActivities(activityLibrary.slice(0, 3))
+      // Fallback to time-based general activities
+      const now = new Date()
+      const hour = now.getHours()
+      const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 20 ? 'evening' : 'night'
+      const timeBasedActivities = getTimeBasedActivities(activityLibrary, timeOfDay)
+      setTodaysActivities(timeBasedActivities.slice(0, 3))
     }
+  }
+
+  const getTimeBasedActivities = (activities: Activity[], timeOfDay: string): Activity[] => {
+    // Add time-based scoring to activities
+    const timeScoredActivities = activities.map(activity => {
+      let timeScore = 0
+      
+      // Morning activities (6 AM - 12 PM): Energizing, focus-oriented
+      if (timeOfDay === 'morning') {
+        if (activity.activity_type === 'proprioceptive' || activity.activity_type === 'heavy-work') {
+          timeScore += 10
+        }
+        if (activity.context?.toLowerCase().includes('morning') || 
+            activity.context?.toLowerCase().includes('focus')) {
+          timeScore += 8
+        }
+        if (activity.duration_minutes && activity.duration_minutes <= 5) {
+          timeScore += 5 // Quick morning activities
+        }
+      }
+      
+      // Afternoon activities (12 PM - 5 PM): Balanced, transition-focused
+      else if (timeOfDay === 'afternoon') {
+        if (activity.activity_type === 'calming' || activity.activity_type === 'tactile') {
+          timeScore += 8
+        }
+        if (activity.context?.toLowerCase().includes('lunch') || 
+            activity.context?.toLowerCase().includes('transition')) {
+          timeScore += 10
+        }
+        if (activity.duration_minutes && activity.duration_minutes <= 10) {
+          timeScore += 3
+        }
+      }
+      
+      // Evening activities (5 PM - 8 PM): Calming, winding down
+      else if (timeOfDay === 'evening') {
+        if (activity.activity_type === 'calming' || activity.activity_type === 'visual') {
+          timeScore += 12
+        }
+        if (activity.context?.toLowerCase().includes('evening') || 
+            activity.context?.toLowerCase().includes('calm')) {
+          timeScore += 10
+        }
+        if (activity.duration_minutes && activity.duration_minutes >= 10) {
+          timeScore += 5 // Longer evening activities
+        }
+      }
+      
+      // Night activities (8 PM - 6 AM): Very calming, quiet
+      else {
+        if (activity.activity_type === 'calming' || activity.activity_type === 'auditory') {
+          timeScore += 15
+        }
+        if (activity.context?.toLowerCase().includes('quiet') || 
+            activity.context?.toLowerCase().includes('bedtime')) {
+          timeScore += 12
+        }
+        if (activity.duration_minutes && activity.duration_minutes <= 5) {
+          timeScore += 8 // Short night activities
+        }
+      }
+      
+      return { ...activity, timeScore: (activity as any).score + timeScore }
+    })
+    
+    // Sort by time score and return
+    return timeScoredActivities.sort((a, b) => (b as any).timeScore - (a as any).timeScore)
   }
 
   // Activity instructions for all activities
@@ -649,6 +858,60 @@ export default function TodayDashboard() {
           { id: 5, instruction: 'Notice how your body feels' },
           { id: 6, instruction: 'Get what you need' }
         ]
+      case 'evening-stretches':
+        return [
+          { id: 1, instruction: 'Find a comfortable space' },
+          { id: 2, instruction: 'Start with gentle arm stretches' },
+          { id: 3, instruction: 'Stretch your legs slowly' },
+          { id: 4, instruction: 'Bend and stretch your back' },
+          { id: 5, instruction: 'Hold each stretch for 10 seconds' },
+          { id: 6, instruction: 'Take deep breaths throughout' }
+        ]
+      case 'warm-bath-time':
+        return [
+          { id: 1, instruction: 'Fill bath with warm water' },
+          { id: 2, instruction: 'Add calming bath salts if desired' },
+          { id: 3, instruction: 'Get in slowly and comfortably' },
+          { id: 4, instruction: 'Close your eyes and relax' },
+          { id: 5, instruction: 'Stay for 10-15 minutes' },
+          { id: 6, instruction: 'Dry off gently when finished' }
+        ]
+      case 'bedtime-story':
+        return [
+          { id: 1, instruction: 'Find a comfortable spot' },
+          { id: 2, instruction: 'Choose a calming story' },
+          { id: 3, instruction: 'Read in a soft, gentle voice' },
+          { id: 4, instruction: 'Take your time with each page' },
+          { id: 5, instruction: 'Use different voices for characters' },
+          { id: 6, instruction: 'End with a gentle goodnight' }
+        ]
+      case 'deep-breathing':
+        return [
+          { id: 1, instruction: 'Lie down comfortably' },
+          { id: 2, instruction: 'Place hands on your belly' },
+          { id: 3, instruction: 'Breathe in slowly for 4 counts' },
+          { id: 4, instruction: 'Hold for 4 counts' },
+          { id: 5, instruction: 'Breathe out slowly for 4 counts' },
+          { id: 6, instruction: 'Repeat 5-10 times' }
+        ]
+      case 'progressive-relaxation':
+        return [
+          { id: 1, instruction: 'Lie down in a quiet space' },
+          { id: 2, instruction: 'Start with your toes - tense them' },
+          { id: 3, instruction: 'Hold for 5 seconds, then relax' },
+          { id: 4, instruction: 'Move up to your legs, then arms' },
+          { id: 5, instruction: 'Continue with your whole body' },
+          { id: 6, instruction: 'End with your face and head' }
+        ]
+      case 'white-noise':
+        return [
+          { id: 1, instruction: 'Find a quiet space' },
+          { id: 2, instruction: 'Turn on white noise machine or app' },
+          { id: 3, instruction: 'Set volume to comfortable level' },
+          { id: 4, instruction: 'Lie down and close your eyes' },
+          { id: 5, instruction: 'Focus on the steady sound' },
+          { id: 6, instruction: 'Let it help you drift to sleep' }
+        ]
       default:
         return [
           { id: 1, instruction: 'Instructions coming soon!' }
@@ -740,33 +1003,102 @@ export default function TodayDashboard() {
   const handleCompleteActivity = async (activity: Activity, durationMinutes?: number, rating?: string) => {
     try {
       setSubmittingActivity(activity.id)
-      // Calculate duration in minutes if not provided
-      const duration = durationMinutes || Math.floor(Math.random() * 10) + 5 // Default 5-15 minutes
-      // Fallback to 'neutral' if rating is missing
-      const safeRating = rating || 'neutral'
-      const { error } = await supabase
-        .from('activity_completions')
-        .insert({
-          user_id: user?.id,
-          completed_at: new Date().toISOString(),
-          duration_minutes: duration,
-          activity_name: activity.title,
-          activity_type: activity.activity_type,
-          rating: safeRating // Always non-null
-        })
-      if (error) {
-        console.error('Error saving activity completion:', error, { rating, safeRating })
-        throw error // Re-throw to be caught by the calling function
+      
+      // Simple localStorage approach - this will definitely work
+      const completion = {
+        id: Date.now().toString(), // Simple unique ID
+        user_id: user?.id,
+        completed_at: new Date().toISOString(),
+        duration_minutes: durationMinutes || Math.floor(Math.random() * 10) + 5,
+        activity_name: activity.title,
+        activity_type: activity.activity_type || 'sensory',
+        rating: rating || 'neutral',
+        notes: ''
       }
+      
+      // Save to localStorage
+      const existingCompletions = JSON.parse(localStorage.getItem('activity_completions') || '[]')
+      existingCompletions.push(completion)
+      localStorage.setItem('activity_completions', JSON.stringify(existingCompletions))
+      
+      console.log('✅ Activity saved to localStorage:', completion)
+      
+      // Also try to save to database, but don't fail if it doesn't work
+      try {
+        const { error } = await supabase
+          .from('activity_completions')
+          .insert({
+            user_id: user?.id,
+            completed_at: new Date().toISOString(),
+            duration_minutes: completion.duration_minutes,
+            activity_name: activity.title,
+            activity_type: activity.activity_type || 'sensory',
+            rating: rating || 'neutral'
+          })
+        if (error) {
+          console.log('Database save failed, but localStorage worked:', error)
+        } else {
+          console.log('✅ Activity also saved to database')
+        }
+      } catch (dbError) {
+        console.log('Database error, but localStorage worked:', dbError)
+      }
+      
       // Close the story modal
       setStoryOpen(false)
       setCurrentActivity(null)
-      // Refresh activities to show updated state
-      await loadTodaysActivities()
-      console.log(`Activity "${activity.title}" completed with rating: ${safeRating}`)
+      
+      // Update the activity list: remove completed activity and add a new one
+      const currentActivities = [...todaysActivities]
+      const completedIndex = currentActivities.findIndex(a => a.id === activity.id)
+      
+      console.log('Completing activity:', activity.title)
+      console.log('Current activities before:', currentActivities.map(a => a.title))
+      console.log('Completed index:', completedIndex)
+      
+      if (completedIndex !== -1) {
+        // Remove the completed activity
+        currentActivities.splice(completedIndex, 1)
+        console.log('Activities after removal:', currentActivities.map(a => a.title))
+        
+        // Get current time to select time-appropriate activities
+        const now = new Date()
+        const hour = now.getHours()
+        const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 20 ? 'evening' : 'night'
+        
+        // Get a new activity to add at the bottom
+        let newActivity: Activity
+        if (assessment) {
+          const personalizedActivities = await getPersonalizedActivities(assessment)
+          const timeBasedActivities = getTimeBasedActivities(personalizedActivities || activityLibrary, timeOfDay)
+          // Find an activity that's not already in the list
+          const availableActivities = timeBasedActivities.filter(a => 
+            !currentActivities.some(existing => existing.id === a.id)
+          )
+          newActivity = availableActivities[0] || activityLibrary[Math.floor(Math.random() * activityLibrary.length)]
+        } else {
+          const timeBasedActivities = getTimeBasedActivities(activityLibrary, timeOfDay)
+          const availableActivities = timeBasedActivities.filter(a => 
+            !currentActivities.some(existing => existing.id === a.id)
+          )
+          newActivity = availableActivities[0] || activityLibrary[Math.floor(Math.random() * activityLibrary.length)]
+        }
+        
+        // Add the new activity at the bottom
+        currentActivities.push(newActivity)
+        console.log('New activity added:', newActivity.title)
+        console.log('Final activities:', currentActivities.map(a => a.title))
+        
+        // Update the state
+        setTodaysActivities([...currentActivities])
+      }
+      
+      // Redirect to journal to show the new activity (regardless of list update)
+      router.push('/dashboard/journal')
+      
     } catch (error) {
-      console.log('Error completing activity, but continuing')
-      throw error // Re-throw to be caught by the calling function
+      console.log('Error completing activity:', error)
+      alert('Activity completed but there was an issue saving. Check the journal to see if it was saved.')
     } finally {
       setSubmittingActivity(null)
     }

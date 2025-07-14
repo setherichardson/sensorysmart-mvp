@@ -49,20 +49,29 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen" style={{ background: '#F6F6F6' }}>
+      <div className="mx-auto w-full max-w-md px-4 py-8">
+        {/* Back Button */}
+        <div className="mb-8">
+          <Link href="/" className="inline-flex items-center text-[#6C6C6C] hover:text-[#252225]">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </Link>
+        </div>
+
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="mb-8">
+          <h1 className="text-[28px] font-medium text-[#252225] mb-2">
             Create Account
           </h1>
-          <p className="text-gray-600">
+          <p className="text-[18px] text-[#6C6C6C] font-normal">
             Join SensorySmart to start your child's sensory journey
           </p>
         </div>
 
         {/* Sign Up Form */}
-        <div className="glass-card p-8 mb-6">
+        <div className="mb-6">
           <form onSubmit={handleSignUp} className="space-y-6">
             {error && (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4">
@@ -71,7 +80,7 @@ export default function SignUpPage() {
             )}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-[#252225] mb-2">
                 Email Address
               </label>
               <input
@@ -79,7 +88,7 @@ export default function SignUpPage() {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500"
+                className="w-full px-4 py-3 bg-white border border-[#EEE6E5] rounded-[16px] focus:ring-2 focus:ring-[#367A87] focus:border-transparent text-[#252225] placeholder-[#6C6C6C]"
                 placeholder="Enter your email"
                 required
                 disabled={loading}
@@ -87,7 +96,7 @@ export default function SignUpPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-[#252225] mb-2">
                 Password
               </label>
               <input
@@ -95,13 +104,13 @@ export default function SignUpPage() {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500"
+                className="w-full px-4 py-3 bg-white border border-[#EEE6E5] rounded-[16px] focus:ring-2 focus:ring-[#367A87] focus:border-transparent text-[#252225] placeholder-[#6C6C6C]"
                 placeholder="Create a password"
                 required
                 disabled={loading}
                 minLength={6}
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-[#6C6C6C] mt-1">
                 Password must be at least 6 characters
               </p>
             </div>
@@ -109,7 +118,7 @@ export default function SignUpPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full gradient-btn text-white py-3 px-4 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full h-12 bg-[#367A87] text-white rounded-[16px] font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <div className="flex items-center justify-center">
@@ -125,19 +134,12 @@ export default function SignUpPage() {
 
         {/* Sign In Link */}
         <div className="text-center">
-          <p className="text-gray-600">
+          <p className="text-[18px] text-[#6C6C6C] font-normal">
             Already have an account?{' '}
-            <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+            <Link href="/login" className="text-[#367A87] hover:text-[#2A5F6A] font-medium">
               Sign In
             </Link>
           </p>
-        </div>
-
-        {/* Back to Home */}
-        <div className="text-center mt-4">
-          <Link href="/" className="text-gray-500 hover:text-gray-700 text-sm">
-            ← Back to Home
-          </Link>
         </div>
       </div>
     </div>

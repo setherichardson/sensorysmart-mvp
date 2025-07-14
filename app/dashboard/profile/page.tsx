@@ -188,12 +188,13 @@ export default function ProfilePage() {
             <div className="profile-section-header mb-4">
               <h2 className="profile-section-title hig-title-2">Account</h2>
             </div>
-            <div className="flex gap-4 mb-2">
-              <Link href="/dashboard/billing" style={{ flex: 1, height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Billing</Link>
+            <div className="flex flex-col gap-3 mb-2">
+              <a href="mailto:help@getsensorysmart.com" style={{ width: '100%', height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Support</a>
+              <Link href="/dashboard/billing" style={{ width: '100%', height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Billing</Link>
               <button
                 onClick={handleSignOut}
                 disabled={signingOut}
-                style={{ flex: 1, height: 40, border: '1px solid #A7230C', borderRadius: 16, background: '#fff', color: '#A7230C', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                style={{ width: '100%', height: 40, border: '1px solid #A7230C', borderRadius: 16, background: '#fff', color: '#A7230C', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
                 {signingOut ? 'Signing out...' : 'Sign out'}
               </button>

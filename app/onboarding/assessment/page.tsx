@@ -729,65 +729,56 @@ export default function Assessment() {
   const overallProgress = Math.round(33 + (progress * 0.34)) // 33% from onboarding + 34% for assessment
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#F6F6F6' }}>
       <div className="max-w-md mx-auto">
-        {/* Header with Back Button */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+        {/* Header with Back Button and Question Number */}
+        <div className="flex items-center justify-between px-4 pt-8 pb-4">
           <button
             onClick={handleBack}
-            className="flex items-center text-gray-600 text-base font-medium"
+            className="inline-flex items-center text-[#6C6C6C] hover:text-[#252225] focus:outline-none"
             disabled={submitting}
+            style={{ fontSize: 24 }}
           >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back
+            <span style={{ fontSize: 24, lineHeight: 1 }}>←</span>
           </button>
+          <span className="text-[#6C6C6C] text-base font-normal">Question {currentQ} of 38</span>
         </div>
 
-        <div className="px-6 py-6">
-          {/* Progress Section */}
-          <div className="mb-6">
-            <div className="flex justify-between items-center mb-3">
-              <span className="text-gray-600 text-sm">Question {currentQ} of 38</span>
-            </div>
-            {/* Progress Bar */}
-            <div className="bg-gray-200 h-2 rounded-full overflow-hidden">
-              <div 
-                className="bg-black h-full transition-all duration-300 ease-out rounded-full"
-                style={{ width: `${overallProgress}%` }}
-              />
-            </div>
-          </div>
-
+        <div className="px-4 py-6">
           {/* Error Message */}
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
               <p className="text-red-600 text-sm">{error}</p>
             </div>
           )}
-          
-          {/* Question */}
-          <h2 className="text-xl font-bold mb-8 leading-relaxed text-gray-900">
-            {currentQuestion.text}
-          </h2>
+          {/* Title */}
+          <h1
+            className="text-[26px] text-[#252225] mb-8 text-left font-medium"
+            style={{ letterSpacing: '-1px', lineHeight: 'calc(1.2em - 2px)' }}
+          >
+            {currentQuestion?.text}
+          </h1>
 
           {/* Options */}
-          <div className="space-y-2 mb-10">
-            {currentQuestion.options.map((option) => (
-              <button
-                key={option.score}
-                className={`w-full p-3 text-left rounded-2xl border transition-all duration-200 text-sm ${
-                  answers[currentQ] === option.score
-                    ? 'border-black bg-gray-50 text-black font-medium' 
-                    : 'border-gray-200 hover:border-gray-300 text-gray-700'
-                }`}
-                onClick={() => handleAnswer(option.score)}
-                disabled={submitting}
-              >
-                {option.text}
-              </button>
-            ))}
+          <div className="space-y-3 mb-10">
+            {currentQuestion.options.map((option) => {
+              const isSelected = answers[currentQ] === option.score
+              return (
+                <button
+                  key={option.score}
+                  className={`w-full py-3 px-4 rounded-[16px] border transition-all duration-200 text-[16px] font-normal text-center flex justify-center items-center ${
+                    isSelected
+                      ? 'border-2 border-[#367A87] bg-white text-[#252225] font-semibold shadow-sm animate-fade-in'
+                      : 'border border-[#EEE6E5] bg-white text-[#252225] hover:border-[#367A87]'
+                  }`}
+                  style={{ transition: 'border-color 120ms cubic-bezier(0.4,0,0.2,1), border-width 120ms cubic-bezier(0.4,0,0.2,1)' }}
+                  onClick={() => handleAnswer(option.score)}
+                  disabled={submitting}
+                >
+                  {option.text}
+                </button>
+              )
+            })}
           </div>
 
           {/* Progress Indicator */}

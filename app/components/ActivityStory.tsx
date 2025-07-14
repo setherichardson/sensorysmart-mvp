@@ -205,15 +205,8 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
       interval = setInterval(() => {
         setTimer(prev => {
           if (prev === null || prev <= 1) {
-            // Step completed, move to next
-            setTimeout(() => {
-              if (currentStep < steps.length - 1) {
-                setCurrentStep(prev => prev + 1)
-              } else {
-                // All steps completed
-                onComplete()
-              }
-            }, 1000)
+            // Step completed, but don't auto-advance to rating
+            // Just stop the timer and wait for user to manually advance
             return null
           }
           return prev - 1
@@ -224,7 +217,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
     return () => {
       if (interval) clearInterval(interval)
     }
-  }, [timer, isPaused, currentStep, steps.length, onComplete])
+  }, [timer, isPaused, currentStep, steps.length])
 
   const loadActivity = async () => {
     try {
@@ -612,6 +605,31 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
         {currentStepData && (
           <div style={{ fontSize: 32, fontWeight: 500, color: '#252225', textAlign: 'left', lineHeight: 1.2 }}>
             {currentStepData.description}
+          </div>
+        )}
+        {/* Timer display */}
+        {timer !== null && timer > 0 && (
+          <div style={{ marginTop: 16, fontSize: 18, color: '#367A87', fontWeight: 600 }}>
+            {formatTime(timer)}
+          </div>
+        )}
+        {/* Show "Next Step" button when timer runs out */}
+        {timer === null && currentStepData && (
+          <div style={{ marginTop: 16 }}>
+            <button 
+              onClick={handleNextStep}
+              style={{ 
+                padding: '12px 24px', 
+                background: '#367A87', 
+                color: '#fff', 
+                border: 'none', 
+                borderRadius: 12, 
+                fontWeight: 600, 
+                fontSize: 16 
+              }}
+            >
+              Next Step
+            </button>
           </div>
         )}
       </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 
@@ -109,8 +110,8 @@ export default function OnboardingPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#F6F6F6' }}>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: '#367A87' }}></div>
       </div>
     )
   }
@@ -120,109 +121,124 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex flex-col" style={{ background: '#F6F6F6' }}>
+      <div className="mx-auto w-full max-w-md px-4 py-8">
+        {/* Back button */}
+
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome to SensorySmart!
+        <div className="mb-8">
+          <Link href="/" className="inline-flex items-center text-[#6C6C6C] hover:text-[#252225] mb-6">
+            <span className="text-2xl">←</span>
+          </Link>
+          
+          <h1 className="text-[28px] font-medium text-[#252225] mb-2">
+            Create your account
           </h1>
-          <p className="text-gray-600">
-            Let's create your child's profile to get started
+          <p className="text-[18px] text-[#6C6C6C]" style={{ lineHeight: 'calc(1.5 - 2px)', letterSpacing: '-0.01em' }}>
+            Tell us about your family to personalize your experience
           </p>
-          <div className="mt-2 text-sm text-gray-500">
-            Signed in as: {user.email}
-          </div>
         </div>
 
         {/* Profile Form */}
-        <div className="glass-card p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {error && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                <p className="text-red-600 text-sm">{error}</p>
-              </div>
-            )}
-
-            <div>
-              <label htmlFor="parentName" className="block text-sm font-medium text-gray-700 mb-2">
-                Your Name (Parent/Caregiver)
-              </label>
-              <input
-                type="text"
-                id="parentName"
-                value={parentName}
-                onChange={(e) => setParentName(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 bg-white"
-                placeholder="Enter your name"
-                required
-                disabled={submitting}
-              />
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <p className="text-red-600 text-sm">{error}</p>
             </div>
+          )}
 
-            <div>
-              <label htmlFor="childName" className="block text-sm font-medium text-gray-700 mb-2">
-                Child's Name
-              </label>
-              <input
-                type="text"
-                id="childName"
-                value={childName}
-                onChange={(e) => setChildName(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 bg-white"
-                placeholder="Enter your child's name"
-                required
-                disabled={submitting}
-              />
-            </div>
+          <div>
+            <label htmlFor="parentName" className="block text-sm font-medium text-[#252225] mb-2">
+              Your Name (Parent/Caregiver)
+            </label>
+            <input
+              type="text"
+              id="parentName"
+              value={parentName}
+              onChange={(e) => setParentName(e.target.value)}
+              className="w-full px-4 py-3 border rounded-[16px] focus:ring-2 focus:ring-[#367A87] focus:border-transparent text-[#252225] bg-white"
+              style={{ borderColor: '#EEE6E5' }}
+              placeholder="Enter your name"
+              required
+              disabled={submitting}
+            />
+          </div>
 
-            <div>
-              <label htmlFor="childAge" className="block text-sm font-medium text-gray-700 mb-2">
-                Child's Age
-              </label>
+          <div>
+            <label htmlFor="childName" className="block text-sm font-medium text-[#252225] mb-2">
+              Child's Name
+            </label>
+            <input
+              type="text"
+              id="childName"
+              value={childName}
+              onChange={(e) => setChildName(e.target.value)}
+              className="w-full px-4 py-3 border rounded-[16px] focus:ring-2 focus:ring-[#367A87] focus:border-transparent text-[#252225] bg-white"
+              style={{ borderColor: '#EEE6E5' }}
+              placeholder="Enter your child's name"
+              required
+              disabled={submitting}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="childAge" className="block text-sm font-medium text-[#252225] mb-2">
+              Child's Age
+            </label>
+            <div className="relative">
               <select
                 id="childAge"
                 value={childAge}
                 onChange={(e) => setChildAge(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 bg-white"
+                className="w-full px-4 py-3 border rounded-[16px] focus:ring-2 focus:ring-[#367A87] focus:border-transparent text-[#252225] bg-white appearance-none pr-10"
+                style={{ borderColor: '#EEE6E5' }}
                 required
                 disabled={submitting}
               >
-                <option value="">Select age range</option>
-                <option value="2-3 years">2-3 years</option>
-                <option value="4-5 years">4-5 years</option>
-                <option value="6-7 years">6-7 years</option>
-                <option value="8-10 years">8-10 years</option>
-                <option value="11-13 years">11-13 years</option>
-                <option value="14+ years">14+ years</option>
+                <option value="" className="text-[#6C6C6C]">Select age range</option>
+                <option value="2-3 years" className="text-[#252225]">2-3 years</option>
+                <option value="4-5 years" className="text-[#252225]">4-5 years</option>
+                <option value="6-7 years" className="text-[#252225]">6-7 years</option>
+                <option value="8-10 years" className="text-[#252225]">8-10 years</option>
+                <option value="11-13 years" className="text-[#252225]">11-13 years</option>
+                <option value="14+ years" className="text-[#252225]">14+ years</option>
               </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg className="w-5 h-5 text-[#6C6C6C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
             </div>
-
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full gradient-btn text-white py-3 px-4 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {submitting ? (
-                <div className="flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                  Creating Profile...
-                </div>
-              ) : (
-                'Continue to Assessment'
-              )}
-            </button>
-          </form>
-
-          {/* Sign Out Option */}
-          <div className="mt-6 text-center">
-            <button
-              onClick={handleSignOut}
-              className="text-gray-500 hover:text-gray-700 text-sm underline"
-            >
-              Sign out and use a different account
-            </button>
           </div>
+
+          <button
+            type="submit"
+            disabled={submitting}
+            className="w-full text-white py-3 px-4 rounded-[16px] font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ 
+              backgroundColor: '#367A87',
+              height: '48px'
+            }}
+          >
+            {submitting ? (
+              <div className="flex items-center justify-center">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                Creating Profile...
+              </div>
+            ) : (
+              'Continue to Assessment'
+            )}
+          </button>
+        </form>
+
+        {/* Sign Out Option */}
+        <div className="mt-6 text-center">
+          <button
+            onClick={handleSignOut}
+            className="text-[#6C6C6C] hover:text-[#252225] text-sm underline transition-colors"
+          >
+            Sign out and use a different account
+          </button>
         </div>
       </div>
     </div>

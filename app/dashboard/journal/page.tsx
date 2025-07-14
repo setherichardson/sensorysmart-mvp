@@ -44,12 +44,14 @@ export default function JournalPage() {
     activityName: string
     activityDate: string
     initialNote: string
+    activityRating: string | null
   }>({
     isOpen: false,
     activityId: '',
     activityName: '',
     activityDate: '',
-    initialNote: ''
+    initialNote: '',
+    activityRating: null
   })
 
 
@@ -85,33 +87,58 @@ export default function JournalPage() {
           .limit(1)
           .single()
 
-        // Load completed activities
+        // Load completed activities from database
         const { data: activitiesData, error: activitiesError } = await supabase
           .from('activity_completions')
           .select('*')
           .eq('user_id', user.id)
           .order('completed_at', { ascending: false })
 
-        if (activitiesError) {
-          console.error('Error loading activities:', activitiesError)
-        } else {
-          // Transform the data to match our interface
-          const transformedActivities: JournalActivity[] = (activitiesData || []).map(activity => ({
-            id: activity.id,
-            activity_name: activity.activity_name || 'Sensory Activity',
-            activity_type: activity.activity_type || 'proprioceptive',
-            completed_at: new Date(activity.completed_at),
-            duration_minutes: activity.duration_minutes,
-            rating: activity.rating,
-            notes: activity.notes
-          }))
-          setActivities(transformedActivities)
-          
-          // Calculate stats
-          calculateStats(transformedActivities)
-          
+        // Also load from localStorage as fallback
+        const localStorageActivities = JSON.parse(localStorage.getItem('activity_completions') || '[]')
+        const userLocalActivities = localStorageActivities.filter((activity: any) => activity.user_id === user.id)
+        
+        console.log('Database activities:', activitiesData?.length || 0)
+        console.log('localStorage activities:', userLocalActivities.length)
+        
+        // Combine database and localStorage activities
+        let allActivities = activitiesData || []
+        
+        // Add localStorage activities that aren't in database
+        userLocalActivities.forEach((localActivity: any) => {
+          const existsInDb = allActivities.some((dbActivity: any) => 
+            dbActivity.id === localActivity.id || 
+            (dbActivity.activity_name === localActivity.activity_name && 
+             dbActivity.completed_at === localActivity.completed_at)
+          )
+          if (!existsInDb) {
+            allActivities.push(localActivity)
+          }
+        })
+        
+        // Sort by completed_at descending
+        allActivities.sort((a: any, b: any) => 
+          new Date(b.completed_at).getTime() - new Date(a.completed_at).getTime()
+        )
 
+        if (activitiesError) {
+          console.error('Error loading activities from database:', activitiesError)
         }
+        
+        // Transform the data to match our interface
+        const transformedActivities: JournalActivity[] = allActivities.map(activity => ({
+          id: activity.id,
+          activity_name: activity.activity_name || 'Sensory Activity',
+          activity_type: activity.activity_type || 'proprioceptive',
+          completed_at: new Date(activity.completed_at),
+          duration_minutes: activity.duration_minutes,
+          rating: activity.rating,
+          notes: activity.notes
+        }))
+        setActivities(transformedActivities)
+        
+        // Calculate stats
+        calculateStats(transformedActivities)
 
         setUser(user)
         setProfile(profileData)
@@ -194,6 +221,10 @@ export default function JournalPage() {
     }
   }
 
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+  }
+
   const getActivityTypeLabel = (type: string) => {
     switch (type) {
       case 'proprioceptive': return 'Proprioceptive'
@@ -226,55 +257,73 @@ export default function JournalPage() {
         return {
           emoji: '😌',
           label: 'Regulated',
-          color: 'text-green-600'
+          color: '#0C3A28',
+          background: '#DEFFF2',
+          icon: '/Icons/Smile.svg'
         }
       case 'calmer':
         return {
           emoji: '😊',
           label: 'Calmer',
-          color: 'text-blue-600'
+          color: '#12224C',
+          background: '#DEE7FF',
+          icon: '/Icons/Calmer.svg'
         }
       case 'neutral':
         return {
           emoji: '😐',
           label: 'Neutral',
-          color: 'text-gray-600'
+          color: '#252225',
+          background: '#E2E4F6',
+          icon: '/Icons/meh.svg'
         }
       case 'distracted':
         return {
           emoji: '😵‍💫',
           label: 'Distracted',
-          color: 'text-yellow-600'
+          color: '#563616',
+          background: '#FFEDDB',
+          icon: '/Icons/Distracted.svg'
         }
       case 'dysregulated':
         return {
           emoji: '😖',
           label: 'Dysregulated',
-          color: 'text-red-600'
+          color: '#571B1A',
+          background: '#FFB0AE',
+          icon: '/Icons/Sad.svg'
         }
       case 'worked_well':
         return {
           emoji: '✅',
           label: 'Worked Well',
-          color: 'text-green-600'
+          color: '#0C3A28',
+          background: '#DEFFF2',
+          icon: '/Icons/Check.svg'
         }
       case 'didnt_work':
         return {
           emoji: '❌',
           label: "Didn't Work",
-          color: 'text-red-600'
+          color: '#571B1A',
+          background: '#FFB0AE',
+          icon: '/Icons/X.svg'
         }
       case 'okay':
         return {
           emoji: '⚠️',
           label: 'Okay',
-          color: 'text-yellow-600'
+          color: '#563616',
+          background: '#FFEDDB',
+          icon: '/Icons/meh.svg'
         }
       default:
         return {
           emoji: '❓',
           label: 'Not rated',
-          color: 'text-gray-500'
+          color: '#252225',
+          background: '#E2E4F6',
+          icon: '/Icons/meh.svg'
         }
     }
   }
@@ -285,7 +334,8 @@ export default function JournalPage() {
       activityId: activity.id,
       activityName: activity.activity_name,
       activityDate: activity.completed_at.toISOString(),
-      initialNote: activity.notes || ''
+      initialNote: activity.notes || '',
+      activityRating: activity.rating
     })
   }
 
@@ -313,11 +363,56 @@ export default function JournalPage() {
           notes: activity.notes
         }))
         setActivities(transformedActivities)
-        calculateStats(transformedActivities)
       }
     }
-    
     loadActivities()
+    closeNoteModal()
+  }
+
+  const handleNoteCancel = () => {
+    setNoteModal({ ...noteModal, isOpen: false })
+  }
+
+  const exportData = () => {
+    // Get all localStorage data
+    const localStorageActivities = JSON.parse(localStorage.getItem('activity_completions') || '[]')
+    const userActivities = localStorageActivities.filter((activity: any) => activity.user_id === user?.id)
+    
+    if (userActivities.length === 0) {
+      alert('No data to export')
+      return
+    }
+
+    // Create JSON export
+    const jsonData = JSON.stringify(userActivities, null, 2)
+    const jsonBlob = new Blob([jsonData], { type: 'application/json' })
+    const jsonUrl = URL.createObjectURL(jsonBlob)
+    const jsonLink = document.createElement('a')
+    jsonLink.href = jsonUrl
+    jsonLink.download = `sensory-activities-${new Date().toISOString().split('T')[0]}.json`
+    jsonLink.click()
+
+    // Create CSV export
+    const csvHeaders = ['Date', 'Activity', 'Type', 'Duration (min)', 'Rating', 'Notes']
+    const csvRows = userActivities.map((activity: any) => [
+      new Date(activity.completed_at).toLocaleDateString(),
+      activity.activity_name,
+      activity.activity_type,
+      activity.duration_minutes,
+      activity.rating,
+      activity.notes || ''
+    ])
+    
+    const csvContent = [csvHeaders, ...csvRows]
+      .map(row => row.map((cell: string) => `"${cell}"`).join(','))
+      .join('\n')
+    
+    const csvBlob = new Blob([csvContent], { type: 'text/csv' })
+    const csvUrl = URL.createObjectURL(csvBlob)
+    const csvLink = document.createElement('a')
+    csvLink.href = csvUrl
+    csvLink.download = `sensory-activities-${new Date().toISOString().split('T')[0]}.csv`
+    csvLink.click()
   }
 
   const filteredActivities = getFilteredActivities()
@@ -345,38 +440,28 @@ export default function JournalPage() {
         {/* Header */}
         <div className="journal-header">
           <div className="journal-header-nav">
-            <h1 className="journal-title">Activity Journal</h1>
-            <Link href="/dashboard/today" className="journal-header-icon">
-              <svg fill="none" stroke="#252225" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 15l4-4 4 4" />
-              </svg>
-            </Link>
+            <h1 className="journal-title" style={{ fontWeight: 700, fontSize: 32, color: '#252225' }}>Activity journal</h1>
           </div>
 
           {/* Stats Section */}
-          <div className="journal-stats">
-            <div className="stats-grid">
-              <div className="stat-card">
-                <div className="stat-number">{stats.totalActivities}</div>
-                <div className="stat-label">Total Activities</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">{stats.activitiesThisWeek}</div>
-                <div className="stat-label">This Week</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">{stats.currentStreak}</div>
-                <div className="stat-label">Day Streak</div>
-              </div>
+          <div className="journal-stats-row">
+            <div className="stat-card">
+              <div className="stat-number">{stats.totalActivities}</div>
+              <div className="stat-label">TODAY</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">{stats.activitiesThisWeek}</div>
+              <div className="stat-label">THIS WEEK</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">{stats.currentStreak}</div>
+              <div className="stat-label">STREAK</div>
             </div>
           </div>
-
-
         </div>
 
         {/* Content */}
-        <div className="journal-content">
+        <div className="journal-content" style={{ marginTop: 0 }}>
           {filteredActivities.length === 0 ? (
             <div className="empty-state">
               <div className="empty-state-icon">
@@ -404,42 +489,40 @@ export default function JournalPage() {
                       borderRadius: 24, 
                       background: '#fff', 
                       boxShadow: '0 2px 8px 0 rgba(44, 62, 80, 0.06)', 
-                      padding: 24, 
+                      padding: '16px 12px 12px 12px',
                       marginBottom: 0, 
-                      width: '100%'
+                      width: '100%',
+                      position: 'relative'
                     }}
                   >
-                    <h3 className="activity-title mb-2" style={{ color: '#252225', fontWeight: 600, fontSize: 20 }}>{activity.activity_name}</h3>
-                    <div className="flex items-center mb-2">
-                      <img src="/icons/target.svg" alt="target" style={{ width: 18, height: 18, marginRight: 8, color: '#3D3A3D' }} />
-                      <span style={{ color: '#252225', fontSize: 15, fontWeight: 400 }}>{getActivityTypeLabel(activity.activity_type)}</span>
-                    </div>
-                    <div className="flex items-center mb-4">
-                      <svg fill="none" stroke="#3D3A3D" viewBox="0 0 24 24" className="w-4 h-4 mr-1">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span style={{ color: '#252225', fontSize: 15 }}>{activity.duration_minutes ? `${activity.duration_minutes} min` : ''}</span>
-                    </div>
-                    <div className="flex items-center gap-2 mt-2">
-                      <div className={`activity-rating ${ratingDisplay.color}`} style={{ fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center' }}>
-                        <span className="rating-emoji mr-1">{ratingDisplay.emoji}</span>
-                        <span className="rating-label">{ratingDisplay.label}</span>
-                      </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                      <h3 className="activity-title" style={{ color: '#252225', fontWeight: 600, fontSize: 20, margin: 0 }}>{activity.activity_name}</h3>
                       <button
                         onClick={() => openNoteModal(activity)}
-                        className="note-button"
-                        title={activity.notes ? "Edit note" : "Add note"}
-                        style={{ marginLeft: 8, background: '#F6F6F6', border: '1px solid #EEE6E5', borderRadius: 8, padding: '4px 10px', color: '#252225', fontWeight: 500, fontSize: 15 }}
+                        style={{ background: 'none', border: 'none', padding: 0, marginLeft: 8, cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                        aria-label="Edit note"
                       >
-                        {activity.notes ? 'Edit note' : 'Add note'}
+                        <img src="/Icons/Edit.svg" alt="Edit" style={{ width: 18, height: 18 }} />
                       </button>
                     </div>
-                    {activity.notes && (
-                      <div className="activity-notes-preview mt-2">
-                        <p className="notes-text" style={{ color: '#252225', fontSize: 15 }}>{activity.notes}</p>
+                    {/* Rating chip */}
+                    {ratingDisplay && (
+                      <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: 12, padding: '4px 8px', borderRadius: 12, background: ratingDisplay.background, color: ratingDisplay.color, fontWeight: 600, marginBottom: 8 }}>
+                        <img src={ratingDisplay.icon} alt={ratingDisplay.label} style={{ width: 14, height: 14, marginRight: 4, filter: 'brightness(0) saturate(100%)', opacity: 0.8 }} />
+                        {ratingDisplay.label}
                       </div>
                     )}
-                    <div className="activity-time mt-2" style={{ color: '#6C6C6C', fontSize: 13 }}>{formatDate(activity.completed_at)}</div>
+                    {/* Time completed with calendar icon */}
+                    <div style={{ display: 'flex', alignItems: 'center', color: '#252225', fontSize: 14, fontWeight: 500, margin: '8px 0 0 0' }}>
+                      <img src="/Icons/Calendar.svg" alt="Calendar" style={{ width: 16, height: 16, marginRight: 6, color: '#252225', filter: 'invert(10%) sepia(6%) saturate(0%) hue-rotate(0deg) brightness(100%)' }} />
+                      {formatTime(activity.completed_at)}
+                    </div>
+                    {/* Parent note */}
+                    {activity.notes && activity.notes.trim() && (
+                      <div style={{ border: '1px solid #EEE6E5', borderRadius: 12, padding: 12, marginTop: 12, color: '#252225', fontSize: 15, background: '#FAF9F8' }}>
+                        {activity.notes}
+                      </div>
+                    )}
                   </div>
                 )
               })}
@@ -456,6 +539,7 @@ export default function JournalPage() {
           activityDate={noteModal.activityDate}
           initialNote={noteModal.initialNote}
           onSave={handleNoteSave}
+          activityRating={noteModal.activityRating}
         />
 
         {/* Bottom Navigation */}
@@ -487,6 +571,56 @@ export default function JournalPage() {
           </div>
         </div>
       </div>
+      <style jsx>{`
+          .journal-stats-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+          }
+          .stat-card {
+            flex: 1 1 0;
+            background: #fff;
+            border: 1px solid #ececec;
+            border-radius: 16px;
+            padding: 24px 0 16px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            min-width: 100px;
+            max-width: 180px;
+          }
+          .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #252225;
+            margin-bottom: 4px;
+          }
+          .stat-label {
+            font-size: 1rem;
+            color: #888;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-transform: uppercase;
+          }
+          @media (max-width: 600px) {
+            .journal-stats-row {
+              gap: 8px;
+            }
+            .stat-card {
+              min-width: 80px;
+              padding: 16px 0 12px 0;
+            }
+            .stat-number {
+              font-size: 1.5rem;
+            }
+            .stat-label {
+              font-size: 0.875rem;
+            }
+          }
+        `}</style>
     </div>
   )
 } 

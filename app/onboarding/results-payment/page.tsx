@@ -187,6 +187,57 @@ export default function ResultsPayment() {
     return { label: 'Seeking', color: 'bg-green-100 text-green-700' }
   }
 
+  const getNeedsForSystem = (system: string, score: number) => {
+    const interpretation = getScoreInterpretation(score)
+    
+    // Only return needs for non-typical scores
+    if (interpretation.label === 'Typical') return null
+    
+    switch (system) {
+      case 'tactile':
+        if (interpretation.label === 'Avoiding') return 'Gentle, predictable touch experiences'
+        if (interpretation.label === 'Sensitive') return 'Soft, controlled tactile input'
+        if (interpretation.label === 'Seeking') return 'Rich, varied tactile experiences'
+        break
+      case 'visual':
+        if (interpretation.label === 'Avoiding') return 'Calm, organized visual spaces'
+        if (interpretation.label === 'Sensitive') return 'Soft, diffused lighting'
+        if (interpretation.label === 'Seeking') return 'Bright, engaging visual stimuli'
+        break
+      case 'auditory':
+        if (interpretation.label === 'Avoiding') return 'Quiet, peaceful sound environments'
+        if (interpretation.label === 'Sensitive') return 'Gentle, predictable sounds'
+        if (interpretation.label === 'Seeking') return 'Rich sounds and engaging audio'
+        break
+      case 'olfactory':
+        if (interpretation.label === 'Avoiding') return 'Neutral, clean scents'
+        if (interpretation.label === 'Sensitive') return 'Mild, familiar aromas'
+        if (interpretation.label === 'Seeking') return 'Varied, interesting scents'
+        break
+      case 'proprioceptive':
+        if (interpretation.label === 'Avoiding') return 'Light, gentle body input'
+        if (interpretation.label === 'Sensitive') return 'Moderate, controlled movement'
+        if (interpretation.label === 'Seeking') return 'Heavy work and deep pressure'
+        break
+      case 'vestibular':
+        if (interpretation.label === 'Avoiding') return 'Steady, predictable motion'
+        if (interpretation.label === 'Sensitive') return 'Slow, gentle movement'
+        if (interpretation.label === 'Seeking') return 'Active, dynamic movement'
+        break
+      case 'interoception':
+        if (interpretation.label === 'Avoiding') return 'Gentle body awareness activities'
+        if (interpretation.label === 'Sensitive') return 'Calm internal awareness'
+        if (interpretation.label === 'Seeking') return 'Strong internal feedback'
+        break
+      case 'social-emotional':
+        if (interpretation.label === 'Avoiding') return 'Patient, understanding environments'
+        if (interpretation.label === 'Sensitive') return 'Supportive, gentle interactions'
+        if (interpretation.label === 'Seeking') return 'Engaging, social opportunities'
+        break
+    }
+    return null
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
@@ -250,34 +301,40 @@ export default function ResultsPayment() {
       <div className="max-w-2xl mx-auto p-4">
         {/* Header */}
         <div className="text-left mb-8" style={{ marginTop: '70px' }}>
+          {/* Assessment Complete Chip */}
+          <div className="inline-flex items-center mb-4 px-3 py-1 rounded-full" style={{ backgroundColor: '#DEFFF2', color: '#0C3A28' }}>
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            <span style={{ fontSize: '14px', fontWeight: 400 }}>Assessment complete</span>
+          </div>
+          
           {/* Title */}
-          <h1 className="text-2xl font-bold text-left mb-2" style={{ color: '#252225' }}>
-            {profile.child_name}&apos;s sensory profile is ready
+          <h1 className="text-[26px] font-medium text-left mb-2" style={{ color: '#252225', letterSpacing: '-1px', lineHeight: 'calc(1.2em - 2px)' }}>
+            Your assessment is ready, here&apos;s what {profile.child_name} needs to thrive!
           </h1>
-          <p className="mb-6 text-left" style={{ fontSize: '16px', color: '#252225', fontWeight: 400 }}>
-            Based on your assessment, here’s a personalized plan to support {profile.child_name}&apos;s sensory needs.
+          <p className="mb-6 text-left" style={{ fontSize: '16px', color: '#6C6C6C', fontWeight: 400, lineHeight: 'calc(1.5em - 2px)', letterSpacing: '-0.25px' }}>
+            You know {profile.child_name} best, and it shows! Together, we&apos;ve created a plan designed just for {profile.child_name}.
           </p>
         </div>
 
         {/* Assessment Results */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Assessment Results</h2>
+          <h2 className="text-xl font-medium text-gray-900 mb-4">What {profile.child_name} needs to thrive:</h2>
           
           {/* System Breakdown */}
           <div className="space-y-4">
             {Object.entries(assessment.results).map(([system, score]) => {
               if (system === 'total' || system === 'profile' || system === 'behaviorScores') return null
               if (typeof score !== 'number') return null
-              const interpretation = getScoreInterpretation(score)
+              
+              const needs = getNeedsForSystem(system, score)
+              if (!needs) return null // Skip typical scores
+              
               return (
-                <div key={system} className="flex items-center justify-between">
-                  <span className="text-gray-700 font-medium">{getSystemLabel(system)}</span>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-500 font-medium">{score}/25</span>
-                    <span className={`px-2 py-1 rounded-full text-xs font-bold ${interpretation.color}`}>
-                      {interpretation.label}
-                    </span>
-                  </div>
+                <div key={system} className="flex flex-col">
+                  <span className="text-gray-700 font-medium">{getSystemLabel(system)}:</span>
+                  <span className="text-gray-600 ml-0">{needs}</span>
                 </div>
               )
             })}
@@ -286,38 +343,38 @@ export default function ResultsPayment() {
 
         {/* Value Proposition */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">How Sensorysmart helps</h2>
+          <h2 className="text-xl font-medium text-gray-900 mb-4">How Sensorysmart helps</h2>
           <div className="space-y-3">
             <div className="flex items-center">
               <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-gray-700 font-medium">No more guessing what activities will work</span>
+              <span className="text-gray-700 font-medium">Activities tailored to your child&apos;s specific needs</span>
             </div>
             <div className="flex items-center">
               <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-gray-700 font-medium">Stop the daily meltdowns and sensory overwhelm</span>
+              <span className="text-gray-700 font-medium">Turn overwhelming moments into calm, connected ones</span>
             </div>
             <div className="flex items-center">
               <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-gray-700 font-medium">Get support throughout the week and in between therapy visits</span>
+              <span className="text-gray-700 font-medium">Daily guidance between therapy appointments</span>
             </div>
             <div className="flex items-center">
               <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-gray-700 font-medium">Track what works so you can do more of it</span>
+              <span className="text-gray-700 font-medium">See what works so you can build on success</span>
             </div>
           </div>
         </div>
 
         {/* Plan Selection */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Select your plan</h2>
+          <h2 className="text-xl font-medium text-gray-900 mb-4">Select your plan</h2>
           <div className="grid grid-cols-2 gap-4">
             {Object.entries(plans).map(([key, plan]) => (
               <div
@@ -348,7 +405,7 @@ export default function ResultsPayment() {
 
         {/* Payment Form */}
         <div className="bg-white rounded-2xl p-6 shadow-lg">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Payment details</h2>
+          <h2 className="text-xl font-medium text-gray-900 mb-4">Payment details</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-1">
@@ -460,8 +517,8 @@ export default function ResultsPayment() {
         </div>
 
         {/* Disclaimer Blurb */}
-        <div className="w-full flex justify-center mt-4">
-          <p style={{ fontSize: '12pt', color: '#6C6C6C', lineHeight: '18px', fontWeight: 400, maxWidth: 600, textAlign: 'center' }}>
+        <div className="w-full flex justify-start mt-4">
+          <p style={{ fontSize: '12pt', color: '#6C6C6C', lineHeight: 'calc(1.5em + 0.5px)', fontWeight: 400, maxWidth: 600, textAlign: 'left', letterSpacing: '-0.25px' }}>
             Sensorysmart was developed with input from a licensed occupational therapist and provides educational activities based on professional knowledge. However, this app does not replace individualized therapy or medical consultation.
           </p>
         </div>

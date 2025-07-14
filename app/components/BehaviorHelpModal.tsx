@@ -389,29 +389,19 @@ export default function BehaviorHelpModal({ isOpen, onClose }: BehaviorHelpModal
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-hidden">
-        {/* Header */}
-        <div className="p-6 border-b border-gray-200">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-gray-900">
-              {selectedActivity ? selectedActivity.title : 
-               selectedIssue ? selectedIssue.title : 
-               'Help with a behavior'}
-            </h2>
-            <button
-              onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+    <div className="fixed inset-0 z-50 flex flex-col bg-white">
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
+        <div className="flex-1">
+          <h2 className="text-lg font-semibold text-gray-900">
+            {selectedActivity ? selectedActivity.title : 
+             selectedIssue ? selectedIssue.title : 
+             'Help with a behavior'}
+          </h2>
           {(selectedIssue || selectedActivity) && (
             <button
               onClick={handleBack}
-              className="flex items-center text-blue-600 hover:text-blue-700 mt-2 transition-colors"
+              className="flex items-center text-blue-600 hover:text-blue-700 mt-1 transition-colors text-sm"
             >
               <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -420,153 +410,162 @@ export default function BehaviorHelpModal({ isOpen, onClose }: BehaviorHelpModal
             </button>
           )}
         </div>
+        <button
+          onClick={onClose}
+          className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
 
-        {/* Content */}
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
-          {!selectedIssue ? (
-            // Issue selection view
-            <div className="space-y-4">
-              <p className="text-gray-600 text-sm mb-4">
-                Select a common issue to get quick activity suggestions:
-              </p>
-              <div className="grid gap-3">
-                {behaviorIssues.map((issue) => (
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto p-4">
+        {!selectedIssue ? (
+          // Issue selection view
+          <div className="space-y-4">
+            <p className="text-gray-600 text-sm mb-4">
+              Select a common issue to get quick activity suggestions:
+            </p>
+            <div className="space-y-3">
+              {behaviorIssues.map((issue) => (
+                <button
+                  key={issue.id}
+                  onClick={() => handleIssueSelect(issue)}
+                  className="w-full text-left p-4 border border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all duration-200"
+                >
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">{issue.icon}</span>
+                    <div className="flex-1">
+                      <h3 className="font-medium text-gray-900 mb-1">{issue.title}</h3>
+                      <p className="text-sm text-gray-600">{issue.description}</p>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : selectedActivity ? (
+          // Activity detail view
+          <div className="space-y-4">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 mb-4">
+              <h3 className="font-semibold text-gray-900 mb-2">{selectedActivity.title}</h3>
+              <p className="text-sm text-gray-600 mb-3">{selectedActivity.description}</p>
+              <div className="flex items-center space-x-4 text-sm">
+                <span className="text-gray-600">⏱️ {selectedActivity.duration}</span>
+                <span className="text-gray-600">📋 {selectedActivity.category}</span>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 rounded-xl p-4 mb-4">
+              <h4 className="font-medium text-blue-900 mb-2">Materials Needed:</h4>
+              <ul className="space-y-1">
+                {selectedActivity.materials.map((material, index) => (
+                  <li key={index} className="flex items-start space-x-2">
+                    <span className="text-blue-600 text-sm mt-1">•</span>
+                    <span className="text-sm text-blue-800">{material}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-green-50 rounded-xl p-4 mb-4">
+              <h4 className="font-medium text-green-900 mb-2">Steps:</h4>
+              <ol className="space-y-2">
+                {selectedActivity.steps.map((step, index) => (
+                  <li key={index} className="flex items-start space-x-2">
+                    <span className="text-green-600 text-sm font-medium mt-1">{index + 1}.</span>
+                    <span className="text-sm text-green-800">{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        ) : (
+          // Issue detail view with activity cards
+          <div className="space-y-4">
+            <div className="flex items-center space-x-3 mb-4">
+              <span className="text-3xl">{selectedIssue.icon}</span>
+              <div>
+                <h3 className="font-semibold text-gray-900">{selectedIssue.title}</h3>
+                <p className="text-sm text-gray-600">{selectedIssue.description}</p>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 rounded-xl p-4 mb-4">
+              <h4 className="font-medium text-blue-900 mb-2">Quick Activities to Try:</h4>
+              <ul className="space-y-2">
+                {selectedIssue.activities.map((activity, index) => (
+                  <li key={index} className="flex items-start space-x-2">
+                    <span className="text-blue-600 text-sm mt-1">•</span>
+                    <span className="text-sm text-blue-800">{activity}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 mb-4">
+              <h4 className="font-medium text-gray-900 mb-2">Pro Tips:</h4>
+              <ul className="space-y-2 text-sm text-gray-700">
+                <li>• Start with one activity and observe the response</li>
+                <li>• Be consistent with the timing and approach</li>
+                <li>• Adjust activities based on your child's preferences</li>
+                <li>• Consider the environment and available tools</li>
+              </ul>
+            </div>
+
+            <div className="border-t pt-4">
+              <h4 className="font-medium text-gray-900 mb-3">Ready to try an activity?</h4>
+              <div className="space-y-3">
+                {selectedIssue.activityCards.map((activity) => (
                   <button
-                    key={issue.id}
-                    onClick={() => handleIssueSelect(issue)}
-                    className="text-left p-4 border border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all duration-200"
+                    key={activity.id}
+                    onClick={() => handleActivitySelect(activity)}
+                    className="w-full text-left p-4 border border-gray-200 rounded-xl hover:border-green-300 hover:bg-green-50 transition-all duration-200"
                   >
                     <div className="flex items-start space-x-3">
-                      <span className="text-2xl">{issue.icon}</span>
+                      <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-2 rounded-lg">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                      </div>
                       <div className="flex-1">
-                        <h3 className="font-medium text-gray-900 mb-1">{issue.title}</h3>
-                        <p className="text-sm text-gray-600">{issue.description}</p>
+                        <h3 className="font-medium text-gray-900 mb-1">{activity.title}</h3>
+                        <p className="text-sm text-gray-600 mb-2">{activity.description}</p>
+                        <div className="flex items-center space-x-3 text-xs text-gray-500">
+                          <span>⏱️ {activity.duration}</span>
+                          <span>📋 {activity.category}</span>
+                        </div>
                       </div>
                     </div>
                   </button>
                 ))}
               </div>
             </div>
-          ) : selectedActivity ? (
-            // Activity detail view
-            <div className="space-y-4">
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 mb-4">
-                <h3 className="font-semibold text-gray-900 mb-2">{selectedActivity.title}</h3>
-                <p className="text-sm text-gray-600 mb-3">{selectedActivity.description}</p>
-                <div className="flex items-center space-x-4 text-sm">
-                  <span className="text-gray-600">⏱️ {selectedActivity.duration}</span>
-                  <span className="text-gray-600">📋 {selectedActivity.category}</span>
-                </div>
-              </div>
+          </div>
+        )}
+      </div>
 
-              <div className="bg-blue-50 rounded-xl p-4 mb-4">
-                <h4 className="font-medium text-blue-900 mb-2">Materials Needed:</h4>
-                <ul className="space-y-1">
-                  {selectedActivity.materials.map((material, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <span className="text-blue-600 text-sm mt-1">•</span>
-                      <span className="text-sm text-blue-800">{material}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="bg-green-50 rounded-xl p-4 mb-4">
-                <h4 className="font-medium text-green-900 mb-2">Steps:</h4>
-                <ol className="space-y-2">
-                  {selectedActivity.steps.map((step, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <span className="text-green-600 text-sm font-medium mt-1">{index + 1}.</span>
-                      <span className="text-sm text-green-800">{step}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              <button
-                onClick={() => {
-                  // Here you could integrate with the activity system
-                  console.log('Starting activity:', selectedActivity.title)
-                }}
-                className="w-full bg-blue-600 text-white py-3 px-4 rounded-xl font-medium hover:bg-blue-700 transition-colors"
-              >
-                Start This Activity
-              </button>
-            </div>
-          ) : (
-            // Issue detail view with activity cards
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3 mb-4">
-                <span className="text-3xl">{selectedIssue.icon}</span>
-                <div>
-                  <h3 className="font-semibold text-gray-900">{selectedIssue.title}</h3>
-                  <p className="text-sm text-gray-600">{selectedIssue.description}</p>
-                </div>
-              </div>
-
-              <div className="bg-blue-50 rounded-xl p-4 mb-4">
-                <h4 className="font-medium text-blue-900 mb-2">Quick Activities to Try:</h4>
-                <ul className="space-y-2">
-                  {selectedIssue.activities.map((activity, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <span className="text-blue-600 text-sm mt-1">•</span>
-                      <span className="text-sm text-blue-800">{activity}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="bg-gray-50 rounded-xl p-4 mb-4">
-                <h4 className="font-medium text-gray-900 mb-2">Pro Tips:</h4>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li>• Start with one activity and observe the response</li>
-                  <li>• Be consistent with the timing and approach</li>
-                  <li>• Adjust activities based on your child's preferences</li>
-                  <li>• Consider the environment and available tools</li>
-                </ul>
-              </div>
-
-              <div className="border-t pt-4">
-                <h4 className="font-medium text-gray-900 mb-3">Ready to try an activity?</h4>
-                <div className="grid gap-3">
-                  {selectedIssue.activityCards.map((activity) => (
-                    <button
-                      key={activity.id}
-                      onClick={() => handleActivitySelect(activity)}
-                      className="text-left p-4 border border-gray-200 rounded-xl hover:border-green-300 hover:bg-green-50 transition-all duration-200"
-                    >
-                      <div className="flex items-start space-x-3">
-                        <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-2 rounded-lg">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-medium text-gray-900 mb-1">{activity.title}</h3>
-                          <p className="text-sm text-gray-600 mb-2">{activity.description}</p>
-                          <div className="flex items-center space-x-3 text-xs text-gray-500">
-                            <span>⏱️ {activity.duration}</span>
-                            <span>📋 {activity.category}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Footer */}
-        <div className="p-6 border-t border-gray-200 bg-gray-50">
+      {/* Footer */}
+      <div className="flex items-center justify-between p-4 border-t border-gray-200 bg-white">
+        <button
+          onClick={onClose}
+          className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+        >
+          Close
+        </button>
+        {selectedActivity && (
           <button
-            onClick={onClose}
-            className="w-full bg-blue-600 text-white py-3 px-4 rounded-xl font-medium hover:bg-blue-700 transition-colors"
+            onClick={() => {
+              // Here you could integrate with the activity system
+              console.log('Starting activity:', selectedActivity.title)
+            }}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
-            {selectedIssue ? 'Got it, thanks!' : 'Close'}
+            Start Activity
           </button>
-        </div>
+        )}
       </div>
     </div>
   )

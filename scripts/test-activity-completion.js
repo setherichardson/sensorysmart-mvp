@@ -10,48 +10,63 @@ async function testActivityCompletion() {
   try {
     console.log('Testing activity completion...')
     
-    // First, let's check if we can connect to the database
-    const { data: testData, error: testError } = await supabase
-      .from('activity_completions')
-      .select('count')
-      .limit(1)
+    // Get the current user
+    const { data: { user }, error: userError } = await supabase.auth.getUser()
     
-    if (testError) {
-      console.error('Database connection error:', testError)
+    if (userError || !user) {
+      console.log('No user found, trying to sign in...')
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: 'test@example.com',
+        password: 'testpassword'
+      })
+      
+      if (error) {
+        console.error('Error signing in:', error)
+        return
+      }
+    }
+    
+    console.log('User:', user?.email)
+    
+    // Check if activity_completions table exists and has data
+    const { data: completions, error: completionsError } = await supabase
+      .from('activity_completions')
+      .select('*')
+      .order('completed_at', { ascending: false })
+      .limit(10)
+    
+    if (completionsError) {
+      console.error('Error fetching completions:', completionsError)
       return
     }
     
-    console.log('✅ Database connection successful')
+    console.log('Recent activity completions:')
+    console.log(JSON.stringify(completions, null, 2))
     
-    // Test inserting a sample activity completion
-    const testActivity = {
-      user_id: 'test-user-id', // This will fail due to foreign key constraint, but we can see the error
+    // Try to insert a test completion
+    const testCompletion = {
+      user_id: user?.id,
+      activity_id: 'test-activity',
+      completed_at: new Date().toISOString(),
+      duration_minutes: 10,
       activity_name: 'Test Activity',
       activity_type: 'proprioceptive',
-      rating: null,
-      duration_minutes: 5,
-      completed_at: new Date().toISOString()
+      rating: 'regulated'
     }
     
-    console.log('Attempting to insert test activity:', testActivity)
-    
-    const { data, error } = await supabase
+    const { data: insertData, error: insertError } = await supabase
       .from('activity_completions')
-      .insert(testActivity)
+      .insert(testCompletion)
       .select()
-      .single()
     
-    if (error) {
-      console.error('❌ Insert error:', error)
-      console.error('Error code:', error.code)
-      console.error('Error message:', error.message)
-      console.error('Error details:', error.details)
+    if (insertError) {
+      console.error('Error inserting test completion:', insertError)
     } else {
-      console.log('✅ Insert successful:', data)
+      console.log('Successfully inserted test completion:', insertData)
     }
     
-  } catch (err) {
-    console.error('❌ Test failed:', err)
+  } catch (error) {
+    console.error('Test failed:', error)
   }
 }
 
