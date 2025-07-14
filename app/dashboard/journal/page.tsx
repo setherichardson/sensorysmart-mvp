@@ -352,8 +352,32 @@ export default function JournalPage() {
         .eq('user_id', user!.id)
         .order('completed_at', { ascending: false })
 
-      if (activitiesData) {
-        const transformedActivities: JournalActivity[] = activitiesData.map(activity => ({
+      // Also load from localStorage as fallback
+      const localStorageActivities = JSON.parse(localStorage.getItem('activity_completions') || '[]')
+      const userLocalActivities = localStorageActivities.filter((activity: any) => activity.user_id === user!.id)
+      
+      // Combine database and localStorage activities
+      let allActivities = activitiesData || []
+      
+      // Add localStorage activities that aren't in database
+      userLocalActivities.forEach((localActivity: any) => {
+        const existsInDb = allActivities.some((dbActivity: any) => 
+          dbActivity.id === localActivity.id || 
+          (dbActivity.activity_name === localActivity.activity_name && 
+           dbActivity.completed_at === localActivity.completed_at)
+        )
+        if (!existsInDb) {
+          allActivities.push(localActivity)
+        }
+      })
+      
+      // Sort by completed_at descending
+      allActivities.sort((a: any, b: any) => 
+        new Date(b.completed_at).getTime() - new Date(a.completed_at).getTime()
+      )
+
+      if (allActivities.length > 0) {
+        const transformedActivities: JournalActivity[] = allActivities.map(activity => ({
           id: activity.id,
           activity_name: activity.activity_name || 'Sensory Activity',
           activity_type: activity.activity_type || 'proprioceptive',
@@ -363,6 +387,9 @@ export default function JournalPage() {
           notes: activity.notes
         }))
         setActivities(transformedActivities)
+        
+        // Recalculate stats
+        calculateStats(transformedActivities)
       }
     }
     loadActivities()
