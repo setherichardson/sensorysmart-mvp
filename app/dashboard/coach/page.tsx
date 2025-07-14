@@ -317,14 +317,6 @@ export default function CoachPage() {
         <div className="coach-header">
           <div className="coach-header-nav">
             <h1 className="coach-title">Coach</h1>
-            <button
-              onClick={handleRefresh}
-              className="coach-header-icon"
-            >
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-            </button>
           </div>
           {!assessment && (
             <div className="mt-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
@@ -404,10 +396,7 @@ export default function CoachPage() {
               <Link href="/dashboard/today" className="nav-tab">
                 <div className="nav-tab-content nav-tab-inactive">
                   <div className="nav-tab-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 15l4-4 4 4" />
-                    </svg>
+                    <img src="/Icons/Calendar-Default.svg" alt="Today" style={{ width: 28, height: 28 }} />
                   </div>
                   <span className="nav-tab-label-inactive hig-caption-1">Today</span>
                 </div>
@@ -417,9 +406,7 @@ export default function CoachPage() {
               <Link href="/dashboard/coach" className="nav-tab">
                 <div className="nav-tab-content nav-tab-active">
                   <div className="nav-tab-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
+                    <img src="/Icons/Chat-Active.svg" alt="Coach" style={{ width: 28, height: 28 }} />
                   </div>
                   <span className="nav-tab-label-active hig-caption-1">Coach</span>
                 </div>
@@ -429,9 +416,7 @@ export default function CoachPage() {
               <Link href="/dashboard/journal" className="nav-tab">
                 <div className="nav-tab-content nav-tab-inactive">
                   <div className="nav-tab-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
+                    <img src="/Icons/Journal-Default.svg" alt="Journal" style={{ width: 28, height: 28 }} />
                   </div>
                   <span className="nav-tab-label-inactive hig-caption-1">Journal</span>
                 </div>
