@@ -25,6 +25,7 @@ export default function CoachPage() {
   const [visibleSuggestions, setVisibleSuggestions] = useState<number[]>([])
   const [isChatMode, setIsChatMode] = useState(false)
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false)
+  const [isChatModalOpen, setIsChatModalOpen] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const lastMessageRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -198,50 +199,52 @@ export default function CoachPage() {
   const handleSendMessage = async (content: string) => {
     if (!content.trim() || isTyping) return
 
-    // Enter chat mode when sending a message
-    setIsChatMode(true)
-
-    const userMessage: Message = {
+    const userMessage = content.trim()
+    setInputValue('')
+    
+    // Add user message immediately
+    const userMsg: Message = {
       id: Date.now().toString(),
       type: 'user',
-      content: content.trim(),
+      content: userMessage,
       timestamp: new Date()
     }
-
-    // Add user message immediately
-    setMessages(prev => [...prev, userMessage])
-    setInputValue('')
+    
+    setMessages(prev => [...prev, userMsg])
     setIsTyping(true)
-
+    
+    // Save user message
+    await saveMessage(userMessage, 'user')
+    
     try {
       // Get AI response
-      const aiResponse = await getChatGPTResponse(content.trim())
+      const aiResponse = await getChatGPTResponse(userMessage)
       
-      // Add assistant message
-      const assistantMessage: Message = {
+      // Add AI response
+      const aiMsg: Message = {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
         content: aiResponse,
         timestamp: new Date()
       }
-
-      setMessages(prev => [...prev, assistantMessage])
-
-      // Save assistant message
+      
+      setMessages(prev => [...prev, aiMsg])
+      
+      // Save AI response
       await saveMessage(aiResponse, 'assistant')
       
     } catch (error) {
-      console.error('Error getting AI response:', error)
+      console.error('Error in chat:', error)
       
       // Add error message
-      const errorMessage: Message = {
+      const errorMsg: Message = {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
-        content: 'Sorry, I encountered an error. Please try again.',
+        content: 'I apologize, but I\'m having trouble connecting right now. Please try again in a moment.',
         timestamp: new Date()
       }
       
-      setMessages(prev => [...prev, errorMessage])
+      setMessages(prev => [...prev, errorMsg])
     } finally {
       setIsTyping(false)
     }
@@ -249,65 +252,45 @@ export default function CoachPage() {
 
   const handleSuggestionClick = (suggestion: string) => {
     handleSendMessage(suggestion)
+    setIsChatModalOpen(true)
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     handleSendMessage(inputValue)
+    setIsChatModalOpen(true)
   }
 
   const handleRefresh = () => {
-    // Soft reset - keep database data, just clear current view
     setMessages([])
-    setVisibleSuggestions([])
     setIsChatMode(false)
-    
-    // Show suggestions immediately
+    setVisibleSuggestions([])
     setTimeout(() => {
       showSuggestionsWithDelay()
-    }, 500)
+    }, 100)
   }
 
   const handleCloseChat = () => {
-    setIsChatMode(false)
+    setIsChatModalOpen(false)
     setInputValue('')
   }
 
   const formatMessageContent = (content: string) => {
     // Parse markdown-like formatting
-    let parsed = content
+    let formatted = content
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/`(.*?)`/g, '<code>$1</code>')
+      .replace(/\n/g, '<br>')
     
-    // Handle **bold** text
-    parsed = parsed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    
-    // Handle __bold__ text (alternative)
-    parsed = parsed.replace(/__(.*?)__/g, '<strong>$1</strong>')
-    
-    // Handle *italic* text (after bold to avoid conflicts)
-    parsed = parsed.replace(/\*([^*\n]+?)\*/g, '<em>$1</em>')
-    
-    // Handle _italic_ text (alternative)
-    parsed = parsed.replace(/_([^_\n]+?)_/g, '<em>$1</em>')
-    
-    return parsed
+    return formatted
   }
 
   const parseInlineMarkdown = (text: string): string => {
-    let parsed = text
-    
-    // Handle **bold** text
-    parsed = parsed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    
-    // Handle __bold__ text (alternative)
-    parsed = parsed.replace(/__(.*?)__/g, '<strong>$1</strong>')
-    
-    // Handle *italic* text (after bold to avoid conflicts)
-    parsed = parsed.replace(/\*([^*\n]+?)\*/g, '<em>$1</em>')
-    
-    // Handle _italic_ text (alternative)
-    parsed = parsed.replace(/_([^_\n]+?)_/g, '<em>$1</em>')
-    
-    return parsed
+    return text
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/`(.*?)`/g, '<code>$1</code>')
   }
 
   if (loading) {
@@ -335,18 +318,12 @@ export default function CoachPage() {
           <div className="coach-header-nav">
             <h1 className="coach-title">Coach</h1>
             <button
-              onClick={isChatMode ? handleCloseChat : handleRefresh}
+              onClick={handleRefresh}
               className="coach-header-icon"
             >
-              {isChatMode ? (
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-              )}
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
             </button>
           </div>
           {!assessment && (
@@ -364,52 +341,8 @@ export default function CoachPage() {
 
         {/* Content */}
         <div className="coach-content">
-          {/* Chat Messages - Show when in chat mode OR when there are messages */}
-          {(isChatMode || messages.length > 0) && (
-            <div className="chat-messages">
-              {messages.map((message, index) => (
-                <div
-                  key={message.id}
-                  ref={index === messages.length - 1 ? lastMessageRef : null}
-                  className={message.type === 'user' ? 'message-user' : 'message-assistant'}
-                >
-                  {message.type === 'user' ? (
-                    <div className="message-bubble-user">
-                      {formatMessageContent(message.content)}
-                    </div>
-                  ) : (
-                    <div className="message-content-assistant">
-                      <div 
-                        className="message-text"
-                        dangerouslySetInnerHTML={{ __html: formatMessageContent(message.content) }}
-                      />
-                    </div>
-                  )}
-                </div>
-              ))}
-              
-              {/* Thinking Animation */}
-              {isTyping && (
-                <div className="message-assistant">
-                  <div className="thinking-bubble">
-                    <div className="thinking-content">
-                      <span className="thinking-text">Coach is thinking...</span>
-                      <div className="thinking-dots">
-                        <div className="thinking-dot"></div>
-                        <div className="thinking-dot"></div>
-                        <div className="thinking-dot"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-              
-              <div ref={messagesEndRef} />
-            </div>
-          )}
-
-          {/* Suggestions - Show when not in chat mode AND no messages */}
-          {!isChatMode && messages.length === 0 && (
+          {/* Suggestions - Show when not in chat modal */}
+          {!isChatModalOpen && (
             <div className="suggestions-container">
               <div className="suggestions-grid">
                 {suggestedTopics.map((suggestion, index) => (
@@ -425,40 +358,42 @@ export default function CoachPage() {
               </div>
             </div>
           )}
-        </div>
 
-        {/* Chat Input */}
-        <div className={`chat-input-container ${isKeyboardVisible ? 'keyboard-visible' : ''}`}>
-          <form onSubmit={handleSubmit} className="chat-input-wrapper">
-            <div className="chat-input-field">
-              <textarea
-                ref={inputRef}
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="ask coach a question..."
-                className="chat-input"
-                disabled={isTyping}
-                rows={1}
-                onInput={(e) => {
-                  const target = e.target as HTMLTextAreaElement;
-                  target.style.height = 'auto';
-                  const scrollHeight = target.scrollHeight;
-                  const lineHeight = 24; // approximate line height
-                  const maxHeight = lineHeight * 4; // 4 lines max
-                  target.style.height = Math.min(scrollHeight, maxHeight) + 'px';
-                }}
-              />
-              <button
-                type="submit"
-                disabled={!inputValue.trim() || isTyping}
-                className="chat-send-button"
-              >
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
-              </button>
+          {/* Chat Input - Show when not in chat modal */}
+          {!isChatModalOpen && (
+            <div className={`chat-input-container ${isKeyboardVisible ? 'keyboard-visible' : ''}`}>
+              <form onSubmit={handleSubmit} className="chat-input-wrapper">
+                <div className="chat-input-field">
+                  <textarea
+                    ref={inputRef}
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="ask coach a question..."
+                    className="chat-input"
+                    disabled={isTyping}
+                    rows={1}
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      target.style.height = 'auto';
+                      const scrollHeight = target.scrollHeight;
+                      const lineHeight = 24; // approximate line height
+                      const maxHeight = lineHeight * 4; // 4 lines max
+                      target.style.height = Math.min(scrollHeight, maxHeight) + 'px';
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    disabled={!inputValue.trim() || isTyping}
+                    className="chat-send-button"
+                  >
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
+          )}
         </div>
 
         {/* Bottom Navigation - Always visible */}
@@ -505,6 +440,146 @@ export default function CoachPage() {
           </div>
         </div>
       </div>
+
+      {/* Chat Modal */}
+      {isChatModalOpen && (
+        <div className="fixed inset-0 z-50 flex flex-col" style={{ background: '#ffffff' }}>
+          {/* Modal Header */}
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'space-between', 
+            padding: '24px', 
+            background: '#F6F6F6',
+            borderBottom: '1px solid #EEE6E5',
+            flexShrink: 0
+          }}>
+            <div style={{ flex: 1 }}>
+              <h1 style={{ 
+                fontSize: '24px', 
+                fontWeight: '600', 
+                color: '#252225',
+                margin: '0 0 4px 0'
+              }}>
+                Coach
+              </h1>
+              <p style={{ 
+                fontSize: '14px', 
+                color: '#6B7280',
+                margin: '0'
+              }}>
+                Chat with your sensory coach
+              </p>
+            </div>
+            <button
+              onClick={handleCloseChat}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#6B7280',
+                cursor: 'pointer',
+                padding: '8px',
+                borderRadius: '8px',
+                transition: 'background-color 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#E5E7EB'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent'
+              }}
+            >
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Modal Content */}
+          <div style={{ 
+            flex: 1, 
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            {/* Chat Messages */}
+            <div className="chat-messages" style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
+              {messages.map((message, index) => (
+                <div
+                  key={message.id}
+                  ref={index === messages.length - 1 ? lastMessageRef : null}
+                  className={message.type === 'user' ? 'message-user' : 'message-assistant'}
+                >
+                  {message.type === 'user' ? (
+                    <div className="message-bubble-user">
+                      {formatMessageContent(message.content)}
+                    </div>
+                  ) : (
+                    <div className="message-content-assistant">
+                      <div 
+                        className="message-text"
+                        dangerouslySetInnerHTML={{ __html: formatMessageContent(message.content) }}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
+              
+              {/* Thinking Animation */}
+              {isTyping && (
+                <div className="message-assistant">
+                  <div className="thinking-bubble">
+                    <div className="thinking-content">
+                      <span className="thinking-text">Coach is thinking...</span>
+                      <div className="thinking-dots">
+                        <div className="thinking-dot"></div>
+                        <div className="thinking-dot"></div>
+                        <div className="thinking-dot"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Chat Input in Modal */}
+            <div className={`chat-input-container ${isKeyboardVisible ? 'keyboard-visible' : ''}`}>
+              <form onSubmit={handleSubmit} className="chat-input-wrapper">
+                <div className="chat-input-field">
+                  <textarea
+                    ref={inputRef}
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="ask coach a question..."
+                    className="chat-input"
+                    disabled={isTyping}
+                    rows={1}
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      target.style.height = 'auto';
+                      const scrollHeight = target.scrollHeight;
+                      const lineHeight = 24; // approximate line height
+                      const maxHeight = lineHeight * 4; // 4 lines max
+                      target.style.height = Math.min(scrollHeight, maxHeight) + 'px';
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    disabled={!inputValue.trim() || isTyping}
+                    className="chat-send-button"
+                  >
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 } 
