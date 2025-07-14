@@ -2002,7 +2002,7 @@ body {
   .suggestions-grid {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
   }
 
   .suggestion-card {
@@ -2044,7 +2044,7 @@ body {
 .suggestions-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 16px;
 }
 
 .suggestion-card {
@@ -3149,7 +3149,7 @@ body {
   max-width: none;
   padding: 0;
   box-shadow: none;
-  margin-bottom: 0;
+  margin-bottom: 24px;
 }
 
 .thinking-content {
