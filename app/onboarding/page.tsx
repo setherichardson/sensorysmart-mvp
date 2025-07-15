@@ -30,9 +30,12 @@ export default function OnboardingPage() {
         
         if (!user) {
           // User not authenticated, redirect to signup
+          console.log('No user found, redirecting to signup')
           router.push('/signup')
           return
         }
+
+        console.log('User authenticated:', user.id, user.email)
 
         // For MVP, we skip email confirmation check
 
@@ -73,6 +76,7 @@ export default function OnboardingPage() {
 
     try {
       console.log('Creating profile for user:', user.id)
+      console.log('User object:', user)
       console.log('Profile data:', { parentName, childName, childAge, email: user.email })
 
       // Create profile via API route
