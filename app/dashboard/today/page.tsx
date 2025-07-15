@@ -38,10 +38,33 @@ export default function TodayDashboard() {
   const [behaviorHelpOpen, setBehaviorHelpOpen] = useState(false)
   const [todaysActivities, setTodaysActivities] = useState<Activity[]>([])
   const [greeting, setGreeting] = useState('')
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [isMockPayment, setIsMockPayment] = useState(false)
 
   // Set greeting on client-side to avoid hydration mismatch
   useEffect(() => {
     setGreeting(getTimeOfDayGreeting())
+  }, [])
+
+  // Check for success message from payment
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const success = urlParams.get('success')
+    const mock = urlParams.get('mock')
+    
+    if (success === 'true') {
+      setShowSuccessMessage(true)
+      setIsMockPayment(mock === 'true')
+      
+      // Clear the URL parameters
+      const newUrl = window.location.pathname
+      window.history.replaceState({}, '', newUrl)
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setShowSuccessMessage(false)
+      }, 5000)
+    }
   }, [])
 
   // Refresh activities when user returns to the app
@@ -1157,6 +1180,25 @@ export default function TodayDashboard() {
   return (
     <div className="today-container min-h-screen" style={{ background: '#F6F6F6' }}>
       <div className="today-wrapper mx-auto w-full max-w-md">
+        {/* Success Message */}
+        {showSuccessMessage && (
+          <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-green-50 border border-green-200 rounded-lg p-4 shadow-lg max-w-sm">
+            <div className="flex items-center">
+              <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <p className="text-green-800 font-medium">
+                  {isMockPayment ? 'Test subscription activated!' : 'Payment successful!'}
+                </p>
+                <p className="text-green-700 text-sm">
+                  {isMockPayment ? 'You can now test all features' : 'Welcome to Sensorysmart!'}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Header */}
         <div className="today-header mb-4 px-4">
           <div className="today-header-icons">

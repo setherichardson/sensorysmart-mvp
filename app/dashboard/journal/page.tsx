@@ -461,6 +461,8 @@ export default function JournalPage() {
 
   return (
     <div className="journal-container min-h-screen" style={{ background: '#F6F6F6' }}>
+
+      
       <div className="journal-wrapper mx-auto w-full max-w-md px-4">
         {/* Header */}
         <div className="journal-header">
