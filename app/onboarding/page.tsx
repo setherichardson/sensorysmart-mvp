@@ -69,7 +69,11 @@ export default function OnboardingPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!user) return
+    console.log('Form submitted, user state:', user)
+    if (!user) {
+      console.log('No user found in state')
+      return
+    }
     
     setSubmitting(true)
     setError('')
@@ -80,18 +84,23 @@ export default function OnboardingPage() {
       console.log('Profile data:', { parentName, childName, childAge, email: user.email })
 
       // Create profile via API route
+      const requestBody = {
+        parentName: parentName,
+        childName: childName,
+        childAge: childAge,
+        userId: user.id,
+        email: user.email,
+      }
+      
+      console.log('Request body being sent:', requestBody)
+      console.log('User ID type:', typeof user.id, 'Value:', user.id)
+      
       const response = await fetch('/api/profiles', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          parentName: parentName,
-          childName: childName,
-          childAge: childAge,
-          userId: user.id,
-          email: user.email,
-        })
+        body: JSON.stringify(requestBody)
       })
 
       console.log('🔍 Frontend: Response status:', response.status)
