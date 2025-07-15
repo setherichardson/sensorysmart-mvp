@@ -457,13 +457,13 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
         await onComplete(rating)
       }
       setSaving(false)
-      // Redirect to journal with ?new=1
-      router.push('/dashboard/journal?new=1')
+      // Close the modal and stay on the current page
+      onClose()
     } catch (err) {
       setSaving(false)
-      console.log('Error saving activity completion, but continuing with redirect')
-      // Still redirect even if there's an error
-      router.push('/dashboard/journal?new=1')
+      console.log('Error saving activity completion, but continuing')
+      // Still close the modal even if there's an error
+      onClose()
     }
   }
 

@@ -40,6 +40,7 @@ export default function TodayDashboard() {
   const [greeting, setGreeting] = useState('')
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [isMockPayment, setIsMockPayment] = useState(false)
+  const [showActivityCompleted, setShowActivityCompleted] = useState(false)
 
   // Set greeting on client-side to avoid hydration mismatch
   useEffect(() => {
@@ -1142,6 +1143,12 @@ export default function TodayDashboard() {
         localStorage.setItem('lastActivityUpdate', Date.now().toString())
         
         console.log('✅ Activity list updated successfully')
+        
+        // Show success message for new activity
+        setShowActivityCompleted(true)
+        setTimeout(() => {
+          setShowActivityCompleted(false)
+        }, 3000) // Hide after 3 seconds
       }
       
       // Show a brief success message and stay on the page
@@ -1194,6 +1201,21 @@ export default function TodayDashboard() {
                 <p className="text-green-700 text-sm">
                   {isMockPayment ? 'You can now test all features' : 'Welcome to Sensorysmart!'}
                 </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Activity Completed Success Message */}
+        {showActivityCompleted && (
+          <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-blue-50 border border-blue-200 rounded-lg p-4 shadow-lg max-w-sm">
+            <div className="flex items-center">
+              <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <p className="text-blue-800 font-medium">Activity completed!</p>
+                <p className="text-blue-700 text-sm">A new activity has been added to your list</p>
               </div>
             </div>
           </div>
