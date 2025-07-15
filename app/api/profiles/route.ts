@@ -44,6 +44,16 @@ export async function POST(request: NextRequest) {
       )
     }
     
+    // Validate userId is a valid UUID
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+    if (!uuidRegex.test(body.userId)) {
+      console.error('❌ Invalid user ID format:', body.userId)
+      return NextResponse.json(
+        { success: false, error: 'Invalid user ID format. Please try signing in again.' },
+        { status: 400 }
+      )
+    }
+    
     const profileData = {
       parent_name: body.parentName,
       email: body.email || '',
@@ -75,12 +85,35 @@ export async function POST(request: NextRequest) {
       console.error('Database error code:', error.code)
       console.error('Database error details:', error.details)
       console.error('Database error hint:', error.hint)
+      
+      // Provide more specific error messages based on error codes
+      if (error.code === '23505') { // Unique constraint violation
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: 'A profile already exists for this user. Please try signing in instead.',
+            details: error.message,
+            code: error.code
+          },
+          { status: 409 }
+        )
+      } else if (error.code === '23503') { // Foreign key violation
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: 'User not found. Please try signing in again.',
+            details: error.message,
+            code: error.code
+          },
+          { status: 400 }
+        )
+      }
     }
     
     return NextResponse.json(
       { 
         success: false, 
-        error: 'Failed to create profile',
+        error: 'Failed to create profile. Please try again.',
         details: error?.message || 'Unknown error',
         code: error?.code || 'UNKNOWN'
       },

@@ -19,33 +19,51 @@ export default function OnboardingPage() {
   useEffect(() => {
     // Get current user
     const getCurrentUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      
-      if (!user) {
-        // User not authenticated, redirect to signup
-        router.push('/signup')
-        return
-      }
-
-      // Check if user already has a profile
       try {
-        const { data: profile, error } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', user.id)
-          .single()
-
-        if (profile && !error) {
-          // User already has profile, redirect to dashboard
-          router.push('/dashboard/today')
+        const { data: { user }, error } = await supabase.auth.getUser()
+        
+        if (error) {
+          console.error('Auth error:', error)
+          router.push('/signup')
           return
         }
-      } catch (err) {
-        // Profile doesn't exist, continue with onboarding
-      }
+        
+        if (!user) {
+          // User not authenticated, redirect to signup
+          router.push('/signup')
+          return
+        }
 
-      setUser(user)
-      setLoading(false)
+        // Check if user email is confirmed
+        if (!user.email_confirmed_at) {
+          setError('Please check your email and click the confirmation link before continuing.')
+          setLoading(false)
+          return
+        }
+
+        // Check if user already has a profile
+        try {
+          const { data: profile, error: profileError } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', user.id)
+            .single()
+
+          if (profile && !profileError) {
+            // User already has profile, redirect to dashboard
+            router.push('/dashboard/today')
+            return
+          }
+        } catch (err) {
+          // Profile doesn't exist, continue with onboarding
+        }
+
+        setUser(user)
+        setLoading(false)
+      } catch (err) {
+        console.error('Error getting user:', err)
+        router.push('/signup')
+      }
     }
 
     getCurrentUser()
@@ -87,7 +105,17 @@ export default function OnboardingPage() {
 
       if (!response.ok || !result.success) {
         console.error('API error:', result)
-        setError(`Failed to create profile: ${result.error || 'Unknown error'}`)
+        
+        // Provide more specific error messages
+        if (result.error?.includes('already exists')) {
+          setError('An account already exists with this email. Please try signing in instead.')
+        } else if (result.error?.includes('Invalid user ID')) {
+          setError('Authentication error. Please try refreshing the page and signing in again.')
+        } else if (result.error?.includes('User not found')) {
+          setError('User not found. Please try signing in again.')
+        } else {
+          setError(`Failed to create profile: ${result.error || 'Unknown error'}`)
+        }
         return
       }
 
