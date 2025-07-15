@@ -117,6 +117,8 @@ export default function OnboardingPage() {
           setError('Authentication error. Please try refreshing the page and signing in again.')
         } else if (result.error?.includes('User not found')) {
           setError('User not found. Please try signing in again.')
+        } else if (result.error?.includes('Load failed')) {
+          setError('Failed to create profile. Please try again or refresh the page.')
         } else {
           setError(`Failed to create profile: ${result.error || 'Unknown error'}`)
         }
@@ -125,8 +127,11 @@ export default function OnboardingPage() {
 
       console.log('Profile created successfully:', result.profile)
       
-      // Success! Redirect to assessment
-      router.push('/onboarding/assessment')
+      // Success! Add a small delay to ensure database commit, then redirect to assessment
+      setSubmitting(true) // Keep submitting state true during redirect
+      setTimeout(() => {
+        router.push('/onboarding/assessment')
+      }, 500)
     } catch (err) {
       console.error('Unexpected error:', err)
       setError(`An unexpected error occurred: ${err instanceof Error ? err.message : 'Unknown error'}`)
@@ -253,7 +258,7 @@ export default function OnboardingPage() {
             {submitting ? (
               <div className="flex items-center justify-center">
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                Creating Profile...
+                {error ? 'Creating Profile...' : 'Redirecting...'}
               </div>
             ) : (
               'Continue to Assessment'

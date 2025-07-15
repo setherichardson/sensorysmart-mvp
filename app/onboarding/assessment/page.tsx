@@ -40,12 +40,12 @@ export default function Assessment() {
         console.log('✅ Assessment: User found:', user.email)
 
         // Get user profile with retry logic for timing issues
-        let retries = 3
+        let retries = 5
         let profileData = null
         let profileError = null
 
         while (retries > 0 && !profileData) {
-          console.log(`🔄 Assessment: Fetching profile (${4 - retries}/3)...`)
+          console.log(`🔄 Assessment: Fetching profile (${6 - retries}/5)...`)
           
           const result = await supabase
             .from('profiles')
@@ -70,7 +70,9 @@ export default function Assessment() {
 
         if (profileError || !profileData) {
           console.log('❌ Assessment: No profile found after retries, redirecting to onboarding')
-          router.push('/onboarding')
+          // Instead of redirecting, show a user-friendly error
+          setError('Profile not found. Please go back and try creating your profile again.')
+          setLoading(false)
           return
         }
 
@@ -78,7 +80,7 @@ export default function Assessment() {
         setProfile(profileData)
       } catch (err) {
         console.error('❌ Assessment: Error loading user data:', err)
-        router.push('/login')
+        setError('Failed to load your profile. Please try refreshing the page or go back to create your profile again.')
       } finally {
         setLoading(false)
       }
