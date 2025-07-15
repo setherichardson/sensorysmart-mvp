@@ -7,19 +7,20 @@ import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 
 export default function OnboardingPage() {
+  const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
   const [parentName, setParentName] = useState('')
   const [childName, setChildName] = useState('')
   const [childAge, setChildAge] = useState('')
-  const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
-  const router = useRouter()
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     // Get current user
     const getCurrentUser = async () => {
       try {
+        console.log('Checking user authentication...')
         const { data: { user }, error } = await supabase.auth.getUser()
         
         if (error) {
@@ -29,15 +30,12 @@ export default function OnboardingPage() {
         }
         
         if (!user) {
-          // User not authenticated, redirect to signup
           console.log('No user found, redirecting to signup')
           router.push('/signup')
           return
         }
 
-        console.log('User authenticated:', user.id, user.email)
-
-        // For MVP, we skip email confirmation check
+        console.log('User authenticated successfully:', user.id, user.email)
 
         // Check if user already has a profile
         try {
@@ -48,12 +46,13 @@ export default function OnboardingPage() {
             .single()
 
           if (profile && !profileError) {
-            // User already has profile, redirect to dashboard
+            console.log('User already has profile, redirecting to dashboard')
             router.push('/dashboard/today')
             return
           }
         } catch (err) {
           // Profile doesn't exist, continue with onboarding
+          console.log('No existing profile found, continuing with onboarding')
         }
 
         setUser(user)
@@ -69,9 +68,9 @@ export default function OnboardingPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted, user state:', user)
+    
     if (!user) {
-      console.log('No user found in state')
+      setError('Authentication error. Please try signing in again.')
       return
     }
     
@@ -103,13 +102,10 @@ export default function OnboardingPage() {
         body: JSON.stringify(requestBody)
       })
 
-      console.log('🔍 Frontend: Response status:', response.status)
-      console.log('🔍 Frontend: Response ok:', response.ok)
+      console.log('Response status:', response.status)
       
       const result = await response.json()
-      console.log('🔍 Frontend: Response result:', result)
-      console.log('🔍 Frontend: Result success:', result.success)
-      console.log('🔍 Frontend: Result error:', result.error)
+      console.log('Response result:', result)
 
       if (!response.ok || !result.success) {
         console.error('API error:', result)
@@ -159,8 +155,6 @@ export default function OnboardingPage() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F6F6F6' }}>
       <div className="mx-auto w-full max-w-md px-4 py-8">
-        {/* Back button */}
-
         {/* Header */}
         <div className="mb-8">
           <Link href="/" className="inline-flex items-center text-[#6C6C6C] hover:text-[#252225] mb-6">
