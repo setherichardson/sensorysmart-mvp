@@ -29,7 +29,11 @@ export default function SignUpPage() {
       }
 
       if (data.user) {
+        console.log('Signup successful, user:', data.user.id, data.user.email)
         // For MVP, we'll skip email confirmation and go directly to onboarding
+        // Wait a moment for the session to be established
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        console.log('Redirecting to onboarding...')
         router.push('/onboarding')
       }
     } catch (err) {
