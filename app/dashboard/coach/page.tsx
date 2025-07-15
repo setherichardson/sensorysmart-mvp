@@ -319,7 +319,7 @@ export default function CoachPage() {
 
   return (
     <div className="coach-container" style={{ background: '#F6F6F6' }}>
-      <div className="coach-wrapper">
+      <div className="coach-wrapper mx-auto w-full max-w-md px-4">
         {/* Header - Always visible */}
         <div className="coach-header">
           <div className="coach-header-nav">
