@@ -20,10 +20,7 @@ export default function SignUpPage() {
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
-        password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/onboarding`
-        }
+        password
       })
 
       if (error) {
@@ -32,16 +29,11 @@ export default function SignUpPage() {
       }
 
       if (data.user) {
-        // Check if email confirmation is required
-        if (data.user.email_confirmed_at) {
-          // Email already confirmed, go to onboarding
-          router.push('/onboarding')
-        } else {
-          // Email confirmation required
-          setError('Please check your email and click the confirmation link before continuing.')
-        }
+        // For MVP, we'll skip email confirmation and go directly to onboarding
+        router.push('/onboarding')
       }
     } catch (err) {
+      console.error('Signup error:', err)
       setError('An unexpected error occurred. Please try again.')
     } finally {
       setLoading(false)

@@ -34,12 +34,7 @@ export default function OnboardingPage() {
           return
         }
 
-        // Check if user email is confirmed
-        if (!user.email_confirmed_at) {
-          setError('Please check your email and click the confirmation link before continuing.')
-          setLoading(false)
-          return
-        }
+        // For MVP, we skip email confirmation check
 
         // Check if user already has a profile
         try {
