@@ -118,7 +118,7 @@ export default function ActivityRatingClient() {
       <div className="rating-wrapper">
         <div className="rating-question">
           <h2 className="question-text">
-            You completed an activity. How'd Zeke do?
+            How did {profile.child_name} do with "{activityData.activity_name}"?
           </h2>
         </div>
         <div className="rating-options">

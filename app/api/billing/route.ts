@@ -55,6 +55,69 @@ export async function POST(request: NextRequest) {
   }
 }
 
+export async function PUT(request: NextRequest) {
+  try {
+    // Check if Stripe is configured
+    if (!stripe || !STRIPE_CONFIG.isConfigured) {
+      return NextResponse.json(
+        { error: 'Billing is not configured' },
+        { status: 503 }
+      )
+    }
+
+    // Get authenticated user
+    const supabase = await createClient()
+    const { data: { user }, error: authError } = await supabase.auth.getUser()
+    
+    if (authError || !user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    // Find or create customer
+    const customers = await stripe.customers.list({
+      email: user.email,
+      limit: 1,
+    })
+
+    let customer
+    if (customers.data.length === 0) {
+      // Create new customer
+      customer = await stripe.customers.create({
+        email: user.email,
+        metadata: {
+          userId: user.id,
+          app: 'sensorysmart',
+        },
+      })
+    } else {
+      customer = customers.data[0]
+    }
+
+    // Create customer portal session
+    const session = await stripe.billingPortal.sessions.create({
+      customer: customer.id,
+      return_url: `${request.nextUrl.origin}/dashboard/profile`,
+    })
+
+    return NextResponse.json({ url: session.url })
+  } catch (error: any) {
+    console.error('Customer portal error:', error)
+    
+    // Check if it's a Customer Portal configuration error
+    if (error.type === 'StripeInvalidRequestError' && error.message?.includes('customer portal settings')) {
+      return NextResponse.json(
+        { error: 'Customer Portal not configured. Please contact support to set up billing management.' },
+        { status: 503 }
+      )
+    }
+    
+    return NextResponse.json(
+      { error: 'Failed to create customer portal session' },
+      { status: 500 }
+    )
+  }
+}
+
 export async function GET(request: NextRequest) {
   try {
     // Check if Stripe is configured

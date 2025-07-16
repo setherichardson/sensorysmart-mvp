@@ -13,6 +13,7 @@ export default function ProfilePage() {
   const [assessment, setAssessment] = useState<Assessment | null>(null)
   const [loading, setLoading] = useState(true)
   const [signingOut, setSigningOut] = useState(false)
+  const [billingLoading, setBillingLoading] = useState(false)
   const [editingField, setEditingField] = useState<string | null>(null)
   const [editValues, setEditValues] = useState({
     parent_name: '',
@@ -135,51 +136,114 @@ export default function ProfilePage() {
     }
   }
 
-  const getSensoryProfileSummary = () => {
-    if (!assessment || !assessment.results) return null
+  const handleBillingPortal = async () => {
+    setBillingLoading(true)
+    try {
+      const response = await fetch('/api/billing', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
 
-    const results = assessment.results as any
-    
-    return [
-      {
-        name: 'Vestibular',
-        status: results.sensory_profile || 'Mixed Profile',
-        description: results.sensory_profile === 'Sensory Seeking' 
-          ? 'Seeks movement, spinning, and swinging activities'
-          : results.sensory_profile === 'Sensory Avoiding'
-          ? 'Prefers calm, predictable movement activities'
-          : 'Benefits from a mix of movement and calming activities'
-      },
-      {
-        name: 'Tactile', 
-        status: 'Balanced',
-        description: 'Generally comfortable with most textures'
-      },
-      {
-        name: 'Proprioceptive',
-        status: results.sensory_profile || 'Mixed Profile',
-        description: results.sensory_profile === 'Sensory Seeking'
-          ? 'Seeks deep pressure and heavy work activities'
-          : results.sensory_profile === 'Sensory Avoiding'
-          ? 'Prefers gentle, predictable pressure activities'
-          : 'Benefits from varied proprioceptive input'
+      const { url, error } = await response.json()
+
+      if (error) {
+        console.error('Billing portal error:', error)
+        
+        // Fallback to direct Customer Portal link
+        const directPortalUrl = 'https://billing.stripe.com/p/login/aFa9AU8OM7LS6qb8NJds400'
+        if (confirm('Redirecting to billing portal. Continue?')) {
+          window.location.href = directPortalUrl
+        }
+        return
       }
-    ]
+
+      // Redirect to Stripe Customer Portal
+      window.location.href = url
+    } catch (error) {
+      console.error('Billing portal error:', error)
+      
+      // Fallback to direct Customer Portal link
+      const directPortalUrl = 'https://billing.stripe.com/p/login/aFa9AU8OM7LS6qb8NJds400'
+      if (confirm('Unable to access billing portal. Use direct link instead?')) {
+        window.location.href = directPortalUrl
+      }
+    } finally {
+      setBillingLoading(false)
+    }
   }
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Seeking':
-      case 'Sensory Seeking':
-        return 'bg-blue-100 text-blue-700'
-      case 'Balanced':
-        return 'bg-green-100 text-green-700'
-      case 'Avoiding':
-      case 'Sensory Avoiding':
-        return 'bg-orange-100 text-orange-700'
-      default:
-        return 'bg-gray-100 text-gray-700'
+  const getSystemLabel = (system: string) => {
+    switch (system) {
+      case 'tactile': return 'Touch'
+      case 'visual': return 'Sight'
+      case 'auditory': return 'Hearing'
+      case 'olfactory': return 'Smell'
+      case 'proprioceptive': return 'Body Awareness'
+      case 'vestibular': return 'Movement'
+      case 'interoception': return 'Internal Awareness'
+      case 'social-emotional': return 'Social-Emotional'
+      default: return system
     }
+  }
+
+  const getScoreInterpretation = (score: number) => {
+    if (score <= 8) return { label: 'Avoiding', color: 'bg-red-100 text-red-700' }
+    if (score <= 12) return { label: 'Sensitive', color: 'bg-orange-100 text-orange-700' }
+    if (score <= 16) return { label: 'Typical', color: 'bg-gray-100 text-gray-700' }
+    return { label: 'Seeking', color: 'bg-green-100 text-green-700' }
+  }
+
+  const getNeedsForSystem = (system: string, score: number) => {
+    const interpretation = getScoreInterpretation(score)
+    
+    // Only return needs for non-typical scores
+    if (interpretation.label === 'Typical') return null
+    
+    switch (system) {
+      case 'tactile':
+        if (interpretation.label === 'Avoiding') return 'Gentle, predictable touch experiences'
+        if (interpretation.label === 'Sensitive') return 'Soft, controlled tactile input'
+        if (interpretation.label === 'Seeking') return 'Rich, varied tactile experiences'
+        break
+      case 'visual':
+        if (interpretation.label === 'Avoiding') return 'Calm, organized visual spaces'
+        if (interpretation.label === 'Sensitive') return 'Soft, diffused lighting'
+        if (interpretation.label === 'Seeking') return 'Bright, engaging visual stimuli'
+        break
+      case 'auditory':
+        if (interpretation.label === 'Avoiding') return 'Quiet, peaceful sound environments'
+        if (interpretation.label === 'Sensitive') return 'Gentle, predictable sounds'
+        if (interpretation.label === 'Seeking') return 'Rich sounds and engaging audio'
+        break
+      case 'olfactory':
+        if (interpretation.label === 'Avoiding') return 'Neutral, clean scents'
+        if (interpretation.label === 'Sensitive') return 'Mild, familiar aromas'
+        if (interpretation.label === 'Seeking') return 'Varied, interesting scents'
+        break
+      case 'proprioceptive':
+        if (interpretation.label === 'Avoiding') return 'Light, gentle body input'
+        if (interpretation.label === 'Sensitive') return 'Moderate, controlled movement'
+        if (interpretation.label === 'Seeking') return 'Heavy work and deep pressure'
+        break
+      case 'vestibular':
+        if (interpretation.label === 'Avoiding') return 'Steady, predictable motion'
+        if (interpretation.label === 'Sensitive') return 'Slow, gentle movement'
+        if (interpretation.label === 'Seeking') return 'Active, dynamic movement'
+        break
+      case 'interoception':
+        if (interpretation.label === 'Avoiding') return 'Gentle body awareness activities'
+        if (interpretation.label === 'Sensitive') return 'Calm internal awareness'
+        if (interpretation.label === 'Seeking') return 'Strong internal feedback'
+        break
+      case 'social-emotional':
+        if (interpretation.label === 'Avoiding') return 'Patient, understanding environments'
+        if (interpretation.label === 'Sensitive') return 'Supportive, gentle interactions'
+        if (interpretation.label === 'Seeking') return 'Engaging, social opportunities'
+        break
+    }
+    return null
   }
 
   if (loading) {
@@ -197,7 +261,7 @@ export default function ProfilePage() {
     return null // Will redirect
   }
 
-  const sensoryProfileSummary = getSensoryProfileSummary()
+
 
   return (
     <div className="profile-container" style={{ background: '#F6F6F6', minHeight: '100vh' }}>
@@ -323,21 +387,26 @@ export default function ProfilePage() {
             </div>
           </div>
           {/* Sensory Profile Section */}
-          {sensoryProfileSummary && (
+          {assessment && assessment.results && (
             <div className="profile-section" style={{ borderRadius: 24, background: '#fff', marginBottom: 16 }}>
               <div className="profile-section-header">
                 <h2 className="profile-section-title hig-title-2" style={{ fontSize: 18, fontWeight: 600, color: '#252225' }}>{profile.child_name}'s Sensory Profile</h2>
               </div>
-              <div className="sensory-profile-summary flex flex-col gap-4">
-                {sensoryProfileSummary.map((item, index) => (
-                  <div key={index} className="sensory-profile-item" style={{ background: '#F6F6F6', border: '1px solid #EEE6E5', borderRadius: 16, color: '#252225', padding: 16 }}>
-                    <div className="sensory-profile-header flex items-center justify-between mb-1">
-                      <h3 className="sensory-profile-name hig-headline" style={{ fontWeight: 600 }}>{item.name}</h3>
-                      <span className={`sensory-profile-status hig-caption-1 ${getStatusColor(item.status)}`}>{item.status}</span>
+              <div className="space-y-4">
+                {Object.entries(assessment.results).map(([system, score]) => {
+                  if (system === 'total' || system === 'profile' || system === 'behaviorScores') return null
+                  if (typeof score !== 'number') return null
+                  
+                  const needs = getNeedsForSystem(system, score)
+                  if (!needs) return null // Skip typical scores
+                  
+                  return (
+                    <div key={system} className="flex flex-col">
+                      <span className="text-gray-700 font-medium">{getSystemLabel(system)}:</span>
+                      <span className="text-gray-600 ml-0">{needs}</span>
                     </div>
-                    <p className="sensory-profile-description hig-subhead" style={{ color: '#252225' }}>{item.description}</p>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           )}
@@ -348,7 +417,13 @@ export default function ProfilePage() {
             </div>
             <div className="flex flex-col gap-3 mb-2">
               <a href="mailto:help@getsensorysmart.com" style={{ width: '100%', height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Support</a>
-              <Link href="/dashboard/billing" style={{ width: '100%', height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Billing</Link>
+              <button
+                onClick={handleBillingPortal}
+                disabled={billingLoading}
+                style={{ width: '100%', height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
+                {billingLoading ? 'Loading...' : 'Manage Billing'}
+              </button>
               <button
                 onClick={handleSignOut}
                 disabled={signingOut}

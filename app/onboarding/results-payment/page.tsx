@@ -243,62 +243,32 @@ export default function ResultsPayment() {
     try {
       const selectedPlanData = plans[selectedPlan as keyof typeof plans]
       
-      // Check if Stripe is configured
-      const isStripeConfigured = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY && 
-                                process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY.length > 0
-      
-      if (isStripeConfigured) {
-        // Use real Stripe payment
-        const response = await fetch('/api/billing', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            priceId: selectedPlanData.stripePriceId,
-            successUrl: `${window.location.origin}/dashboard/today?success=true`,
-            cancelUrl: `${window.location.origin}/onboarding/results-payment?canceled=true`,
-          }),
-        })
+      // Use real Stripe payment
+      const response = await fetch('/api/billing', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          priceId: selectedPlanData.stripePriceId,
+          successUrl: `${window.location.origin}/dashboard/today?success=true`,
+          cancelUrl: `${window.location.origin}/onboarding/results-payment?canceled=true`,
+        }),
+      })
 
-        const { sessionId, error: apiError } = await response.json()
+      const { sessionId, error: apiError } = await response.json()
 
-        if (apiError) {
-          throw new Error(apiError)
-        }
+      if (apiError) {
+        throw new Error(apiError)
+      }
 
-        // Redirect to Stripe Checkout
-        const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
-        if (stripe) {
-          const { error } = await stripe.redirectToCheckout({ sessionId })
-          if (error) {
-            throw new Error(error.message)
-          }
+      // Redirect to Stripe Checkout
+      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+      if (stripe) {
+        const { error } = await stripe.redirectToCheckout({ sessionId })
+        if (error) {
+          throw new Error(error.message)
         }
-      } else {
-        // Mock payment for testing
-        console.log('Using mock payment system for testing')
-        
-        // Simulate payment processing
-        await new Promise(resolve => setTimeout(resolve, 2000))
-        
-        // Update user profile to mark as subscribed
-        const { error: updateError } = await supabase
-          .from('profiles')
-          .update({ 
-            subscription_status: 'active',
-            subscription_plan: selectedPlan,
-            subscription_start_date: new Date().toISOString()
-          })
-          .eq('id', user!.id)
-        
-        if (updateError) {
-          console.error('Error updating subscription status:', updateError)
-          // Continue anyway for testing purposes
-        }
-        
-        // Redirect to success page
-        router.push('/dashboard/today?success=true&mock=true')
       }
     } catch (err) {
       console.error('Payment error:', err)
@@ -504,11 +474,7 @@ export default function ResultsPayment() {
           </button>
 
           <p className="text-xs text-gray-500 mt-4 text-center">
-            {process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY && 
-             process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY !== 'pk_test_your_stripe_publishable_key_here' 
-              ? "You'll be redirected to Stripe to complete your payment securely"
-              : "Test mode: Payment will be simulated for testing purposes"
-            }
+            You'll be redirected to Stripe to complete your payment securely
           </p>
         </div>
 

@@ -518,7 +518,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
         {/* Top bar: Child name, close button, duration */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '32px 24px 0 24px', width: '100%', maxWidth: 480, margin: '0 auto' }}>
           <div>
-            <div style={{ fontWeight: 600, fontSize: 16 }}>{childName || 'Your child'}</div>
+            <div style={{ fontWeight: 600, fontSize: 16 }}>{activity.title}</div>
             <div style={{ fontSize: 12, color: '#6C6C6C', marginTop: 4, display: 'flex', alignItems: 'center' }}>
               <img src="/Icons/Timer.svg" alt="Timer" style={{ width: 16, height: 16, marginRight: 6 }} />
               {activity?.duration_minutes ? `${activity.duration_minutes} min` : ''}
@@ -639,7 +639,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
 
       {/* Title and Duration */}
       <div style={{ position: 'absolute', top: 48, left: 24, right: 24 }}>
-        <div style={{ fontSize: 16, fontWeight: 600, color: '#252225', marginBottom: 8, textAlign: 'left' }}>{activity.title}</div>
+        <div style={{ fontSize: 16, fontWeight: 600, color: '#252225', fontFamily: 'inherit', marginBottom: 8, textAlign: 'left' }}>{activity.title}</div>
         <div style={{ display: 'flex', alignItems: 'center', fontSize: 12, color: '#6C6C6C', fontWeight: 500, textAlign: 'left' }}>
           <svg style={{ width: 16, height: 16, marginRight: 4 }} fill="none" stroke="#6C6C6C" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" strokeWidth="2" />

@@ -3,7 +3,10 @@ import Stripe from 'stripe'
 // Check if Stripe is configured
 const isStripeConfigured = process.env.STRIPE_SECRET_KEY && process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 
-// Initialize Stripe with test mode (only if configured)
+// Detect if we're in test mode based on the secret key
+const isTestMode = process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_') || false
+
+// Initialize Stripe (only if configured)
 export const stripe = isStripeConfigured 
   ? new Stripe(process.env.STRIPE_SECRET_KEY!, {
       apiVersion: '2025-06-30.basil',
@@ -11,12 +14,12 @@ export const stripe = isStripeConfigured
     })
   : null
 
-// Test mode configuration
+// Stripe configuration
 export const STRIPE_CONFIG = {
   publishableKey: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '',
   secretKey: process.env.STRIPE_SECRET_KEY || '',
   webhookSecret: process.env.STRIPE_WEBHOOK_SECRET || '',
-  isTestMode: true, // Always use test mode for now
+  isTestMode: isTestMode,
   isConfigured: isStripeConfigured,
 }
 
