@@ -3,7 +3,7 @@
 A comprehensive sensory processing assessment and activity recommendation platform for children with sensory needs.
 
 ## 🚀 Latest Deployment
-**Deployment triggered**: $(date)
+**Deployment triggered**: $(date) - Environment variables updated
 
 ## Features
 
