@@ -37,6 +37,8 @@ export async function POST(request: NextRequest) {
       customer_email: user.email,
       metadata: {
         userId: user.id,
+        planType: priceId.includes('yearly') ? 'yearly' : 'monthly',
+        app: 'sensorysmart',
       },
       // Test mode settings
       allow_promotion_codes: true,

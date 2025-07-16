@@ -245,7 +245,7 @@ export default function ResultsPayment() {
       
       // Check if Stripe is configured
       const isStripeConfigured = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY && 
-                                process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY !== 'pk_test_your_stripe_publishable_key_here'
+                                process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY.length > 0
       
       if (isStripeConfigured) {
         // Use real Stripe payment
@@ -428,7 +428,7 @@ export default function ResultsPayment() {
         {/* Plan Selection */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
           <h2 className="text-xl font-medium text-gray-900 mb-4">Select your plan</h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-4">
             {Object.entries(plans).map(([key, plan]) => (
               <div
                 key={key}

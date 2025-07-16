@@ -23,18 +23,18 @@ export const STRIPE_CONFIG = {
 // Product configuration for Sensory Smart
 export const PRODUCTS = {
   monthly: {
-    name: 'Sensory Smart Monthly',
+    name: 'Sensorysmart Monthly',
     price: 999, // $9.99 in cents
     currency: 'usd',
     interval: 'month',
-    stripePriceId: 'price_monthly_test', // You'll get this from Stripe dashboard
+    stripePriceId: 'price_1RlKflJVINsgul2G6sCAmmmw', 
   },
   yearly: {
-    name: 'Sensory Smart Yearly',
+    name: 'Sensorysmart Yearly',
     price: 9999, // $99.99 in cents (17% savings)
     currency: 'usd',
     interval: 'year',
-    stripePriceId: 'price_yearly_test', // You'll get this from Stripe dashboard
+    stripePriceId: 'price_1RlKfMJVINsgul2GuGiszqjR', 
   },
 }
 
