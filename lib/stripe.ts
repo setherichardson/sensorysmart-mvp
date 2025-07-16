@@ -6,6 +6,17 @@ const isStripeConfigured = !!(process.env.STRIPE_SECRET_KEY && process.env.NEXT_
 // Detect if we're in test mode based on the secret key
 const isTestMode = process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_') || false
 
+// Debug logging for production troubleshooting
+console.log('🔍 Stripe Configuration Debug:', {
+  hasSecretKey: !!process.env.STRIPE_SECRET_KEY,
+  hasPublishableKey: !!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+  secretKeyPrefix: process.env.STRIPE_SECRET_KEY?.substring(0, 7),
+  publishableKeyPrefix: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY?.substring(0, 7),
+  isStripeConfigured,
+  isTestMode,
+  environment: process.env.NODE_ENV
+})
+
 // Initialize Stripe (only if configured)
 export const stripe = isStripeConfigured 
   ? new Stripe(process.env.STRIPE_SECRET_KEY!, {
