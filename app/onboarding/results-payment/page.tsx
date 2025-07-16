@@ -259,7 +259,12 @@ export default function ResultsPayment() {
       const { sessionId, error: apiError } = await response.json()
 
       if (apiError) {
+        console.error('API Error:', apiError)
         throw new Error(apiError)
+      }
+
+      if (!sessionId) {
+        throw new Error('No session ID returned from billing API')
       }
 
       // Redirect to Stripe Checkout
@@ -269,6 +274,8 @@ export default function ResultsPayment() {
         if (error) {
           throw new Error(error.message)
         }
+      } else {
+        throw new Error('Failed to load Stripe')
       }
     } catch (err) {
       console.error('Payment error:', err)
