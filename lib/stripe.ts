@@ -1,7 +1,7 @@
 import Stripe from 'stripe'
 
 // Check if Stripe is configured
-const isStripeConfigured = process.env.STRIPE_SECRET_KEY && process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+const isStripeConfigured = !!(process.env.STRIPE_SECRET_KEY && process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 // Detect if we're in test mode based on the secret key
 const isTestMode = process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_') || false
