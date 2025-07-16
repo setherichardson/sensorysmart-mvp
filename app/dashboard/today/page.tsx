@@ -1108,28 +1108,8 @@ export default function TodayDashboard() {
         currentActivities.splice(completedIndex, 1)
         console.log('Activities after removal:', currentActivities.map(a => a.title))
         
-        // Get current time to select time-appropriate activities
-        const now = new Date()
-        const hour = now.getHours()
-        const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 20 ? 'evening' : 'night'
-        
-        // Get a new activity to add at the bottom
-        let newActivity: Activity
-        if (assessment) {
-          const personalizedActivities = await getPersonalizedActivities(assessment)
-          const timeBasedActivities = getTimeBasedActivities(personalizedActivities || activityLibrary, timeOfDay)
-          // Find an activity that's not already in the list
-          const availableActivities = timeBasedActivities.filter(a => 
-            !currentActivities.some(existing => existing.id === a.id)
-          )
-          newActivity = availableActivities[0] || activityLibrary[Math.floor(Math.random() * activityLibrary.length)]
-        } else {
-          const timeBasedActivities = getTimeBasedActivities(activityLibrary, timeOfDay)
-          const availableActivities = timeBasedActivities.filter(a => 
-            !currentActivities.some(existing => existing.id === a.id)
-          )
-          newActivity = availableActivities[0] || activityLibrary[Math.floor(Math.random() * activityLibrary.length)]
-        }
+        // Get a new activity that considers recent completions and assessment
+        const newActivity = await getNextActivity(currentActivities, activity)
         
         // Add the new activity at the bottom
         currentActivities.push(newActivity)
@@ -1162,9 +1142,177 @@ export default function TodayDashboard() {
     }
   }
 
+  // New function to get the next best activity
+  const getNextActivity = async (currentActivities: Activity[], justCompleted: Activity): Promise<Activity> => {
+    try {
+      // Get recent completions (last 24 hours)
+      const existingCompletions = JSON.parse(localStorage.getItem('activity_completions') || '[]')
+      const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000)
+      const recentCompletions = existingCompletions.filter((comp: any) => 
+        new Date(comp.completed_at) > oneDayAgo
+      )
+      
+      console.log('Recent completions:', recentCompletions.map((c: any) => c.activity_name))
+      
+      // Get current time for time-based scoring
+      const now = new Date()
+      const hour = now.getHours()
+      const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 20 ? 'evening' : 'night'
+      
+      // Get available activities
+      let availableActivities: Activity[]
+      if (assessment) {
+        const personalizedActivities = await getPersonalizedActivities(assessment)
+        availableActivities = personalizedActivities || activityLibrary
+      } else {
+        availableActivities = activityLibrary
+      }
+      
+      // Filter out activities that are already in the current list
+      availableActivities = availableActivities.filter(a => 
+        !currentActivities.some(existing => existing.id === a.id)
+      )
+      
+      // Filter out recently completed activities (last 24 hours)
+      const recentlyCompletedNames = recentCompletions.map((c: any) => c.activity_name)
+      availableActivities = availableActivities.filter(a => 
+        !recentlyCompletedNames.includes(a.title)
+      )
+      
+      // If we're running low on activities, allow some repetition but prefer variety
+      if (availableActivities.length < 5) {
+        console.log('Low on activities, allowing some repetition')
+        availableActivities = assessment ? (await getPersonalizedActivities(assessment)) || activityLibrary : activityLibrary
+        availableActivities = availableActivities.filter(a => 
+          !currentActivities.some(existing => existing.id === a.id)
+        )
+      }
+      
+      // Score activities based on multiple factors
+      const scoredActivities = availableActivities.map(activity => {
+        let score = 0
+        
+        // Time-based scoring
+        if (timeOfDay === 'morning') {
+          if (activity.activity_type === 'proprioceptive' || activity.activity_type === 'heavy-work') {
+            score += 10
+          }
+          if (activity.context?.toLowerCase().includes('morning') || 
+              activity.context?.toLowerCase().includes('focus')) {
+            score += 8
+          }
+          if (activity.duration_minutes && activity.duration_minutes <= 5) {
+            score += 5
+          }
+        } else if (timeOfDay === 'afternoon') {
+          if (activity.activity_type === 'calming' || activity.activity_type === 'tactile') {
+            score += 8
+          }
+          if (activity.context?.toLowerCase().includes('lunch') || 
+              activity.context?.toLowerCase().includes('transition')) {
+            score += 10
+          }
+          if (activity.duration_minutes && activity.duration_minutes <= 10) {
+            score += 3
+          }
+        } else if (timeOfDay === 'evening') {
+          if (activity.activity_type === 'calming' || activity.activity_type === 'visual') {
+            score += 12
+          }
+          if (activity.context?.toLowerCase().includes('evening') || 
+              activity.context?.toLowerCase().includes('calm')) {
+            score += 10
+          }
+          if (activity.duration_minutes && activity.duration_minutes >= 10) {
+            score += 5
+          }
+        } else { // night
+          if (activity.activity_type === 'calming' || activity.activity_type === 'auditory') {
+            score += 15
+          }
+          if (activity.context?.toLowerCase().includes('quiet') || 
+              activity.context?.toLowerCase().includes('bedtime')) {
+            score += 12
+          }
+          if (activity.duration_minutes && activity.duration_minutes <= 5) {
+            score += 8
+          }
+        }
+        
+        // Variety scoring - prefer different activity types than what was just completed
+        if (justCompleted.activity_type && activity.activity_type !== justCompleted.activity_type) {
+          score += 5
+        }
+        
+        // Assessment-based scoring (if available)
+        if (assessment?.results) {
+          const results = assessment.results as any
+          const behaviorScores = results.behaviorScores || {}
+          
+          // Score based on behavior fit
+          const dominantBehavior = getDominantBehavior(behaviorScores)
+          if (activity.behavior_fit === dominantBehavior) {
+            score += 10
+          } else if (activity.behavior_fit === 'mixed') {
+            score += 5
+          }
+
+          // Score based on sensory system needs
+          const challengingSystems = getChallengingSystems(results)
+          const activitySystems = activity.sensory_systems || []
+          
+          challengingSystems.forEach(system => {
+            if (activitySystems.includes(system)) {
+              score += 8
+            }
+          })
+
+          // Score based on difficulty (prefer beginner for high avoiding/sensitive)
+          if (behaviorScores.avoiding > 15 || behaviorScores.sensitive > 15) {
+            if (activity.difficulty === 'beginner') score += 5
+            else if (activity.difficulty === 'advanced') score -= 3
+          }
+        }
+        
+        // Duration variety - if we just did a long activity, prefer a shorter one and vice versa
+        const justCompletedDuration = justCompleted.duration_minutes || 10
+        const currentDuration = activity.duration_minutes || 10
+        if (Math.abs(justCompletedDuration - currentDuration) > 5) {
+          score += 3
+        }
+        
+        return { ...activity, score }
+      })
+      
+      // Sort by score and return the best option
+      scoredActivities.sort((a, b) => (b as any).score - (a as any).score)
+      
+      console.log('Top 3 scored activities:', scoredActivities.slice(0, 3).map(a => ({
+        title: a.title,
+        score: (a as any).score,
+        type: a.activity_type
+      })))
+      
+      return scoredActivities[0] || activityLibrary[Math.floor(Math.random() * activityLibrary.length)]
+      
+    } catch (error) {
+      console.log('Error getting next activity, using fallback:', error)
+      // Fallback to random activity from library
+      return activityLibrary[Math.floor(Math.random() * activityLibrary.length)]
+    }
+  }
+
   const handleCloseStory = () => {
     setStoryOpen(false)
     setCurrentActivity(null)
+  }
+
+  const handleStartActivityFromBehavior = (activity: Activity) => {
+    // Start the activity
+    setCurrentActivity(activity)
+    setStoryOpen(true)
+    // Close the behavior modal
+    setBehaviorHelpOpen(false)
   }
 
   if (loading) {
@@ -1215,7 +1363,7 @@ export default function TodayDashboard() {
               </svg>
               <div>
                 <p className="text-blue-800 font-medium">Activity completed!</p>
-                <p className="text-blue-700 text-sm">A new activity has been added to your list</p>
+                <p className="text-blue-700 text-sm">A new activity has been added to your journal</p>
               </div>
             </div>
           </div>
@@ -1281,6 +1429,7 @@ export default function TodayDashboard() {
           onClose={() => setBehaviorHelpOpen(false)}
           user={user}
           assessment={assessment}
+          onStartActivity={handleStartActivityFromBehavior}
         />
 
         {/* Full-width Behavior Help button at bottom */}

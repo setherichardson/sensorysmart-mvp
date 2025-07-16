@@ -186,6 +186,59 @@ export default function JournalPage() {
     return activities
   }
 
+  // Group activities by date for display with dividers
+  const getGroupedActivities = () => {
+    const grouped: { date: string; activities: JournalActivity[] }[] = []
+    let currentDate = ''
+    let currentGroup: JournalActivity[] = []
+
+    activities.forEach((activity) => {
+      const activityDate = activity.completed_at.toDateString()
+      
+      if (activityDate !== currentDate) {
+        // Save previous group if it exists
+        if (currentGroup.length > 0) {
+          grouped.push({ date: currentDate, activities: currentGroup })
+        }
+        
+        // Start new group
+        currentDate = activityDate
+        currentGroup = [activity]
+      } else {
+        // Add to current group
+        currentGroup.push(activity)
+      }
+    })
+    
+    // Add the last group
+    if (currentGroup.length > 0) {
+      grouped.push({ date: currentDate, activities: currentGroup })
+    }
+    
+    return grouped
+  }
+
+  const getDateLabel = (dateString: string) => {
+    const date = new Date(dateString)
+    const now = new Date()
+    const diffTime = Math.abs(now.getTime() - date.getTime())
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    
+    if (diffDays === 0) {
+      return 'Today'
+    } else if (diffDays === 1) {
+      return 'Yesterday'
+    } else if (diffDays <= 7) {
+      return date.toLocaleDateString('en-US', { weekday: 'long' })
+    } else {
+      return date.toLocaleDateString('en-US', { 
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      })
+    }
+  }
+
   const formatDate = (date: Date) => {
     const now = new Date()
     const diffTime = Math.abs(now.getTime() - date.getTime())
@@ -466,23 +519,23 @@ export default function JournalPage() {
       <div className="journal-wrapper mx-auto w-full max-w-md px-4">
         {/* Header */}
         <div className="journal-header">
-          <div className="journal-header-nav">
-            <h1 className="journal-title" style={{ fontWeight: 700, fontSize: 32, color: '#252225' }}>Activity journal</h1>
+          <div className="journal-header-nav" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+            <h1 className="journal-title text-2xl font-semibold text-center mb-4" style={{ color: '#252225', marginBottom: 16, maxWidth: '100%', wordWrap: 'break-word' }}>Activity journal</h1>
           </div>
 
           {/* Stats Section */}
           <div className="journal-stats-row">
             <div className="stat-card">
-              <div className="stat-number">{stats.totalActivities}</div>
-              <div className="stat-label">TODAY</div>
+              <div className="stat-number" style={{ color: '#252225', fontWeight: 600, fontSize: 20 }}>{stats.totalActivities}</div>
+              <div className="stat-label" style={{ color: '#252225', fontSize: 10, fontWeight: 500 }}>TODAY</div>
             </div>
             <div className="stat-card">
-              <div className="stat-number">{stats.activitiesThisWeek}</div>
-              <div className="stat-label">THIS WEEK</div>
+              <div className="stat-number" style={{ color: '#252225', fontWeight: 600, fontSize: 20 }}>{stats.activitiesThisWeek}</div>
+              <div className="stat-label" style={{ color: '#252225', fontSize: 10, fontWeight: 500 }}>THIS WEEK</div>
             </div>
             <div className="stat-card">
-              <div className="stat-number">{stats.currentStreak}</div>
-              <div className="stat-label">STREAK</div>
+              <div className="stat-number" style={{ color: '#252225', fontWeight: 600, fontSize: 20 }}>{stats.currentStreak}</div>
+              <div className="stat-label" style={{ color: '#252225', fontSize: 10, fontWeight: 500 }}>STREAK</div>
             </div>
           </div>
         </div>
@@ -500,59 +553,102 @@ export default function JournalPage() {
               <p className="empty-state-text">
                 Complete your first sensory activity to start tracking progress!
               </p>
-              <Link href="/dashboard/today" className="empty-state-button">
-                Start an Activity
+              <Link href="/dashboard/today">
+                <button
+                  style={{
+                    height: 40,
+                    width: '100%',
+                    background: '#367A87',
+                    color: '#fff',
+                    fontWeight: 600,
+                    borderRadius: 16,
+                    fontSize: 16,
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#2A5F6B'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#367A87'
+                  }}
+                >
+                  Start an Activity
+                </button>
               </Link>
             </div>
           ) : (
             <div className="activity-list flex flex-col gap-4">
-              {filteredActivities.map((activity) => {
-                const ratingDisplay = getRatingDisplay(activity.rating)
-                return (
-                  <div 
-                    key={activity.id} 
-                    className="activity-card"
-                    style={{ 
-                      borderRadius: 24, 
-                      background: '#fff', 
-                      boxShadow: '0 2px 8px 0 rgba(44, 62, 80, 0.06)', 
-                      padding: '16px 12px 12px 12px',
-                      marginBottom: 0, 
-                      width: '100%',
-                      position: 'relative'
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-                      <h3 className="activity-title" style={{ color: '#252225', fontWeight: 600, fontSize: 20, margin: 0 }}>{activity.activity_name}</h3>
-                      <button
-                        onClick={() => openNoteModal(activity)}
-                        style={{ background: 'none', border: 'none', padding: 0, marginLeft: 8, cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-                        aria-label="Edit note"
-                      >
-                        <img src="/Icons/Edit.svg" alt="Edit" style={{ width: 18, height: 18 }} />
-                      </button>
+              {getGroupedActivities().map((group, index) => (
+                <div key={group.date} className="activity-group-container">
+                  {index > 0 && (
+                    <div className="date-divider" style={{ textAlign: 'center', marginBottom: 16 }}>
+                      <span style={{ 
+                        background: '#E2E4F6', 
+                        padding: '4px 12px', 
+                        borderRadius: 12, 
+                        fontSize: 12, 
+                        fontWeight: 500, 
+                        color: '#252225', 
+                        letterSpacing: 1, 
+                        textTransform: 'uppercase' 
+                      }}>
+                        {getDateLabel(group.date)}
+                      </span>
                     </div>
-                    {/* Rating chip */}
-                    {ratingDisplay && (
-                      <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: 12, padding: '4px 8px', borderRadius: 12, background: ratingDisplay.background, color: ratingDisplay.color, fontWeight: 600, marginBottom: 8 }}>
-                        <img src={ratingDisplay.icon} alt={ratingDisplay.label} style={{ width: 14, height: 14, marginRight: 4, filter: 'brightness(0) saturate(100%)', opacity: 0.8 }} />
-                        {ratingDisplay.label}
-                      </div>
-                    )}
-                    {/* Time completed with calendar icon */}
-                    <div style={{ display: 'flex', alignItems: 'center', color: '#252225', fontSize: 14, fontWeight: 500, margin: '8px 0 0 0' }}>
-                      <img src="/Icons/Calendar.svg" alt="Calendar" style={{ width: 16, height: 16, marginRight: 6, color: '#252225', filter: 'invert(10%) sepia(6%) saturate(0%) hue-rotate(0deg) brightness(100%)' }} />
-                      {formatTime(activity.completed_at)}
-                    </div>
-                    {/* Parent note */}
-                    {activity.notes && activity.notes.trim() && (
-                      <div style={{ border: '1px solid #EEE6E5', borderRadius: 12, padding: 12, marginTop: 12, color: '#252225', fontSize: 15, background: '#FAF9F8' }}>
-                        {activity.notes}
-                      </div>
-                    )}
+                  )}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                    {group.activities.map((activity) => {
+                      const ratingDisplay = getRatingDisplay(activity.rating)
+                      return (
+                        <div 
+                          key={activity.id} 
+                          className="activity-card"
+                          style={{ 
+                            borderRadius: 24, 
+                            background: '#fff', 
+                            boxShadow: '0 2px 8px 0 rgba(44, 62, 80, 0.06)', 
+                            padding: '16px 12px 12px 12px',
+                            marginBottom: 0, 
+                            width: '100%',
+                            position: 'relative'
+                          }}
+                        >
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                            <h3 className="activity-title" style={{ color: '#252225', fontWeight: 600, fontSize: 20, margin: 0 }}>{activity.activity_name}</h3>
+                            <button
+                              onClick={() => openNoteModal(activity)}
+                              style={{ background: 'none', border: 'none', padding: 0, marginLeft: 8, cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                              aria-label="Edit note"
+                            >
+                              <img src="/Icons/Edit.svg" alt="Edit" style={{ width: 18, height: 18 }} />
+                            </button>
+                          </div>
+                          {/* Rating chip */}
+                          {ratingDisplay && (
+                            <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: 12, padding: '4px 8px', borderRadius: 12, background: ratingDisplay.background, color: ratingDisplay.color, fontWeight: 600, marginBottom: 8 }}>
+                              <img src={ratingDisplay.icon} alt={ratingDisplay.label} style={{ width: 14, height: 14, marginRight: 4, filter: 'brightness(0) saturate(100%)', opacity: 0.8 }} />
+                              {ratingDisplay.label}
+                            </div>
+                          )}
+                          {/* Time completed with calendar icon */}
+                          <div style={{ display: 'flex', alignItems: 'center', color: '#252225', fontSize: 14, fontWeight: 500, margin: '8px 0 0 0' }}>
+                            <img src="/Icons/Calendar.svg" alt="Calendar" style={{ width: 16, height: 16, marginRight: 6, color: '#252225', filter: 'invert(10%) sepia(6%) saturate(0%) hue-rotate(0deg) brightness(100%)' }} />
+                            {formatTime(activity.completed_at)}
+                          </div>
+                          {/* Parent note */}
+                          {activity.notes && activity.notes.trim() && (
+                            <div style={{ border: '1px solid #EEE6E5', borderRadius: 12, padding: 12, marginTop: 12, color: '#252225', fontSize: 15, background: '#FAF9F8' }}>
+                              {activity.notes}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
                   </div>
-                )
-              })}
+                </div>
+              ))}
             </div>
           )}
         </div>

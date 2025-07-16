@@ -607,7 +607,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
               cursor: 'pointer', 
               opacity: saving ? 0.6 : 1 
             }}>
-              <img src="/Icons/smile.svg" alt="Regulated" style={{ width: 24, height: 24, marginRight: 12 }} /> {saving ? 'Saving...' : 'Regulated'}
+              <img src="/Icons/Smile.svg" alt="Regulated" style={{ width: 24, height: 24, marginRight: 12 }} /> {saving ? 'Saving...' : 'Regulated'}
             </button>
           </div>
         </div>
@@ -683,7 +683,6 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
         left: 0,
         right: 0,
         padding: '24px 24px calc(24px + env(safe-area-inset-bottom))',
-        background: 'linear-gradient(to top, #F6F6F6 0%, rgba(246, 246, 246, 0.9) 80%, transparent 100%)',
         zIndex: 10
       }}>
         <div style={{ display: 'flex', gap: 8, maxWidth: 480, margin: '0 auto' }}>
@@ -693,12 +692,12 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
           {/* On last step, show rating buttons instead of Next/Complete */}
           {isLastStep ? (
             <div style={{ width: '100%' }}>
-              <div style={{ fontWeight: 600, fontSize: 20, marginBottom: 16 }}>How’d {childName || 'your child'} do?</div>
+              <div style={{ fontWeight: 600, fontSize: 20, marginBottom: 16 }}>How'd {childName || 'your child'} do?</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <button onClick={() => handleRating('dysregulated')} style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
-                  padding: '12px', 
+                  padding: '16px 0', 
                   fontSize: '16px', 
                   fontWeight: 500, 
                   background: '#fff', 
@@ -710,7 +709,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
                 <button onClick={() => handleRating('distracted')} style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
-                  padding: '12px', 
+                  padding: '16px 0', 
                   fontSize: '16px', 
                   fontWeight: 500, 
                   background: '#fff', 
@@ -722,7 +721,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
                 <button onClick={() => handleRating('neutral')} style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
-                  padding: '12px', 
+                  padding: '16px 0', 
                   fontSize: '16px', 
                   fontWeight: 500, 
                   background: '#fff', 
@@ -734,7 +733,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
                 <button onClick={() => handleRating('calmer')} style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
-                  padding: '12px', 
+                  padding: '16px 0', 
                   fontSize: '16px', 
                   fontWeight: 500, 
                   background: '#fff', 
@@ -746,7 +745,7 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
                 <button onClick={() => handleRating('regulated')} style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
-                  padding: '12px', 
+                  padding: '16px 0', 
                   fontSize: '16px', 
                   fontWeight: 500, 
                   background: '#fff', 

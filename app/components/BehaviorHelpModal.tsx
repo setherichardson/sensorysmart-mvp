@@ -26,6 +26,7 @@ interface BehaviorIssue {
 interface BehaviorHelpModalProps {
   isOpen: boolean
   onClose: () => void
+  onStartActivity?: (activity: Activity) => void
   user?: any
   assessment?: any
 }
@@ -98,7 +99,7 @@ const behaviorIssues: BehaviorIssue[] = [
   }
 ]
 
-export default function BehaviorHelpModal({ isOpen, onClose, user, assessment }: BehaviorHelpModalProps) {
+export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, user, assessment }: BehaviorHelpModalProps) {
   const [selectedIssue, setSelectedIssue] = useState<BehaviorIssue | null>(null)
   const [personalizedActivities, setPersonalizedActivities] = useState<Activity[]>([])
   const [loadingActivities, setLoadingActivities] = useState(false)
@@ -320,10 +321,9 @@ export default function BehaviorHelpModal({ isOpen, onClose, user, assessment }:
   }
 
   const handleStartActivity = (activity: Activity) => {
-    // This would open the activity modal
-    console.log('🎯 Starting activity:', activity.title)
-    // For now, just close the modal
-    onClose()
+    if (onStartActivity) {
+      onStartActivity(activity)
+    }
   }
 
   return (
@@ -347,6 +347,33 @@ export default function BehaviorHelpModal({ isOpen, onClose, user, assessment }:
         background: '#F6F6F6'
       }}>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+          {selectedIssue && (
+            <button
+              onClick={handleBack}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#6B7280',
+                cursor: 'pointer',
+                padding: '8px',
+                borderRadius: '8px',
+                marginRight: '12px',
+                transition: 'background-color 0.2s',
+                display: 'flex',
+                alignItems: 'center'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#E5E7EB'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent'
+              }}
+            >
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
           <h2 style={{
             fontSize: 18,
             fontWeight: 600,
@@ -358,28 +385,30 @@ export default function BehaviorHelpModal({ isOpen, onClose, user, assessment }:
             {selectedIssue ? selectedIssue.title : 'Behavior Support'}
           </h2>
         </div>
-        <button
-          onClick={onClose}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#6B7280',
-            cursor: 'pointer',
-            padding: '8px',
-            borderRadius: '8px',
-            transition: 'background-color 0.2s'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#E5E7EB'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'transparent'
-          }}
-        >
-          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        {!selectedIssue && (
+          <button
+            onClick={onClose}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#6B7280',
+              cursor: 'pointer',
+              padding: '8px',
+              borderRadius: '8px',
+              transition: 'background-color 0.2s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#E5E7EB'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent'
+            }}
+          >
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Content */}

@@ -26,6 +26,7 @@ export default function CoachPage() {
   const [isChatMode, setIsChatMode] = useState(false)
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false)
   const [isChatModalOpen, setIsChatModalOpen] = useState(false)
+  const [dailyUsage, setDailyUsage] = useState({ used: 0, limit: 15 })
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const lastMessageRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -89,6 +90,21 @@ export default function CoachPage() {
           console.log(`✅ Loaded ${formattedMessages.length} previous messages`)
         } else {
           console.log('📝 No previous chat history found - starting fresh!')
+        }
+
+        // Load today's usage
+        const today = new Date()
+        today.setHours(0, 0, 0, 0)
+        
+        const { data: todayMessages, error: usageError } = await supabase
+          .from('chat_messages')
+          .select('id')
+          .eq('user_id', user.id)
+          .eq('message_type', 'user')
+          .gte('created_at', today.toISOString())
+        
+        if (!usageError && todayMessages) {
+          setDailyUsage({ used: todayMessages.length, limit: 15 })
         }
 
         setUser(user)
@@ -171,6 +187,13 @@ export default function CoachPage() {
       })
 
       if (!response.ok) {
+        const errorData = await response.json()
+        
+        // Handle rate limit error specifically
+        if (response.status === 429) {
+          return errorData.message || 'Limit reached. Check back tomorrow.'
+        }
+        
         throw new Error(`HTTP error! status: ${response.status}`)
       }
 
@@ -239,6 +262,9 @@ export default function CoachPage() {
       
       // Save AI response
       await saveMessage(aiResponse, 'assistant')
+      
+      // Update usage count
+      setDailyUsage(prev => ({ ...prev, used: prev.used + 1 }))
       
     } catch (error) {
       console.error('Error in chat:', error)
@@ -322,13 +348,10 @@ export default function CoachPage() {
       <div className="coach-wrapper">
         {/* Header - Always visible */}
         <div className="coach-header">
-          <div className="coach-header-nav">
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <img src="/Icons/sensory-coach.png" alt="Sensory Coach Mascot" style={{ width: 48, height: 48, marginRight: 8 }} />
-              <div>
-                <h1 className="coach-title" style={{ fontSize: 18, fontWeight: 600, color: '#252225', margin: 0, lineHeight: 1, letterSpacing: '-0.5px' }}>Sensory Coach</h1>
-                <div style={{ fontSize: 15, color: '#6B7280', fontWeight: 400, marginTop: 2, lineHeight: 1.2 }}>Expert sensory guidance whenever you need it</div>
-              </div>
+          <div className="coach-header-nav" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+              <img src="/Icons/sensory-coach.png" alt="Sensory Coach Mascot" style={{ width: 48, height: 48 }} />
+              <h1 className="coach-title" style={{ fontSize: 18, fontWeight: 600, color: '#252225', margin: 0, lineHeight: 1, letterSpacing: '-0.5px' }}>Sensory Coach</h1>
             </div>
           </div>
           {!assessment && (
@@ -364,15 +387,33 @@ export default function CoachPage() {
           {/* Chat Input - Show when not in chat modal */}
           {!isChatModalOpen && (
             <div className={`chat-input-container ${isKeyboardVisible ? 'keyboard-visible' : ''}`}>
+              {/* Limit reached message - only show when limit is hit */}
+              {dailyUsage.used >= dailyUsage.limit && (
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'center', 
+                  alignItems: 'center', 
+                  padding: '8px 16px',
+                  marginBottom: '8px',
+                  background: '#FEF2F2',
+                  border: '1px solid #FECACA',
+                  borderRadius: '8px',
+                  fontSize: '12px',
+                  color: '#DC2626'
+                }}>
+                  <span>Limit reached. Check back tomorrow.</span>
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="chat-input-wrapper">
                 <div className="chat-input-field">
                   <textarea
                     ref={inputRef}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Ask coach a question..."
+                    placeholder={dailyUsage.used >= dailyUsage.limit ? "Daily limit reached" : "Ask coach a question..."}
                     className="chat-input"
-                    disabled={isTyping}
+                    disabled={isTyping || dailyUsage.used >= dailyUsage.limit}
                     rows={1}
                     style={{ alignItems: 'center', display: 'flex', paddingTop: 10, paddingBottom: 10 }}
                     onInput={(e) => {
@@ -386,10 +427,10 @@ export default function CoachPage() {
                   />
                   <button
                     type="submit"
-                    disabled={!inputValue.trim() || isTyping}
+                    disabled={!inputValue.trim() || isTyping || dailyUsage.used >= dailyUsage.limit}
                     className="chat-send-button"
                     style={{
-                      background: !inputValue.trim() || isTyping ? '#AFCACF' : '#367A87',
+                      background: !inputValue.trim() || isTyping || dailyUsage.used >= dailyUsage.limit ? '#AFCACF' : '#367A87',
                       color: 'white',
                       boxShadow: '0 2px 8px rgba(44,62,80,0.10)'
                     }}
@@ -453,12 +494,9 @@ export default function CoachPage() {
             borderBottom: '1px solid #EEE6E5',
             flexShrink: 0
           }}>
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 12 }}>
-              <img src="/Icons/sensory-coach.png" alt="Sensory Coach Mascot" style={{ width: 48, height: 48, marginRight: 8 }} />
-              <div>
-                <h1 style={{ fontSize: 18, fontWeight: 600, color: '#252225', margin: 0, lineHeight: 1, letterSpacing: '-0.5px' }}>Sensory Coach</h1>
-                <div style={{ fontSize: 15, color: '#6B7280', fontWeight: 400, marginTop: 2, lineHeight: 1.2 }}>Expert sensory guidance whenever you need it</div>
-              </div>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+              <img src="/Icons/sensory-coach.png" alt="Sensory Coach Mascot" style={{ width: 48, height: 48 }} />
+              <h1 style={{ fontSize: 18, fontWeight: 600, color: '#252225', margin: 0, lineHeight: 1, letterSpacing: '-0.5px' }}>Sensory Coach</h1>
             </div>
             <button
               onClick={handleCloseChat}
@@ -530,20 +568,38 @@ export default function CoachPage() {
                 </div>
               )}
               
-              <div ref={messagesEndRef} style={{ marginBottom: 16 }} />
+              <div ref={messagesEndRef} style={{ marginBottom: 28 }} />
             </div>
 
             {/* Chat Input in Modal */}
             <div className={`chat-input-container modal-chat ${isKeyboardVisible ? 'keyboard-visible' : ''}`}>
+              {/* Limit reached message in modal - only show when limit is hit */}
+              {dailyUsage.used >= dailyUsage.limit && (
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'center', 
+                  alignItems: 'center', 
+                  padding: '8px 16px',
+                  marginBottom: '8px',
+                  background: '#FEF2F2',
+                  border: '1px solid #FECACA',
+                  borderRadius: '8px',
+                  fontSize: '12px',
+                  color: '#DC2626'
+                }}>
+                  <span>Limit reached. Check back tomorrow.</span>
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="chat-input-wrapper">
                 <div className="chat-input-field">
                   <textarea
                     ref={inputRef}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Ask coach a question..."
+                    placeholder={dailyUsage.used >= dailyUsage.limit ? "Daily limit reached" : "Ask coach a question..."}
                     className="chat-input"
-                    disabled={isTyping}
+                    disabled={isTyping || dailyUsage.used >= dailyUsage.limit}
                     rows={1}
                     style={{ alignItems: 'center', display: 'flex', paddingTop: 10, paddingBottom: 10 }}
                     onInput={(e) => {
@@ -557,10 +613,10 @@ export default function CoachPage() {
                   />
                   <button
                     type="submit"
-                    disabled={!inputValue.trim() || isTyping}
+                    disabled={!inputValue.trim() || isTyping || dailyUsage.used >= dailyUsage.limit}
                     className="chat-send-button"
                     style={{
-                      background: !inputValue.trim() || isTyping ? '#AFCACF' : '#367A87',
+                      background: !inputValue.trim() || isTyping || dailyUsage.used >= dailyUsage.limit ? '#AFCACF' : '#367A87',
                       color: 'white',
                       boxShadow: '0 2px 8px rgba(44,62,80,0.10)'
                     }}

@@ -6,6 +6,9 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
 
+// Daily chat limit configuration
+const DAILY_CHAT_LIMIT = 15 // Maximum messages per day per user
+
 export async function POST(request: NextRequest) {
   try {
     const { message, userId, childName, childAge, sensoryProfile, assessmentResults, completedAt } = await request.json()
@@ -14,6 +17,40 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Message and userId are required' },
         { status: 400 }
+      )
+    }
+
+    // Check daily chat limit
+    const today = new Date()
+    today.setHours(0, 0, 0, 0) // Start of today
+    
+    const { data: todayMessages, error: limitError } = await supabase
+      .from('chat_messages')
+      .select('id')
+      .eq('user_id', userId)
+      .eq('message_type', 'user') // Only count user messages (not assistant responses)
+      .gte('created_at', today.toISOString())
+    
+    if (limitError) {
+      console.error('Error checking chat limit:', limitError)
+      return NextResponse.json(
+        { error: 'Unable to check usage limits. Please try again.' },
+        { status: 500 }
+      )
+    }
+
+    const messagesToday = todayMessages?.length || 0
+    
+    if (messagesToday >= DAILY_CHAT_LIMIT) {
+      return NextResponse.json(
+        { 
+          error: 'Daily chat limit reached',
+          limit: DAILY_CHAT_LIMIT,
+          used: messagesToday,
+          resetTime: new Date(today.getTime() + 24 * 60 * 60 * 1000).toISOString(), // Tomorrow
+          message: 'Limit reached. Check back tomorrow.'
+        },
+        { status: 429 }
       )
     }
 
