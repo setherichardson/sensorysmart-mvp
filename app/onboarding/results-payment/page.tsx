@@ -17,6 +17,7 @@ export default function ResultsPayment() {
   const [isProcessing, setIsProcessing] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState('monthly')
   const [error, setError] = useState('')
+  const [isReturningUser, setIsReturningUser] = useState(false)
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -54,6 +55,12 @@ export default function ResultsPayment() {
           router.push('/onboarding/assessment')
           return
         }
+
+        // Check if this is a returning user (assessment completed more than 1 hour ago)
+        const assessmentTime = new Date(assessmentData.completed_at).getTime()
+        const currentTime = new Date().getTime()
+        const oneHour = 60 * 60 * 1000 // 1 hour in milliseconds
+        setIsReturningUser(currentTime - assessmentTime > oneHour)
 
         setUser(user)
         setProfile(profileData)
@@ -331,26 +338,73 @@ export default function ResultsPayment() {
       <div className="max-w-2xl mx-auto p-4">
         {/* Header */}
         <div className="text-left mb-8" style={{ marginTop: '70px' }}>
+          {/* Welcome Back Section for Returning Users */}
+          {isReturningUser && (
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 mb-6">
+              <div className="flex items-start">
+                <div className="flex-shrink-0">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-sm font-medium text-blue-800 mb-1">
+                    Welcome back! 👋
+                  </h3>
+                  <p className="text-sm text-blue-700">
+                    Great news! Your assessment for {profile.child_name} is complete and ready. You're just one step away from unlocking personalized sensory activities and guidance.
+                    {assessment && (
+                      <span className="block mt-1 text-xs text-blue-600">
+                        Completed {new Date(assessment.completed_at).toLocaleDateString()}
+                      </span>
+                    )}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Assessment Complete Chip */}
           <div className="inline-flex items-center mb-4 px-3 py-1 rounded-full" style={{ backgroundColor: '#DEFFF2', color: '#0C3A28' }}>
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
-            <span style={{ fontSize: '14px', fontWeight: 400 }}>Assessment complete</span>
+            <span style={{ fontSize: '14px', fontWeight: 400 }}>
+              {isReturningUser ? 'Assessment ready' : 'Assessment complete'}
+            </span>
           </div>
           
           {/* Title */}
           <h1 className="text-[26px] font-medium text-left mb-2" style={{ color: '#252225', letterSpacing: '-1px', lineHeight: 'calc(1.2em - 2px)' }}>
-            Unlock {profile.child_name}&apos;s full sensory journey!
+            {isReturningUser 
+              ? `Ready to continue ${profile.child_name}'s sensory journey?`
+              : `Unlock ${profile.child_name}'s full sensory journey!`
+            }
           </h1>
           <p className="mb-6 text-left" style={{ fontSize: '16px', color: '#6C6C6C', fontWeight: 400, lineHeight: 'calc(1.5em - 2px)', letterSpacing: '-0.25px' }}>
-            Subscribe to access personalized activities, progress tracking, and expert guidance.
+            {isReturningUser 
+              ? "Your personalized results are waiting. Subscribe to access tailored activities, progress tracking, and expert guidance."
+              : "Subscribe to access personalized activities, progress tracking, and expert guidance."
+            }
           </p>
         </div>
 
         {/* Assessment Results */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-medium text-gray-900 mb-4">What {profile.child_name} needs to thrive:</h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-medium text-gray-900">What {profile.child_name} needs to thrive:</h2>
+            {isReturningUser && (
+              <button
+                onClick={() => router.push('/onboarding/assessment')}
+                className="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center"
+              >
+                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Retake assessment
+              </button>
+            )}
+          </div>
           
           {/* System Breakdown */}
           <div className="space-y-4">
@@ -476,7 +530,9 @@ export default function ResultsPayment() {
                 Processing...
               </div>
             ) : (
-              `Start ${profile.child_name}'s sensory journey`
+              isReturningUser 
+                ? `Continue ${profile.child_name}'s sensory journey`
+                : `Start ${profile.child_name}'s sensory journey`
             )}
           </button>
 
