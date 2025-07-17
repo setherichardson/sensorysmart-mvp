@@ -227,8 +227,26 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
       if (activityData) {
         console.log('Using provided activity data:', activityData)
         setActivity(activityData)
-        const hardcodedSteps = getHardcodedSteps(activityId)
-        setSteps(hardcodedSteps)
+        
+        // Check if this activity has embedded steps (like behavior activities)
+        if (activityData.steps && Array.isArray(activityData.steps) && activityData.steps.length > 0) {
+          console.log('Using embedded steps from provided activity data:', activityData.steps)
+          const embeddedSteps: ActivityStepWithProgress[] = activityData.steps.map((step: any, index: number) => ({
+            id: index + 1,
+            step_number: step.step_number || index + 1,
+            title: step.title,
+            description: step.description,
+            duration_seconds: step.duration_seconds,
+            completed: false
+          }))
+          console.log('Converted embedded steps:', embeddedSteps)
+          setSteps(embeddedSteps)
+        } else {
+          // Fallback to hardcoded steps if no embedded steps
+          console.log('No embedded steps found, using hardcoded steps')
+          const hardcodedSteps = getHardcodedSteps(activityId)
+          setSteps(hardcodedSteps)
+        }
         setLoading(false)
         return
       }
@@ -272,25 +290,39 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
 
       setActivity(dbActivityData)
 
-      // Get activity steps from database
-      const { data: stepsData, error: stepsError } = await supabase
-        .from('activity_steps')
-        .select('*')
-        .eq('activity_id', activityId)
-        .order('step_number')
-
-      if (stepsError) {
-        console.log('Steps not found in database, using hardcoded steps')
-        // Use hardcoded steps
-        const hardcodedSteps = getHardcodedSteps(activityId)
-        setSteps(hardcodedSteps)
-      } else {
-        // Convert steps to include progress tracking
-        const stepsWithProgress = stepsData.map(step => ({
-          ...step,
+      // Check if this activity has embedded steps (like behavior activities)
+      if (dbActivityData.steps && Array.isArray(dbActivityData.steps) && dbActivityData.steps.length > 0) {
+        console.log('Using embedded steps from activity data')
+        const embeddedSteps: ActivityStepWithProgress[] = dbActivityData.steps.map((step: any, index: number) => ({
+          id: index + 1,
+          step_number: step.step_number || index + 1,
+          title: step.title,
+          description: step.description,
+          duration_seconds: step.duration_seconds,
           completed: false
         }))
-        setSteps(stepsWithProgress)
+        setSteps(embeddedSteps)
+      } else {
+        // Get activity steps from database
+        const { data: stepsData, error: stepsError } = await supabase
+          .from('activity_steps')
+          .select('*')
+          .eq('activity_id', activityId)
+          .order('step_number')
+
+        if (stepsError) {
+          console.log('Steps not found in database, using hardcoded steps')
+          // Use hardcoded steps
+          const hardcodedSteps = getHardcodedSteps(activityId)
+          setSteps(hardcodedSteps)
+        } else {
+          // Convert steps to include progress tracking
+          const stepsWithProgress = stepsData.map(step => ({
+            ...step,
+            completed: false
+          }))
+          setSteps(stepsWithProgress)
+        }
       }
     } catch (error) {
       console.log('Activity not found in database, using hardcoded data')

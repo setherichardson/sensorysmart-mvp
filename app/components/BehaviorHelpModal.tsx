@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase/client'
 import { Activity } from '@/lib/supabase/client'
+import behaviorActivities from '@/lib/behavior-specific-activities.json'
 
 interface ActivityCard {
   id: string
@@ -119,178 +120,102 @@ export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, us
     setPersonalizedActivities([])
   }
 
+
+
   const loadPersonalizedActivities = async (issue: BehaviorIssue) => {
     console.log('🔍 Loading personalized activities for issue:', issue.id)
     console.log('📊 Assessment data:', assessment)
-    
-    if (!assessment?.results) {
-      console.log('❌ No assessment results available')
-      setLoadingActivities(false)
-      return
-    }
 
     setLoadingActivities(true)
     try {
-      const results = assessment.results as any
-      const behaviorScores = results.behaviorScores || {}
+      // Get behavior-specific activities for this issue
+      let relevantActivities = behaviorActivities.filter(activity => {
+        switch (issue.id) {
+          case 'restaurant':
+            return activity.id.includes('restaurant')
+          case 'bedtime':
+            return activity.id.includes('bedtime')
+          case 'transitions':
+            return activity.id.includes('transition')
+          case 'focus':
+            return activity.id.includes('focus')
+          case 'meltdowns':
+            return activity.id.includes('meltdown')
+          default:
+            return false
+        }
+      })
+
+      // If no specific activities found, use general ones
+      if (relevantActivities.length === 0) {
+        relevantActivities = behaviorActivities.slice(0, 3)
+      }
+
+      // Convert to Activity format and add assessment-based scoring
+      const results = assessment?.results as any
+      const behaviorScores = results?.behaviorScores || {}
       
-      console.log('🎯 Behavior scores:', behaviorScores)
-
-      // Get activities from database
-      const { data: activities, error } = await supabase
-        .from('activities')
-        .select('*')
-        .eq('is_active', true)
-        .order('created_at', { ascending: false })
-
-      console.log('📦 Database activities:', activities?.length || 0)
-      console.log('❌ Database error:', error)
-
-      if (error || !activities || activities.length === 0) {
-        console.log('📚 No database activities available, using fallback library')
+      const scoredActivities = relevantActivities.map(activity => {
+        let score = 0
         
-        // Use fallback activities from the activity library
-        const fallbackActivities: Activity[] = [
-          {
-            id: '1',
-            title: 'Deep Pressure Hug',
-            description: 'A calming activity that provides deep pressure input',
-            context: 'Before transitions',
-            duration_minutes: 3,
-            activity_type: 'proprioceptive',
-            sensory_systems: ['proprioceptive'],
-            behavior_fit: 'seeking',
-            difficulty: 'beginner',
-            materials_needed: ['None'],
-            steps: [],
-            benefits: ['Calming', 'Regulation'],
-            when_to_use: 'Before challenging situations',
-            variations: [],
-            age_range: '3-12',
-            environment: 'indoor',
-            is_active: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          },
-          {
-            id: '2',
-            title: 'Wall Push-Ups',
-            description: 'Heavy work activity for proprioceptive input',
-            context: 'When overstimulated',
-            duration_minutes: 5,
-            activity_type: 'heavy-work',
-            sensory_systems: ['proprioceptive'],
-            behavior_fit: 'seeking',
-            difficulty: 'beginner',
-            materials_needed: ['Wall'],
-            steps: [],
-            benefits: ['Calming', 'Focus'],
-            when_to_use: 'When needing regulation',
-            variations: [],
-            age_range: '4-12',
-            environment: 'indoor',
-            is_active: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          },
-          {
-            id: '3',
-            title: 'Quiet Time with Weighted Blanket',
-            description: 'Calming activity with deep pressure',
-            context: 'After overstimulation',
-            duration_minutes: 10,
-            activity_type: 'calming',
-            sensory_systems: ['proprioceptive'],
-            behavior_fit: 'avoiding',
-            difficulty: 'beginner',
-            materials_needed: ['Weighted blanket'],
-            steps: [],
-            benefits: ['Calming', 'Regulation'],
-            when_to_use: 'When overwhelmed',
-            variations: [],
-            age_range: '3-12',
-            environment: 'indoor',
-            is_active: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          }
-        ]
-        
-        console.log('📚 Using fallback activities:', fallbackActivities.length)
-        setPersonalizedActivities(fallbackActivities)
-      } else {
-        console.log('✅ Using database activities:', activities.length)
-        
-        // Filter activities based on the specific issue
-        let filteredActivities = activities
-        
-        // Apply issue-specific filtering
-        if (issue.id === 'restaurant') {
-          filteredActivities = activities.filter(activity => 
-            activity.activity_type === 'proprioceptive' || 
-            activity.activity_type === 'calming' ||
-            activity.behavior_fit === 'seeking'
-          )
-        } else if (issue.id === 'bedtime') {
-          filteredActivities = activities.filter(activity => 
-            activity.activity_type === 'calming' || 
-            activity.activity_type === 'proprioceptive'
-          )
-        } else if (issue.id === 'transitions') {
-          filteredActivities = activities.filter(activity => 
-            activity.activity_type === 'proprioceptive' || 
-            activity.activity_type === 'heavy-work'
-          )
-        } else if (issue.id === 'focus') {
-          filteredActivities = activities.filter(activity => 
-            activity.activity_type === 'heavy-work' || 
-            activity.activity_type === 'proprioceptive'
-          )
-        } else if (issue.id === 'meltdowns') {
-          filteredActivities = activities.filter(activity => 
-            activity.activity_type === 'calming' || 
-            activity.activity_type === 'proprioceptive'
-          )
+        // Score based on behavior fit
+        if (behaviorScores.seeking && activity.behavior_fit === 'seeking') {
+          score += 3
+        }
+        if (behaviorScores.avoiding && activity.behavior_fit === 'avoiding') {
+          score += 3
         }
         
-        // Score activities based on assessment results
-        const scoredActivities = filteredActivities.map(activity => {
-          let score = 0
-          
-          // Score based on behavior fit
-          if (behaviorScores.seeking && activity.behavior_fit === 'seeking') {
-            score += 3
-          }
-          if (behaviorScores.avoiding && activity.behavior_fit === 'avoiding') {
-            score += 3
-          }
-          
-          // Score based on challenging sensory systems
+        // Score based on challenging sensory systems
+        if (results?.sensoryScores) {
           const challengingSystems = getChallengingSystems(results)
           if (challengingSystems.some(system => 
             activity.sensory_systems.includes(system)
           )) {
             score += 2
           }
-          
-          // Score based on difficulty level
-          if (activity.difficulty === 'beginner') {
-            score += 1
-          }
-          
-          return { ...activity, score }
-        })
+        }
         
-        // Sort by score and take top 3
-        const topActivities = scoredActivities
-          .sort((a, b) => b.score - a.score)
-          .slice(0, 3)
+        // Score based on difficulty level
+        if (activity.difficulty === 'beginner') {
+          score += 1
+        }
         
-        console.log('🎯 Top scored activities:', topActivities)
-        setPersonalizedActivities(topActivities)
-      }
+        // Convert to Activity format
+        const activityData: Activity = {
+          id: activity.id,
+          title: activity.title,
+          description: activity.description,
+          context: activity.context,
+          duration_minutes: activity.duration_minutes,
+          difficulty: activity.difficulty as 'beginner' | 'intermediate' | 'advanced',
+          activity_type: activity.activity_type as 'proprioceptive' | 'tactile' | 'calming' | 'auditory' | 'visual' | 'heavy-work' | 'vestibular' | 'olfactory' | 'interoception',
+          sensory_systems: activity.sensory_systems,
+          behavior_fit: activity.behavior_fit as 'seeking' | 'avoiding' | 'sensitive' | 'low-registration' | 'mixed',
+          benefits: activity.benefits,
+          when_to_use: activity.when_to_use,
+          materials_needed: activity.materials_needed,
+          steps: activity.steps as any,
+          variations: [],
+          age_range: activity.age_range,
+          environment: activity.environment as 'indoor' | 'outdoor' | 'both',
+          is_active: true,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        }
+        
+        return { ...activityData, score }
+      })
+      
+      // Sort by score and take top 3
+      const topActivities = scoredActivities
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+      
+      console.log('🎯 Top scored behavior activities:', topActivities)
+      setPersonalizedActivities(topActivities)
     } catch (error) {
-      console.error('❌ Error loading personalized activities:', error)
+      console.error('❌ Error loading behavior activities:', error)
     } finally {
       setLoadingActivities(false)
     }
@@ -338,6 +263,7 @@ export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, us
       display: 'flex',
       flexDirection: 'column'
     }}>
+
       {/* Header */}
       <div style={{
         display: 'flex',

@@ -60,6 +60,29 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+  // Check subscription status for dashboard routes
+  if (isProtectedRoute && user && pathname.startsWith('/dashboard')) {
+    try {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('subscription_status')
+        .eq('id', user.id)
+        .single()
+
+      // If user doesn't have an active subscription, redirect to payment
+      if (profile && profile.subscription_status !== 'active') {
+        const url = request.nextUrl.clone()
+        url.pathname = '/onboarding/results-payment'
+        return NextResponse.redirect(url)
+      }
+    } catch (error) {
+      // If there's an error checking profile, redirect to payment to be safe
+      const url = request.nextUrl.clone()
+      url.pathname = '/onboarding/results-payment'
+      return NextResponse.redirect(url)
+    }
+  }
+
   // Special handling for root path
   if (pathname === '/' && user) {
     // Check if user has completed onboarding

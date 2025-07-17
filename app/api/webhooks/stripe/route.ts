@@ -86,9 +86,9 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
   console.log('Processing checkout session completed:', session.id)
   
   if (session.mode === 'subscription' && session.customer) {
-    // Update user subscription status
+    // Update user subscription status in profiles table
     const { error } = await supabase
-      .from('user_profiles')
+      .from('profiles')
       .update({ 
         subscription_status: 'active',
         stripe_customer_id: session.customer as string,
@@ -99,6 +99,8 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
 
     if (error) {
       console.error('Error updating user profile:', error)
+    } else {
+      console.log('Successfully updated subscription status for:', session.customer_email)
     }
   }
 }
@@ -106,49 +108,79 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
 async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
   console.log('Processing subscription created:', subscription.id)
   
-  const { error } = await supabase
-    .from('user_profiles')
-    .update({ 
-      subscription_status: subscription.status,
-      subscription_id: subscription.id,
-      updated_at: new Date().toISOString()
-    })
-    .eq('stripe_customer_id', subscription.customer)
+  // Get customer email
+  const customer = await stripe.customers.retrieve(subscription.customer as string) as Stripe.Customer
+  const customerEmail = customer.email
+  
+  if (customerEmail) {
+    // Update user subscription status
+    const { error } = await supabase
+      .from('profiles')
+      .update({ 
+        subscription_status: subscription.status,
+        stripe_customer_id: subscription.customer as string,
+        subscription_id: subscription.id,
+        updated_at: new Date().toISOString()
+      })
+      .eq('email', customerEmail)
 
-  if (error) {
-    console.error('Error updating subscription:', error)
+    if (error) {
+      console.error('Error updating user profile:', error)
+    } else {
+      console.log('Successfully updated subscription status for:', customerEmail)
+    }
   }
 }
 
 async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
   console.log('Processing subscription updated:', subscription.id)
   
-  const { error } = await supabase
-    .from('user_profiles')
-    .update({ 
-      subscription_status: subscription.status,
-      updated_at: new Date().toISOString()
-    })
-    .eq('subscription_id', subscription.id)
+  // Get customer email
+  const customer = await stripe.customers.retrieve(subscription.customer as string) as Stripe.Customer
+  const customerEmail = customer.email
+  
+  if (customerEmail) {
+    // Update user subscription status
+    const { error } = await supabase
+      .from('profiles')
+      .update({ 
+        subscription_status: subscription.status,
+        stripe_customer_id: subscription.customer as string,
+        subscription_id: subscription.id,
+        updated_at: new Date().toISOString()
+      })
+      .eq('email', customerEmail)
 
-  if (error) {
-    console.error('Error updating subscription:', error)
+    if (error) {
+      console.error('Error updating user profile:', error)
+    } else {
+      console.log('Successfully updated subscription status for:', customerEmail)
+    }
   }
 }
 
 async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
   console.log('Processing subscription deleted:', subscription.id)
   
-  const { error } = await supabase
-    .from('user_profiles')
-    .update({ 
-      subscription_status: 'canceled',
-      updated_at: new Date().toISOString()
-    })
-    .eq('subscription_id', subscription.id)
+  // Get customer email
+  const customer = await stripe.customers.retrieve(subscription.customer as string) as Stripe.Customer
+  const customerEmail = customer.email
+  
+  if (customerEmail) {
+    // Update user subscription status to canceled
+    const { error } = await supabase
+      .from('profiles')
+      .update({ 
+        subscription_status: 'canceled',
+        updated_at: new Date().toISOString()
+      })
+      .eq('email', customerEmail)
 
-  if (error) {
-    console.error('Error updating subscription:', error)
+    if (error) {
+      console.error('Error updating user profile:', error)
+    } else {
+      console.log('Successfully updated subscription status for:', customerEmail)
+    }
   }
 }
 

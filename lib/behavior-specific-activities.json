@@ -1,0 +1,530 @@
+[
+  {
+    "id": "restaurant-prep",
+    "title": "Restaurant Preparation Routine",
+    "description": "A calming routine to help your child prepare for restaurant visits",
+    "context": "Before going to restaurants",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "proprioceptive",
+    "sensory_systems": ["proprioceptive", "tactile"],
+    "behavior_fit": "seeking",
+    "benefits": ["Calming", "Regulation", "Preparation"],
+    "when_to_use": "15-20 minutes before leaving for a restaurant",
+    "materials_needed": ["None required"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Deep Pressure Hug",
+        "description": "Give your child a firm, 10-second hug while they take deep breaths",
+        "duration_seconds": 15
+      },
+      {
+        "step_number": 2,
+        "title": "Wall Push-Ups",
+        "description": "Have your child do 5 wall push-ups against a wall",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Chair Squeezes",
+        "description": "Sit in a chair and squeeze the armrests for 10 seconds, release, repeat 3 times",
+        "duration_seconds": 45
+      },
+      {
+        "step_number": 4,
+        "title": "Deep Breathing",
+        "description": "Take 5 deep breaths: inhale for 4 counts, hold for 4, exhale for 4",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 5,
+        "title": "Quiet Time",
+        "description": "Sit quietly for 2 minutes, feeling calm and ready",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-12",
+    "environment": "indoor"
+  },
+  {
+    "id": "restaurant-fidget",
+    "title": "Restaurant Fidget Kit",
+    "description": "Create a portable fidget kit for restaurant visits",
+    "context": "During restaurant visits",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": ["tactile", "proprioceptive"],
+    "behavior_fit": "seeking",
+    "benefits": ["Focus", "Calming", "Occupied hands"],
+    "when_to_use": "When waiting for food or feeling restless at restaurants",
+    "materials_needed": ["Stress ball", "Fidget spinner", "Silent fidget toy"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose Fidget",
+        "description": "Select one fidget toy from your kit",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Squeeze Ball",
+        "description": "Squeeze the stress ball 10 times with each hand",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Spin Fidget",
+        "description": "Use the fidget spinner quietly for 1 minute",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 4,
+        "title": "Switch Hands",
+        "description": "Try the fidget with your other hand",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 5,
+        "title": "Put Away",
+        "description": "Gently put the fidget back in your kit",
+        "duration_seconds": 10
+      }
+    ],
+    "age_range": "4-12",
+    "environment": "indoor"
+  },
+  {
+    "id": "bedtime-routine",
+    "title": "Calming Bedtime Routine",
+    "description": "A structured routine to help your child settle for sleep",
+    "context": "Before bedtime",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "calming",
+    "sensory_systems": ["proprioceptive", "tactile", "auditory"],
+    "behavior_fit": "avoiding",
+    "benefits": ["Calming", "Sleep preparation", "Regulation"],
+    "when_to_use": "30 minutes before bedtime",
+    "materials_needed": ["Weighted blanket", "Soft music", "Lotion"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Gentle Massage",
+        "description": "Give a 2-minute gentle massage with lotion on arms and legs",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Deep Pressure",
+        "description": "Apply gentle pressure to shoulders and back for 1 minute",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Weighted Blanket",
+        "description": "Lie under a weighted blanket and take 5 deep breaths",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 4,
+        "title": "Quiet Music",
+        "description": "Listen to soft, calming music for 3 minutes",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 5,
+        "title": "Final Relaxation",
+        "description": "Lie still and feel the calm for 2 minutes",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-12",
+    "environment": "indoor"
+  },
+  {
+    "id": "transition-warning",
+    "title": "Transition Warning System",
+    "description": "A visual and verbal system to prepare for transitions",
+    "context": "Before transitions",
+    "duration_minutes": 3,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": ["visual", "auditory"],
+    "behavior_fit": "avoiding",
+    "benefits": ["Preparation", "Reduced anxiety", "Smooth transitions"],
+    "when_to_use": "5 minutes before any transition",
+    "materials_needed": ["Timer", "Transition object"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set Timer",
+        "description": "Set a 5-minute timer and show it to your child",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Verbal Warning",
+        "description": "Say 'In 5 minutes, we will [next activity]'",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Show Transition Object",
+        "description": "Hold up a special object that represents the next activity",
+        "duration_seconds": 15
+      },
+      {
+        "step_number": 4,
+        "title": "2-Minute Warning",
+        "description": "When timer shows 2 minutes left, give another warning",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 5,
+        "title": "Final Countdown",
+        "description": "Count down from 10 to 1, then transition",
+        "duration_seconds": 15
+      }
+    ],
+    "age_range": "3-10",
+    "environment": "both"
+  },
+  {
+    "id": "focus-break",
+    "title": "Focus Break Activities",
+    "description": "Quick movement breaks to help maintain focus",
+    "context": "During focused activities",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "heavy-work",
+    "sensory_systems": ["proprioceptive", "vestibular"],
+    "behavior_fit": "seeking",
+    "benefits": ["Improved focus", "Regulation", "Energy release"],
+    "when_to_use": "Every 15-20 minutes during focused work",
+    "materials_needed": ["None required"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Jumping Jacks",
+        "description": "Do 10 jumping jacks to get energy moving",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Wall Push-Ups",
+        "description": "Do 5 wall push-ups for heavy work",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Chair Squeezes",
+        "description": "Squeeze chair arms for 10 seconds, release, repeat 3 times",
+        "duration_seconds": 45
+      },
+      {
+        "step_number": 4,
+        "title": "Deep Breathing",
+        "description": "Take 3 deep breaths to reset",
+        "duration_seconds": 20
+      },
+      {
+        "step_number": 5,
+        "title": "Return to Work",
+        "description": "Sit back down and return to focused activity",
+        "duration_seconds": 10
+      }
+    ],
+    "age_range": "4-12",
+    "environment": "indoor"
+  },
+  {
+    "id": "meltdown-prevention",
+    "title": "Meltdown Prevention Routine",
+    "description": "Activities to prevent sensory meltdowns",
+    "context": "When showing early signs of overwhelm",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "calming",
+    "sensory_systems": ["proprioceptive", "tactile", "auditory"],
+    "behavior_fit": "avoiding",
+    "benefits": ["Prevents meltdowns", "Calming", "Regulation"],
+    "when_to_use": "At first signs of overwhelm or frustration",
+    "materials_needed": ["Weighted blanket", "Quiet space"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Move to Quiet Space",
+        "description": "Go to a quiet, calm area away from stimulation",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Deep Pressure Hug",
+        "description": "Give a firm, calming hug for 15 seconds",
+        "duration_seconds": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Weighted Blanket",
+        "description": "Wrap in a weighted blanket and sit quietly",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 4,
+        "title": "Slow Breathing",
+        "description": "Take 5 slow breaths: inhale 4, hold 4, exhale 4",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 5,
+        "title": "Gentle Rocking",
+        "description": "Rock gently back and forth for 2 minutes",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-12",
+    "environment": "indoor"
+  },
+  {
+    "id": "restaurant-quiet",
+    "title": "Quiet Restaurant Activities",
+    "description": "Silent activities to keep occupied at restaurants",
+    "context": "During restaurant visits",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": ["tactile", "visual"],
+    "behavior_fit": "seeking",
+    "benefits": ["Quiet occupation", "Focus", "Calming"],
+    "when_to_use": "When waiting at restaurants",
+    "materials_needed": ["Small notebook", "Pen", "Small fidget"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Draw Shapes",
+        "description": "Draw different shapes in your notebook",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Trace Lines",
+        "description": "Trace your finger along the edge of the table",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Fidget Play",
+        "description": "Use a small, quiet fidget toy",
+        "duration_seconds": 90
+      },
+      {
+        "step_number": 4,
+        "title": "Count Objects",
+        "description": "Count items around you (chairs, people, etc.)",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 5,
+        "title": "Deep Breathing",
+        "description": "Take 3 quiet deep breaths",
+        "duration_seconds": 30
+      }
+    ],
+    "age_range": "4-10",
+    "environment": "indoor"
+  },
+  {
+    "id": "bedtime-sensory",
+    "title": "Sensory Bedtime Activities",
+    "description": "Sensory activities to prepare for sleep",
+    "context": "Before bedtime",
+    "duration_minutes": 12,
+    "difficulty": "beginner",
+    "activity_type": "calming",
+    "sensory_systems": ["tactile", "proprioceptive", "auditory"],
+    "behavior_fit": "avoiding",
+    "benefits": ["Sleep preparation", "Calming", "Regulation"],
+    "when_to_use": "20 minutes before bedtime",
+    "materials_needed": ["Lotion", "Soft brush", "Quiet music"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Gentle Brushing",
+        "description": "Use a soft brush to gently brush arms and legs",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Lotion Massage",
+        "description": "Apply lotion with gentle massage strokes",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Quiet Music",
+        "description": "Listen to soft, calming music",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Deep Pressure",
+        "description": "Apply gentle pressure to shoulders and back",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 5,
+        "title": "Final Relaxation",
+        "description": "Lie still and feel completely relaxed",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-12",
+    "environment": "indoor"
+  },
+  {
+    "id": "transition-movement",
+    "title": "Transition Movement Break",
+    "description": "Movement activities to help with transitions",
+    "context": "During transitions",
+    "duration_minutes": 4,
+    "difficulty": "beginner",
+    "activity_type": "heavy-work",
+    "sensory_systems": ["proprioceptive", "vestibular"],
+    "behavior_fit": "seeking",
+    "benefits": ["Smooth transitions", "Energy release", "Focus"],
+    "when_to_use": "During difficult transitions",
+    "materials_needed": ["None required"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "March in Place",
+        "description": "March in place for 30 seconds",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Jumping",
+        "description": "Do 10 small jumps",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Wall Push-Ups",
+        "description": "Do 5 wall push-ups",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 4,
+        "title": "Deep Breathing",
+        "description": "Take 3 deep breaths",
+        "duration_seconds": 20
+      },
+      {
+        "step_number": 5,
+        "title": "Move to Next Activity",
+        "description": "Walk to the next activity with energy",
+        "duration_seconds": 30
+      }
+    ],
+    "age_range": "3-10",
+    "environment": "both"
+  },
+  {
+    "id": "focus-fidget",
+    "title": "Focus Fidget Activities",
+    "description": "Fidget activities to maintain focus",
+    "context": "During focused work",
+    "duration_minutes": 3,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": ["tactile", "proprioceptive"],
+    "behavior_fit": "seeking",
+    "benefits": ["Improved focus", "Hand occupation", "Calming"],
+    "when_to_use": "When having trouble focusing",
+    "materials_needed": ["Stress ball", "Fidget toy", "Play dough"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Choose Fidget",
+        "description": "Select a quiet fidget toy",
+        "duration_seconds": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Squeeze Ball",
+        "description": "Squeeze stress ball 10 times",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Fidget Play",
+        "description": "Use fidget toy for 1 minute",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 4,
+        "title": "Switch Hands",
+        "description": "Try with other hand",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 5,
+        "title": "Return to Work",
+        "description": "Put fidget away and continue work",
+        "duration_seconds": 10
+      }
+    ],
+    "age_range": "4-12",
+    "environment": "indoor"
+  },
+  {
+    "id": "meltdown-recovery",
+    "title": "Meltdown Recovery Routine",
+    "description": "Activities to help recover after a meltdown",
+    "context": "After a meltdown",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "calming",
+    "sensory_systems": ["proprioceptive", "tactile", "auditory"],
+    "behavior_fit": "avoiding",
+    "benefits": ["Recovery", "Calming", "Regulation"],
+    "when_to_use": "After a meltdown has ended",
+    "materials_needed": ["Weighted blanket", "Quiet space", "Water"],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Quiet Space",
+        "description": "Go to a quiet, calm area",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Drink Water",
+        "description": "Sip water slowly and calmly",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Weighted Blanket",
+        "description": "Wrap in weighted blanket and rest",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 4,
+        "title": "Gentle Touch",
+        "description": "Receive gentle back rubs or hand holding",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 5,
+        "title": "Slow Breathing",
+        "description": "Practice slow, deep breathing",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-12",
+    "environment": "indoor"
+  }
+] 

@@ -341,10 +341,10 @@ export default function ResultsPayment() {
           
           {/* Title */}
           <h1 className="text-[26px] font-medium text-left mb-2" style={{ color: '#252225', letterSpacing: '-1px', lineHeight: 'calc(1.2em - 2px)' }}>
-            Your assessment is ready, here&apos;s what {profile.child_name} needs to thrive!
+            Unlock {profile.child_name}&apos;s full sensory journey!
           </h1>
           <p className="mb-6 text-left" style={{ fontSize: '16px', color: '#6C6C6C', fontWeight: 400, lineHeight: 'calc(1.5em - 2px)', letterSpacing: '-0.25px' }}>
-            You know {profile.child_name} best, and it shows! Together, we&apos;ve created a plan designed just for {profile.child_name}.
+            Subscribe to access personalized activities, progress tracking, and expert guidance.
           </p>
         </div>
 

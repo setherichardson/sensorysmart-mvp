@@ -1095,7 +1095,13 @@ export default function TodayDashboard() {
       setStoryOpen(false)
       setCurrentActivity(null)
       
-      // Update the activity list: remove completed activity and add a new one
+      // Show completion indicator for ALL activities (including behavior activities)
+      setShowActivityCompleted(true)
+      setTimeout(() => {
+        setShowActivityCompleted(false)
+      }, 3000) // Hide after 3 seconds
+      
+      // Update the activity list: remove completed activity and add a new one (only for regular activities)
       const currentActivities = [...todaysActivities]
       const completedIndex = currentActivities.findIndex(a => a.id === activity.id)
       
@@ -1123,12 +1129,6 @@ export default function TodayDashboard() {
         localStorage.setItem('lastActivityUpdate', Date.now().toString())
         
         console.log('✅ Activity list updated successfully')
-        
-        // Show success message for new activity
-        setShowActivityCompleted(true)
-        setTimeout(() => {
-          setShowActivityCompleted(false)
-        }, 3000) // Hide after 3 seconds
       }
       
       // Show a brief success message and stay on the page

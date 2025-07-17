@@ -14,6 +14,10 @@ CREATE TABLE IF NOT EXISTS profiles (
   email VARCHAR(255) NOT NULL,
   child_name VARCHAR(100) NOT NULL,
   child_age VARCHAR(20) NOT NULL,
+  subscription_status VARCHAR(20) DEFAULT inactive CHECK (subscription_status IN ('active', 'inactive', 'canceled', 't_due')),
+  stripe_customer_id VARCHAR(255),
+  subscription_id VARCHAR(255),
+  trial_ends_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
