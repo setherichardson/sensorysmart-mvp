@@ -17,4 +17,4 @@ CREATE INDEX IF NOT EXISTS idx_profiles_subscription_status ON profiles(subscrip
 CREATE INDEX IF NOT EXISTS idx_profiles_stripe_customer_id ON profiles(stripe_customer_id);
 
 -- Add comment explaining the grandfathering
-COMMENT ON COLUMN profiles.subscription_status IS 'Subscription status: active, inactive, canceled, past_due. Existing users grandfathered to active.'; 
+COMMENT ON COLUMN profiles.subscription_status IS 'Subscription status: active, inactive, canceled, past_due. Existing users grandfathered to active.';
