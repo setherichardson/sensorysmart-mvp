@@ -60,8 +60,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  // Check subscription status for dashboard routes
-  if (isProtectedRoute && user && pathname.startsWith('/dashboard')) {
+  // Check subscription status for dashboard routes (excluding profile page)
+  if (isProtectedRoute && user && pathname.startsWith('/dashboard') && !pathname.startsWith('/dashboard/profile')) {
     // Allow access if there's a success parameter (payment just completed)
     const successParam = request.nextUrl.searchParams.get('success')
     if (successParam === 'true') {
