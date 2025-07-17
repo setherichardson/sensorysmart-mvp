@@ -91,6 +91,16 @@ export const analytics = {
   trialCancelled: () => {
     trackEvent('trial_cancelled', 'conversion');
   },
+  
+  // Note tracking
+  noteAdded: () => {
+    trackEvent('note_added', 'engagement');
+  },
+  
+  // Timer tracking
+  timerStarted: (duration: number) => {
+    trackEvent('timer_started', 'feature_usage', `${duration}_minutes`);
+  },
 };
 
 // Enhanced page view tracking with custom dimensions

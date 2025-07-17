@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import type { User } from '@supabase/supabase-js';
 import type { Profile } from '@/lib/supabase/client';
+import { analytics } from '@/lib/analytics';
 
 interface RatingOption {
   value: 'regulated' | 'calmer' | 'neutral' | 'distracted' | 'dysregulated';
@@ -32,6 +33,11 @@ export default function ActivityRatingClient() {
     activity_type: string;
     duration_minutes?: number;
   } | null>(null);
+
+  // Track page view
+  useEffect(() => {
+    analytics.pageView('dashboard-activity-rating');
+  }, []);
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -78,6 +84,10 @@ export default function ActivityRatingClient() {
 
   const handleRatingSelect = async (rating: string) => {
     if (!activityData) return;
+    
+    // Track activity rating
+    analytics.activityCompleted(activityData.activity_type, rating);
+    
     setSubmitting(true);
     try {
       if (activityData.id.startsWith('temp-')) {

@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
           quantity: 1,
         },
       ],
-      success_url: successUrl || `${request.nextUrl.origin}/dashboard?success=true`,
+      success_url: successUrl || `${request.nextUrl.origin}/dashboard?success=true&t=${Date.now()}`,
       cancel_url: cancelUrl || `${request.nextUrl.origin}/dashboard?canceled=true`,
       customer_email: user.email,
       metadata: {

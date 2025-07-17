@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 import type { Profile, Assessment } from '@/lib/supabase/client'
+import { analytics } from '@/lib/analytics'
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -20,6 +21,11 @@ export default function ProfilePage() {
     child_name: ''
   })
   const [saving, setSaving] = useState(false)
+
+  // Track page view
+  useEffect(() => {
+    analytics.pageView('dashboard-profile');
+  }, []);
 
   useEffect(() => {
     const loadUserData = async () => {

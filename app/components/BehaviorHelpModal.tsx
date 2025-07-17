@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase/client'
 import { Activity } from '@/lib/supabase/client'
 import behaviorActivities from '@/lib/behavior-specific-activities.json'
+import { analytics } from '@/lib/analytics'
 
 interface ActivityCard {
   id: string
@@ -112,6 +113,8 @@ export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, us
 
   const handleIssueSelect = async (issue: BehaviorIssue) => {
     setSelectedIssue(issue)
+    // Track behavior help viewed
+    analytics.pageView(`behavior-help-${issue.id}`);
     await loadPersonalizedActivities(issue)
   }
 
@@ -246,6 +249,9 @@ export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, us
   }
 
   const handleStartActivity = (activity: Activity) => {
+    // Track behavior activity started
+    analytics.activityStarted(activity.activity_type);
+    
     if (onStartActivity) {
       onStartActivity(activity)
     }

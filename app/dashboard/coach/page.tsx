@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 import type { Profile, Assessment, ChatMessage } from '@/lib/supabase/client'
+import { analytics } from '@/lib/analytics'
 
 interface Message {
   id: string
@@ -37,6 +38,11 @@ export default function CoachPage() {
     "My child won't settle down for bed",
     "Help with picky eating and textures"
   ]
+
+  // Track page view
+  useEffect(() => {
+    analytics.pageView('dashboard-coach');
+  }, []);
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -231,6 +237,14 @@ export default function CoachPage() {
 
     const userMessage = content.trim()
     setInputValue('')
+    
+    // Track chat started if this is the first message
+    if (messages.length === 0) {
+      analytics.coachChatStarted();
+    }
+    
+    // Track message sent
+    analytics.coachMessageSent();
     
     // Add user message immediately
     const userMsg: Message = {

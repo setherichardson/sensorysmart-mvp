@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 import type { Profile, Assessment, ActivityCompletion } from '@/lib/supabase/client'
 import NoteModal from '../../components/NoteModal'
+import { analytics } from '@/lib/analytics'
 
 interface JournalActivity {
   id: string
@@ -54,6 +55,11 @@ export default function JournalPage() {
     activityRating: null
   })
 
+
+  // Track page view
+  useEffect(() => {
+    analytics.pageView('dashboard-journal');
+  }, []);
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -397,6 +403,9 @@ export default function JournalPage() {
   }
 
   const handleNoteSave = () => {
+    // Track note added
+    analytics.noteAdded();
+    
     // Refresh activities to show updated notes
     const loadActivities = async () => {
       const { data: activitiesData } = await supabase

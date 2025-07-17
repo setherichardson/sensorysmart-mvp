@@ -8,6 +8,7 @@ import type { User } from '@supabase/supabase-js'
 import type { Profile, Assessment, ActivityCompletion, Activity } from '@/lib/supabase/client'
 import ActivityStory from '../../components/ActivityStory'
 import BehaviorHelpModal from '../../components/BehaviorHelpModal'
+import { analytics } from '@/lib/analytics'
 
 
 
@@ -46,6 +47,11 @@ export default function TodayDashboard() {
   useEffect(() => {
     setGreeting(getTimeOfDayGreeting())
   }, [])
+
+  // Track page view
+  useEffect(() => {
+    analytics.pageView('dashboard-today');
+  }, []);
 
   // Check for success message from payment
   useEffect(() => {
@@ -1032,6 +1038,9 @@ export default function TodayDashboard() {
     console.log('Activity data:', activity)
     setSubmittingActivity(activity.id)
 
+    // Track activity start
+    analytics.activityStarted(activity.activity_type);
+
     try {
       // Just open the story for this activity - don't log to database yet
       console.log('Setting current activity and opening story')
@@ -1130,6 +1139,9 @@ export default function TodayDashboard() {
         
         console.log('✅ Activity list updated successfully')
       }
+      
+      // Track activity completion
+      analytics.activityCompleted(activity.activity_type, rating || 'neutral');
       
       // Show a brief success message and stay on the page
       console.log('✅ Activity completed successfully!')

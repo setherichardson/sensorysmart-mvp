@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { analytics } from '@/lib/analytics'
 
 // TypeScript declarations for WakeLock API
 interface WakeLockSentinel {
@@ -130,6 +131,11 @@ export default function TimerPage() {
     }
   }, [timerState])
 
+  // Track page view
+  useEffect(() => {
+    analytics.pageView('dashboard-timer');
+  }, []);
+
   // Load timer state from localStorage on mount
   useEffect(() => {
     const savedState = localStorage.getItem('timerState')
@@ -214,6 +220,9 @@ export default function TimerPage() {
       totalTime: timeInSeconds,
       taskName: taskName.trim()
     })
+    
+    // Track timer started
+    analytics.timerStarted(selectedTime);
   }
 
   const pauseTimer = () => {

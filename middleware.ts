@@ -62,6 +62,22 @@ export async function middleware(request: NextRequest) {
 
   // Check subscription status for dashboard routes
   if (isProtectedRoute && user && pathname.startsWith('/dashboard')) {
+    // Allow access if there's a success parameter (payment just completed)
+    const successParam = request.nextUrl.searchParams.get('success')
+    if (successParam === 'true') {
+      // Check if success parameter has a valid timestamp (within last 5 minutes)
+      const timestamp = request.nextUrl.searchParams.get('t')
+      if (timestamp) {
+        const timestampNum = parseInt(timestamp)
+        const now = Date.now()
+        const fiveMinutes = 5 * 60 * 1000 // 5 minutes in milliseconds
+        
+        if (now - timestampNum < fiveMinutes) {
+          return supabaseResponse
+        }
+      }
+    }
+
     try {
       const { data: profile } = await supabase
         .from('profiles')

@@ -16,7 +16,6 @@ export default function ResultsPayment() {
   const [assessment, setAssessment] = useState<Assessment | null>(null)
   const [loading, setLoading] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState('monthly')
   const [error, setError] = useState('')
   const [isReturningUser, setIsReturningUser] = useState(false)
 
@@ -80,21 +79,10 @@ export default function ResultsPayment() {
     loadUserData()
   }, [router])
 
-  const plans = {
-    monthly: {
-      price: 9.99,
-      period: 'month',
-      savings: null,
-      popular: false,
-      stripePriceId: PRODUCTS.monthly.stripePriceId
-    },
-    yearly: {
-      price: 99.99,
-      period: 'year',
-      savings: 'Save 17%',
-      popular: true,
-      stripePriceId: PRODUCTS.yearly.stripePriceId
-    }
+  const plan = {
+    price: 9.99,
+    period: 'month',
+    stripePriceId: PRODUCTS.monthly.stripePriceId
   }
 
   const getProfileDescription = (profile: string, childName: string) => {
@@ -252,8 +240,6 @@ export default function ResultsPayment() {
     setError('')
     
     try {
-      const selectedPlanData = plans[selectedPlan as keyof typeof plans]
-      
       // Use real Stripe payment
       const response = await fetch('/api/billing', {
         method: 'POST',
@@ -261,8 +247,8 @@ export default function ResultsPayment() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          priceId: selectedPlanData.stripePriceId,
-          successUrl: `${window.location.origin}/dashboard/today?success=true`,
+          priceId: plan.stripePriceId,
+          successUrl: `${window.location.origin}/dashboard/today?success=true&t=${Date.now()}`,
           cancelUrl: `${window.location.origin}/onboarding/results-payment?canceled=true`,
         }),
       })
@@ -279,7 +265,7 @@ export default function ResultsPayment() {
       }
 
       // Track trial start
-      analytics.trialStarted(selectedPlan);
+      analytics.trialStarted('monthly');
       
       // Redirect to Stripe Checkout
       const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
@@ -345,39 +331,13 @@ export default function ResultsPayment() {
       <div className="max-w-2xl mx-auto p-4">
         {/* Header */}
         <div className="text-left mb-8" style={{ marginTop: '70px' }}>
-          {/* Welcome Back Section for Returning Users */}
-          {isReturningUser && (
-            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 mb-6">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-sm font-medium text-blue-800 mb-1">
-                    Welcome back! 👋
-                  </h3>
-                  <p className="text-sm text-blue-700">
-                    Great news! Your assessment for {profile.child_name} is complete and ready. You're just one step away from unlocking personalized sensory activities and guidance.
-                    {assessment && (
-                      <span className="block mt-1 text-xs text-blue-600">
-                        Completed {new Date(assessment.completed_at).toLocaleDateString()}
-                      </span>
-                    )}
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* Assessment Complete Chip */}
           <div className="inline-flex items-center mb-4 px-3 py-1 rounded-full" style={{ backgroundColor: '#DEFFF2', color: '#0C3A28' }}>
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
             <span style={{ fontSize: '14px', fontWeight: 400 }}>
-              {isReturningUser ? 'Assessment ready' : 'Assessment complete'}
+              {isReturningUser ? 'Welcome back, your assessment is ready' : 'Assessment complete'}
             </span>
           </div>
           
@@ -389,37 +349,20 @@ export default function ResultsPayment() {
             }
           </h1>
           
-          {/* Free Trial Badge */}
-          <div className="inline-flex items-center mb-4 px-3 py-1 rounded-full bg-green-100 text-green-800">
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span style={{ fontSize: '14px', fontWeight: 600 }}>Try free for 7 days</span>
-          </div>
+
           
           <p className="mb-6 text-left" style={{ fontSize: '16px', color: '#6C6C6C', fontWeight: 400, lineHeight: 'calc(1.5em - 2px)', letterSpacing: '-0.25px' }}>
             {isReturningUser 
-              ? "Your personalized results are waiting. Enter your payment info to start your free trial and access tailored activities, progress tracking, and expert guidance."
-              : "Enter your payment info to start your free trial and access personalized activities, progress tracking, and expert guidance."
+              ? "You know your child best. Our assessment helps us understand their unique sensory needs so we can provide activities that actually work for them."
+              : "You know your child best. Our assessment helps us understand their unique sensory needs so we can provide activities that actually work for them."
             }
           </p>
         </div>
 
         {/* Assessment Results */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <div className="flex justify-between items-center mb-4">
+          <div className="mb-4">
             <h2 className="text-xl font-medium text-gray-900">What {profile.child_name} needs to thrive:</h2>
-            {isReturningUser && (
-              <button
-                onClick={() => router.push('/onboarding/assessment')}
-                className="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center"
-              >
-                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-                Retake assessment
-              </button>
-            )}
           </div>
           
           {/* System Breakdown */}
@@ -443,8 +386,8 @@ export default function ResultsPayment() {
 
         {/* Value Proposition */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-medium text-gray-900 mb-4">How Sensorysmart helps</h2>
-          <div className="space-y-3">
+          <h2 className="text-xl font-medium text-gray-900 mb-4">Start {profile.child_name}&apos;s sensory journey</h2>
+          <div className="space-y-3 mb-6">
             <div className="flex items-center">
               <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -470,85 +413,18 @@ export default function ResultsPayment() {
               <span className="text-gray-700 font-medium">See what works so you can build on success</span>
             </div>
           </div>
-        </div>
-
-        {/* Plan Selection */}
-        <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-medium text-gray-900 mb-4">Choose your plan</h2>
-          <p className="text-gray-600 mb-4">Both plans include a 7-day free trial. Payment info required to start trial. Cancel anytime during the trial period.</p>
-          <div className="space-y-4">
-            {Object.entries(plans).map(([key, plan]) => (
-              <div
-                key={key}
-                className={`relative p-4 border-2 rounded-xl cursor-pointer transition-all ${
-                  selectedPlan === key
-                    ? 'border-[#367A87] bg-white'
-                    : 'border-[#EEE6E5] bg-white'
-                }`}
-                onClick={() => setSelectedPlan(key)}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-[#367A87] text-white px-3 py-1 rounded-full text-xs font-medium">
-                    {plan.savings}
-                  </div>
-                )}
-                <div className="text-center">
-                  <div className="text-sm text-green-600 font-semibold mb-1">7 days free</div>
-                  <div className={`text-2xl font-bold ${
-                    selectedPlan === key ? 'text-[#367A87]' : 'text-[#252225]'
-                  }`}>
-                    ${plan.price}
-                  </div>
-                  <div className={`${
-                    selectedPlan === key ? 'text-[#367A87]' : 'text-[#6C6C6C]'
-                  } font-medium`}>
-                    billed {plan.period === 'month' ? 'monthly' : 'yearly'}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Payment Form */}
-        <div className="bg-white rounded-2xl p-6 shadow-lg">
-          <h2 className="text-xl font-medium text-gray-900 mb-4">Enter payment info to start trial</h2>
           
-          {/* Payment Info Notice */}
-          <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-blue-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <p className="text-blue-800 text-sm font-medium mb-1">Why do we need payment info?</p>
-                <p className="text-blue-700 text-sm">
-                  We collect payment information to ensure a seamless experience when your trial ends. You won't be charged during the 7-day trial period, and you can cancel anytime.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Error Display */}
-          {error && (
-            <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-700 text-sm">{error}</p>
-            </div>
-          )}
-
-          {/* Total */}
+          {/* Trial Info */}
           <div className="border-t pt-4 mb-6">
-            <div className="space-y-2">
-              <div className="flex justify-between items-center text-sm text-green-600">
-                <span>Free trial (7 days):</span>
-                <span>Free</span>
+            <h3 className="text-lg font-medium text-gray-900 mb-3">How your trial works</h3>
+            <div className="space-y-3">
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                <span className="text-gray-700">Today: Unlock all features</span>
               </div>
-              <div className="flex justify-between items-center text-lg font-bold">
-                <span className="text-[#252225]">After trial:</span>
-                <span className="text-[#252225]">
-                  ${plans[selectedPlan as keyof typeof plans].price}
-                  {selectedPlan === 'monthly' ? '/mo' : '/year'}
-                </span>
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                <span className="text-gray-700">After 7 days: Trial ends and you'll be charged ${plan.price}/mo when your subscription starts</span>
               </div>
             </div>
           </div>
@@ -579,6 +455,17 @@ export default function ResultsPayment() {
             You'll be redirected to Stripe to enter payment info. No charge for 7 days. Cancel anytime during trial.
           </p>
         </div>
+
+
+
+                {/* Error Display */}
+        {error && (
+          <div className="bg-white rounded-2xl p-6 shadow-lg mb-8">
+            <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-700 text-sm">{error}</p>
+            </div>
+          </div>
+        )}
 
         {/* Disclaimer Blurb */}
         <div className="w-full flex justify-start mt-4">
