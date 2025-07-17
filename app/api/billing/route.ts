@@ -49,6 +49,16 @@ export async function POST(request: NextRequest) {
         planType: priceId.includes('yearly') ? 'yearly' : 'monthly',
         app: 'sensorysmart',
       },
+      // Trial settings - 7 day free trial
+      subscription_data: {
+        trial_period_days: 7,
+        metadata: {
+          userId: user.id,
+          planType: priceId.includes('yearly') ? 'yearly' : 'monthly',
+          app: 'sensorysmart',
+          hasTrial: 'true',
+        },
+      },
       // Test mode settings
       allow_promotion_codes: true,
       billing_address_collection: 'required',

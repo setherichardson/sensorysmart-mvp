@@ -381,10 +381,19 @@ export default function ResultsPayment() {
               : `Unlock ${profile.child_name}'s full sensory journey!`
             }
           </h1>
+          
+          {/* Free Trial Badge */}
+          <div className="inline-flex items-center mb-4 px-3 py-1 rounded-full bg-green-100 text-green-800">
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span style={{ fontSize: '14px', fontWeight: 600 }}>Try free for 7 days</span>
+          </div>
+          
           <p className="mb-6 text-left" style={{ fontSize: '16px', color: '#6C6C6C', fontWeight: 400, lineHeight: 'calc(1.5em - 2px)', letterSpacing: '-0.25px' }}>
             {isReturningUser 
-              ? "Your personalized results are waiting. Subscribe to access tailored activities, progress tracking, and expert guidance."
-              : "Subscribe to access personalized activities, progress tracking, and expert guidance."
+              ? "Your personalized results are waiting. Start your free trial to access tailored activities, progress tracking, and expert guidance."
+              : "Start your free trial to access personalized activities, progress tracking, and expert guidance."
             }
           </p>
         </div>
@@ -458,7 +467,8 @@ export default function ResultsPayment() {
 
         {/* Plan Selection */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-medium text-gray-900 mb-4">Select your plan</h2>
+          <h2 className="text-xl font-medium text-gray-900 mb-4">Choose your plan</h2>
+          <p className="text-gray-600 mb-4">Both plans include a 7-day free trial. Cancel anytime during the trial period.</p>
           <div className="space-y-4">
             {Object.entries(plans).map(([key, plan]) => (
               <div
@@ -476,6 +486,7 @@ export default function ResultsPayment() {
                   </div>
                 )}
                 <div className="text-center">
+                  <div className="text-sm text-green-600 font-semibold mb-1">7 days free</div>
                   <div className={`text-2xl font-bold ${
                     selectedPlan === key ? 'text-[#367A87]' : 'text-[#252225]'
                   }`}>
@@ -494,7 +505,7 @@ export default function ResultsPayment() {
 
         {/* Payment Form */}
         <div className="bg-white rounded-2xl p-6 shadow-lg">
-          <h2 className="text-xl font-medium text-gray-900 mb-4">Start your subscription</h2>
+          <h2 className="text-xl font-medium text-gray-900 mb-4">Start your free trial</h2>
           
           {/* Error Display */}
           {error && (
@@ -505,12 +516,18 @@ export default function ResultsPayment() {
 
           {/* Total */}
           <div className="border-t pt-4 mb-6">
-            <div className="flex justify-between items-center text-lg font-bold">
-              <span className="text-[#252225]">Total:</span>
-              <span className="text-[#252225]">
-                ${plans[selectedPlan as keyof typeof plans].price}
-                {selectedPlan === 'monthly' ? '/mo' : '/year'}
-              </span>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-sm text-green-600">
+                <span>Free trial (7 days):</span>
+                <span>Free</span>
+              </div>
+              <div className="flex justify-between items-center text-lg font-bold">
+                <span className="text-[#252225]">After trial:</span>
+                <span className="text-[#252225]">
+                  ${plans[selectedPlan as keyof typeof plans].price}
+                  {selectedPlan === 'monthly' ? '/mo' : '/year'}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -537,7 +554,7 @@ export default function ResultsPayment() {
           </button>
 
           <p className="text-xs text-gray-500 mt-4 text-center">
-            You'll be redirected to Stripe to complete your payment securely
+            You'll be redirected to Stripe to start your free trial. No charge for 7 days.
           </p>
         </div>
 

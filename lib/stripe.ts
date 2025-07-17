@@ -50,6 +50,15 @@ export const PRODUCTS = {
     interval: 'year',
     stripePriceId: 'price_1RlKfMJVINsgul2GuGiszqjR', 
   },
+  // Trial configurations
+  trial: {
+    name: 'Sensorysmart Trial',
+    price: 999, // $9.99 in cents (monthly price)
+    currency: 'usd',
+    interval: 'month',
+    trialDays: 7,
+    stripePriceId: 'price_1RlKflJVINsgul2G6sCAmmmw', // Use monthly price ID with trial
+  },
 }
 
 // Helper function to format price

@@ -178,6 +178,25 @@ export default function Dashboard() {
             </button>
           </div>
 
+          {/* Trial Status */}
+          {profile.subscription_status === 'trialing' && (
+            <div className="mt-6 p-4 bg-blue-50 rounded-2xl border border-blue-200">
+              <div className="flex items-start space-x-3">
+                <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-medium text-blue-900">Free Trial Active</h4>
+                  <p className="text-sm text-blue-700 mt-1">
+                    You're currently in your 7-day free trial. Enjoy full access to all features!
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Profile Status */}
           <div className="mt-8 p-4 bg-green-50 rounded-2xl border border-green-200">
             <div className="flex items-start space-x-3">

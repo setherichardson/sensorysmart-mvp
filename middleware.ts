@@ -69,8 +69,8 @@ export async function middleware(request: NextRequest) {
         .eq('id', user.id)
         .single()
 
-      // If user doesn't have an active subscription, redirect to payment
-      if (profile && profile.subscription_status !== 'active') {
+      // If user doesn't have an active subscription or trial, redirect to payment
+      if (profile && profile.subscription_status !== 'active' && profile.subscription_status !== 'trialing') {
         const url = request.nextUrl.clone()
         url.pathname = '/onboarding/results-payment'
         return NextResponse.redirect(url)

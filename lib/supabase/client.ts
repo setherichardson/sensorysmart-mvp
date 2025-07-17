@@ -17,6 +17,9 @@ export type Database = {
           email: string
           child_name: string
           child_age: string
+          subscription_status?: 'active' | 'inactive' | 'canceled' | 'past_due' | 'trialing'
+          stripe_customer_id?: string
+          subscription_id?: string
           created_at: string
           updated_at: string
         }
@@ -26,6 +29,9 @@ export type Database = {
           email: string
           child_name: string
           child_age: string
+          subscription_status?: 'active' | 'inactive' | 'canceled' | 'past_due' | 'trialing'
+          stripe_customer_id?: string
+          subscription_id?: string
           created_at?: string
           updated_at?: string
         }
@@ -35,6 +41,9 @@ export type Database = {
           email?: string
           child_name?: string
           child_age?: string
+          subscription_status?: 'active' | 'inactive' | 'canceled' | 'past_due' | 'trialing'
+          stripe_customer_id?: string
+          subscription_id?: string
           created_at?: string
           updated_at?: string
         }
