@@ -441,7 +441,7 @@ export default function ProfilePage() {
           </div>
           {/* EA Release Note */}
           <div className="w-full flex justify-center mt-2">
-            <p style={{ fontSize: 12, color: '#6C6C6C', fontWeight: 400, textAlign: 'center' }}>EA release. 0.1</p>
+            <p style={{ fontSize: 12, color: '#6C6C6C', fontWeight: 400, textAlign: 'center' }}>EA release. 0.2</p>
           </div>
         </div>
       </div>
