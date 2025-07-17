@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 import type { Profile, SensoryProfile } from '@/lib/supabase/client'
+import { analytics } from '@/lib/analytics'
 
 interface Question {
   id: number
@@ -22,6 +23,11 @@ export default function Assessment() {
   const [currentQ, setCurrentQ] = useState(1)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+
+  // Track page view
+  useEffect(() => {
+    analytics.pageView('assessment');
+  }, []);
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -656,6 +662,11 @@ export default function Assessment() {
     setAnswers({ ...answers, [currentQ]: score })
     setError('') // Clear any previous errors
     
+    // Track assessment progress
+    if (currentQ === 1) {
+      analytics.assessmentStarted();
+    }
+    
     // Auto-advance to next question after a short delay
     setTimeout(() => {
       if (currentQ < 38) {
@@ -690,6 +701,9 @@ export default function Assessment() {
         throw assessmentError
       }
 
+      // Track assessment completion
+      analytics.assessmentCompleted(sensoryProfile.profile);
+      
       // Success! Redirect to results and payment
       router.push('/onboarding/results-payment')
     } catch (err) {

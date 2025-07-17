@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
+import { analytics } from '@/lib/analytics'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -11,6 +12,11 @@ export default function SignupPage() {
   const [password, setPassword] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+
+  // Track page view
+  useEffect(() => {
+    analytics.pageView('signup');
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -34,6 +40,9 @@ export default function SignupPage() {
 
       if (data.user) {
         console.log('Signup successful, user:', data.user.id, data.user.email)
+        
+        // Track successful signup
+        analytics.signup('email');
         
         // Wait for the session to be established
         console.log('Waiting for session to be established...')

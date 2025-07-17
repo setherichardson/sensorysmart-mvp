@@ -7,6 +7,7 @@ import type { User } from '@supabase/supabase-js'
 import type { Profile, Assessment } from '@/lib/supabase/client'
 import { PRODUCTS } from '@/lib/stripe'
 import { loadStripe } from '@stripe/stripe-js'
+import { analytics } from '@/lib/analytics'
 
 export default function ResultsPayment() {
   const router = useRouter()
@@ -65,6 +66,9 @@ export default function ResultsPayment() {
         setUser(user)
         setProfile(profileData)
         setAssessment(assessmentData)
+        
+        // Track page view
+        analytics.pageView('results-payment');
       } catch (err) {
         console.error('Error loading user data:', err)
         setError('Failed to load your results. Please try again.')
@@ -274,6 +278,9 @@ export default function ResultsPayment() {
         throw new Error('No session ID returned from billing API')
       }
 
+      // Track trial start
+      analytics.trialStarted(selectedPlan);
+      
       // Redirect to Stripe Checkout
       const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
       if (stripe) {
