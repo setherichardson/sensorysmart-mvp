@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
         planType: priceId.includes('yearly') ? 'yearly' : 'monthly',
         app: 'sensorysmart',
       },
-      // Trial settings - 7 day free trial
+      // Collect payment info upfront but delay first charge
       subscription_data: {
         trial_period_days: 7,
         metadata: {
@@ -62,6 +62,7 @@ export async function POST(request: NextRequest) {
       // Test mode settings
       allow_promotion_codes: true,
       billing_address_collection: 'required',
+      payment_method_collection: 'always',
     })
 
     console.log('Session created successfully:', session.id)

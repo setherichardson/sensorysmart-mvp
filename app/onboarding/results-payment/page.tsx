@@ -392,8 +392,8 @@ export default function ResultsPayment() {
           
           <p className="mb-6 text-left" style={{ fontSize: '16px', color: '#6C6C6C', fontWeight: 400, lineHeight: 'calc(1.5em - 2px)', letterSpacing: '-0.25px' }}>
             {isReturningUser 
-              ? "Your personalized results are waiting. Start your free trial to access tailored activities, progress tracking, and expert guidance."
-              : "Start your free trial to access personalized activities, progress tracking, and expert guidance."
+              ? "Your personalized results are waiting. Enter your payment info to start your free trial and access tailored activities, progress tracking, and expert guidance."
+              : "Enter your payment info to start your free trial and access personalized activities, progress tracking, and expert guidance."
             }
           </p>
         </div>
@@ -468,7 +468,7 @@ export default function ResultsPayment() {
         {/* Plan Selection */}
         <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
           <h2 className="text-xl font-medium text-gray-900 mb-4">Choose your plan</h2>
-          <p className="text-gray-600 mb-4">Both plans include a 7-day free trial. Cancel anytime during the trial period.</p>
+          <p className="text-gray-600 mb-4">Both plans include a 7-day free trial. Payment info required to start trial. Cancel anytime during the trial period.</p>
           <div className="space-y-4">
             {Object.entries(plans).map(([key, plan]) => (
               <div
@@ -505,8 +505,23 @@ export default function ResultsPayment() {
 
         {/* Payment Form */}
         <div className="bg-white rounded-2xl p-6 shadow-lg">
-          <h2 className="text-xl font-medium text-gray-900 mb-4">Start your free trial</h2>
+          <h2 className="text-xl font-medium text-gray-900 mb-4">Enter payment info to start trial</h2>
           
+          {/* Payment Info Notice */}
+          <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="flex items-start">
+              <svg className="w-5 h-5 text-blue-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <p className="text-blue-800 text-sm font-medium mb-1">Why do we need payment info?</p>
+                <p className="text-blue-700 text-sm">
+                  We collect payment information to ensure a seamless experience when your trial ends. You won't be charged during the 7-day trial period, and you can cancel anytime.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Error Display */}
           {error && (
             <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
@@ -554,7 +569,7 @@ export default function ResultsPayment() {
           </button>
 
           <p className="text-xs text-gray-500 mt-4 text-center">
-            You'll be redirected to Stripe to start your free trial. No charge for 7 days.
+            You'll be redirected to Stripe to enter payment info. No charge for 7 days. Cancel anytime during trial.
           </p>
         </div>
 
