@@ -638,14 +638,28 @@ export default function Assessment() {
     const maxBehavior = Math.max(...Object.values(behaviorScores))
     const behaviorThreshold = 20 // Threshold for significant behavior pattern
     
-    if (behaviorScores.seeking >= behaviorThreshold && behaviorScores.seeking > behaviorScores.avoiding) {
-      profile = 'Sensory Seeking'
-    } else if (behaviorScores.avoiding >= behaviorThreshold && behaviorScores.avoiding > behaviorScores.seeking) {
-      profile = 'Sensory Avoiding'
-    } else if (behaviorScores.sensitive >= behaviorThreshold) {
-      profile = 'Sensory Sensitive'
-    } else if (behaviorScores['low-registration'] >= behaviorThreshold) {
-      profile = 'Low Registration'
+    // Find the dominant behavior type
+    const dominantBehavior = Object.entries(behaviorScores).reduce((max, [type, score]) => 
+      score > max.score ? { type, score } : max
+    , { type: 'mixed', score: 0 })
+    
+    if (dominantBehavior.score >= behaviorThreshold) {
+      switch (dominantBehavior.type) {
+        case 'seeking':
+          profile = 'Sensory Seeking'
+          break
+        case 'avoiding':
+          profile = 'Sensory Avoiding'
+          break
+        case 'sensitive':
+          profile = 'Sensory Sensitive'
+          break
+        case 'low-registration':
+          profile = 'Low Registration'
+          break
+        default:
+          profile = 'Mixed Profile'
+      }
     } else if (maxBehavior >= behaviorThreshold) {
       profile = 'Mixed Profile'
     }
