@@ -17,7 +17,6 @@ export default function ResultsPayment() {
   const [loading, setLoading] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
   const [error, setError] = useState('')
-  const [isReturningUser, setIsReturningUser] = useState(false)
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -56,12 +55,6 @@ export default function ResultsPayment() {
           return
         }
 
-        // Check if this is a returning user (assessment completed more than 1 hour ago)
-        const assessmentTime = new Date(assessmentData.completed_at).getTime()
-        const currentTime = new Date().getTime()
-        const oneHour = 60 * 60 * 1000 // 1 hour in milliseconds
-        setIsReturningUser(currentTime - assessmentTime > oneHour)
-
         setUser(user)
         setProfile(profileData)
         setAssessment(assessmentData)
@@ -85,153 +78,21 @@ export default function ResultsPayment() {
     stripePriceId: PRODUCTS.monthly.stripePriceId
   }
 
-  const getProfileDescription = (profile: string, childName: string) => {
+  const getSensoryCategory = (profile: string) => {
     switch (profile) {
       case 'Sensory Seeking':
-        return {
-          title: 'Sensory Seeking',
-          description: `${childName} tends to seek out sensory experiences and may need more intense sensory input to feel regulated.`,
-          color: 'bg-green-100 text-green-800',
-          recommendations: [
-            'Provide heavy work activities (pushing, pulling, carrying)',
-            'Offer movement breaks throughout the day',
-            'Include textured materials in play',
-            'Use firm pressure for comfort (weighted blankets, tight hugs)'
-          ]
-        }
+        return 'sensory seeking'
       case 'Sensory Avoiding':
-        return {
-          title: 'Sensory Avoiding',
-          description: `${childName} tends to be sensitive to sensory input and may become overwhelmed easily.`,
-          color: 'bg-blue-100 text-blue-800',
-          recommendations: [
-            'Create calm, quiet spaces for breaks',
-            'Use gentle, predictable touch',
-            'Provide advance warning for sensory experiences',
-            'Offer noise-canceling headphones in loud environments'
-          ]
-        }
+        return 'sensory avoiding'
       case 'Sensory Sensitive':
-        return {
-          title: 'Sensory Sensitive',
-          description: `${childName} is highly sensitive to sensory input and may overreact to stimuli.`,
-          color: 'bg-orange-100 text-orange-800',
-          recommendations: [
-            'Create predictable, low-stimulation environments',
-            'Use gentle, gradual sensory experiences',
-            'Provide advance warning for changes',
-            'Offer calming activities and deep breathing'
-          ]
-        }
+        return 'sensory sensitive'
       case 'Low Registration':
-        return {
-          title: 'Low Registration',
-          description: `${childName} may not notice sensory input and may need more intense stimuli to respond.`,
-          color: 'bg-purple-100 text-purple-800',
-          recommendations: [
-            'Use bright, engaging activities',
-            'Provide strong, clear sensory input',
-            'Use movement and vibration',
-            'Create highly stimulating environments'
-          ]
-        }
+        return 'low registration'
       case 'Mixed Profile':
-        return {
-          title: 'Mixed Profile',
-          description: `${childName} shows both seeking and avoiding patterns across different sensory systems.`,
-          color: 'bg-purple-100 text-purple-800',
-          recommendations: [
-            'Tailor activities to specific sensory needs',
-            'Provide choices in sensory experiences',
-            'Monitor for signs of overwhelm or under-stimulation',
-            'Create a flexible sensory toolkit'
-          ]
-        }
+        return 'mixed sensory profile'
       default:
-        return {
-          title: 'Mixed/Typical',
-          description: `${childName} shows typical sensory responses with some variation across different situations.`,
-          color: 'bg-gray-100 text-gray-800',
-          recommendations: [
-            'Continue providing varied sensory experiences',
-            'Watch for changes in sensory needs over time',
-            'Maintain a balanced approach to sensory activities',
-            'Be responsive to daily variations in sensory tolerance'
-          ]
-        }
+        return 'sensory seeking'
     }
-  }
-
-  const getSystemLabel = (system: string) => {
-    switch (system) {
-      case 'tactile': return 'Touch'
-      case 'visual': return 'Sight'
-      case 'auditory': return 'Hearing'
-      case 'olfactory': return 'Smell'
-      case 'proprioceptive': return 'Body Awareness'
-      case 'vestibular': return 'Movement'
-      case 'interoception': return 'Internal Awareness'
-      case 'social-emotional': return 'Social-Emotional'
-      default: return system
-    }
-  }
-
-  const getScoreInterpretation = (score: number) => {
-    if (score <= 8) return { label: 'Avoiding', color: 'bg-red-100 text-red-700' }
-    if (score <= 12) return { label: 'Sensitive', color: 'bg-orange-100 text-orange-700' }
-    if (score <= 16) return { label: 'Typical', color: 'bg-gray-100 text-gray-700' }
-    return { label: 'Seeking', color: 'bg-green-100 text-green-700' }
-  }
-
-  const getNeedsForSystem = (system: string, score: number) => {
-    const interpretation = getScoreInterpretation(score)
-    
-    // Only return needs for non-typical scores
-    if (interpretation.label === 'Typical') return null
-    
-    switch (system) {
-      case 'tactile':
-        if (interpretation.label === 'Avoiding') return 'Gentle, predictable touch experiences'
-        if (interpretation.label === 'Sensitive') return 'Soft, controlled tactile input'
-        if (interpretation.label === 'Seeking') return 'Rich, varied tactile experiences'
-        break
-      case 'visual':
-        if (interpretation.label === 'Avoiding') return 'Calm, organized visual spaces'
-        if (interpretation.label === 'Sensitive') return 'Soft, diffused lighting'
-        if (interpretation.label === 'Seeking') return 'Bright, engaging visual stimuli'
-        break
-      case 'auditory':
-        if (interpretation.label === 'Avoiding') return 'Quiet, peaceful sound environments'
-        if (interpretation.label === 'Sensitive') return 'Gentle, predictable sounds'
-        if (interpretation.label === 'Seeking') return 'Rich sounds and engaging audio'
-        break
-      case 'olfactory':
-        if (interpretation.label === 'Avoiding') return 'Neutral, clean scents'
-        if (interpretation.label === 'Sensitive') return 'Mild, familiar aromas'
-        if (interpretation.label === 'Seeking') return 'Varied, interesting scents'
-        break
-      case 'proprioceptive':
-        if (interpretation.label === 'Avoiding') return 'Light, gentle body input'
-        if (interpretation.label === 'Sensitive') return 'Moderate, controlled movement'
-        if (interpretation.label === 'Seeking') return 'Heavy work and deep pressure'
-        break
-      case 'vestibular':
-        if (interpretation.label === 'Avoiding') return 'Steady, predictable motion'
-        if (interpretation.label === 'Sensitive') return 'Slow, gentle movement'
-        if (interpretation.label === 'Seeking') return 'Active, dynamic movement'
-        break
-      case 'interoception':
-        if (interpretation.label === 'Avoiding') return 'Gentle body awareness activities'
-        if (interpretation.label === 'Sensitive') return 'Calm internal awareness'
-        if (interpretation.label === 'Seeking') return 'Strong internal feedback'
-        break
-      case 'social-emotional':
-        if (interpretation.label === 'Avoiding') return 'Patient, understanding environments'
-        if (interpretation.label === 'Sensitive') return 'Supportive, gentle interactions'
-        if (interpretation.label === 'Seeking') return 'Engaging, social opportunities'
-        break
-    }
-    return null
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -324,108 +185,86 @@ export default function ResultsPayment() {
     return null // Will redirect
   }
 
-  const profileInfo = getProfileDescription(assessment.results.profile, profile.child_name)
+  const sensoryCategory = getSensoryCategory(assessment.results.profile)
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F6F6F6' }}>
-      <div className="max-w-2xl mx-auto p-4">
+    <div className="min-h-screen" style={{ backgroundColor: '#F6F6F6', fontFamily: 'Mona Sans, sans-serif' }}>
+      <div className="max-w-md mx-auto p-4">
         {/* Header */}
         <div className="text-left mb-8" style={{ marginTop: '70px' }}>
-          {/* Assessment Complete Chip */}
-          <div className="inline-flex items-center mb-4 px-3 py-1 rounded-full" style={{ backgroundColor: '#DEFFF2', color: '#0C3A28' }}>
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            <span style={{ fontSize: '14px', fontWeight: 400 }}>
-              {isReturningUser ? 'Welcome back, your assessment is ready' : 'Assessment complete'}
-            </span>
-          </div>
-          
           {/* Title */}
-          <h1 className="text-[26px] font-medium text-left mb-2" style={{ color: '#252225', letterSpacing: '-1px', lineHeight: 'calc(1.2em - 2px)' }}>
-            {isReturningUser 
-              ? `Ready to continue ${profile.child_name}'s sensory journey?`
-              : `Unlock ${profile.child_name}'s full sensory journey!`
-            }
+          <h1 className="text-2xl font-bold text-black mb-2" style={{ fontFamily: 'Mona Sans, sans-serif' }}>
+            {profile.child_name}'s is {sensoryCategory}!
           </h1>
           
-
-          
-          <p className="mb-6 text-left" style={{ fontSize: '16px', color: '#6C6C6C', fontWeight: 400, lineHeight: 'calc(1.5em - 2px)', letterSpacing: '-0.25px' }}>
-            {isReturningUser 
-              ? "You know your child best. Our assessment helps us understand their unique sensory needs so we can provide activities that actually work for them."
-              : "You know your child best. Our assessment helps us understand their unique sensory needs so we can provide activities that actually work for them."
-            }
+          {/* Description */}
+          <p className="text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>
+            You know your child best. Subscribe to unlock your full assessment and a personalized daily sensory diet.
           </p>
         </div>
 
-        {/* Assessment Results */}
-        <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <div className="mb-4">
-            <h2 className="text-xl font-medium text-gray-900">What {profile.child_name} needs to thrive:</h2>
-          </div>
+        {/* Activity Cards Stack */}
+        <div className="relative mb-8">
+          {/* Bottom card (third) */}
+          <div className="absolute inset-0 shadow-md transform translate-y-2 scale-95 opacity-40" style={{ backgroundColor: '#fff', borderRadius: '16px' }}></div>
           
-          {/* System Breakdown */}
-          <div className="space-y-4">
-            {Object.entries(assessment.results).map(([system, score]) => {
-              if (system === 'total' || system === 'profile' || system === 'behaviorScores') return null
-              if (typeof score !== 'number') return null
-              
-              const needs = getNeedsForSystem(system, score)
-              if (!needs) return null // Skip typical scores
-              
-              return (
-                <div key={system} className="flex flex-col">
-                  <span className="text-gray-700 font-medium">{getSystemLabel(system)}:</span>
-                  <span className="text-gray-600 ml-0">{needs}</span>
-                </div>
-              )
-            })}
+          {/* Middle card (second) */}
+          <div className="absolute inset-0 shadow-md transform translate-y-1 scale-98 opacity-70" style={{ backgroundColor: '#fff', borderRadius: '16px' }}></div>
+          
+          {/* Top card (first) */}
+          <div className="relative p-6 shadow-xl border border-gray-100" style={{ backgroundColor: '#fff', borderRadius: '16px', fontFamily: 'Mona Sans, sans-serif' }}>
+            <h3 className="font-bold text-black mb-3" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Wall push-ups</h3>
+            <div className="space-y-2 mb-4">
+              <div className="flex items-center text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Great for morning regulation
+              </div>
+              <div className="flex items-center text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                10 minutes
+              </div>
+            </div>
+            <button className="w-full py-2 px-4 text-black text-sm font-medium" style={{ border: '1px solid #EEE6E5', borderRadius: '16px', fontFamily: 'Mona Sans, sans-serif' }}>
+              Start activity
+            </button>
           </div>
         </div>
 
-        {/* Value Proposition */}
-        <div className="bg-white rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 className="text-xl font-medium text-gray-900 mb-4">Start {profile.child_name}&apos;s sensory journey</h2>
+        {/* Subscribers also get */}
+        <div className="text-center mb-4">
+          <p className="text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Subscribers also get</p>
+        </div>
+
+        {/* Features Card */}
+        <div className="p-6 shadow-xl border border-gray-100 mb-6" style={{ backgroundColor: '#fff', borderRadius: '16px', fontFamily: 'Mona Sans, sans-serif' }}>
           <div className="space-y-3 mb-6">
             <div className="flex items-center">
-              <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-gray-700 font-medium">Activities tailored to your child&apos;s specific needs</span>
+              <img src="/Icons/Note.svg" alt="Document" className="w-5 h-5 mr-3" />
+              <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Detailed sensory assessment</span>
             </div>
             <div className="flex items-center">
-              <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-gray-700 font-medium">Turn overwhelming moments into calm, connected ones</span>
+              <img src="/Icons/Calendar.svg" alt="Calendar" className="w-5 h-5 mr-3" />
+              <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Sensory diet for every part of their day</span>
             </div>
             <div className="flex items-center">
-              <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-gray-700 font-medium">Daily guidance between therapy appointments</span>
+              <img src="/Icons/Journal.svg" alt="Journal" className="w-5 h-5 mr-3" />
+              <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Activity tracking journal</span>
             </div>
             <div className="flex items-center">
-              <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#367A87' }}>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-gray-700 font-medium">See what works so you can build on success</span>
+              <img src="/Icons/Chat.svg" alt="Chat" className="w-5 h-5 mr-3" />
+              <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Sensory Coach chat for questions</span>
             </div>
-          </div>
-          
-          {/* Trial Info */}
-          <div className="border-t pt-4 mb-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-3">How your trial works</h3>
-            <div className="space-y-3">
-              <div className="flex items-start">
-                <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                <span className="text-gray-700">Today: Unlock all features</span>
-              </div>
-              <div className="flex items-start">
-                <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                <span className="text-gray-700">After 7 days: Trial ends and you'll be charged ${plan.price}/mo when your subscription starts</span>
-              </div>
+            <div className="flex items-center">
+              <img src="/Icons/life-buoy.svg" alt="Support" className="w-5 h-5 mr-3" />
+              <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>In the moment behavior support</span>
+            </div>
+            <div className="flex items-center">
+              <img src="/Icons/dollar-sign.svg" alt="Price" className="w-5 h-5 mr-3" />
+              <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Free 7 day trial, then $9.99/mo</span>
             </div>
           </div>
 
@@ -433,8 +272,8 @@ export default function ResultsPayment() {
           <button
             onClick={handleSubmit}
             disabled={isProcessing}
-            className="w-full py-4 px-6 rounded-2xl font-bold text-base hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            style={{ backgroundColor: '#367A87', color: 'white' }}
+            className="w-full px-6 font-bold text-base hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            style={{ backgroundColor: '#367A87', color: 'white', borderRadius: '100px', height: '40px', fontFamily: 'Mona Sans, sans-serif' }}
           >
             {isProcessing ? (
               <div className="flex items-center justify-center">
@@ -445,32 +284,20 @@ export default function ResultsPayment() {
                 Processing...
               </div>
             ) : (
-              isReturningUser 
-                ? `Continue ${profile.child_name}'s sensory journey`
-                : `Start ${profile.child_name}'s sensory journey`
+              `Create ${profile.child_name}'s sensory diet`
             )}
           </button>
-
-          <p className="text-xs text-gray-500 mt-4 text-center">
-            You'll be redirected to Stripe to enter payment info. No charge for 7 days. Cancel anytime during trial.
-          </p>
+          
+          {/* Trust Statement */}
+          <div className="text-center mt-4">
+            <p className="text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Trusted by Pediatric Occupational Therapists</p>
+          </div>
         </div>
 
-
-
-                {/* Error Display */}
-        {error && (
-          <div className="bg-white rounded-2xl p-6 shadow-lg mb-8">
-            <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-700 text-sm">{error}</p>
-            </div>
-          </div>
-        )}
-
-        {/* Disclaimer Blurb */}
-        <div className="w-full flex justify-start mt-4">
-          <p style={{ fontSize: '12pt', color: '#6C6C6C', lineHeight: 'calc(1.5em + 0.5px)', fontWeight: 400, maxWidth: 600, textAlign: 'left', letterSpacing: '-0.25px' }}>
-            Sensorysmart was developed with input from a licensed occupational therapist and provides educational activities based on professional knowledge. However, this app does not replace individualized therapy or medical consultation.
+        {/* Disclaimer */}
+        <div className="text-center">
+          <p className="text-xs text-gray-500 leading-relaxed" style={{ fontFamily: 'Mona Sans, sans-serif' }}>
+            Sensorysmart was developed with a licensed occupational therapist and provides sensory activities based on professional knowledge. However, this app does not replace individualized therapy or medical consultation.
           </p>
         </div>
       </div>
