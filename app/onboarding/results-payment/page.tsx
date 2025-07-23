@@ -191,15 +191,20 @@ export default function ResultsPayment() {
     <div className="min-h-screen" style={{ backgroundColor: '#F6F6F6', fontFamily: 'Mona Sans, sans-serif' }}>
       <div className="max-w-md mx-auto p-4">
         {/* Header */}
-        <div className="text-left mb-8" style={{ marginTop: '70px' }}>
+        <div className="text-center mb-8" style={{ marginTop: '40px' }}>
+          {/* Assessment Complete Chip */}
+          <div className="inline-block mb-4 px-3 py-1 rounded-full text-sm font-medium" style={{ backgroundColor: '#E8F5E8', color: '#2D5A2D', fontFamily: 'Mona Sans, sans-serif' }}>
+            Assessment Complete
+          </div>
+          
           {/* Title */}
-          <h1 className="text-2xl font-bold text-black mb-2" style={{ fontFamily: 'Mona Sans, sans-serif' }}>
+          <h1 className="mb-2" style={{ fontFamily: 'Mona Sans, sans-serif', fontSize: '22px', fontWeight: '600', color: '#252225' }}>
             {profile.child_name}'s is {sensoryCategory}!
           </h1>
           
           {/* Description */}
-          <p className="text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>
-            You know your child best. Subscribe to unlock your full assessment and a personalized daily sensory diet.
+          <p className="mb-6" style={{ fontFamily: 'Mona Sans, sans-serif', fontSize: '16px', fontWeight: '500', color: '#6C6C6C', lineHeight: '1.3' }}>
+            Subscribe to unlock your full assessment and a personalized daily sensory diet.
           </p>
         </div>
 
@@ -236,7 +241,7 @@ export default function ResultsPayment() {
 
         {/* Subscribers also get */}
         <div className="text-center mb-4">
-          <p className="text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Subscribers also get</p>
+          <p style={{ fontFamily: 'Mona Sans, sans-serif', fontSize: '16px', fontWeight: '500', color: '#6C6C6C' }}>Subscribers also get</p>
         </div>
 
         {/* Features Card */}
