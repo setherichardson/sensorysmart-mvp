@@ -199,7 +199,7 @@ export default function ResultsPayment() {
           
           {/* Title */}
           <h1 className="mb-2" style={{ fontFamily: 'Mona Sans, sans-serif', fontSize: '22px', fontWeight: '600', color: '#252225' }}>
-            Unlock {profile.child_name} sensory schedule
+            Unlock {profile.child_name}'s sensory schedule
           </h1>
           
           {/* Description */}

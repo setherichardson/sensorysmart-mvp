@@ -26,6 +26,54 @@ function getTimeOfDayGreeting() {
   return 'Winding down for the day';
 }
 
+function getCurrentTimeSlot(): string {
+  const now = new Date();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  
+  // Before breakfast: 6-8 AM
+  if (hour >= 6 && hour < 8) return 'before-breakfast';
+  
+  // Mid morning: 8-10 AM
+  if (hour >= 8 && hour < 10) return 'mid-morning';
+  
+  // Before lunch: 10-12 PM
+  if (hour >= 10 && hour < 12) return 'before-lunch';
+  
+  // Lunch: 12-2 PM
+  if (hour >= 12 && hour < 14) return 'lunch';
+  
+  // Mid afternoon: 2-4 PM
+  if (hour >= 14 && hour < 16) return 'mid-afternoon';
+  
+  // Before dinner: 4-6 PM
+  if (hour >= 16 && hour < 18) return 'before-dinner';
+  
+  // Dinner: 6-8 PM
+  if (hour >= 18 && hour < 20) return 'dinner';
+  
+  // Evening: 8-10 PM
+  if (hour >= 20 && hour < 22) return 'evening';
+  
+  // Bedtime: 10 PM - 6 AM
+  return 'bedtime';
+}
+
+function getTimeSlotDisplayName(timeSlot: string): string {
+  const timeSlotNames: { [key: string]: string } = {
+    'before-breakfast': 'Before Breakfast',
+    'mid-morning': 'Mid Morning',
+    'before-lunch': 'Before Lunch',
+    'lunch': 'Lunch',
+    'mid-afternoon': 'Mid Afternoon',
+    'before-dinner': 'Before Dinner',
+    'dinner': 'Dinner',
+    'evening': 'Evening',
+    'bedtime': 'Bedtime'
+  };
+  return timeSlotNames[timeSlot] || timeSlot;
+}
+
 export default function TodayDashboard() {
   const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
@@ -42,10 +90,13 @@ export default function TodayDashboard() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [isMockPayment, setIsMockPayment] = useState(false)
   const [showActivityCompleted, setShowActivityCompleted] = useState(false)
+  const [currentTimeSlot, setCurrentTimeSlot] = useState('')
+  const [lastTimeSlotCheck, setLastTimeSlotCheck] = useState<Date>(new Date())
 
-  // Set greeting on client-side to avoid hydration mismatch
+  // Set greeting and time slot on client-side to avoid hydration mismatch
   useEffect(() => {
     setGreeting(getTimeOfDayGreeting())
+    setCurrentTimeSlot(getCurrentTimeSlot())
   }, [])
 
   // Track page view
@@ -74,7 +125,7 @@ export default function TodayDashboard() {
     }
   }, [])
 
-  // Refresh activities when user returns to the app
+  // Refresh activities when user returns to the app or time slot changes
   useEffect(() => {
     const handleFocus = () => {
       // Check if there was a recent activity completion
@@ -98,9 +149,22 @@ export default function TodayDashboard() {
       }
     }
 
+    // Check for time slot changes every minute
+    const timeSlotCheck = setInterval(() => {
+      const newTimeSlot = getCurrentTimeSlot()
+      if (newTimeSlot !== currentTimeSlot) {
+        console.log('Time slot changed from', currentTimeSlot, 'to', newTimeSlot)
+        setCurrentTimeSlot(newTimeSlot)
+        loadTodaysActivities()
+      }
+    }, 60000) // Check every minute
+
     window.addEventListener('focus', handleFocus)
-    return () => window.removeEventListener('focus', handleFocus)
-  }, [assessment, profile])
+    return () => {
+      window.removeEventListener('focus', handleFocus)
+      clearInterval(timeSlotCheck)
+    }
+  }, [assessment, profile, currentTimeSlot])
 
   // Comprehensive Activity Library
   const activityLibrary: Activity[] = [
@@ -660,94 +724,162 @@ export default function TodayDashboard() {
     try {
       console.log('Loading activities...', { assessment: !!assessment, profile: !!profile })
       
-      // Get current time to select time-appropriate activities
-      const now = new Date()
-      const hour = now.getHours()
-      const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 20 ? 'evening' : 'night'
+      // Get current time slot
+      const timeSlot = getCurrentTimeSlot()
+      setCurrentTimeSlot(timeSlot)
+      setLastTimeSlotCheck(new Date())
       
       if (!assessment) {
         // Return time-appropriate general activities
-        console.log('No assessment found, using time-based general activities')
-        const timeBasedActivities = getTimeBasedActivities(activityLibrary, timeOfDay)
+        console.log('No assessment found, using time-based general activities for', timeSlot)
+        const timeBasedActivities = getTimeBasedActivities(activityLibrary, timeSlot)
         setTodaysActivities(timeBasedActivities.slice(0, 3))
       } else {
-        console.log('Assessment found, getting personalized activities for', timeOfDay)
+        console.log('Assessment found, getting personalized activities for', timeSlot)
         const activities = await getPersonalizedActivities(assessment)
         console.log('Personalized activities loaded:', activities?.length || 0)
         
-        // Filter activities based on time of day
-        const timeBasedActivities = getTimeBasedActivities(activities || activityLibrary, timeOfDay)
+        // Filter activities based on time slot
+        const timeBasedActivities = getTimeBasedActivities(activities || activityLibrary, timeSlot)
         setTodaysActivities(timeBasedActivities.slice(0, 3))
       }
     } catch (error) {
       console.log('Error loading activities, using fallback:', error)
       // Fallback to time-based general activities
-      const now = new Date()
-      const hour = now.getHours()
-      const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 20 ? 'evening' : 'night'
-      const timeBasedActivities = getTimeBasedActivities(activityLibrary, timeOfDay)
+      const timeSlot = getCurrentTimeSlot()
+      const timeBasedActivities = getTimeBasedActivities(activityLibrary, timeSlot)
       setTodaysActivities(timeBasedActivities.slice(0, 3))
     }
   }
 
-  const getTimeBasedActivities = (activities: Activity[], timeOfDay: string): Activity[] => {
+  const getTimeBasedActivities = (activities: Activity[], timeSlot: string): Activity[] => {
     // Add time-based scoring to activities
     const timeScoredActivities = activities.map(activity => {
       let timeScore = 0
       
-      // Morning activities (6 AM - 12 PM): Energizing, focus-oriented
-      if (timeOfDay === 'morning') {
+      // Before breakfast (6-8 AM): Energizing, quick activities
+      if (timeSlot === 'before-breakfast') {
         if (activity.activity_type === 'proprioceptive' || activity.activity_type === 'heavy-work') {
-          timeScore += 10
+          timeScore += 15
         }
         if (activity.context?.toLowerCase().includes('morning') || 
-            activity.context?.toLowerCase().includes('focus')) {
-          timeScore += 8
+            activity.context?.toLowerCase().includes('energy')) {
+          timeScore += 10
         }
         if (activity.duration_minutes && activity.duration_minutes <= 5) {
-          timeScore += 5 // Quick morning activities
+          timeScore += 8 // Quick pre-breakfast activities
         }
       }
       
-      // Afternoon activities (12 PM - 5 PM): Balanced, transition-focused
-      else if (timeOfDay === 'afternoon') {
+      // Mid morning (8-10 AM): Focus and learning activities
+      else if (timeSlot === 'mid-morning') {
+        if (activity.activity_type === 'visual' || activity.activity_type === 'tactile') {
+          timeScore += 12
+        }
+        if (activity.context?.toLowerCase().includes('focus') || 
+            activity.context?.toLowerCase().includes('learning')) {
+          timeScore += 10
+        }
+        if (activity.duration_minutes && activity.duration_minutes <= 10) {
+          timeScore += 5
+        }
+      }
+      
+      // Before lunch (10-12 PM): Transition activities
+      else if (timeSlot === 'before-lunch') {
         if (activity.activity_type === 'calming' || activity.activity_type === 'tactile') {
+          timeScore += 10
+        }
+        if (activity.context?.toLowerCase().includes('transition') || 
+            activity.context?.toLowerCase().includes('calm')) {
           timeScore += 8
         }
+        if (activity.duration_minutes && activity.duration_minutes <= 8) {
+          timeScore += 5
+        }
+      }
+      
+      // Lunch (12-2 PM): Social and sensory activities
+      else if (timeSlot === 'lunch') {
+        if (activity.activity_type === 'tactile' || activity.activity_type === 'olfactory') {
+          timeScore += 12
+        }
         if (activity.context?.toLowerCase().includes('lunch') || 
+            activity.context?.toLowerCase().includes('social')) {
+          timeScore += 10
+        }
+        if (activity.duration_minutes && activity.duration_minutes <= 15) {
+          timeScore += 5
+        }
+      }
+      
+      // Mid afternoon (2-4 PM): Re-energizing activities
+      else if (timeSlot === 'mid-afternoon') {
+        if (activity.activity_type === 'vestibular' || activity.activity_type === 'proprioceptive') {
+          timeScore += 12
+        }
+        if (activity.context?.toLowerCase().includes('energy') || 
+            activity.context?.toLowerCase().includes('movement')) {
+          timeScore += 8
+        }
+        if (activity.duration_minutes && activity.duration_minutes <= 12) {
+          timeScore += 5
+        }
+      }
+      
+      // Before dinner (4-6 PM): Calming transition activities
+      else if (timeSlot === 'before-dinner') {
+        if (activity.activity_type === 'calming' || activity.activity_type === 'visual') {
+          timeScore += 15
+        }
+        if (activity.context?.toLowerCase().includes('calm') || 
             activity.context?.toLowerCase().includes('transition')) {
           timeScore += 10
         }
         if (activity.duration_minutes && activity.duration_minutes <= 10) {
-          timeScore += 3
+          timeScore += 5
         }
       }
       
-      // Evening activities (5 PM - 8 PM): Calming, winding down
-      else if (timeOfDay === 'evening') {
-        if (activity.activity_type === 'calming' || activity.activity_type === 'visual') {
-          timeScore += 12
-        }
-        if (activity.context?.toLowerCase().includes('evening') || 
-            activity.context?.toLowerCase().includes('calm')) {
+      // Dinner (6-8 PM): Family and sensory activities
+      else if (timeSlot === 'dinner') {
+        if (activity.activity_type === 'tactile' || activity.activity_type === 'olfactory') {
           timeScore += 10
         }
-        if (activity.duration_minutes && activity.duration_minutes >= 10) {
-          timeScore += 5 // Longer evening activities
+        if (activity.context?.toLowerCase().includes('family') || 
+            activity.context?.toLowerCase().includes('dinner')) {
+          timeScore += 12
+        }
+        if (activity.duration_minutes && activity.duration_minutes <= 15) {
+          timeScore += 5
         }
       }
       
-      // Night activities (8 PM - 6 AM): Very calming, quiet
-      else {
+      // Evening (8-10 PM): Winding down activities
+      else if (timeSlot === 'evening') {
         if (activity.activity_type === 'calming' || activity.activity_type === 'auditory') {
           timeScore += 15
         }
-        if (activity.context?.toLowerCase().includes('quiet') || 
-            activity.context?.toLowerCase().includes('bedtime')) {
+        if (activity.context?.toLowerCase().includes('evening') || 
+            activity.context?.toLowerCase().includes('quiet')) {
           timeScore += 12
         }
+        if (activity.duration_minutes && activity.duration_minutes >= 10) {
+          timeScore += 8 // Longer evening activities
+        }
+      }
+      
+      // Bedtime (10 PM - 6 AM): Very calming, quiet activities
+      else if (timeSlot === 'bedtime') {
+        if (activity.activity_type === 'calming' || activity.activity_type === 'auditory') {
+          timeScore += 20
+        }
+        if (activity.context?.toLowerCase().includes('bedtime') || 
+            activity.context?.toLowerCase().includes('sleep')) {
+          timeScore += 15
+        }
         if (activity.duration_minutes && activity.duration_minutes <= 5) {
-          timeScore += 8 // Short night activities
+          timeScore += 10 // Short bedtime activities
         }
       }
       
@@ -1164,10 +1296,8 @@ export default function TodayDashboard() {
       
       console.log('Recent completions:', recentCompletions.map((c: any) => c.activity_name))
       
-      // Get current time for time-based scoring
-      const now = new Date()
-      const hour = now.getHours()
-      const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 20 ? 'evening' : 'night'
+      // Get current time slot for time-based scoring
+      const timeSlot = getCurrentTimeSlot()
       
       // Get available activities
       let availableActivities: Activity[]
@@ -1202,50 +1332,105 @@ export default function TodayDashboard() {
       const scoredActivities = availableActivities.map(activity => {
         let score = 0
         
-        // Time-based scoring
-        if (timeOfDay === 'morning') {
+        // Time-based scoring using time slots
+        if (timeSlot === 'before-breakfast') {
           if (activity.activity_type === 'proprioceptive' || activity.activity_type === 'heavy-work') {
-            score += 10
+            score += 15
           }
           if (activity.context?.toLowerCase().includes('morning') || 
-              activity.context?.toLowerCase().includes('focus')) {
-            score += 8
+              activity.context?.toLowerCase().includes('energy')) {
+            score += 10
           }
           if (activity.duration_minutes && activity.duration_minutes <= 5) {
-            score += 5
-          }
-        } else if (timeOfDay === 'afternoon') {
-          if (activity.activity_type === 'calming' || activity.activity_type === 'tactile') {
             score += 8
           }
+        } else if (timeSlot === 'mid-morning') {
+          if (activity.activity_type === 'visual' || activity.activity_type === 'tactile') {
+            score += 12
+          }
+          if (activity.context?.toLowerCase().includes('focus') || 
+              activity.context?.toLowerCase().includes('learning')) {
+            score += 10
+          }
+          if (activity.duration_minutes && activity.duration_minutes <= 10) {
+            score += 5
+          }
+        } else if (timeSlot === 'before-lunch') {
+          if (activity.activity_type === 'calming' || activity.activity_type === 'tactile') {
+            score += 10
+          }
+          if (activity.context?.toLowerCase().includes('transition') || 
+              activity.context?.toLowerCase().includes('calm')) {
+            score += 8
+          }
+          if (activity.duration_minutes && activity.duration_minutes <= 8) {
+            score += 5
+          }
+        } else if (timeSlot === 'lunch') {
+          if (activity.activity_type === 'tactile' || activity.activity_type === 'olfactory') {
+            score += 12
+          }
           if (activity.context?.toLowerCase().includes('lunch') || 
+              activity.context?.toLowerCase().includes('social')) {
+            score += 10
+          }
+          if (activity.duration_minutes && activity.duration_minutes <= 15) {
+            score += 5
+          }
+        } else if (timeSlot === 'mid-afternoon') {
+          if (activity.activity_type === 'vestibular' || activity.activity_type === 'proprioceptive') {
+            score += 12
+          }
+          if (activity.context?.toLowerCase().includes('energy') || 
+              activity.context?.toLowerCase().includes('movement')) {
+            score += 8
+          }
+          if (activity.duration_minutes && activity.duration_minutes <= 12) {
+            score += 5
+          }
+        } else if (timeSlot === 'before-dinner') {
+          if (activity.activity_type === 'calming' || activity.activity_type === 'visual') {
+            score += 15
+          }
+          if (activity.context?.toLowerCase().includes('calm') || 
               activity.context?.toLowerCase().includes('transition')) {
             score += 10
           }
           if (activity.duration_minutes && activity.duration_minutes <= 10) {
-            score += 3
-          }
-        } else if (timeOfDay === 'evening') {
-          if (activity.activity_type === 'calming' || activity.activity_type === 'visual') {
-            score += 12
-          }
-          if (activity.context?.toLowerCase().includes('evening') || 
-              activity.context?.toLowerCase().includes('calm')) {
-            score += 10
-          }
-          if (activity.duration_minutes && activity.duration_minutes >= 10) {
             score += 5
           }
-        } else { // night
+        } else if (timeSlot === 'dinner') {
+          if (activity.activity_type === 'tactile' || activity.activity_type === 'olfactory') {
+            score += 10
+          }
+          if (activity.context?.toLowerCase().includes('family') || 
+              activity.context?.toLowerCase().includes('dinner')) {
+            score += 12
+          }
+          if (activity.duration_minutes && activity.duration_minutes <= 15) {
+            score += 5
+          }
+        } else if (timeSlot === 'evening') {
           if (activity.activity_type === 'calming' || activity.activity_type === 'auditory') {
             score += 15
           }
-          if (activity.context?.toLowerCase().includes('quiet') || 
-              activity.context?.toLowerCase().includes('bedtime')) {
+          if (activity.context?.toLowerCase().includes('evening') || 
+              activity.context?.toLowerCase().includes('quiet')) {
             score += 12
           }
-          if (activity.duration_minutes && activity.duration_minutes <= 5) {
+          if (activity.duration_minutes && activity.duration_minutes >= 10) {
             score += 8
+          }
+        } else if (timeSlot === 'bedtime') {
+          if (activity.activity_type === 'calming' || activity.activity_type === 'auditory') {
+            score += 20
+          }
+          if (activity.context?.toLowerCase().includes('bedtime') || 
+              activity.context?.toLowerCase().includes('sleep')) {
+            score += 15
+          }
+          if (activity.duration_minutes && activity.duration_minutes <= 5) {
+            score += 10
           }
         }
         
@@ -1390,9 +1575,21 @@ export default function TodayDashboard() {
           </div>
         </div>
         {/* Greeting */}
-        <h1 className="text-2xl font-semibold text-left mb-4 px-4" style={{ color: '#252225', marginBottom: 16, maxWidth: '100%', wordWrap: 'break-word' }}>
+        <h1 className="text-2xl font-semibold text-left mb-2 px-4" style={{ color: '#252225', maxWidth: '100%', wordWrap: 'break-word' }}>
           {greeting}, {parentName}
         </h1>
+        
+        {/* Time Slot Indicator */}
+        {currentTimeSlot && (
+          <div className="px-4 mb-4">
+            <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium" style={{ backgroundColor: '#E8F5E8', color: '#2D5A2D' }}>
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {getTimeSlotDisplayName(currentTimeSlot)} Activities
+            </div>
+          </div>
+        )}
 
         {/* Activity Cards */}
         <div className="today-activities flex flex-col">
