@@ -89,7 +89,6 @@ export default function TodayDashboard() {
   const [greeting, setGreeting] = useState('')
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [isMockPayment, setIsMockPayment] = useState(false)
-  const [showActivityCompleted, setShowActivityCompleted] = useState(false)
   const [currentTimeSlot, setCurrentTimeSlot] = useState('')
   const [lastTimeSlotCheck, setLastTimeSlotCheck] = useState<Date>(new Date())
 
@@ -1234,11 +1233,7 @@ export default function TodayDashboard() {
       setStoryOpen(false)
       setCurrentActivity(null)
       
-      // Show completion indicator for ALL activities (including behavior activities)
-      setShowActivityCompleted(true)
-      setTimeout(() => {
-        setShowActivityCompleted(false)
-      }, 3000) // Hide after 3 seconds
+
       
       // Update the activity list: remove completed activity and add a new one (only for regular activities)
       const currentActivities = [...todaysActivities]
@@ -1549,20 +1544,7 @@ export default function TodayDashboard() {
           </div>
         )}
 
-        {/* Activity Completed Success Message */}
-        {showActivityCompleted && (
-          <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-blue-50 border border-blue-200 rounded-lg p-4 shadow-lg max-w-sm">
-            <div className="flex items-center">
-              <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <div>
-                <p className="text-blue-800 font-medium">Activity completed!</p>
-                <p className="text-blue-700 text-sm">A new activity has been added to your journal</p>
-              </div>
-            </div>
-          </div>
-        )}
+
 
         {/* Header */}
         <div className="today-header mb-4 px-4">
@@ -1575,21 +1557,9 @@ export default function TodayDashboard() {
           </div>
         </div>
         {/* Greeting */}
-        <h1 className="text-2xl font-semibold text-left mb-2 px-4" style={{ color: '#252225', maxWidth: '100%', wordWrap: 'break-word' }}>
+        <h1 className="text-2xl font-semibold text-left mb-4 px-4" style={{ color: '#252225', marginBottom: 16, maxWidth: '100%', wordWrap: 'break-word' }}>
           {greeting}, {parentName}
         </h1>
-        
-        {/* Time Slot Indicator */}
-        {currentTimeSlot && (
-          <div className="px-4 mb-4">
-            <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium" style={{ backgroundColor: '#E8F5E8', color: '#2D5A2D' }}>
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              {getTimeSlotDisplayName(currentTimeSlot)} Activities
-            </div>
-          </div>
-        )}
 
         {/* Activity Cards */}
         <div className="today-activities flex flex-col">
