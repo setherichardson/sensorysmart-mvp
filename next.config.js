@@ -45,7 +45,7 @@ const nextConfig = {
     ];
   },
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // Disabled due to CSS loading issues
   },
   images: {
     formats: ['image/webp', 'image/avif'],
