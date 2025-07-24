@@ -119,7 +119,7 @@ export default function TodayDashboard() {
       when_to_use: 'When seeking proprioceptive input or needing to calm down',
       materials_needed: [],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -137,7 +137,7 @@ export default function TodayDashboard() {
       when_to_use: 'Before tasks requiring concentration',
       materials_needed: ['Resistance band'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -155,7 +155,7 @@ export default function TodayDashboard() {
       when_to_use: 'When feeling overwhelmed or needing gentle input',
       materials_needed: ['Weighted lap pad'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -173,7 +173,7 @@ export default function TodayDashboard() {
       when_to_use: 'During transitions or when seeking comfort',
       materials_needed: [],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -191,7 +191,7 @@ export default function TodayDashboard() {
       when_to_use: 'During seated activities when needing input',
       materials_needed: ['Chair with armrests'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -210,7 +210,7 @@ export default function TodayDashboard() {
       when_to_use: 'When seeking movement input',
       materials_needed: [],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -228,7 +228,7 @@ export default function TodayDashboard() {
       when_to_use: 'When feeling overwhelmed or needing to calm down',
       materials_needed: ['Rocking chair'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -247,7 +247,7 @@ export default function TodayDashboard() {
       when_to_use: 'When working on tactile tolerance',
       materials_needed: ['Various textured objects'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -265,7 +265,7 @@ export default function TodayDashboard() {
       when_to_use: 'When seeking tactile input or creative activities',
       materials_needed: ['Paint', 'Paper', 'Protective covering'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -284,7 +284,7 @@ export default function TodayDashboard() {
       when_to_use: 'When feeling overwhelmed by noise',
       materials_needed: ['Quiet space'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -302,7 +302,7 @@ export default function TodayDashboard() {
       when_to_use: 'When seeking auditory input or needing energy',
       materials_needed: [],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -321,7 +321,7 @@ export default function TodayDashboard() {
       when_to_use: 'When working on visual skills',
       materials_needed: ['Moving object or toy'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -339,7 +339,7 @@ export default function TodayDashboard() {
       when_to_use: 'When feeling overwhelmed by bright lights',
       materials_needed: ['Dimmed lighting'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -358,7 +358,7 @@ export default function TodayDashboard() {
       when_to_use: 'When working on body awareness',
       materials_needed: ['Quiet space'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -376,7 +376,7 @@ export default function TodayDashboard() {
       when_to_use: 'Throughout the day for body awareness',
       materials_needed: [],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -395,7 +395,7 @@ export default function TodayDashboard() {
       when_to_use: 'In the evening to wind down',
       materials_needed: ['Comfortable space'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -413,7 +413,7 @@ export default function TodayDashboard() {
       when_to_use: 'Evening before bedtime',
       materials_needed: ['Warm bath', 'Quiet environment'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -431,7 +431,7 @@ export default function TodayDashboard() {
       when_to_use: 'Evening before bedtime',
       materials_needed: ['Book or audio story'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -450,7 +450,7 @@ export default function TodayDashboard() {
       when_to_use: 'When having trouble sleeping',
       materials_needed: ['Quiet space'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -468,7 +468,7 @@ export default function TodayDashboard() {
       when_to_use: 'When having trouble falling asleep',
       materials_needed: ['Comfortable bed or chair'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
@@ -486,7 +486,7 @@ export default function TodayDashboard() {
       when_to_use: 'When noise is preventing sleep',
       materials_needed: ['White noise machine or app'],
       steps: [],
-      is_active: true,
+      
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     }
@@ -1037,7 +1037,7 @@ export default function TodayDashboard() {
     setSubmittingActivity(activity.id)
 
     // Track activity start
-    analytics.activityStarted(activity.activity_type);
+    analytics.activityStarted('dashboard-activity');
 
     try {
       // Just open the story for this activity - don't log to database yet
@@ -1139,7 +1139,7 @@ export default function TodayDashboard() {
       }
       
       // Track activity completion
-      analytics.activityCompleted(activity.activity_type, rating || 'neutral');
+      analytics.activityCompleted(activity.activity_type || 'sensory', rating || 'neutral');
       
       // Show a brief success message and stay on the page
       console.log('✅ Activity completed successfully!')

@@ -275,7 +275,6 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
           when_to_use: 'When seeking sensory input',
           materials_needed: [],
           steps: [],
-          is_active: true,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         }
@@ -341,7 +340,6 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
         when_to_use: 'When seeking sensory input',
         materials_needed: [],
         steps: [],
-        is_active: true,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       }

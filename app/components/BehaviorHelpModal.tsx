@@ -162,10 +162,10 @@ export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, us
         let score = 0
         
         // Score based on behavior fit
-        if (behaviorScores.seeking && activity.behavior_types && activity.behavior_types.includes('seeking')) {
+        if (behaviorScores.seeking && activity.behavior_fit === 'seeking') {
           score += 3
         }
-        if (behaviorScores.avoiding && activity.behavior_types && activity.behavior_types.includes('avoiding')) {
+        if (behaviorScores.avoiding && activity.behavior_fit === 'avoiding') {
           score += 3
         }
         
@@ -192,17 +192,14 @@ export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, us
           context: activity.context,
           duration_minutes: activity.duration_minutes,
           difficulty: activity.difficulty as 'beginner' | 'intermediate' | 'advanced',
-          activity_type: activity.activity_type as 'proprioceptive' | 'tactile' | 'calming' | 'auditory' | 'visual' | 'heavy-work' | 'vestibular' | 'olfactory' | 'interoception',
           sensory_systems: activity.sensory_systems,
           behavior_fit: activity.behavior_fit as 'seeking' | 'avoiding' | 'sensitive' | 'low-registration' | 'mixed',
           benefits: activity.benefits,
           when_to_use: activity.when_to_use,
           materials_needed: activity.materials_needed,
           steps: activity.steps as any,
-          variations: [],
           age_range: activity.age_range,
-          environment: activity.environment as 'indoor' | 'outdoor' | 'both',
-          is_active: true,
+          environment: activity.environment,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         }
@@ -250,7 +247,7 @@ export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, us
 
   const handleStartActivity = (activity: Activity) => {
     // Track behavior activity started
-    analytics.activityStarted(activity.activity_type);
+    analytics.activityStarted('behavior-support');
     
     if (onStartActivity) {
       onStartActivity(activity)
