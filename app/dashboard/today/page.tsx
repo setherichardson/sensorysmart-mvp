@@ -740,7 +740,13 @@ export default function TodayDashboard() {
         
         // Filter activities based on time slot
         const timeBasedActivities = getTimeBasedActivities(activities || activityLibrary, timeSlot)
-        setTodaysActivities(timeBasedActivities.slice(0, 3))
+        
+        // Remove duplicates based on title
+        const uniqueActivities = timeBasedActivities.filter((activity, index, self) => 
+          index === self.findIndex(a => a.title === activity.title)
+        )
+        
+        setTodaysActivities(uniqueActivities.slice(0, 3))
       }
     } catch (error) {
       console.log('Error loading activities, using fallback:', error)
@@ -1306,6 +1312,11 @@ export default function TodayDashboard() {
       // Filter out activities that are already in the current list
       availableActivities = availableActivities.filter(a => 
         !currentActivities.some(existing => existing.id === a.id)
+      )
+      
+      // Remove duplicates based on title
+      availableActivities = availableActivities.filter((activity, index, self) => 
+        index === self.findIndex(a => a.title === activity.title)
       )
       
       // Filter out recently completed activities (last 24 hours)
