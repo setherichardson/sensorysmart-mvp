@@ -8,6 +8,7 @@ import type { User } from '@supabase/supabase-js'
 import type { Profile, Assessment, ActivityCompletion, Activity } from '@/lib/supabase/client'
 import ActivityStory from '../../components/ActivityStory'
 import BehaviorHelpModal from '../../components/BehaviorHelpModal'
+import AssessmentResultsModal from '../../components/AssessmentResultsModal'
 import { analytics } from '@/lib/analytics'
 
 
@@ -91,6 +92,7 @@ export default function TodayDashboard() {
   const [isMockPayment, setIsMockPayment] = useState(false)
   const [currentTimeSlot, setCurrentTimeSlot] = useState('')
   const [lastTimeSlotCheck, setLastTimeSlotCheck] = useState<Date>(new Date())
+  const [showAssessmentModal, setShowAssessmentModal] = useState(false)
 
   // Set greeting and time slot on client-side to avoid hydration mismatch
   useEffect(() => {
@@ -112,6 +114,9 @@ export default function TodayDashboard() {
     if (success === 'true') {
       setShowSuccessMessage(true)
       setIsMockPayment(mock === 'true')
+      
+      // Show assessment results modal for new subscribers
+      setShowAssessmentModal(true)
       
       // Clear the URL parameters
       const newUrl = window.location.pathname
@@ -1618,6 +1623,14 @@ export default function TodayDashboard() {
           user={user}
           assessment={assessment}
           onStartActivity={handleStartActivityFromBehavior}
+        />
+
+        {/* Assessment Results Modal */}
+        <AssessmentResultsModal
+          isOpen={showAssessmentModal}
+          onClose={() => setShowAssessmentModal(false)}
+          user={user}
+          profile={profile}
         />
 
         {/* Full-width Behavior Help button at bottom */}
