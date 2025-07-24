@@ -191,7 +191,7 @@ export default function ResultsPayment() {
     <div className="min-h-screen" style={{ backgroundColor: '#F6F6F6', fontFamily: 'Mona Sans, sans-serif' }}>
       <div className="max-w-md mx-auto p-4">
         {/* Header */}
-        <div className="text-center mb-8" style={{ marginTop: '40px' }}>
+        <div className="text-center mb-8" style={{ marginTop: '20px' }}>
           {/* Assessment Complete Chip */}
           <div className="inline-block mb-4 px-3 py-1 rounded-full text-sm font-medium" style={{ backgroundColor: '#E8F5E8', color: '#2D5A2D', fontFamily: 'Mona Sans, sans-serif' }}>
             Assessment Complete
@@ -199,7 +199,7 @@ export default function ResultsPayment() {
           
           {/* Title */}
           <h1 className="mb-2" style={{ fontFamily: 'Mona Sans, sans-serif', fontSize: '22px', fontWeight: '600', color: '#252225' }}>
-            {profile.child_name} is {sensoryCategory}!
+            Unlock {profile.child_name} sensory schedule
           </h1>
           
           {/* Description */}

@@ -162,10 +162,10 @@ export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, us
         let score = 0
         
         // Score based on behavior fit
-        if (behaviorScores.seeking && activity.behavior_fit === 'seeking') {
+        if (behaviorScores.seeking && activity.behavior_types && activity.behavior_types.includes('seeking')) {
           score += 3
         }
-        if (behaviorScores.avoiding && activity.behavior_fit === 'avoiding') {
+        if (behaviorScores.avoiding && activity.behavior_types && activity.behavior_types.includes('avoiding')) {
           score += 3
         }
         

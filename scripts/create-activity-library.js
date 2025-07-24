@@ -35,14 +35,14 @@ async function main() {
         description: activity.description,
         duration_minutes: activity.durationMinutes || 10,
         difficulty: activity.difficultyLevel || 'beginner',
-        materials: Array.isArray(activity.materials) ? `{${activity.materials.map(m=>m.replace(/,/g,'')).join(',')}}` : null,
-        age_range: activity.ageRange || '3-5 years',
-        environment: activity.environment || 'indoor',
         sensory_systems: Array.isArray(activity.sensorySystems) ? `{${activity.sensorySystems.join(',')}}` : null,
         behavior_types: Array.isArray(activity.behaviorTypes) ? `{${activity.behaviorTypes.join(',')}}` : null,
         benefits: Array.isArray(activity.benefits) ? `{${activity.benefits.map(b=>b.replace(/,/g,'')).join(',')}}` : null,
         when_to_use: activity.whenToUse || '',
+        materials: Array.isArray(activity.materials) ? `{${activity.materials.map(m=>m.replace(/,/g,'')).join(',')}}` : null,
         steps: activity.steps ? JSON.stringify(activity.steps) : null,
+        age_range: activity.ageRange || '3-5 years',
+        environment: activity.environment || 'indoor',
       },
     ])
     if (error) {

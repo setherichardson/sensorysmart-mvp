@@ -504,8 +504,6 @@ export default function TodayDashboard() {
       const { data: activities, error } = await supabase
         .from('activities')
         .select('*')
-        .eq('is_active', true)
-        .order('created_at', { ascending: false })
 
       if (error || !activities || activities.length === 0) {
         console.log('Database activities not available, using fallback library')
@@ -514,13 +512,13 @@ export default function TodayDashboard() {
         const scoredActivities = activityLibrary.map(activity => {
           let score = 0
           
-          // Score based on behavior fit
-          const dominantBehavior = getDominantBehavior(behaviorScores)
-          if (activity.behavior_fit === dominantBehavior) {
-            score += 10
-          } else if (activity.behavior_fit === 'mixed') {
-            score += 5
-          }
+                  // Score based on behavior fit
+        const dominantBehavior = getDominantBehavior(behaviorScores)
+        if (activity.behavior_types && activity.behavior_types.includes(dominantBehavior)) {
+          score += 10
+        } else if (activity.behavior_types && activity.behavior_types.includes('mixed')) {
+          score += 5
+        }
 
           // Score based on sensory system needs
           const challengingSystems = getChallengingSystems(results)
@@ -553,9 +551,9 @@ export default function TodayDashboard() {
         
         // Score based on behavior fit
         const dominantBehavior = getDominantBehavior(behaviorScores)
-        if (activity.behavior_fit === dominantBehavior) {
+        if (activity.behavior_types && activity.behavior_types.includes(dominantBehavior)) {
           score += 10
-        } else if (activity.behavior_fit === 'mixed') {
+        } else if (activity.behavior_types && activity.behavior_types.includes('mixed')) {
           score += 5
         }
 

@@ -216,22 +216,22 @@ export type Activity = {
   id: string
   title: string
   description: string
-  context: string
+  context?: string
   duration_minutes: number
   difficulty: 'beginner' | 'intermediate' | 'advanced'
-  activity_type: 'proprioceptive' | 'vestibular' | 'tactile' | 'heavy-work' | 'calming' | 'auditory' | 'visual' | 'olfactory' | 'interoception'
   sensory_systems: string[]
-  behavior_fit: 'seeking' | 'avoiding' | 'sensitive' | 'low-registration' | 'mixed'
+  behavior_types?: string[]
+  behavior_fit?: string
   benefits: string[]
   when_to_use: string
-  materials_needed: string[]
-  steps: ActivityStep[]
-  variations?: ActivityVariation[]
+  materials?: string[]
+  materials_needed?: string[]
+  steps: any
   age_range?: string
-  environment?: 'indoor' | 'outdoor' | 'both'
-  is_active: boolean
-  created_at: string
-  updated_at: string
+  environment?: string
+  activity_type?: string
+  created_at?: string
+  updated_at?: string
 }
 
 export type ActivityStep = {

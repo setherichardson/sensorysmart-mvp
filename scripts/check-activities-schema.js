@@ -1,74 +1,56 @@
-#!/usr/bin/env node
+// Script to check the actual schema of the activities table
+require('dotenv').config({ path: '.env.local' });
+const { createClient } = require('@supabase/supabase-js');
 
-require('dotenv').config({ path: '.env.local' })
-const { createClient } = require('@supabase/supabase-js')
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!supabaseUrl || !supabaseServiceKey) {
-  console.error('Missing required environment variables')
-  process.exit(1)
+  console.error('❌ Missing required environment variables');
+  process.exit(1);
 }
 
-const supabase = createClient(supabaseUrl, supabaseServiceKey)
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 async function checkActivitiesSchema() {
   try {
-    console.log('🔍 Checking activities table schema...')
+    console.log('🔍 Checking activities table schema...');
     
-    // Try to get a single row to see what columns exist
-    const { data, error } = await supabase
+    // Try to get one activity to see what fields exist
+    const { data: activities, error } = await supabase
       .from('activities')
       .select('*')
-      .limit(1)
+      .limit(1);
     
     if (error) {
-      console.error('❌ Error accessing activities table:', error)
-      return
+      console.error('❌ Error fetching activities:', error);
+      return;
     }
     
-    if (data && data.length > 0) {
-      console.log('✅ Activities table exists and has data')
-      console.log('📋 Sample row columns:', Object.keys(data[0]))
+    if (activities && activities.length > 0) {
+      const activity = activities[0];
+      console.log('📋 Available columns in activities table:');
+      Object.keys(activity).forEach(key => {
+        console.log(`   - ${key}: ${typeof activity[key]} (${activity[key]})`);
+      });
     } else {
-      console.log('✅ Activities table exists but is empty')
-      console.log('📋 Table structure (empty): activities')
+      console.log('❌ No activities found to check schema');
     }
     
-    // Try to insert a minimal test record to see what columns are required
-    const testData = {
-      title: 'Test Activity',
-      description: 'Test description',
-      duration_minutes: 5,
-      difficulty: 'beginner'
-    }
+    // Try to get table info
+    console.log('\n🔍 Trying to get table information...');
+    const { data: tableInfo, error: tableError } = await supabase
+      .rpc('get_table_info', { table_name: 'activities' });
     
-    console.log('🧪 Testing insert with minimal data:', testData)
-    const { data: insertData, error: insertError } = await supabase
-      .from('activities')
-      .insert(testData)
-      .select()
-    
-    if (insertError) {
-      console.error('❌ Insert test failed:', insertError)
+    if (tableError) {
+      console.log('❌ Could not get table info:', tableError.message);
     } else {
-      console.log('✅ Insert test successful')
-      console.log('📋 Inserted data:', insertData)
-      
-      // Clean up test data
-      if (insertData && insertData.length > 0) {
-        await supabase
-          .from('activities')
-          .delete()
-          .eq('id', insertData[0].id)
-        console.log('🧹 Cleaned up test data')
-      }
+      console.log('📋 Table info:', tableInfo);
     }
     
   } catch (error) {
-    console.error('❌ Error checking schema:', error)
+    console.error('❌ Error:', error);
   }
 }
 
-checkActivitiesSchema() 
+checkActivitiesSchema(); 
