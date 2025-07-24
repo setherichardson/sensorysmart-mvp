@@ -228,19 +228,49 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
         console.log('Using provided activity data:', activityData)
         setActivity(activityData)
         
-        // Check if this activity has embedded steps (like behavior activities)
-        if (activityData.steps && Array.isArray(activityData.steps) && activityData.steps.length > 0) {
+        // Check if this activity has embedded steps
+        if (activityData.steps) {
           console.log('Using embedded steps from provided activity data:', activityData.steps)
-          const embeddedSteps: ActivityStepWithProgress[] = activityData.steps.map((step: any, index: number) => ({
-            id: index + 1,
-            step_number: step.step_number || index + 1,
-            title: step.title,
-            description: step.description,
-            duration_seconds: step.duration_seconds,
-            completed: false
-          }))
-          console.log('Converted embedded steps:', embeddedSteps)
-          setSteps(embeddedSteps)
+          let stepsArray;
+          
+          // Handle steps as JSON string or array
+          if (typeof activityData.steps === 'string') {
+            try {
+              stepsArray = JSON.parse(activityData.steps);
+            } catch (e) {
+              console.log('Error parsing steps JSON, using hardcoded steps');
+              const hardcodedSteps = getHardcodedSteps(activityId);
+              setSteps(hardcodedSteps);
+              setLoading(false);
+              return;
+            }
+          } else if (Array.isArray(activityData.steps)) {
+            stepsArray = activityData.steps;
+          } else {
+            console.log('Steps not in expected format, using hardcoded steps');
+            const hardcodedSteps = getHardcodedSteps(activityId);
+            setSteps(hardcodedSteps);
+            setLoading(false);
+            return;
+          }
+          
+          if (stepsArray && stepsArray.length > 0) {
+            console.log('Parsed steps:', stepsArray);
+            const embeddedSteps: ActivityStepWithProgress[] = stepsArray.map((step: any, index: number) => ({
+              id: index + 1,
+              step_number: step.step_number || index + 1,
+              title: step.title,
+              description: step.description,
+              duration_seconds: step.duration_seconds,
+              completed: false
+            }))
+            console.log('Converted embedded steps:', embeddedSteps)
+            setSteps(embeddedSteps)
+          } else {
+            console.log('No steps found in parsed data, using hardcoded steps')
+            const hardcodedSteps = getHardcodedSteps(activityId)
+            setSteps(hardcodedSteps)
+          }
         } else {
           // Fallback to hardcoded steps if no embedded steps
           console.log('No embedded steps found, using hardcoded steps')
@@ -289,18 +319,48 @@ export default function ActivityStory({ activityId, onComplete, onClose, activit
 
       setActivity(dbActivityData)
 
-      // Check if this activity has embedded steps (like behavior activities)
-      if (dbActivityData.steps && Array.isArray(dbActivityData.steps) && dbActivityData.steps.length > 0) {
+      // Check if this activity has embedded steps
+      if (dbActivityData.steps) {
         console.log('Using embedded steps from activity data')
-        const embeddedSteps: ActivityStepWithProgress[] = dbActivityData.steps.map((step: any, index: number) => ({
-          id: index + 1,
-          step_number: step.step_number || index + 1,
-          title: step.title,
-          description: step.description,
-          duration_seconds: step.duration_seconds,
-          completed: false
-        }))
-        setSteps(embeddedSteps)
+        let stepsArray;
+        
+        // Handle steps as JSON string or array
+        if (typeof dbActivityData.steps === 'string') {
+          try {
+            stepsArray = JSON.parse(dbActivityData.steps);
+          } catch (e) {
+            console.log('Error parsing steps JSON, using hardcoded steps');
+            const hardcodedSteps = getHardcodedSteps(activityId);
+            setSteps(hardcodedSteps);
+            setLoading(false);
+            return;
+          }
+        } else if (Array.isArray(dbActivityData.steps)) {
+          stepsArray = dbActivityData.steps;
+        } else {
+          console.log('Steps not in expected format, using hardcoded steps');
+          const hardcodedSteps = getHardcodedSteps(activityId);
+          setSteps(hardcodedSteps);
+          setLoading(false);
+          return;
+        }
+        
+        if (stepsArray && stepsArray.length > 0) {
+          console.log('Parsed steps:', stepsArray);
+          const embeddedSteps: ActivityStepWithProgress[] = stepsArray.map((step: any, index: number) => ({
+            id: index + 1,
+            step_number: step.step_number || index + 1,
+            title: step.title,
+            description: step.description,
+            duration_seconds: step.duration_seconds,
+            completed: false
+          }))
+          setSteps(embeddedSteps)
+        } else {
+          console.log('No steps found in parsed data, using hardcoded steps')
+          const hardcodedSteps = getHardcodedSteps(activityId)
+          setSteps(hardcodedSteps)
+        }
       } else {
         // Get activity steps from database
         const { data: stepsData, error: stepsError } = await supabase
