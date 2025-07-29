@@ -48,8 +48,19 @@ export const analytics = {
     trackEvent('activity_started', 'feature_usage', activityType);
   },
   
-  activityCompleted: (activityType: string, rating: string) => {
-    trackEvent('activity_completed', 'feature_usage', `${activityType}_${rating}`);
+  activityCompleted: (activityType: string, rating: string, totalCompleted?: number) => {
+    trackEvent('activity_completed', 'feature_usage', `${activityType}_${rating}`, totalCompleted);
+    
+    // Track milestone completions if totalCompleted is provided
+    if (totalCompleted) {
+      if (totalCompleted === 1) {
+        trackEvent('milestone_reached', 'engagement', 'first_activity');
+      } else if (totalCompleted === 5) {
+        trackEvent('milestone_reached', 'engagement', 'five_activities');
+      } else if (totalCompleted === 10) {
+        trackEvent('milestone_reached', 'engagement', 'ten_activities');
+      }
+    }
   },
   
   coachChatStarted: () => {
@@ -100,6 +111,43 @@ export const analytics = {
   // Timer tracking
   timerStarted: (duration: number) => {
     trackEvent('timer_started', 'feature_usage', `${duration}_minutes`);
+  },
+  
+  // Billing page tracking
+  unlockButtonClicked: () => {
+    trackEvent('unlock_button_clicked', 'conversion');
+  },
+  
+  // Assessment modal tracking
+  assessmentModalViewed: () => {
+    trackEvent('assessment_modal_viewed', 'conversion');
+  },
+  
+
+  
+  // Time-based tracking between steps
+  funnelStepTime: (fromStep: string, toStep: string, timeInSeconds: number) => {
+    trackEvent('funnel_step_time', 'conversion', `${fromStep}_to_${toStep}`, timeInSeconds);
+  },
+  
+  // Enhanced funnel tracking
+  funnelStep: (step: string, stepNumber: number) => {
+    trackEvent('funnel_step', 'conversion', `${step}_${stepNumber}`);
+  },
+  
+  // Scroll tracking
+  pageScrolled: (page: string, percentage: number) => {
+    trackEvent('page_scrolled', 'engagement', `${page}_${percentage}%`);
+  },
+  
+  // Time on page tracking
+  timeOnPage: (page: string, seconds: number) => {
+    trackEvent('time_on_page', 'engagement', page, seconds);
+  },
+  
+  // Exit intent tracking
+  exitIntent: (page: string) => {
+    trackEvent('exit_intent', 'engagement', page);
   },
 };
 

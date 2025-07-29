@@ -17,6 +17,7 @@ export default function ResultsPayment() {
   const [loading, setLoading] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
   const [error, setError] = useState('')
+  const [pageLoadTime] = useState(Date.now())
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -59,8 +60,14 @@ export default function ResultsPayment() {
         setProfile(profileData)
         setAssessment(assessmentData)
         
-        // Track page view
+        // Track page view and funnel step
         analytics.pageView('results-payment');
+        analytics.funnelStep('billing_page', 4);
+        
+        // Track time from assessment completion to billing page
+        const assessmentCompletedAt = new Date(assessmentData.completed_at).getTime()
+        const timeToBilling = Math.round((Date.now() - assessmentCompletedAt) / 1000)
+        analytics.funnelStepTime('assessment_completed', 'billing_page', timeToBilling)
       } catch (err) {
         console.error('Error loading user data:', err)
         setError('Failed to load your results. Please try again.')
@@ -71,6 +78,40 @@ export default function ResultsPayment() {
 
     loadUserData()
   }, [router])
+
+  // Scroll tracking
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100)
+      analytics.pageScrolled('results-payment', scrollPercent)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Time on page tracking
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      const timeOnPage = Math.round((Date.now() - pageLoadTime) / 1000)
+      analytics.timeOnPage('results-payment', timeOnPage)
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [pageLoadTime])
+
+  // Exit intent tracking
+  useEffect(() => {
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) {
+        analytics.exitIntent('results-payment')
+      }
+    }
+
+    document.addEventListener('mouseleave', handleMouseLeave)
+    return () => document.removeEventListener('mouseleave', handleMouseLeave)
+  }, [])
 
   const plan = {
     price: 9.99,
@@ -203,57 +244,26 @@ export default function ResultsPayment() {
           </h1>
           
           {/* Description */}
-          <p className="mb-6" style={{ fontFamily: 'Mona Sans, sans-serif', fontSize: '16px', fontWeight: '500', color: '#6C6C6C', lineHeight: '1.3' }}>
+          <p className="mb-4" style={{ fontFamily: 'Mona Sans, sans-serif', fontSize: '16px', fontWeight: '500', color: '#6C6C6C', lineHeight: '1.3' }}>
             Subscribe to unlock your full assessment and a personalized daily sensory diet.
           </p>
         </div>
 
-        {/* Activity Cards Stack */}
-        <div className="relative mb-8">
-          {/* Bottom card (third) */}
-          <div className="absolute inset-0 shadow-md transform translate-y-2 scale-95 opacity-40" style={{ backgroundColor: '#fff', borderRadius: '16px' }}></div>
-          
-          {/* Middle card (second) */}
-          <div className="absolute inset-0 shadow-md transform translate-y-1 scale-98 opacity-70" style={{ backgroundColor: '#fff', borderRadius: '16px' }}></div>
-          
-          {/* Top card (first) */}
-          <div className="relative p-6 shadow-xl border border-gray-100" style={{ backgroundColor: '#fff', borderRadius: '16px', fontFamily: 'Mona Sans, sans-serif' }}>
-            <h3 className="font-bold text-black mb-3" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Wall push-ups</h3>
-            <div className="space-y-2 mb-4">
-              <div className="flex items-center text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Great for morning regulation
-              </div>
-              <div className="flex items-center text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                10 minutes
-              </div>
-            </div>
-            <button className="w-full py-2 px-4 text-black text-sm font-medium" style={{ border: '1px solid #EEE6E5', borderRadius: '16px', fontFamily: 'Mona Sans, sans-serif' }}>
-              Start activity
-            </button>
-          </div>
-        </div>
 
-        {/* Subscribers also get */}
-        <div className="text-center mb-4">
-          <p style={{ fontFamily: 'Mona Sans, sans-serif', fontSize: '16px', fontWeight: '500', color: '#6C6C6C' }}>Subscribers also get</p>
-        </div>
 
         {/* Features Card */}
         <div className="p-6 shadow-xl border border-gray-100 mb-6" style={{ backgroundColor: '#fff', borderRadius: '16px', fontFamily: 'Mona Sans, sans-serif' }}>
-          <div className="space-y-3 mb-6">
+          <h2 className="mb-4" style={{ fontFamily: 'Mona Sans, sans-serif', fontSize: '18px', fontWeight: '600', color: '#252225' }}>
+            Your subscriptions includes
+          </h2>
+          <div className="space-y-3">
             <div className="flex items-center">
               <img src="/Icons/Note.svg" alt="Document" className="w-5 h-5 mr-3" />
               <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Detailed sensory assessment</span>
             </div>
             <div className="flex items-center">
               <img src="/Icons/Calendar.svg" alt="Calendar" className="w-5 h-5 mr-3" />
-              <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Sensory diet for every part of their day</span>
+              <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Sensory diet for every part of the day</span>
             </div>
             <div className="flex items-center">
               <img src="/Icons/Journal.svg" alt="Journal" className="w-5 h-5 mr-3" />
@@ -264,18 +274,46 @@ export default function ResultsPayment() {
               <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Sensory Coach chat for questions</span>
             </div>
             <div className="flex items-center">
-              <img src="/Icons/life-buoy.svg" alt="Support" className="w-5 h-5 mr-3" />
+              <img src="/Icons/target.svg" alt="Support" className="w-5 h-5 mr-3" />
               <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>In the moment behavior support</span>
             </div>
             <div className="flex items-center">
-              <img src="/Icons/dollar-sign.svg" alt="Price" className="w-5 h-5 mr-3" />
-              <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Free 7 day trial, then $9.99/mo</span>
+              <img src="/Icons/star.svg" alt="OT" className="w-5 h-5 mr-3" />
+              <span className="text-gray-700" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Created by an Occupational Therapist</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Trial Info Card */}
+        <div className="p-6 shadow-xl border border-gray-100 mb-6" style={{ backgroundColor: '#fff', borderRadius: '16px', fontFamily: 'Mona Sans, sans-serif' }}>
+          <h2 className="mb-4" style={{ fontFamily: 'Mona Sans, sans-serif', fontSize: '18px', fontWeight: '600', color: '#252225' }}>
+            How your trial works
+          </h2>
+          
+          {/* Trial Steps */}
+          <div className="space-y-3 mb-6">
+            <div>
+              <h3 className="font-medium text-gray-900" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Today: Get access</h3>
+              <p className="text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Get the full assessment and sensory diet</p>
+            </div>
+            
+            <div>
+              <h3 className="font-medium text-gray-900" style={{ fontFamily: 'Mona Sans, sans-serif' }}>This week: Implement the sensory diet</h3>
+              <p className="text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>We'll remind you when your trial will end</p>
+            </div>
+            
+            <div>
+              <h3 className="font-medium text-gray-900" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Trial ends: Subscription starts</h3>
+              <p className="text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>You can cancel before this date</p>
             </div>
           </div>
 
           {/* Submit Button */}
           <button
-            onClick={handleSubmit}
+            onClick={(e) => {
+              analytics.unlockButtonClicked();
+              handleSubmit(e);
+            }}
             disabled={isProcessing}
             className="w-full px-6 font-bold text-base hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             style={{ backgroundColor: '#367A87', color: 'white', borderRadius: '100px', height: '40px', fontFamily: 'Mona Sans, sans-serif' }}
@@ -289,13 +327,13 @@ export default function ResultsPayment() {
                 Processing...
               </div>
             ) : (
-              `Create ${profile.child_name}'s sensory diet`
+              'Unlock your Sensory Diet'
             )}
           </button>
           
-          {/* Trust Statement */}
+          {/* Pricing */}
           <div className="text-center mt-4">
-            <p className="text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>Trusted by Pediatric Occupational Therapists</p>
+            <p className="text-gray-600 text-sm" style={{ fontFamily: 'Mona Sans, sans-serif' }}>7-day free trial, then $9.99 a month</p>
           </div>
         </div>
 

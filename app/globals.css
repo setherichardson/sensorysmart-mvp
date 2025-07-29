@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* Targeted CSS Reset - only for specific elements that might cause the black bar */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
 :root {
   --background: #F6F6F6;
   --foreground: #252225;
@@ -2579,6 +2587,13 @@ body {
   width: 1rem;
   height: 1rem;
   color: #64748b;
+}
+
+.activity-type-label {
+  color: rgb(37, 34, 37);
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: capitalize;
 }
 
 .activity-button {

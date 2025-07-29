@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 import type { Profile, Assessment } from '@/lib/supabase/client'
 import { analytics } from '@/lib/analytics'
+import AssessmentResultsModal from '@/app/components/AssessmentResultsModal'
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -21,6 +22,7 @@ export default function ProfilePage() {
     child_name: ''
   })
   const [saving, setSaving] = useState(false)
+  const [showAssessmentModal, setShowAssessmentModal] = useState(false)
 
   // Track page view
   useEffect(() => {
@@ -197,8 +199,8 @@ export default function ProfilePage() {
   const getScoreInterpretation = (score: number) => {
     if (score <= 8) return { label: 'Avoiding', color: 'bg-red-100 text-red-700' }
     if (score <= 12) return { label: 'Sensitive', color: 'bg-orange-100 text-orange-700' }
-    if (score <= 16) return { label: 'Typical', color: 'bg-gray-100 text-gray-700' }
-    return { label: 'Seeking', color: 'bg-green-100 text-green-700' }
+    if (score <= 16) return { label: 'Typical', color: 'bg-blue-100 text-blue-700' }
+    return { label: 'Seeking', color: 'bg-yellow-100 text-yellow-700' }
   }
 
   const getNeedsForSystem = (system: string, score: number) => {
@@ -413,6 +415,25 @@ export default function ProfilePage() {
                     </div>
                   )
                 })}
+                <button
+                  onClick={() => setShowAssessmentModal(true)}
+                  style={{ 
+                    width: '100%', 
+                    height: 40, 
+                    border: '1px solid #EAE3E1', 
+                    borderRadius: 16, 
+                    background: '#fff', 
+                    color: '#252225', 
+                    fontWeight: 600, 
+                    fontSize: 16, 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    marginTop: 16
+                  }}
+                >
+                  View Full Assessment Results
+                </button>
               </div>
             </div>
           )}
@@ -422,7 +443,7 @@ export default function ProfilePage() {
               <h2 className="profile-section-title hig-title-2" style={{ fontSize: 18, fontWeight: 600, color: '#252225' }}>Account</h2>
             </div>
             <div className="flex flex-col gap-3 mb-2">
-              <a href="mailto:Allie@livingfullypeds.com" style={{ width: '100%', height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Support</a>
+              <a href="mailto:getsensorysmart@gmail.com" style={{ width: '100%', height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Support</a>
               <button
                 onClick={handleBillingPortal}
                 disabled={billingLoading}
@@ -445,6 +466,14 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
+      
+      {/* Assessment Results Modal */}
+      <AssessmentResultsModal
+        isOpen={showAssessmentModal}
+        onClose={() => setShowAssessmentModal(false)}
+        user={user}
+        profile={profile}
+      />
     </div>
   )
 } 

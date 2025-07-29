@@ -59,7 +59,7 @@ function ForgotPasswordForm() {
             <div className="space-y-4">
               <Link
                 href="/login"
-                className="w-full h-12 bg-[#367A87] text-white rounded-[16px] font-semibold inline-block text-center flex items-center justify-center"
+                className="w-full h-12 bg-[#367A87] text-white rounded-[16px] font-semibold flex items-center justify-center"
               >
                 Back to Sign In
               </Link>

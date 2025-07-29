@@ -562,10 +562,16 @@ export default function TodayDashboard() {
 
   // Personalization Logic
   const getPersonalizedActivities = async (assessment: Assessment) => {
-    if (!assessment?.results) return []
+    if (!assessment?.results) {
+      console.log('No assessment results found')
+      return []
+    }
 
     const results = assessment.results as any
     const behaviorScores = results.behaviorScores || {}
+    
+    console.log('Assessment results:', results)
+    console.log('Behavior scores:', behaviorScores)
     
     try {
       // Get activities from database
@@ -608,9 +614,13 @@ export default function TodayDashboard() {
         })
 
         // Sort by score and return top 6
-        return scoredActivities
+        const topActivities = scoredActivities
           .sort((a, b) => b.score - a.score)
           .slice(0, 6)
+        
+        console.log('Top scored activities:', topActivities.map(a => ({ title: a.title, score: a.score, behavior_types: a.behavior_types, sensory_systems: a.sensory_systems })))
+        
+        return topActivities
       }
 
       // Score activities based on child's profile
@@ -692,9 +702,13 @@ export default function TodayDashboard() {
       })
 
       // Sort by score and return top 6
-      return scoredActivities
+      const topActivities = scoredActivities
         .sort((a, b) => b.score - a.score)
         .slice(0, 6)
+      
+      console.log('Top scored activities (DB):', topActivities.map(a => ({ title: a.title, score: a.score, behavior_types: a.behavior_types, sensory_systems: a.sensory_systems })))
+      
+      return topActivities
     }
   }
 
@@ -706,9 +720,14 @@ export default function TodayDashboard() {
       { type: 'low-registration', score: behaviorScores['low-registration'] || 0 }
     ]
     
-    return scores.reduce((max, current) => 
+    const dominant = scores.reduce((max, current) => 
       current.score > max.score ? current : max
     ).type
+    
+    console.log('Behavior scores for analysis:', scores)
+    console.log('Dominant behavior:', dominant)
+    
+    return dominant
   }
 
   const getChallengingSystems = (results: any) => {
@@ -720,6 +739,9 @@ export default function TodayDashboard() {
         challenging.push(system)
       }
     })
+    
+    console.log('System scores:', systems.map(system => ({ system, score: results[system] || 0 })))
+    console.log('Challenging systems:', challenging)
     
     return challenging
   }
@@ -1587,6 +1609,16 @@ export default function TodayDashboard() {
               <div className="flex items-center mb-2">
                 <img src="/Icons/target.svg" alt="target" style={{ width: 18, height: 18, marginRight: 8, color: '#3D3A3D' }} />
                 <span style={{ color: '#252225', fontSize: 15, fontWeight: 400 }}>{activity.context}</span>
+                {activity.activity_type && (
+                  <span className="activity-type-label">
+                    {activity.activity_type.replace('-', ' ')}
+                  </span>
+                )}
+                {!activity.activity_type && activity.sensory_systems && activity.sensory_systems.length > 0 && (
+                  <span className="activity-type-label">
+                    {activity.sensory_systems[0].replace('-', ' ')}
+                  </span>
+                )}
               </div>
               <div className="flex items-center mb-4">
                 <svg fill="none" stroke="#3D3A3D" viewBox="0 0 24 24" className="w-4 h-4 mr-1">
