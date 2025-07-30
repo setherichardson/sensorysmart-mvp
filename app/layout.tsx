@@ -73,9 +73,9 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
     'apple-mobile-web-app-title': 'SensorySmart',
     'application-name': 'SensorySmart',
-    'msapplication-TileColor': '#367A87',
+    'msapplication-TileColor': '#F6F6F6',
     'msapplication-tap-highlight': 'no',
-    'theme-color': '#367A87',
+    'theme-color': '#F6F6F6',
     'apple-mobile-web-app-orientations': 'portrait',
   },
 };
@@ -107,7 +107,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-        <meta name="theme-color" content="#367A87" />
+        <meta name="theme-color" content="#F6F6F6" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="SensorySmart" />
