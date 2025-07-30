@@ -443,7 +443,7 @@ export default function ProfilePage() {
               <h2 className="profile-section-title hig-title-2" style={{ fontSize: 18, fontWeight: 600, color: '#252225' }}>Account</h2>
             </div>
             <div className="flex flex-col gap-3 mb-2">
-              <a href="mailto:getsensorysmart@gmail.com" style={{ width: '100%', height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Support</a>
+              <a href="mailto:seth@getsensorysmart.com" style={{ width: '100%', height: 40, border: '1px solid #EAE3E1', borderRadius: 16, background: '#fff', color: '#252225', fontWeight: 600, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Support</a>
               <button
                 onClick={handleBillingPortal}
                 disabled={billingLoading}
