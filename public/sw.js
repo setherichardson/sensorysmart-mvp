@@ -152,7 +152,7 @@ self.addEventListener('push', (event) => {
     };
 
     event.waitUntil(
-      self.registration.showNotification(data.title || 'SensorySmart', options)
+      self.registration.showNotification(data.title || 'Sensorysmart', options)
     );
   }
 });

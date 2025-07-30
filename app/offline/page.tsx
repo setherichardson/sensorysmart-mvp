@@ -11,7 +11,7 @@ export default function OfflinePage() {
             </svg>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            SensorySmart
+            Sensorysmart
           </h1>
           <div className="mb-8">
             <div className="w-16 h-16 bg-orange-100 rounded-full mx-auto mb-4 flex items-center justify-center">

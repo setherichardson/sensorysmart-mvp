@@ -23,12 +23,12 @@ const monaSans = {
 };
 
 export const metadata: Metadata = {
-  title: "SensorySmart - Sensory Support for Children",
+  title: "Sensorysmart - Sensory Support for Children",
   description: "Discover your child's unique sensory needs and get personalized activities to help them thrive. Science-based assessments and expert guidance.",
   keywords: ["sensory processing", "child development", "parenting", "occupational therapy", "sensory activities"],
-  authors: [{ name: "SensorySmart Team" }],
-  creator: "SensorySmart",
-  publisher: "SensorySmart",
+  authors: [{ name: "Sensorysmart Team" }],
+  creator: "Sensorysmart",
+  publisher: "Sensorysmart",
   formatDetection: {
     email: false,
     address: false,
@@ -39,16 +39,16 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "SensorySmart - Sensory Support for Children",
+    title: "Sensorysmart - Sensory Support for Children",
     description: "Discover your child's unique sensory needs and get personalized activities to help them thrive.",
     url: '/',
-    siteName: 'SensorySmart',
+    siteName: 'Sensorysmart',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'SensorySmart - Sensory Support for Children',
+        alt: 'Sensorysmart - Sensory Support for Children',
       },
     ],
     locale: 'en_US',
@@ -56,23 +56,23 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "SensorySmart - Sensory Support for Children",
+    title: "Sensorysmart - Sensory Support for Children",
     description: "Discover your child's unique sensory needs and get personalized activities to help them thrive.",
     images: ['/og-image.png'],
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'SensorySmart',
+    title: 'Sensorysmart',
   },
-  applicationName: 'SensorySmart',
+  applicationName: 'Sensorysmart',
   manifest: '/manifest.json',
   other: {
     'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
-    'apple-mobile-web-app-title': 'SensorySmart',
-    'application-name': 'SensorySmart',
+    'apple-mobile-web-app-title': 'Sensorysmart',
+    'application-name': 'Sensorysmart',
     'msapplication-TileColor': '#F6F6F6',
     'msapplication-tap-highlight': 'no',
     'theme-color': '#F6F6F6',
@@ -110,7 +110,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#F6F6F6" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="SensorySmart" />
+        <meta name="apple-mobile-web-app-title" content="Sensorysmart" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#367A87" />
         <meta name="msapplication-tap-highlight" content="no" />

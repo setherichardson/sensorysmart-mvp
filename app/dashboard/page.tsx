@@ -88,7 +88,7 @@ export default function Dashboard() {
             <div>
               <h1 className="text-xl font-bold">Welcome, {profile.parent_name}!</h1>
               <p className="text-gray-300 text-sm mt-1">
-                {profile.child_name}'s SensorySmart Dashboard
+                {profile.child_name}'s Sensorysmart Dashboard
               </p>
             </div>
             <button
@@ -209,7 +209,7 @@ export default function Dashboard() {
                 <h4 className="font-medium text-green-900">Profile Created!</h4>
                 <p className="text-sm text-green-700 mt-1">
                   {assessment
-                    ? "You've successfully completed the SensorySmart assessment. Your personalized experience is now ready."
+                    ? "You've successfully completed the Sensorysmart assessment. Your personalized experience is now ready."
                     : "Complete the sensory assessment to unlock personalized activities."
                   }
                 </p>
