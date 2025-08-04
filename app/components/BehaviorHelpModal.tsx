@@ -171,7 +171,14 @@ export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, us
         
         // Score based on challenging sensory systems
         if (results?.sensoryScores) {
-          const challengingSystems = getChallengingSystems(results)
+          const scores = results.sensoryScores
+          const challengingSystems: string[] = []
+          if (scores.proprioceptive > 3) challengingSystems.push('proprioceptive')
+          if (scores.vestibular > 3) challengingSystems.push('vestibular')
+          if (scores.tactile > 3) challengingSystems.push('tactile')
+          if (scores.auditory > 3) challengingSystems.push('auditory')
+          if (scores.visual > 3) challengingSystems.push('visual')
+          
           if (challengingSystems.some(system => 
             activity.sensory_systems.includes(system)
           )) {
@@ -221,29 +228,7 @@ export default function BehaviorHelpModal({ isOpen, onClose, onStartActivity, us
     }
   }
 
-  const getDominantBehavior = (behaviorScores: any) => {
-    if (!behaviorScores) return 'seeking'
-    
-    const seeking = behaviorScores.seeking || 0
-    const avoiding = behaviorScores.avoiding || 0
-    
-    return seeking > avoiding ? 'seeking' : 'avoiding'
-  }
 
-  const getChallengingSystems = (results: any) => {
-    const challengingSystems: string[] = []
-    
-    if (results.sensoryScores) {
-      const scores = results.sensoryScores
-      if (scores.proprioceptive > 3) challengingSystems.push('proprioceptive')
-      if (scores.vestibular > 3) challengingSystems.push('vestibular')
-      if (scores.tactile > 3) challengingSystems.push('tactile')
-      if (scores.auditory > 3) challengingSystems.push('auditory')
-      if (scores.visual > 3) challengingSystems.push('visual')
-    }
-    
-    return challengingSystems
-  }
 
   const handleStartActivity = (activity: Activity) => {
     // Track behavior activity started
