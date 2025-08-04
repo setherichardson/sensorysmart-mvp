@@ -10,6 +10,7 @@ import ActivityStory from '../../components/ActivityStory'
 import BehaviorHelpModal from '../../components/BehaviorHelpModal'
 import AssessmentResultsModal from '../../components/AssessmentResultsModal'
 import { analytics } from '@/lib/analytics'
+import { getPersonalizedActivities, getNextActivity as getNextActivityImproved, getActivitySteps } from '@/lib/improved-activity-logic'
 
 
 
@@ -73,6 +74,12 @@ function getTimeSlotDisplayName(timeSlot: string): string {
     'bedtime': 'Bedtime'
   };
   return timeSlotNames[timeSlot] || timeSlot;
+}
+
+// Clean up activity titles by removing behavior type suffixes
+function getCleanActivityTitle(title: string): string {
+  // Remove behavior type suffixes like " - Avoiding", " - Seeking", " - Mixed", " - Bedtime"
+  return title.replace(/\s*-\s*(Avoiding|Seeking|Sensitive|Low-Registration|Mixed|Bedtime)$/, '');
 }
 
 export default function TodayDashboard() {
@@ -561,6 +568,8 @@ export default function TodayDashboard() {
   ]
 
   // Personalization Logic
+  // OLD getPersonalizedActivities - KEPT FOR REFERENCE
+  /*
   const getPersonalizedActivities = async (assessment: Assessment) => {
     if (!assessment?.results) {
       console.log('No assessment results found')
@@ -711,6 +720,12 @@ export default function TodayDashboard() {
       return topActivities
     }
   }
+  */
+  
+  // NEW IMPROVED getPersonalizedActivities - uses the imported function
+  const getPersonalizedActivitiesWrapper = async (assessment: Assessment | null) => {
+    return await getPersonalizedActivities(assessment);
+  };
 
   const getDominantBehavior = (behaviorScores: any) => {
     const scores = [
@@ -755,14 +770,35 @@ export default function TodayDashboard() {
       setCurrentTimeSlot(timeSlot)
       setLastTimeSlotCheck(new Date())
       
-      if (!assessment) {
+      if (timeSlot === 'bedtime') {
+        // Special case for bedtime - always show late-night activities
+        console.log('Bedtime detected, fetching late-night activities')
+        try {
+          const { data: lateNightActivities, error } = await supabase
+            .from('activities')
+            .select('*')
+            .in('title', ['Gentle Hand Squeezes', 'Calming Belly Breathing', 'Quiet Counting'])
+            .order('title')
+          
+          if (error) {
+            console.error('Error fetching late-night activities:', error)
+            setTodaysActivities([])
+          } else {
+            console.log('Late-night activities loaded:', lateNightActivities?.length || 0)
+            setTodaysActivities(lateNightActivities || [])
+          }
+        } catch (err) {
+          console.error('Error fetching late-night activities:', err)
+          setTodaysActivities([])
+        }
+      } else if (!assessment) {
         // Return time-appropriate general activities
         console.log('No assessment found, using time-based general activities for', timeSlot)
         const timeBasedActivities = getTimeBasedActivities(activityLibrary, timeSlot)
         setTodaysActivities(timeBasedActivities.slice(0, 3))
       } else {
         console.log('Assessment found, getting personalized activities for', timeSlot)
-        const activities = await getPersonalizedActivities(assessment)
+        const activities = await getPersonalizedActivitiesWrapper(assessment)
         console.log('Personalized activities loaded:', activities?.length || 0)
         
         // Filter activities based on time slot
@@ -901,17 +937,19 @@ export default function TodayDashboard() {
         }
       }
       
-      // Bedtime (10 PM - 6 AM): Very calming, quiet activities
+      // Bedtime (10 PM - 6 AM): Hard-coded late-night activities
       else if (timeSlot === 'bedtime') {
-        if (activity.activity_type === 'calming' || activity.activity_type === 'auditory') {
-          timeScore += 20
-        }
-        if (activity.context?.toLowerCase().includes('bedtime') || 
-            activity.context?.toLowerCase().includes('sleep')) {
-          timeScore += 15
-        }
-        if (activity.duration_minutes && activity.duration_minutes <= 5) {
-          timeScore += 10 // Short bedtime activities
+        // For late night, return hard-coded activities instead of scoring
+        const lateNightActivityTitles = [
+          'Gentle Hand Squeezes',
+          'Calming Belly Breathing', 
+          'Quiet Counting'
+        ];
+        
+        if (lateNightActivityTitles.includes(activity.title)) {
+          timeScore += 1000 // Give these activities very high priority
+        } else {
+          timeScore -= 50 // Deprioritize all other activities during late night
         }
       }
       
@@ -923,6 +961,8 @@ export default function TodayDashboard() {
   }
 
   // Activity instructions for all activities
+  // OLD getActivitySteps - KEPT FOR REFERENCE
+  /*
   const getActivitySteps = (activityId: string): ActivityStep[] => {
     switch (activityId) {
       case 'wall-pushups':
@@ -1024,102 +1064,12 @@ export default function TodayDashboard() {
           { id: 5, instruction: 'Add counting' },
           { id: 6, instruction: 'Make it fun!' }
         ]
-      case 'visual-tracking':
-        return [
-          { id: 1, instruction: 'Hold a small object' },
-          { id: 2, instruction: 'Move it slowly left to right' },
-          { id: 3, instruction: 'Follow with eyes only' },
-          { id: 4, instruction: 'Move up and down' },
-          { id: 5, instruction: 'Make figure-8 pattern' },
-          { id: 6, instruction: 'Take breaks if eyes get tired' }
-        ]
-      case 'dim-lighting':
-        return [
-          { id: 1, instruction: 'Turn off bright lights' },
-          { id: 2, instruction: 'Use soft lighting' },
-          { id: 3, instruction: 'Find comfortable spot' },
-          { id: 4, instruction: 'Close eyes if needed' },
-          { id: 5, instruction: 'Stay for 5-10 minutes' },
-          { id: 6, instruction: 'Gradually increase light' }
-        ]
-      case 'body-scan':
-        return [
-          { id: 1, instruction: 'Lie down comfortably' },
-          { id: 2, instruction: 'Close your eyes' },
-          { id: 3, instruction: 'Focus on your toes' },
-          { id: 4, instruction: 'Move attention up your body' },
-          { id: 5, instruction: 'Notice how each part feels' },
-          { id: 6, instruction: 'End with your head' }
-        ]
-      case 'hunger-thirst-check':
-        return [
-          { id: 1, instruction: 'Stop what you\'re doing' },
-          { id: 2, instruction: 'Take a deep breath' },
-          { id: 3, instruction: 'Ask: "Am I hungry?"' },
-          { id: 4, instruction: 'Ask: "Am I thirsty?"' },
-          { id: 5, instruction: 'Notice how your body feels' },
-          { id: 6, instruction: 'Get what you need' }
-        ]
-      case 'evening-stretches':
-        return [
-          { id: 1, instruction: 'Find a comfortable space' },
-          { id: 2, instruction: 'Start with gentle arm stretches' },
-          { id: 3, instruction: 'Stretch your legs slowly' },
-          { id: 4, instruction: 'Bend and stretch your back' },
-          { id: 5, instruction: 'Hold each stretch for 10 seconds' },
-          { id: 6, instruction: 'Take deep breaths throughout' }
-        ]
-      case 'warm-bath-time':
-        return [
-          { id: 1, instruction: 'Fill bath with warm water' },
-          { id: 2, instruction: 'Add calming bath salts if desired' },
-          { id: 3, instruction: 'Get in slowly and comfortably' },
-          { id: 4, instruction: 'Close your eyes and relax' },
-          { id: 5, instruction: 'Stay for 10-15 minutes' },
-          { id: 6, instruction: 'Dry off gently when finished' }
-        ]
-      case 'bedtime-story':
-        return [
-          { id: 1, instruction: 'Find a comfortable spot' },
-          { id: 2, instruction: 'Choose a calming story' },
-          { id: 3, instruction: 'Read in a soft, gentle voice' },
-          { id: 4, instruction: 'Take your time with each page' },
-          { id: 5, instruction: 'Use different voices for characters' },
-          { id: 6, instruction: 'End with a gentle goodnight' }
-        ]
-      case 'deep-breathing':
-        return [
-          { id: 1, instruction: 'Lie down comfortably' },
-          { id: 2, instruction: 'Place hands on your belly' },
-          { id: 3, instruction: 'Breathe in slowly for 4 counts' },
-          { id: 4, instruction: 'Hold for 4 counts' },
-          { id: 5, instruction: 'Breathe out slowly for 4 counts' },
-          { id: 6, instruction: 'Repeat 5-10 times' }
-        ]
-      case 'progressive-relaxation':
-        return [
-          { id: 1, instruction: 'Lie down in a quiet space' },
-          { id: 2, instruction: 'Start with your toes - tense them' },
-          { id: 3, instruction: 'Hold for 5 seconds, then relax' },
-          { id: 4, instruction: 'Move up to your legs, then arms' },
-          { id: 5, instruction: 'Continue with your whole body' },
-          { id: 6, instruction: 'End with your face and head' }
-        ]
-      case 'white-noise':
-        return [
-          { id: 1, instruction: 'Find a quiet space' },
-          { id: 2, instruction: 'Turn on white noise machine or app' },
-          { id: 3, instruction: 'Set volume to comfortable level' },
-          { id: 4, instruction: 'Lie down and close your eyes' },
-          { id: 5, instruction: 'Focus on the steady sound' },
-          { id: 6, instruction: 'Let it help you drift to sleep' }
-        ]
-      default:
-        return [
-          { id: 1, instruction: 'Instructions coming soon!' }
-        ]
-    }
-  }
+  */
+  
+  // NEW IMPROVED getActivitySteps - uses the imported function
+  const getActivityStepsWrapper = (activityId: string): ActivityStep[] => {
+    return getActivitySteps(activityId);
+  };
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -1282,7 +1232,7 @@ export default function TodayDashboard() {
         console.log('Activities after removal:', currentActivities.map(a => a.title))
         
         // Get a new activity that considers recent completions and assessment
-        const newActivity = await getNextActivity(currentActivities, activity)
+        const newActivity = await getNextActivityWrapper(currentActivities, activity)
         
         // Add the new activity at the bottom
         currentActivities.push(newActivity)
@@ -1329,8 +1279,30 @@ export default function TodayDashboard() {
       
       // Get available activities
       let availableActivities: Activity[]
-      if (assessment) {
-        const personalizedActivities = await getPersonalizedActivities(assessment)
+      
+      // Special handling for bedtime - only use late-night activities
+      if (timeSlot === 'bedtime') {
+        console.log('Bedtime detected, fetching late-night activities for next activity')
+        try {
+          const { data: lateNightActivities, error } = await supabase
+            .from('activities')
+            .select('*')
+            .in('title', ['Gentle Hand Squeezes', 'Calming Belly Breathing', 'Quiet Counting'])
+            .order('title')
+          
+          if (error) {
+            console.error('Error fetching late-night activities:', error)
+            availableActivities = activityLibrary
+          } else {
+            console.log('Late-night activities loaded for next activity:', lateNightActivities?.length || 0)
+            availableActivities = lateNightActivities || activityLibrary
+          }
+        } catch (err) {
+          console.error('Error fetching late-night activities:', err)
+          availableActivities = activityLibrary
+        }
+      } else if (assessment) {
+        const personalizedActivities = await getPersonalizedActivitiesWrapper(assessment)
         availableActivities = personalizedActivities || activityLibrary
       } else {
         availableActivities = activityLibrary
@@ -1355,7 +1327,7 @@ export default function TodayDashboard() {
       // If we're running low on activities, allow some repetition but prefer variety
       if (availableActivities.length < 5) {
         console.log('Low on activities, allowing some repetition')
-        availableActivities = assessment ? (await getPersonalizedActivities(assessment)) || activityLibrary : activityLibrary
+        availableActivities = assessment ? (await getPersonalizedActivitiesWrapper(assessment)) || activityLibrary : activityLibrary
         availableActivities = availableActivities.filter(a => 
           !currentActivities.some(existing => existing.id === a.id)
         )
@@ -1455,6 +1427,15 @@ export default function TodayDashboard() {
             score += 8
           }
         } else if (timeSlot === 'bedtime') {
+          // Give very high priority to late-night activities
+          const lateNightActivityTitles = ['Gentle Hand Squeezes', 'Calming Belly Breathing', 'Quiet Counting']
+          if (lateNightActivityTitles.includes(activity.title)) {
+            score += 1000 // Very high priority for late-night activities
+          } else {
+            score -= 50 // Deprioritize all other activities during bedtime
+          }
+          
+          // Additional scoring for late-night activities
           if (activity.activity_type === 'calming' || activity.activity_type === 'auditory') {
             score += 20
           }
@@ -1530,6 +1511,11 @@ export default function TodayDashboard() {
     }
   }
 
+  // NEW IMPROVED getNextActivity - uses the imported function
+  const getNextActivityWrapper = async (currentActivities: Activity[], justCompleted: Activity): Promise<Activity> => {
+    return await getNextActivityImproved(currentActivities, justCompleted, assessment);
+  };
+
   const handleCloseStory = () => {
     setStoryOpen(false)
     setCurrentActivity(null)
@@ -1604,7 +1590,7 @@ export default function TodayDashboard() {
           {todaysActivities && todaysActivities.slice(0, 3).map((activity, idx) => (
             <div key={activity.id} className="activity-card" style={{ borderRadius: 24, background: '#fff', boxShadow: '0 2px 8px 0 rgba(44, 62, 80, 0.06)', marginBottom: 16 }}>
               <h3 className="activity-title mb-2" style={{ color: '#252225', fontWeight: 600, fontSize: 20 }}>
-                {activity.title}
+                {getCleanActivityTitle(activity.title)}
               </h3>
               <div className="flex items-center mb-2">
                 <img src="/Icons/target.svg" alt="target" style={{ width: 18, height: 18, marginRight: 8, color: '#3D3A3D' }} />
