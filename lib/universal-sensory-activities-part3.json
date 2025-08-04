@@ -1,0 +1,1245 @@
+[
+  {
+    "title": "Sensory Scavenger Hunt - Seeking",
+    "description": "High-energy hunt for various sensory items around the house",
+    "context": "When child needs lots of movement and exploration",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "visual",
+      "vestibular",
+      "tactile"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Provides intense movement input",
+      "Satisfies exploration needs",
+      "Improves visual scanning",
+      "Burns energy effectively"
+    ],
+    "when_to_use": "When child is restless and needs to move around",
+    "materials_needed": [
+      "List of items to find",
+      "Basket or bag",
+      "Timer"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create hunt list",
+        "description": "Make a list of 10-15 items to find around the house",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Set timer",
+        "description": "Set a 10-minute timer for the hunt",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Start hunting",
+        "description": "Run around finding items as quickly as possible",
+        "duration_seconds": 600
+      },
+      {
+        "step_number": 4,
+        "title": "Check off items",
+        "description": "Mark off each item as you find it",
+        "duration_seconds": 180
+      }
+    ],
+    "age_range": "4-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Sensory Scavenger Hunt - Avoiding",
+    "description": "Gentle, structured hunt with familiar items",
+    "context": "When child needs gentle movement and structure",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual",
+      "tactile"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Provides gentle movement",
+      "Structured exploration",
+      "Familiar environment",
+      "Controlled sensory input"
+    ],
+    "when_to_use": "When child needs gentle activity in familiar space",
+    "materials_needed": [
+      "Simple item list",
+      "Small basket",
+      "Familiar toys"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Simple list",
+        "description": "Create a list of 5-8 familiar items",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle search",
+        "description": "Walk slowly and look for items",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Collect items",
+        "description": "Gently place items in basket",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 4,
+        "title": "Review finds",
+        "description": "Look at what was collected",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Sensory Scavenger Hunt - Sensitive",
+    "description": "Quiet, focused hunt with minimal sensory input",
+    "context": "When child needs quiet, focused activity",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual"
+    ],
+    "behavior_fit": "sensitive",
+    "benefits": [
+      "Quiet movement",
+      "Focused attention",
+      "Minimal sensory input",
+      "Calming exploration"
+    ],
+    "when_to_use": "When child needs quiet, focused activity",
+    "materials_needed": [
+      "Quiet item list",
+      "Soft basket",
+      "Soft lighting"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Quiet preparation",
+        "description": "Whisper the list of items to find",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Silent search",
+        "description": "Walk quietly and look carefully",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 3,
+        "title": "Gentle collection",
+        "description": "Softly place items in basket",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 4,
+        "title": "Quiet review",
+        "description": "Whisper about what was found",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Sensory Scavenger Hunt - Low-Registration",
+    "description": "High-stimulation hunt with bright colors and sounds",
+    "context": "When child needs lots of stimulation to engage",
+    "duration_minutes": 12,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual",
+      "auditory",
+      "tactile"
+    ],
+    "behavior_fit": "low-registration",
+    "benefits": [
+      "High sensory stimulation",
+      "Engaging movement",
+      "Bright visual input",
+      "Active participation"
+    ],
+    "when_to_use": "When child seems disengaged and needs stimulation",
+    "materials_needed": [
+      "Bright colored items",
+      "Noisy toys",
+      "Colorful basket"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Bright list",
+        "description": "Show colorful pictures of items to find",
+        "duration_seconds": 90
+      },
+      {
+        "step_number": 2,
+        "title": "Energetic search",
+        "description": "Move quickly and make noise while searching",
+        "duration_seconds": 360
+      },
+      {
+        "step_number": 3,
+        "title": "Celebrate finds",
+        "description": "Cheer when each item is found",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 4,
+        "title": "Show collection",
+        "description": "Display all found items with excitement",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Sensory Scavenger Hunt - Mixed",
+    "description": "Balanced hunt with moderate stimulation",
+    "context": "When child needs balanced sensory input",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual",
+      "tactile"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Balanced movement",
+      "Moderate stimulation",
+      "Engaging but not overwhelming",
+      "Suitable for most children"
+    ],
+    "when_to_use": "When child needs moderate activity level",
+    "materials_needed": [
+      "Mixed item list",
+      "Regular basket",
+      "Various household items"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Balanced list",
+        "description": "Create a list with variety of items",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Moderate search",
+        "description": "Walk at normal pace to find items",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Collect items",
+        "description": "Gather items in basket",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 4,
+        "title": "Review together",
+        "description": "Look at collection together",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Sensory Scavenger Hunt - Bedtime",
+    "description": "Quiet bedtime hunt for sleep-related items",
+    "context": "When child needs gentle pre-sleep activity",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Gentle pre-sleep activity",
+      "Quiet movement",
+      "Bedtime routine",
+      "Calming exploration"
+    ],
+    "when_to_use": "As part of bedtime routine",
+    "materials_needed": [
+      "Bedtime item list",
+      "Soft basket",
+      "Night light"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Bedtime items",
+        "description": "Whisper list of bedtime items to find",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Quiet search",
+        "description": "Walk quietly looking for items",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Gentle collection",
+        "description": "Softly place items in basket",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Music and Movement - Seeking",
+    "description": "High-energy dance and movement with music",
+    "context": "When child needs intense movement and stimulation",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "auditory",
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Intense movement input",
+      "Auditory stimulation",
+      "Energy release",
+      "Rhythm development"
+    ],
+    "when_to_use": "When child is hyperactive and needs to move",
+    "materials_needed": [
+      "Upbeat music",
+      "Speaker",
+      "Open space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up music",
+        "description": "Play energetic, upbeat music",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Dance freely",
+        "description": "Move body to the music energetically",
+        "duration_seconds": 480
+      },
+      {
+        "step_number": 3,
+        "title": "Jump and spin",
+        "description": "Add jumping and spinning movements",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Cool down",
+        "description": "Slow down movements gradually",
+        "duration_seconds": 150
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Music and Movement - Avoiding",
+    "description": "Gentle, structured movement with soft music",
+    "context": "When child needs gentle, predictable movement",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "auditory",
+    "sensory_systems": [
+      "auditory",
+      "vestibular"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Gentle movement",
+      "Predictable rhythm",
+      "Controlled input",
+      "Calming effect"
+    ],
+    "when_to_use": "When child needs gentle, structured activity",
+    "materials_needed": [
+      "Soft, gentle music",
+      "Quiet space",
+      "Comfortable clothing"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soft music",
+        "description": "Play gentle, calming music",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle sway",
+        "description": "Sway slowly to the music",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 3,
+        "title": "Simple movements",
+        "description": "Add simple arm movements",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 4,
+        "title": "Slow down",
+        "description": "Gradually slow movements",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Music and Movement - Sensitive",
+    "description": "Very quiet movement with minimal sound",
+    "context": "When child is sensitive to sound and movement",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "auditory",
+    "sensory_systems": [
+      "auditory",
+      "vestibular"
+    ],
+    "behavior_fit": "sensitive",
+    "benefits": [
+      "Minimal auditory input",
+      "Gentle movement",
+      "Controlled stimulation",
+      "Calming effect"
+    ],
+    "when_to_use": "When child is overwhelmed by sound and movement",
+    "materials_needed": [
+      "Very quiet music",
+      "Soft space",
+      "Comfortable clothes"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Whisper quiet",
+        "description": "Play very soft, quiet music",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Tiny movements",
+        "description": "Make very small, gentle movements",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Breathing rhythm",
+        "description": "Move with breathing rhythm",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Music and Movement - Low-Registration",
+    "description": "High-stimulation dance with loud, engaging music",
+    "context": "When child needs lots of stimulation to engage",
+    "duration_minutes": 12,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "auditory",
+      "vestibular",
+      "visual"
+    ],
+    "behavior_fit": "low-registration",
+    "benefits": [
+      "High sensory stimulation",
+      "Engaging movement",
+      "Loud auditory input",
+      "Active participation"
+    ],
+    "when_to_use": "When child seems disengaged and needs stimulation",
+    "materials_needed": [
+      "Loud, energetic music",
+      "Bright lights",
+      "Colorful props"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Loud music",
+        "description": "Play loud, energetic music",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Big movements",
+        "description": "Make large, dramatic movements",
+        "duration_seconds": 360
+      },
+      {
+        "step_number": 3,
+        "title": "Add props",
+        "description": "Use colorful scarves or ribbons",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Celebrate",
+        "description": "Cheer and celebrate the movement",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Music and Movement - Mixed",
+    "description": "Balanced movement with moderate music",
+    "context": "When child needs balanced sensory input",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "auditory",
+    "sensory_systems": [
+      "auditory",
+      "vestibular"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Balanced movement",
+      "Moderate stimulation",
+      "Engaging but not overwhelming",
+      "Suitable for most children"
+    ],
+    "when_to_use": "When child needs moderate activity level",
+    "materials_needed": [
+      "Moderate volume music",
+      "Open space",
+      "Comfortable clothes"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Moderate music",
+        "description": "Play music at comfortable volume",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Natural movement",
+        "description": "Move naturally to the music",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Add variety",
+        "description": "Try different movement styles",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Cool down",
+        "description": "Slow down gradually",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Music and Movement - Bedtime",
+    "description": "Gentle lullaby movement for bedtime",
+    "context": "When child needs calming pre-sleep activity",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "auditory",
+    "sensory_systems": [
+      "auditory",
+      "vestibular"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Calming pre-sleep activity",
+      "Gentle movement",
+      "Lullaby rhythm",
+      "Bedtime routine"
+    ],
+    "when_to_use": "As part of bedtime routine",
+    "materials_needed": [
+      "Soft lullabies",
+      "Quiet space",
+      "Comfortable clothes"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soft lullabies",
+        "description": "Play gentle lullaby music",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle sway",
+        "description": "Sway very gently to the music",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Slow breathing",
+        "description": "Breathe slowly with the rhythm",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Texture Exploration - Seeking",
+    "description": "Intense exploration of various textures and materials",
+    "context": "When child craves lots of tactile input",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Intense tactile input",
+      "Satisfies touch needs",
+      "Exploration satisfaction",
+      "Sensory fulfillment"
+    ],
+    "when_to_use": "When child is constantly touching things",
+    "materials_needed": [
+      "Various textured materials",
+      "Large container",
+      "Different fabrics"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up textures",
+        "description": "Place various textured materials in container",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Intense exploration",
+        "description": "Dive hands deep into textures",
+        "duration_seconds": 480
+      },
+      {
+        "step_number": 3,
+        "title": "Mix and match",
+        "description": "Combine different textures together",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 4,
+        "title": "Create patterns",
+        "description": "Arrange textures in patterns",
+        "duration_seconds": 180
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Texture Exploration - Avoiding",
+    "description": "Gentle, controlled exploration of familiar textures",
+    "context": "When child is hesitant about new textures",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Gentle tactile input",
+      "Familiar textures",
+      "Controlled exploration",
+      "Gradual exposure"
+    ],
+    "when_to_use": "When child avoids touching new things",
+    "materials_needed": [
+      "Familiar soft materials",
+      "Small container",
+      "Known fabrics"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Familiar materials",
+        "description": "Use only known, comfortable textures",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle touch",
+        "description": "Touch materials very lightly",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 3,
+        "title": "Describe feelings",
+        "description": "Talk about how textures feel",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 4,
+        "title": "Choose favorite",
+        "description": "Pick the most comfortable texture",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Texture Exploration - Sensitive",
+    "description": "Very gentle exploration with minimal tactile input",
+    "context": "When child is very sensitive to touch",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile"
+    ],
+    "behavior_fit": "sensitive",
+    "benefits": [
+      "Minimal tactile input",
+      "Very gentle touch",
+      "Controlled exposure",
+      "Calming effect"
+    ],
+    "when_to_use": "When child is very sensitive to textures",
+    "materials_needed": [
+      "Very soft materials",
+      "Small piece",
+      "Clean hands"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "One soft item",
+        "description": "Start with just one very soft item",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Finger tip touch",
+        "description": "Touch with just one finger tip",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Gentle stroke",
+        "description": "Very gently stroke the material",
+        "duration_seconds": 90
+      },
+      {
+        "step_number": 4,
+        "title": "Stop when ready",
+        "description": "Stop immediately if uncomfortable",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Texture Exploration - Low-Registration",
+    "description": "High-stimulation texture exploration with bright colors",
+    "context": "When child doesn't notice tactile input",
+    "duration_minutes": 12,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "low-registration",
+    "benefits": [
+      "High tactile stimulation",
+      "Bright visual input",
+      "Engaging textures",
+      "Active participation"
+    ],
+    "when_to_use": "When child doesn't seem to feel textures",
+    "materials_needed": [
+      "Bright colored textures",
+      "Varied materials",
+      "Large container"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Bright textures",
+        "description": "Use colorful, varied textured materials",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Intense exploration",
+        "description": "Dive hands deep and move vigorously",
+        "duration_seconds": 360
+      },
+      {
+        "step_number": 3,
+        "title": "Mix colors",
+        "description": "Combine different colored textures",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Create art",
+        "description": "Make patterns or shapes with textures",
+        "duration_seconds": 180
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Texture Exploration - Mixed",
+    "description": "Balanced texture exploration with moderate variety",
+    "context": "When child needs balanced tactile input",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Balanced tactile input",
+      "Moderate variety",
+      "Engaging but not overwhelming",
+      "Suitable for most children"
+    ],
+    "when_to_use": "When child needs moderate tactile activity",
+    "materials_needed": [
+      "Variety of textures",
+      "Medium container",
+      "Different materials"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Mixed textures",
+        "description": "Set up variety of different textures",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Explore naturally",
+        "description": "Touch and explore at comfortable pace",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Compare textures",
+        "description": "Feel different textures and compare",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Choose favorites",
+        "description": "Pick which textures feel best",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Texture Exploration - Bedtime",
+    "description": "Gentle texture exploration with soft materials",
+    "context": "When child needs calming tactile input before sleep",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Calming tactile input",
+      "Soft textures",
+      "Pre-sleep relaxation",
+      "Gentle stimulation"
+    ],
+    "when_to_use": "As part of bedtime routine",
+    "materials_needed": [
+      "Very soft materials",
+      "Small pieces",
+      "Quiet space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soft materials",
+        "description": "Use only very soft, comforting textures",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle touch",
+        "description": "Very gently touch soft materials",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Calming strokes",
+        "description": "Slow, calming strokes on soft textures",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Balance Activities - Seeking",
+    "description": "Challenging balance activities with lots of movement",
+    "context": "When child needs intense vestibular and proprioceptive input",
+    "duration_minutes": 15,
+    "difficulty": "intermediate",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive",
+      "visual"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Intense vestibular input",
+      "Challenging balance",
+      "Energy release",
+      "Coordination development"
+    ],
+    "when_to_use": "When child is seeking lots of movement and challenge",
+    "materials_needed": [
+      "Balance beam or line",
+      "Pillows",
+      "Open space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up course",
+        "description": "Create challenging balance course",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Walk balance beam",
+        "description": "Walk on narrow balance beam",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Add challenges",
+        "description": "Walk backwards, sideways, on tiptoes",
+        "duration_seconds": 360
+      },
+      {
+        "step_number": 4,
+        "title": "Jump and balance",
+        "description": "Jump between balance points",
+        "duration_seconds": 240
+      }
+    ],
+    "age_range": "4-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Balance Activities - Avoiding",
+    "description": "Simple, safe balance activities with support",
+    "context": "When child is hesitant about movement activities",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Gentle vestibular input",
+      "Safe movement",
+      "Gradual exposure",
+      "Confidence building"
+    ],
+    "when_to_use": "When child avoids movement activities",
+    "materials_needed": [
+      "Wide line on floor",
+      "Pillows for safety",
+      "Supportive environment"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Wide line",
+        "description": "Draw wide line on floor to walk on",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Simple walking",
+        "description": "Walk slowly on the line",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 3,
+        "title": "Add support",
+        "description": "Hold hands or use wall for support",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 4,
+        "title": "Celebrate success",
+        "description": "Praise for completing the walk",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Balance Activities - Sensitive",
+    "description": "Very gentle balance activities with minimal movement",
+    "context": "When child is sensitive to movement and balance",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behavior_fit": "sensitive",
+    "benefits": [
+      "Minimal vestibular input",
+      "Very gentle movement",
+      "Controlled exposure",
+      "Calming effect"
+    ],
+    "when_to_use": "When child is sensitive to movement",
+    "materials_needed": [
+      "Very wide line",
+      "Soft surface",
+      "Quiet space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Very wide line",
+        "description": "Draw very wide line on floor",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Standing balance",
+        "description": "Just stand on the line",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Tiny steps",
+        "description": "Take very small steps on line",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 4,
+        "title": "Stop if needed",
+        "description": "Stop immediately if uncomfortable",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  },
+  {
+    "title": "Balance Activities - Low-Registration",
+    "description": "High-stimulation balance activities with lots of movement",
+    "context": "When child doesn't notice movement and needs stimulation",
+    "duration_minutes": 12,
+    "difficulty": "intermediate",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive",
+      "visual"
+    ],
+    "behavior_fit": "low-registration",
+    "benefits": [
+      "High vestibular stimulation",
+      "Intense movement",
+      "Engaging challenges",
+      "Active participation"
+    ],
+    "when_to_use": "When child doesn't seem to notice movement",
+    "materials_needed": [
+      "Various balance challenges",
+      "Bright markers",
+      "Colorful obstacles"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Multiple challenges",
+        "description": "Set up various balance challenges",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Dynamic movement",
+        "description": "Move quickly between challenges",
+        "duration_seconds": 360
+      },
+      {
+        "step_number": 3,
+        "title": "Add obstacles",
+        "description": "Navigate around colorful obstacles",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Celebrate success",
+        "description": "Cheer for completing challenges",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Balance Activities - Mixed",
+    "description": "Balanced balance activities with moderate challenge",
+    "context": "When child needs moderate movement and balance",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Balanced vestibular input",
+      "Moderate challenge",
+      "Engaging but not overwhelming",
+      "Suitable for most children"
+    ],
+    "when_to_use": "When child needs moderate movement activity",
+    "materials_needed": [
+      "Moderate balance challenges",
+      "Safe environment",
+      "Various surfaces"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Moderate setup",
+        "description": "Create moderate balance challenges",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Natural movement",
+        "description": "Move at comfortable pace",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Try variations",
+        "description": "Try different balance activities",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Cool down",
+        "description": "Slow down gradually",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Balance Activities - Bedtime",
+    "description": "Gentle balance activities for pre-sleep",
+    "context": "When child needs gentle movement before sleep",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Gentle pre-sleep movement",
+      "Calming vestibular input",
+      "Bedtime routine",
+      "Relaxation"
+    ],
+    "when_to_use": "As part of bedtime routine",
+    "materials_needed": [
+      "Very simple balance line",
+      "Soft surface",
+      "Quiet space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Simple line",
+        "description": "Draw simple line on floor",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle walking",
+        "description": "Walk very slowly on the line",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Slow breathing",
+        "description": "Breathe slowly while walking",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-7",
+    "environment": "indoor"
+  }
+] 

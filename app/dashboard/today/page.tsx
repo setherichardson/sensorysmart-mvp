@@ -10,7 +10,7 @@ import ActivityStory from '../../components/ActivityStory'
 import BehaviorHelpModal from '../../components/BehaviorHelpModal'
 import AssessmentResultsModal from '../../components/AssessmentResultsModal'
 import { analytics } from '@/lib/analytics'
-import { getPersonalizedActivities, getNextActivity as getNextActivityImproved, getActivitySteps } from '@/lib/improved-activity-logic'
+import { getCycledActivities, getActivitySteps } from '@/lib/activity-cycling-logic'
 
 
 
@@ -567,199 +567,23 @@ export default function TodayDashboard() {
     }
   ]
 
-  // Personalization Logic
-  // OLD getPersonalizedActivities - KEPT FOR REFERENCE
-  /*
-  const getPersonalizedActivities = async (assessment: Assessment) => {
-    if (!assessment?.results) {
-      console.log('No assessment results found')
-      return []
-    }
 
-    const results = assessment.results as any
-    const behaviorScores = results.behaviorScores || {}
-    
-    console.log('Assessment results:', results)
-    console.log('Behavior scores:', behaviorScores)
-    
-    try {
-      // Get activities from database
-      const { data: activities, error } = await supabase
-        .from('activities')
-        .select('*')
-
-      if (error || !activities || activities.length === 0) {
-        console.log('Database activities not available, using fallback library')
-        
-        // Fallback to hardcoded activities with scoring
-        const scoredActivities = activityLibrary.map(activity => {
-          let score = 0
-          
-                  // Score based on behavior fit
-        const dominantBehavior = getDominantBehavior(behaviorScores)
-        if (activity.behavior_types && activity.behavior_types.includes(dominantBehavior)) {
-          score += 10
-        } else if (activity.behavior_types && activity.behavior_types.includes('mixed')) {
-          score += 5
-        }
-
-          // Score based on sensory system needs
-          const challengingSystems = getChallengingSystems(results)
-          const activitySystems = activity.sensory_systems || []
-          
-          challengingSystems.forEach(system => {
-            if (activitySystems.includes(system)) {
-              score += 8
-            }
-          })
-
-          // Score based on difficulty (prefer beginner for high avoiding/sensitive)
-          if (behaviorScores.avoiding > 15 || behaviorScores.sensitive > 15) {
-            if (activity.difficulty === 'beginner') score += 5
-            else if (activity.difficulty === 'advanced') score -= 3
-          }
-
-          return { ...activity, score }
-        })
-
-        // Sort by score and return top 6
-        const topActivities = scoredActivities
-          .sort((a, b) => b.score - a.score)
-          .slice(0, 6)
-        
-        console.log('Top scored activities:', topActivities.map(a => ({ title: a.title, score: a.score, behavior_types: a.behavior_types, sensory_systems: a.sensory_systems })))
-        
-        return topActivities
-      }
-
-      // Score activities based on child's profile
-      const scoredActivities = activities.map(activity => {
-        let score = 0
-        
-        // Score based on behavior fit
-        const dominantBehavior = getDominantBehavior(behaviorScores)
-        if (activity.behavior_types && activity.behavior_types.includes(dominantBehavior)) {
-          score += 10
-        } else if (activity.behavior_types && activity.behavior_types.includes('mixed')) {
-          score += 5
-        }
-
-        // Score based on sensory system needs
-        const challengingSystems = getChallengingSystems(results)
-        const activitySystems = activity.sensory_systems || []
-        
-        challengingSystems.forEach(system => {
-          if (activitySystems.includes(system)) {
-            score += 8
-          }
-        })
-
-        // Score based on difficulty (prefer beginner for high avoiding/sensitive)
-        if (behaviorScores.avoiding > 15 || behaviorScores.sensitive > 15) {
-          if (activity.difficulty === 'beginner') score += 5
-          else if (activity.difficulty === 'advanced') score -= 3
-        }
-
-        // Score based on age appropriateness
-        if (profile?.child_age && activity.age_range) {
-          const childAge = parseInt(profile.child_age.split('-')[0])
-          const activityAge = parseInt(activity.age_range.split('-')[0])
-          if (Math.abs(childAge - activityAge) <= 2) {
-            score += 3
-          }
-        }
-
-        return { ...activity, score }
-      })
-
-      // Sort by score and return top 6
-      return scoredActivities
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 6)
-    } catch (error) {
-      console.log('Error in getPersonalizedActivities, using fallback:', error)
-      
-      // Fallback to hardcoded activities with scoring
-      const scoredActivities = activityLibrary.map(activity => {
-        let score = 0
-        
-        // Score based on behavior fit
-        const dominantBehavior = getDominantBehavior(behaviorScores)
-        if (activity.behavior_fit === dominantBehavior) {
-          score += 10
-        } else if (activity.behavior_fit === 'mixed') {
-          score += 5
-        }
-
-        // Score based on sensory system needs
-        const challengingSystems = getChallengingSystems(results)
-        const activitySystems = activity.sensory_systems || []
-        
-        challengingSystems.forEach(system => {
-          if (activitySystems.includes(system)) {
-            score += 8
-          }
-        })
-
-        // Score based on difficulty (prefer beginner for high avoiding/sensitive)
-        if (behaviorScores.avoiding > 15 || behaviorScores.sensitive > 15) {
-          if (activity.difficulty === 'beginner') score += 5
-          else if (activity.difficulty === 'advanced') score -= 3
-        }
-
-        return { ...activity, score }
-      })
-
-      // Sort by score and return top 6
-      const topActivities = scoredActivities
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 6)
-      
-      console.log('Top scored activities (DB):', topActivities.map(a => ({ title: a.title, score: a.score, behavior_types: a.behavior_types, sensory_systems: a.sensory_systems })))
-      
-      return topActivities
-    }
-  }
-  */
   
   // NEW IMPROVED getPersonalizedActivities - uses the imported function
-  const getPersonalizedActivitiesWrapper = async (assessment: Assessment | null) => {
-    return await getPersonalizedActivities(assessment);
+  const getCycledActivitiesWrapper = async (assessment: Assessment | null) => {
+    try {
+      console.log('🔄 WRAPPER: Starting cycled activities');
+      const activities = await getCycledActivities(assessment);
+      console.log('🔄 WRAPPER: Got activities:', activities?.length || 0);
+      return activities;
+    } catch (error) {
+      console.error('🔄 WRAPPER: Error getting cycled activities:', error);
+      // Fallback to hardcoded activities
+      return activityLibrary.slice(0, 3);
+    }
   };
 
-  const getDominantBehavior = (behaviorScores: any) => {
-    const scores = [
-      { type: 'seeking', score: behaviorScores.seeking || 0 },
-      { type: 'avoiding', score: behaviorScores.avoiding || 0 },
-      { type: 'sensitive', score: behaviorScores.sensitive || 0 },
-      { type: 'low-registration', score: behaviorScores['low-registration'] || 0 }
-    ]
-    
-    const dominant = scores.reduce((max, current) => 
-      current.score > max.score ? current : max
-    ).type
-    
-    console.log('Behavior scores for analysis:', scores)
-    console.log('Dominant behavior:', dominant)
-    
-    return dominant
-  }
 
-  const getChallengingSystems = (results: any) => {
-    const systems = ['tactile', 'visual', 'auditory', 'olfactory', 'proprioceptive', 'vestibular', 'interoception', 'social-emotional']
-    const challenging: string[] = []
-    
-    systems.forEach(system => {
-      if (results[system] && results[system] > 15) {
-        challenging.push(system)
-      }
-    })
-    
-    console.log('System scores:', systems.map(system => ({ system, score: results[system] || 0 })))
-    console.log('Challenging systems:', challenging)
-    
-    return challenging
-  }
 
   const loadTodaysActivities = async () => {
     try {
@@ -797,19 +621,18 @@ export default function TodayDashboard() {
         const timeBasedActivities = getTimeBasedActivities(activityLibrary, timeSlot)
         setTodaysActivities(timeBasedActivities.slice(0, 3))
       } else {
-        console.log('Assessment found, getting personalized activities for', timeSlot)
-        const activities = await getPersonalizedActivitiesWrapper(assessment)
-        console.log('Personalized activities loaded:', activities?.length || 0)
+        console.log('Assessment found, getting cycled activities for', timeSlot)
+        const activities = await getCycledActivitiesWrapper(assessment)
+        console.log('Cycled activities loaded:', activities?.length || 0)
         
-        // Filter activities based on time slot
-        const timeBasedActivities = getTimeBasedActivities(activities || activityLibrary, timeSlot)
+        if (!activities || activities.length === 0) {
+          console.log('No activities returned, using fallback')
+          setTodaysActivities(activityLibrary.slice(0, 3))
+          return
+        }
         
-        // Remove duplicates based on title
-        const uniqueActivities = timeBasedActivities.filter((activity, index, self) => 
-          index === self.findIndex(a => a.title === activity.title)
-        )
-        
-        setTodaysActivities(uniqueActivities.slice(0, 3))
+        console.log('Setting cycled activities:', activities?.length || 0)
+        setTodaysActivities(activities)
       }
     } catch (error) {
       console.log('Error loading activities, using fallback:', error)
@@ -1302,7 +1125,7 @@ export default function TodayDashboard() {
           availableActivities = activityLibrary
         }
       } else if (assessment) {
-        const personalizedActivities = await getPersonalizedActivitiesWrapper(assessment)
+        const personalizedActivities = await getCycledActivitiesWrapper(assessment)
         availableActivities = personalizedActivities || activityLibrary
       } else {
         availableActivities = activityLibrary
@@ -1327,7 +1150,7 @@ export default function TodayDashboard() {
       // If we're running low on activities, allow some repetition but prefer variety
       if (availableActivities.length < 5) {
         console.log('Low on activities, allowing some repetition')
-        availableActivities = assessment ? (await getPersonalizedActivitiesWrapper(assessment)) || activityLibrary : activityLibrary
+        availableActivities = assessment ? (await getCycledActivitiesWrapper(assessment)) || activityLibrary : activityLibrary
         availableActivities = availableActivities.filter(a => 
           !currentActivities.some(existing => existing.id === a.id)
         )
@@ -1458,23 +1281,10 @@ export default function TodayDashboard() {
           const results = assessment.results as any
           const behaviorScores = results.behaviorScores || {}
           
-          // Score based on behavior fit
-          const dominantBehavior = getDominantBehavior(behaviorScores)
-          if (activity.behavior_fit === dominantBehavior) {
-            score += 10
-          } else if (activity.behavior_fit === 'mixed') {
+          // Simple scoring - removed complex logic
+          if (activity.behavior_types?.includes('mixed')) {
             score += 5
           }
-
-          // Score based on sensory system needs
-          const challengingSystems = getChallengingSystems(results)
-          const activitySystems = activity.sensory_systems || []
-          
-          challengingSystems.forEach(system => {
-            if (activitySystems.includes(system)) {
-              score += 8
-            }
-          })
 
           // Score based on difficulty (prefer beginner for high avoiding/sensitive)
           if (behaviorScores.avoiding > 15 || behaviorScores.sensitive > 15) {
@@ -1513,7 +1323,22 @@ export default function TodayDashboard() {
 
   // NEW IMPROVED getNextActivity - uses the imported function
   const getNextActivityWrapper = async (currentActivities: Activity[], justCompleted: Activity): Promise<Activity> => {
-    return await getNextActivityImproved(currentActivities, justCompleted, assessment);
+    // Simple cycling approach - just get the next activity from the cycle
+    try {
+      const activities = await getCycledActivitiesWrapper(assessment);
+      if (activities && activities.length > 0) {
+        // Find an activity that's not currently displayed
+        const nextActivity = activities.find(activity => 
+          !currentActivities.some(existing => existing.id === activity.id)
+        );
+        if (nextActivity) return nextActivity;
+      }
+      // Fallback to random activity from library
+      return activityLibrary[Math.floor(Math.random() * activityLibrary.length)];
+    } catch (error) {
+      console.error('Error getting next activity:', error);
+      return activityLibrary[Math.floor(Math.random() * activityLibrary.length)];
+    }
   };
 
   const handleCloseStory = () => {

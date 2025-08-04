@@ -1,0 +1,866 @@
+[
+  {
+    "title": "Breathing Exercises - Seeking",
+    "description": "Active breathing exercises with movement",
+    "context": "When child is overstimulated and needs to calm down",
+    "duration_minutes": 3,
+    "difficulty": "beginner",
+    "activity_type": "interoception",
+    "sensory_systems": [
+      "interoception",
+      "proprioceptive"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Calms overstimulation",
+      "Provides movement input",
+      "Improves focus",
+      "Regulates nervous system"
+    ],
+    "when_to_use": "When child is hyperactive or overstimulated",
+    "materials_needed": [
+      "Open space",
+      "Timer"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Find space",
+        "description": "Stand in open area",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Deep breaths with arms",
+        "description": "Breathe deeply while moving arms up and down",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Counted breathing",
+        "description": "Breathe in for 4, hold for 4, out for 4",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 4,
+        "title": "Movement breathing",
+        "description": "Breathe while doing gentle movements",
+        "duration_seconds": 30
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Breathing Exercises - Avoiding",
+    "description": "Gentle breathing in a safe, quiet space",
+    "context": "When child is overwhelmed and needs to feel safe",
+    "duration_minutes": 2,
+    "difficulty": "beginner",
+    "activity_type": "interoception",
+    "sensory_systems": [
+      "interoception"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Calms nervous system",
+      "Non-threatening activity",
+      "Reduces anxiety",
+      "Builds confidence"
+    ],
+    "when_to_use": "When child is anxious or avoiding activities",
+    "materials_needed": [
+      "Quiet space",
+      "Comfortable seating"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Find quiet space",
+        "description": "Go to calm, quiet area",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Soft breathing",
+        "description": "Breathe softly and gently",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Gentle counting",
+        "description": "Count breaths softly",
+        "duration_seconds": 30
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Breathing Exercises - Sensitive",
+    "description": "Very gentle breathing with minimal input",
+    "context": "When child is sensitive to any stimulation",
+    "duration_minutes": 1,
+    "difficulty": "beginner",
+    "activity_type": "interoception",
+    "sensory_systems": [
+      "interoception"
+    ],
+    "behavior_fit": "sensitive",
+    "benefits": [
+      "Very gentle calming",
+      "Builds tolerance",
+      "Reduces sensitivity",
+      "Safe activity"
+    ],
+    "when_to_use": "When child is very sensitive and overwhelmed",
+    "materials_needed": [
+      "Very quiet space",
+      "Soft lighting"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create safe space",
+        "description": "Find very quiet, comfortable area",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Very gentle breathing",
+        "description": "Breathe very softly and slowly",
+        "duration_seconds": 30
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Breathing Exercises - Low Registration",
+    "description": "Strong breathing exercises to provide noticeable input",
+    "context": "When child doesn't notice gentle breathing",
+    "duration_minutes": 5,
+    "difficulty": "intermediate",
+    "activity_type": "interoception",
+    "sensory_systems": [
+      "interoception",
+      "proprioceptive"
+    ],
+    "behavior_fit": "low-registration",
+    "benefits": [
+      "Provides strong input",
+      "Increases awareness",
+      "Improves focus",
+      "Builds interoception"
+    ],
+    "when_to_use": "When child seems unaware of body or needs alerting",
+    "materials_needed": [
+      "Open space",
+      "Timer"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up active space",
+        "description": "Clear area for movement",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Strong breathing",
+        "description": "Take deep, strong breaths",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Movement breathing",
+        "description": "Breathe while doing movements",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 4,
+        "title": "Counted breathing",
+        "description": "Count breaths loudly",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "4-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Breathing Exercises - Mixed",
+    "description": "Flexible breathing that can be adapted to different needs",
+    "context": "When child has mixed needs throughout the day",
+    "duration_minutes": 3,
+    "difficulty": "beginner",
+    "activity_type": "interoception",
+    "sensory_systems": [
+      "interoception"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Adaptable to different needs",
+      "Provides regulating input",
+      "Improves focus",
+      "Calming and alerting"
+    ],
+    "when_to_use": "When child's needs vary throughout the day",
+    "materials_needed": [
+      "Quiet space",
+      "Timer"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Assess current state",
+        "description": "Check child's current energy level",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Choose breathing type",
+        "description": "Select appropriate breathing style",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Perform breathing",
+        "description": "Do chosen breathing exercise",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 4,
+        "title": "Adjust as needed",
+        "description": "Modify based on response",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Breathing Exercises - Bedtime",
+    "description": "Calming breathing to prepare for sleep",
+    "context": "Bedtime routine to help child wind down",
+    "duration_minutes": 2,
+    "difficulty": "beginner",
+    "activity_type": "interoception",
+    "sensory_systems": [
+      "interoception"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Calms nervous system",
+      "Helps with sleep",
+      "Reduces anxiety",
+      "Gentle input"
+    ],
+    "when_to_use": "30 minutes before bedtime",
+    "materials_needed": [
+      "Quiet bedroom",
+      "Dim lighting"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create calm environment",
+        "description": "Dim lights, quiet space",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Slow breathing",
+        "description": "Breathe slowly and rhythmically",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Gentle counting",
+        "description": "Count breaths softly",
+        "duration_seconds": 30
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Gentle Rocking - Seeking",
+    "description": "Energetic rocking with movement and play",
+    "context": "When child needs vestibular input and engagement",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Provides vestibular input",
+      "Engaging activity",
+      "Improves coordination",
+      "Satisfies movement needs"
+    ],
+    "when_to_use": "When child is seeking movement and engagement",
+    "materials_needed": [
+      "Rocking chair",
+      "Therapy ball",
+      "Music (optional)"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up rocking area",
+        "description": "Prepare rocking chair or therapy ball",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Active rocking",
+        "description": "Rock with energy and movement",
+        "duration_seconds": 480
+      },
+      {
+        "step_number": 3,
+        "title": "Add songs",
+        "description": "Sing or play music while rocking",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 4,
+        "title": "Movement games",
+        "description": "Play games while rocking",
+        "duration_seconds": 240
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Gentle Rocking - Avoiding",
+    "description": "Calming, predictable rocking for comfort",
+    "context": "When child needs calming vestibular input",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Provides calming input",
+      "Predictable movement",
+      "Reduces anxiety",
+      "Builds comfort"
+    ],
+    "when_to_use": "When child needs calming but avoids intense movement",
+    "materials_needed": [
+      "Rocking chair",
+      "Therapy ball",
+      "Quiet space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Find quiet space",
+        "description": "Go to calm, quiet area",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Slow rocking",
+        "description": "Rock slowly and rhythmically",
+        "duration_seconds": 360
+      },
+      {
+        "step_number": 3,
+        "title": "Gentle swaying",
+        "description": "Stand and sway gently",
+        "duration_seconds": 240
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Gentle Rocking - Sensitive",
+    "description": "Very gentle rocking with minimal movement",
+    "context": "When child is sensitive to vestibular input",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular"
+    ],
+    "behavior_fit": "sensitive",
+    "benefits": [
+      "Provides gentle input",
+      "Builds tolerance",
+      "Reduces sensitivity",
+      "Safe movement"
+    ],
+    "when_to_use": "When child is very sensitive to movement",
+    "materials_needed": [
+      "Soft chair",
+      "Pillows",
+      "Very quiet environment"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create safe space",
+        "description": "Set up very comfortable area",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Very slow rocking",
+        "description": "Rock very slowly and gently",
+        "duration_seconds": 240
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Gentle Rocking - Low Registration",
+    "description": "Strong rocking to provide noticeable vestibular input",
+    "context": "When child doesn't notice gentle movement",
+    "duration_minutes": 15,
+    "difficulty": "intermediate",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behavior_fit": "low-registration",
+    "benefits": [
+      "Provides strong input",
+      "Increases awareness",
+      "Improves coordination",
+      "Builds vestibular processing"
+    ],
+    "when_to_use": "When child seems unaware of movement or needs alerting",
+    "materials_needed": [
+      "Rocking chair",
+      "Therapy ball",
+      "Swing (if available)"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up active space",
+        "description": "Prepare rocking equipment",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Strong rocking",
+        "description": "Rock with energy and speed",
+        "duration_seconds": 480
+      },
+      {
+        "step_number": 3,
+        "title": "Movement variations",
+        "description": "Add different movements while rocking",
+        "duration_seconds": 360
+      },
+      {
+        "step_number": 4,
+        "title": "Active engagement",
+        "description": "Keep child engaged with movement",
+        "duration_seconds": 240
+      }
+    ],
+    "age_range": "4-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Gentle Rocking - Mixed",
+    "description": "Flexible rocking that can be adapted to different needs",
+    "context": "When child has mixed vestibular needs",
+    "duration_minutes": 12,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Adaptable to different needs",
+      "Provides regulating input",
+      "Improves coordination",
+      "Calming and alerting"
+    ],
+    "when_to_use": "When child's vestibular needs vary",
+    "materials_needed": [
+      "Rocking chair",
+      "Therapy ball",
+      "Variety of movement options"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Assess current needs",
+        "description": "Check child's current vestibular sensitivity",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Choose rocking style",
+        "description": "Select appropriate intensity",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Perform rocking",
+        "description": "Do chosen rocking activity",
+        "duration_seconds": 600
+      },
+      {
+        "step_number": 4,
+        "title": "Adjust as needed",
+        "description": "Modify based on response",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Gentle Rocking - Bedtime",
+    "description": "Calming rocking to prepare for sleep",
+    "context": "Bedtime routine to help child wind down",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Calms nervous system",
+      "Helps with sleep",
+      "Reduces anxiety",
+      "Gentle vestibular input"
+    ],
+    "when_to_use": "30 minutes before bedtime",
+    "materials_needed": [
+      "Rocking chair",
+      "Soft music",
+      "Dim lighting"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create calm environment",
+        "description": "Dim lights, soft music",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Slow rocking",
+        "description": "Rock slowly and rhythmically",
+        "duration_seconds": 360
+      },
+      {
+        "step_number": 3,
+        "title": "Gentle swaying",
+        "description": "Stand and sway gently",
+        "duration_seconds": 240
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Visual Tracking - Seeking",
+    "description": "Active visual tracking with movement and engagement",
+    "context": "When child seeks visual stimulation and movement",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual",
+      "vestibular"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Satisfies visual seeking needs",
+      "Improves eye tracking",
+      "Engaging activity",
+      "Builds coordination"
+    ],
+    "when_to_use": "When child is seeking visual input and movement",
+    "materials_needed": [
+      "Bright objects",
+      "Moving toys",
+      "Open space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up visual area",
+        "description": "Prepare bright, moving objects",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Follow moving objects",
+        "description": "Track bright objects with eyes",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 3,
+        "title": "Active tracking",
+        "description": "Move head and body while tracking",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Visual games",
+        "description": "Play visual tracking games",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Visual Tracking - Avoiding",
+    "description": "Gentle visual tracking with choice and control",
+    "context": "When child needs visual input but is sensitive",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Provides gentle visual input",
+      "Child controls intensity",
+      "Improves focus",
+      "Builds comfort"
+    ],
+    "when_to_use": "When child needs visual input but avoids bright lights",
+    "materials_needed": [
+      "Soft objects",
+      "Gentle lighting",
+      "Quiet space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create gentle environment",
+        "description": "Set up soft lighting and objects",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Let child choose",
+        "description": "Child selects objects to track",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Gentle tracking",
+        "description": "Track chosen objects gently",
+        "duration_seconds": 180
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Visual Tracking - Sensitive",
+    "description": "Very gentle visual tracking with minimal stimulation",
+    "context": "When child is sensitive to visual input",
+    "duration_minutes": 3,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual"
+    ],
+    "behavior_fit": "sensitive",
+    "benefits": [
+      "Provides gentle visual input",
+      "Builds tolerance",
+      "Reduces sensitivity",
+      "Safe activity"
+    ],
+    "when_to_use": "When child is very sensitive to visual stimulation",
+    "materials_needed": [
+      "Very soft objects",
+      "Dim lighting",
+      "Quiet environment"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create safe environment",
+        "description": "Set up very dim, quiet space",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Very gentle tracking",
+        "description": "Track very soft objects slowly",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Visual Tracking - Low Registration",
+    "description": "Strong visual tracking to provide noticeable input",
+    "context": "When child doesn't notice gentle visual input",
+    "duration_minutes": 10,
+    "difficulty": "intermediate",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual",
+      "vestibular"
+    ],
+    "behavior_fit": "low-registration",
+    "benefits": [
+      "Provides strong visual input",
+      "Increases awareness",
+      "Improves focus",
+      "Builds visual processing"
+    ],
+    "when_to_use": "When child seems unaware of visual input or needs alerting",
+    "materials_needed": [
+      "Bright objects",
+      "Fast-moving toys",
+      "Colorful items"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up active space",
+        "description": "Prepare bright, fast-moving objects",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Fast tracking",
+        "description": "Track fast-moving objects",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 3,
+        "title": "Bright objects",
+        "description": "Track bright, colorful items",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Active engagement",
+        "description": "Keep child engaged with visual input",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "4-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Visual Tracking - Mixed",
+    "description": "Flexible visual tracking that can be adapted to different needs",
+    "context": "When child has mixed visual needs",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Adaptable to different needs",
+      "Provides regulating input",
+      "Improves focus",
+      "Builds visual processing"
+    ],
+    "when_to_use": "When child's visual needs vary",
+    "materials_needed": [
+      "Variety of objects",
+      "Different lighting options",
+      "Timer"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Assess current needs",
+        "description": "Check child's current visual sensitivity",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Choose tracking style",
+        "description": "Select appropriate intensity",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Perform tracking",
+        "description": "Do chosen tracking activity",
+        "duration_seconds": 420
+      },
+      {
+        "step_number": 4,
+        "title": "Adjust as needed",
+        "description": "Modify based on response",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Visual Tracking - Bedtime",
+    "description": "Calming visual tracking to prepare for sleep",
+    "context": "Bedtime routine to help child wind down",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "visual",
+    "sensory_systems": [
+      "visual"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Calms nervous system",
+      "Helps with sleep",
+      "Reduces anxiety",
+      "Gentle visual input"
+    ],
+    "when_to_use": "30 minutes before bedtime",
+    "materials_needed": [
+      "Soft objects",
+      "Dim lighting",
+      "Quiet space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create calm environment",
+        "description": "Dim lights, quiet space",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Slow tracking",
+        "description": "Track soft objects slowly",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Gentle focus",
+        "description": "Focus gently on calming objects",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  }
+] 

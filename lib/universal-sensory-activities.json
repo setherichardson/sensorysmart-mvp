@@ -1,0 +1,917 @@
+[
+  {
+    "title": "Heavy Work Stations - Seeking",
+    "description": "High-energy heavy work activities to satisfy deep pressure needs",
+    "context": "When child needs intense input and has lots of energy",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "proprioceptive",
+    "sensory_systems": [
+      "proprioceptive",
+      "vestibular"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Provides intense deep pressure input",
+      "Satisfies sensory seeking needs",
+      "Improves body awareness",
+      "Calms overstimulation"
+    ],
+    "when_to_use": "When child is restless, seeking input, or needs to burn energy",
+    "materials_needed": [
+      "Heavy books",
+      "Laundry baskets",
+      "Chairs",
+      "Water bottles",
+      "Backpack with books"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up stations",
+        "description": "Create 3-4 stations with heavy items to carry",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Carry heavy items",
+        "description": "Carry heavy books or baskets across room",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Push and pull",
+        "description": "Push chairs or pull heavy objects",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 4,
+        "title": "Stack and organize",
+        "description": "Stack heavy books or organize heavy items",
+        "duration_seconds": 180
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Heavy Work Stations - Avoiding",
+    "description": "Calming heavy work with choice and control",
+    "context": "When child needs calming input but is sensitive to intensity",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "proprioceptive",
+    "sensory_systems": [
+      "proprioceptive"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Provides gentle deep pressure",
+      "Child controls intensity",
+      "Calming effect",
+      "Builds confidence"
+    ],
+    "when_to_use": "When child needs calming but avoids intense activities",
+    "materials_needed": [
+      "Light books",
+      "Small baskets",
+      "Soft toys",
+      "Pillows"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Offer choices",
+        "description": "Let child choose what to carry",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle carrying",
+        "description": "Carry light items at child's pace",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 3,
+        "title": "Soft pushing",
+        "description": "Gently push soft pillows or toys",
+        "duration_seconds": 180
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Heavy Work Stations - Sensitive",
+    "description": "Very gentle heavy work with predictable input",
+    "context": "When child is sensitive to movement and touch",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "proprioceptive",
+    "sensory_systems": [
+      "proprioceptive"
+    ],
+    "behavior_fit": "sensitive",
+    "benefits": [
+      "Provides predictable pressure",
+      "Very gentle input",
+      "Calming effect",
+      "Builds tolerance"
+    ],
+    "when_to_use": "When child is overwhelmed and needs gentle input",
+    "materials_needed": [
+      "Soft blankets",
+      "Small stuffed animals",
+      "Light pillows"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare gentle items",
+        "description": "Set out soft, light items",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle holding",
+        "description": "Hold soft items close to body",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Soft carrying",
+        "description": "Carry soft items very gently",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Heavy Work Stations - Low Registration",
+    "description": "Intense heavy work to provide noticeable input",
+    "context": "When child doesn't notice light sensory input",
+    "duration_minutes": 20,
+    "difficulty": "intermediate",
+    "activity_type": "proprioceptive",
+    "sensory_systems": [
+      "proprioceptive",
+      "vestibular"
+    ],
+    "behavior_fit": "low-registration",
+    "benefits": [
+      "Provides strong input",
+      "Improves body awareness",
+      "Increases alertness",
+      "Builds strength"
+    ],
+    "when_to_use": "When child seems unaware of body or needs alerting",
+    "materials_needed": [
+      "Very heavy books",
+      "Large water bottles",
+      "Heavy toys",
+      "Backpack with weights"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up heavy stations",
+        "description": "Create stations with very heavy items",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 2,
+        "title": "Carry heavy loads",
+        "description": "Carry very heavy items across room",
+        "duration_seconds": 480
+      },
+      {
+        "step_number": 3,
+        "title": "Push heavy objects",
+        "description": "Push heavy furniture or objects",
+        "duration_seconds": 360
+      },
+      {
+        "step_number": 4,
+        "title": "Lift and hold",
+        "description": "Lift heavy items and hold for count",
+        "duration_seconds": 240
+      }
+    ],
+    "age_range": "4-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Heavy Work Stations - Mixed",
+    "description": "Flexible heavy work that can be adapted to different needs",
+    "context": "When child has mixed sensory needs throughout the day",
+    "duration_minutes": 12,
+    "difficulty": "beginner",
+    "activity_type": "proprioceptive",
+    "sensory_systems": [
+      "proprioceptive",
+      "vestibular"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Adaptable to different needs",
+      "Provides regulating input",
+      "Builds body awareness",
+      "Calming and alerting"
+    ],
+    "when_to_use": "When child's needs vary throughout the day",
+    "materials_needed": [
+      "Variety of weighted items",
+      "Different sized containers",
+      "Soft and hard objects",
+      "Backpack"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Assess needs",
+        "description": "Check child's current energy level",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Choose intensity",
+        "description": "Select appropriate weight and activity level",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Perform activity",
+        "description": "Carry, push, or lift chosen items",
+        "duration_seconds": 600
+      },
+      {
+        "step_number": 4,
+        "title": "Adjust as needed",
+        "description": "Increase or decrease intensity based on response",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Heavy Work Stations - Bedtime",
+    "description": "Calming heavy work to prepare for sleep",
+    "context": "Bedtime routine to help child wind down",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "proprioceptive",
+    "sensory_systems": [
+      "proprioceptive"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Calms nervous system",
+      "Provides deep pressure",
+      "Helps with sleep",
+      "Reduces anxiety"
+    ],
+    "when_to_use": "30 minutes before bedtime",
+    "materials_needed": [
+      "Heavy blankets",
+      "Pillows",
+      "Stuffed animals",
+      "Books"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare calming items",
+        "description": "Gather soft, heavy items",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle carrying",
+        "description": "Carry heavy blankets to bed",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Stack pillows",
+        "description": "Gently stack pillows on bed",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 4,
+        "title": "Heavy blanket time",
+        "description": "Lie under heavy blankets",
+        "duration_seconds": 180
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Movement Breaks - Seeking",
+    "description": "High-energy movement to satisfy vestibular needs",
+    "context": "When child is restless and needs intense movement",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Satisfies movement needs",
+      "Improves coordination",
+      "Burns energy",
+      "Increases alertness"
+    ],
+    "when_to_use": "When child is fidgety or seeking movement",
+    "materials_needed": [
+      "Open space",
+      "Music (optional)",
+      "Timer"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Clear space",
+        "description": "Make sure there's room to move",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Jumping jacks",
+        "description": "Do jumping jacks for 2 minutes",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Animal walks",
+        "description": "Bear walk, crab walk, frog jumps",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Spinning",
+        "description": "Controlled spinning with stops",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 5,
+        "title": "Running in place",
+        "description": "Run in place for 2 minutes",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Movement Breaks - Avoiding",
+    "description": "Calming, controlled movement breaks",
+    "context": "When child needs movement but is sensitive to intensity",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Provides gentle movement",
+      "Calms nervous system",
+      "Improves focus",
+      "Reduces anxiety"
+    ],
+    "when_to_use": "When child needs movement but avoids intense activity",
+    "materials_needed": [
+      "Rocking chair",
+      "Therapy ball",
+      "Quiet space"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Find quiet space",
+        "description": "Go to a calm, quiet area",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle rocking",
+        "description": "Rock slowly in chair or on ball",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Slow swaying",
+        "description": "Stand and sway gently side to side",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Movement Breaks - Sensitive",
+    "description": "Very gentle movement with predictable patterns",
+    "context": "When child is sensitive to movement and vestibular input",
+    "duration_minutes": 3,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular"
+    ],
+    "behavior_fit": "sensitive",
+    "benefits": [
+      "Provides gentle vestibular input",
+      "Calms nervous system",
+      "Builds tolerance",
+      "Reduces sensitivity"
+    ],
+    "when_to_use": "When child is overwhelmed and needs gentle movement",
+    "materials_needed": [
+      "Soft chair",
+      "Pillows",
+      "Quiet environment"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create calm space",
+        "description": "Set up quiet, comfortable area",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Very slow rocking",
+        "description": "Rock very slowly and gently",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Movement Breaks - Low Registration",
+    "description": "Intense movement to provide noticeable vestibular input",
+    "context": "When child doesn't notice gentle movement",
+    "duration_minutes": 15,
+    "difficulty": "intermediate",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behavior_fit": "low-registration",
+    "benefits": [
+      "Provides strong vestibular input",
+      "Increases alertness",
+      "Improves coordination",
+      "Builds body awareness"
+    ],
+    "when_to_use": "When child seems unaware of movement or needs alerting",
+    "materials_needed": [
+      "Open space",
+      "Swing (if available)",
+      "Trampoline (if available)",
+      "Music"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up active space",
+        "description": "Clear area for intense movement",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Fast spinning",
+        "description": "Spin quickly with clear stops",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "High jumping",
+        "description": "Jump as high as possible",
+        "duration_seconds": 240
+      },
+      {
+        "step_number": 4,
+        "title": "Fast running",
+        "description": "Run quickly in patterns",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 5,
+        "title": "Dance moves",
+        "description": "Fast, energetic dancing",
+        "duration_seconds": 240
+      }
+    ],
+    "age_range": "4-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Movement Breaks - Mixed",
+    "description": "Flexible movement that can be adapted to different needs",
+    "context": "When child has mixed movement needs throughout the day",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular",
+      "proprioceptive"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Adaptable to different needs",
+      "Provides regulating input",
+      "Improves coordination",
+      "Calming and alerting"
+    ],
+    "when_to_use": "When child's movement needs vary",
+    "materials_needed": [
+      "Open space",
+      "Variety of movement options",
+      "Timer"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Assess energy level",
+        "description": "Check child's current energy",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Choose movement type",
+        "description": "Select appropriate intensity",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 3,
+        "title": "Perform movement",
+        "description": "Do chosen movement activity",
+        "duration_seconds": 420
+      },
+      {
+        "step_number": 4,
+        "title": "Adjust as needed",
+        "description": "Increase or decrease intensity",
+        "duration_seconds": 60
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Movement Breaks - Bedtime",
+    "description": "Gentle movement to prepare for sleep",
+    "context": "Bedtime routine to help child wind down",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "vestibular",
+    "sensory_systems": [
+      "vestibular"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Calms nervous system",
+      "Helps with sleep",
+      "Reduces anxiety",
+      "Gentle vestibular input"
+    ],
+    "when_to_use": "30 minutes before bedtime",
+    "materials_needed": [
+      "Rocking chair",
+      "Soft music",
+      "Dim lighting"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create calm environment",
+        "description": "Dim lights, soft music",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle rocking",
+        "description": "Rock slowly and rhythmically",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Slow swaying",
+        "description": "Stand and sway gently",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Fidget Tools - Seeking",
+    "description": "High-input fidget tools for constant tactile stimulation",
+    "context": "When child needs constant tactile input",
+    "duration_minutes": 15,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "seeking",
+    "benefits": [
+      "Provides constant tactile input",
+      "Satisfies seeking needs",
+      "Improves focus",
+      "Reduces fidgeting"
+    ],
+    "when_to_use": "When child is constantly touching things or fidgeting",
+    "materials_needed": [
+      "Stress balls",
+      "Putty",
+      "Spiky balls",
+      "Textured objects",
+      "Fidget spinners"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up fidget collection",
+        "description": "Gather various fidget tools",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Explore textures",
+        "description": "Feel different textures and shapes",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Use multiple tools",
+        "description": "Use several fidget tools at once",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 4,
+        "title": "Create patterns",
+        "description": "Make patterns with putty or objects",
+        "duration_seconds": 240
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Fidget Tools - Avoiding",
+    "description": "Soft, predictable fidget tools for comfort",
+    "context": "When child needs tactile input but is sensitive",
+    "duration_minutes": 10,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile"
+    ],
+    "behavior_fit": "avoiding",
+    "benefits": [
+      "Provides gentle tactile input",
+      "Child controls usage",
+      "Calming effect",
+      "Builds comfort"
+    ],
+    "when_to_use": "When child needs tactile input but avoids certain textures",
+    "materials_needed": [
+      "Soft fabric",
+      "Smooth stones",
+      "Gentle textures",
+      "Silk scarves"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Offer gentle options",
+        "description": "Present soft, smooth fidget tools",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Let child choose",
+        "description": "Child selects preferred tools",
+        "duration_seconds": 120
+      },
+      {
+        "step_number": 3,
+        "title": "Gentle exploration",
+        "description": "Explore chosen tools gently",
+        "duration_seconds": 420
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Fidget Tools - Sensitive",
+    "description": "Very gentle fidget tools with predictable textures",
+    "context": "When child is sensitive to tactile input",
+    "duration_minutes": 5,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile"
+    ],
+    "behavior_fit": "sensitive",
+    "benefits": [
+      "Provides predictable tactile input",
+      "Very gentle stimulation",
+      "Builds tolerance",
+      "Reduces sensitivity"
+    ],
+    "when_to_use": "When child is overwhelmed by tactile input",
+    "materials_needed": [
+      "Very soft fabric",
+      "Smooth wooden objects",
+      "Gentle textures only"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prepare gentle tools",
+        "description": "Set out only very soft items",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Very gentle touching",
+        "description": "Touch tools very lightly",
+        "duration_seconds": 180
+      },
+      {
+        "step_number": 3,
+        "title": "Gradual exploration",
+        "description": "Slowly explore textures",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Fidget Tools - Low Registration",
+    "description": "Strong fidget tools to provide noticeable input",
+    "context": "When child doesn't notice light tactile input",
+    "duration_minutes": 15,
+    "difficulty": "intermediate",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "low-registration",
+    "benefits": [
+      "Provides strong tactile input",
+      "Increases awareness",
+      "Improves focus",
+      "Builds tactile processing"
+    ],
+    "when_to_use": "When child seems unaware of touch or needs alerting",
+    "materials_needed": [
+      "Rough textures",
+      "Spiky balls",
+      "Strong putty",
+      "Textured objects"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Set up strong tools",
+        "description": "Gather textured, strong fidget tools",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Strong manipulation",
+        "description": "Squeeze, pull, and manipulate tools",
+        "duration_seconds": 360
+      },
+      {
+        "step_number": 3,
+        "title": "Texture exploration",
+        "description": "Explore rough and textured surfaces",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 4,
+        "title": "Active fidgeting",
+        "description": "Use tools actively and frequently",
+        "duration_seconds": 240
+      }
+    ],
+    "age_range": "4-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Fidget Tools - Mixed",
+    "description": "Variety of fidget tools for different needs",
+    "context": "When child has mixed tactile needs",
+    "duration_minutes": 12,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile",
+      "visual"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Adaptable to different needs",
+      "Provides regulating input",
+      "Improves focus",
+      "Builds tactile processing"
+    ],
+    "when_to_use": "When child's tactile needs vary",
+    "materials_needed": [
+      "Variety of fidget tools",
+      "Different textures",
+      "Soft and rough objects"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Assess current needs",
+        "description": "Check child's current tactile sensitivity",
+        "duration_seconds": 30
+      },
+      {
+        "step_number": 2,
+        "title": "Choose appropriate tools",
+        "description": "Select tools based on current needs",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 3,
+        "title": "Use tools",
+        "description": "Use chosen fidget tools",
+        "duration_seconds": 600
+      },
+      {
+        "step_number": 4,
+        "title": "Adjust as needed",
+        "description": "Change tools based on response",
+        "duration_seconds": 90
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  },
+  {
+    "title": "Fidget Tools - Bedtime",
+    "description": "Calming fidget tools for bedtime routine",
+    "context": "Bedtime routine to help child wind down",
+    "duration_minutes": 8,
+    "difficulty": "beginner",
+    "activity_type": "tactile",
+    "sensory_systems": [
+      "tactile"
+    ],
+    "behavior_fit": "mixed",
+    "benefits": [
+      "Calms nervous system",
+      "Provides gentle input",
+      "Helps with sleep",
+      "Reduces anxiety"
+    ],
+    "when_to_use": "30 minutes before bedtime",
+    "materials_needed": [
+      "Soft fabric",
+      "Smooth stones",
+      "Gentle textures",
+      "Silk scarves"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create calm environment",
+        "description": "Dim lights, quiet space",
+        "duration_seconds": 60
+      },
+      {
+        "step_number": 2,
+        "title": "Gentle fidgeting",
+        "description": "Use soft fidget tools gently",
+        "duration_seconds": 300
+      },
+      {
+        "step_number": 3,
+        "title": "Calm exploration",
+        "description": "Explore textures slowly and calmly",
+        "duration_seconds": 120
+      }
+    ],
+    "age_range": "3-8",
+    "environment": "indoor"
+  }
+] 
