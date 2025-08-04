@@ -34,12 +34,24 @@ export const getCycledActivities = async (assessment: Assessment | null): Promis
     const cyclePosition = await getCurrentCyclePosition(assessment.user_id);
     console.log(`🔄 CYCLING: Current cycle position: ${cyclePosition}`);
     
-    // Get next 3 activities from the cycle
-    const nextActivities = getNextActivitiesFromCycle(personalizedActivities, cyclePosition, 3);
+    // Get recently shown activities to avoid duplicates
+    const recentlyShown = await getRecentlyShownActivities(assessment.user_id);
+    console.log(`🔄 CYCLING: Recently shown activities: ${recentlyShown.length}`);
+    
+    // Get next 3 activities from the cycle, avoiding duplicates
+    const nextActivities = getNextActivitiesFromCycleAvoidingDuplicates(
+      personalizedActivities, 
+      cyclePosition, 
+      3, 
+      recentlyShown
+    );
     console.log(`🔄 CYCLING: Selected ${nextActivities.length} activities`);
     
     // Update cycle position for next time
     await updateCyclePosition(assessment.user_id, cyclePosition + 3);
+    
+    // Track these activities as recently shown
+    await trackRecentlyShownActivities(assessment.user_id, nextActivities);
     
     return nextActivities;
     
@@ -47,6 +59,84 @@ export const getCycledActivities = async (assessment: Assessment | null): Promis
     console.error('🔄 CYCLING: Error in getCycledActivities:', error);
     return getFallbackActivities();
   }
+};
+
+// Get recently shown activities (last 24 hours)
+const getRecentlyShownActivities = async (userId: string): Promise<string[]> => {
+  try {
+    const key = `recently_shown_${userId}`;
+    const stored = localStorage.getItem(key);
+    if (!stored) return [];
+    
+    const data = JSON.parse(stored);
+    const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
+    
+    // Filter out activities shown more than 24 hours ago
+    const recent = data.filter((item: any) => item.timestamp > oneDayAgo);
+    
+    // Update storage with only recent activities
+    localStorage.setItem(key, JSON.stringify(recent));
+    
+    return recent.map((item: any) => item.activityId);
+    
+  } catch (error) {
+    console.log('🔄 CYCLING: Error getting recently shown activities, starting fresh');
+    return [];
+  }
+};
+
+// Track recently shown activities
+const trackRecentlyShownActivities = async (userId: string, activities: Activity[]): Promise<void> => {
+  try {
+    const key = `recently_shown_${userId}`;
+    const existing = localStorage.getItem(key);
+    const existingData = existing ? JSON.parse(existing) : [];
+    
+    const newData = activities.map(activity => ({
+      activityId: activity.id,
+      timestamp: Date.now()
+    }));
+    
+    const allData = [...existingData, ...newData];
+    localStorage.setItem(key, JSON.stringify(allData));
+    
+  } catch (error) {
+    console.log('🔄 CYCLING: Error tracking recently shown activities');
+  }
+};
+
+// Get next activities from cycle, avoiding duplicates
+const getNextActivitiesFromCycleAvoidingDuplicates = (
+  activities: Activity[], 
+  startIndex: number, 
+  count: number, 
+  recentlyShown: string[]
+): Activity[] => {
+  if (activities.length === 0) return [];
+  
+  const result = [];
+  let attempts = 0;
+  const maxAttempts = activities.length * 2; // Prevent infinite loops
+  
+  while (result.length < count && attempts < maxAttempts) {
+    const index = (startIndex + attempts) % activities.length;
+    const activity = activities[index];
+    
+    // Check if this activity was recently shown
+    if (!recentlyShown.includes(activity.id)) {
+      result.push(activity);
+    }
+    
+    attempts++;
+  }
+  
+  // If we couldn't find enough non-duplicate activities, 
+  // just return what we have (this prevents infinite loops)
+  if (result.length < count) {
+    console.log(`🔄 CYCLING: Could only find ${result.length} non-duplicate activities, returning what we have`);
+  }
+  
+  return result;
 };
 
 // Get personalized activity list (filtered by assessment, but not scored)
@@ -130,7 +220,7 @@ const updateCyclePosition = async (userId: string, newPosition: number): Promise
   }
 };
 
-// Get next activities from cycle
+// Get next activities from cycle (old version - kept for reference)
 const getNextActivitiesFromCycle = (activities: Activity[], startIndex: number, count: number): Activity[] => {
   if (activities.length === 0) return [];
   
